@@ -76,7 +76,7 @@ Todos estudantes de **A.D.S** na **Faculdade UMFG**.
 Agradecimento especial ao **professor Guilherme Dias Vicentini**, pela contribuição na: 
 - Definição das diretrizes 
 - Boas práticas de desenvolvimento
-- Estratégias para o fluxo do desenvolvimento.  
+- Estratégias para o fluxo do desenvolvimento  
 
 Mesmo sem participar diretamente da implementação, sua orientação foi essencial para o progresso do projeto.  
 
