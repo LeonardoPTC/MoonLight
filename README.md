@@ -57,7 +57,7 @@ O MoonLight utiliza tecnologias modernas do ecossistema web para garantir veloci
 👥 **Autores**  
 - **Thiago Marques Paixão** – TM1744  
 - **Leonardo Pereira Trindade Comitre** – LeonardoPTC  
-- **Vitor Hugo Calsavara Pita** – Pita042  
+- **Vitor Hugo Calsavara Pita** – vitorpita  
 
 ---
 
