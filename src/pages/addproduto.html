@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Produto</title>
+    <link rel="stylesheet" href="../styles/pages/addproduto.css">
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div id="content" class="shadow bg-body-tertiary rounded">
+        <form class="container g-2">
+            <h1 class="text-center mb-4">Cadastro de Produto</h1>
+            <div class="row g-2">
+                <div class="col-md-6">
+                    <label for="inputcodBarras" class="form-label">Código de Barras:</label>
+                    <input type="text" class="form-control border border-dark" id="inputcodBarras">
+                </div>
+                <div class="col-md-12">
+                    <label for="inputnomeProduto" class="form-label">Nome do Produto:</label>
+                    <input type="text" class="form-control border border-dark" id="inputnomeProduto">
+                </div>
+                <div class="col-12">
+                    <label for="inputDescricao" class="form-label">Descrição do Produto:</label>
+                    <textarea class="form-control border border-dark" id="inputDescricao"></textarea>
+                </div>
+            </div>
+            <div class="row mt-1 g-2">
+                <div class="col-md-3">
+                    <label for="inputNCM" class="form-label">NCM:</label>
+                    <input type="text" class="form-control border border-dark" id="inputNCM">
+                </div>
+                <div class="col-md-5">
+                    <label for="inputCategoria" class="form-label">Categoria:</label>
+                    <select id="inputCategoria" class="form-select border border-dark">
+                        <option selected>Choose...</option>
+                        <option>...</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="inputMarca" class="form-label">Marca:</label>
+                    <input type="text" class="form-control border border-dark" id="inputMarca">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <label for="inputValorVenda" class="form-label">Preço de Venda:</label>
+                    <input type="text" class="form-control border border-dark" id="inputValorVenda">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputprecoCusto" class="form-label">Preço de Custo:</label>
+                    <input type="text" class="form-control border border-dark" id="inputprecoCusto">
+
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <label for="inputEstoque" class="form-label">Estoque:</label>
+                    <input type="text" class="form-control border border-dark" id="inputEstoque">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputEstoqueMin" class="form-label">Estoque Minímo:</label>
+                    <input type="text" class="form-control border border-dark" id="inputEstoqueMin">
+                </div>
+            </div>
+
+            <div class="row mt-3" id="buttons">
+                <div class="col-2 mr-3">
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+                <div class="col-2">
+                    <button type="submit" class="btn btn-secondary">Cancelar</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div id="footer"></div>
+    <script src="../scripts/includes.js"></script>
+    <script>
+        includeHTML("header", "../include/header.html");
+        includeHTML("footer", "../include/footer.html");
+    </script>
+    <script src="../scripts/pages/addproduto.js"></script>
+</body>
+
+</html>
