@@ -2,19 +2,26 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar Produto</title>
-    <link rel="stylesheet" href="/src/styles/pages/produtos/index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adicionar Produto</title>
+  <link rel="stylesheet" href="/src/styles/pages/produtos/index.css">
 </head>
 
 <body>
-    <div id="header"></div>
+  <div id="header"></div>
+  <div id="content" class="shadow body-tertiary rounded">
 
-    <div id="content" class="shadow body-tertiary rounded">
-    <table id="tabela-produtos" class="table table-bordered">
     <h1 class="mb-3">Produtos Cadastrados</h1>
-    <thead>
+
+    <div class="d-flex justify-content-end mb-3 w-100">
+      <button id="NovoProduto" class="btn btn-success" onclick= "window.location.href='http://localhost:5500/src/pages/produtos/addproduto.html'">
+        <img src="/src/assets/AddProduto.png" alt="Adicionar Novo Produto">
+        Cadastrar Novo Produto
+      </button>
+    </div>
+    <table id="tabela-produtos" class="table table-bordered">
+      <thead>
         <tr class="text-center">
           <th>Código</th>
           <th>Nome</th>
@@ -22,21 +29,21 @@
           <th>Estoque</th>
           <th>Valor de Venda</th>
           <th>Valor de Custo</th>
-          <th>Situacao</th>
           <th>Ação</th>
         </tr>
       </thead>
-    <tbody></tbody>
-  </table>
+      <tbody></tbody>
+    </table>
   </div>
 
-    <div id="footer"></div>
-    <script src="/src/scripts/includes.js"></script>
-    <script>
-        includeHTML("header", "/src/include/header.html");
-        includeHTML("footer", "/src/include/footer.html");
-    </script>
-    <script src="/src/scripts/pages/produto/index.js"></script>
+  <div id="footer"></div>
+  <script src="/src/scripts/includes.js"></script>
+  <script>
+    includeHTML("header", "/src/include/header.html");
+    includeHTML("footer", "/src/include/footer.html");
+  </script>
+  <script src="/src/scripts/pages/produto/index.js"></script>
+  <script src="/src/scripts/pages/produto/excluirproduto.js"></script>
 </body>
 
 </html>

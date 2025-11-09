@@ -11,3 +11,8 @@
     transition: margin-left 0.3s ease;
     font-family: "Roboto Mono", monospace;
   }
+
+  img {
+    width: 30px; 
+    margin-right: 5px;
+  }

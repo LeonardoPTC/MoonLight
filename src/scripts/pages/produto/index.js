@@ -9,7 +9,7 @@ async function carregarProdutos() {
     const linha = document.createElement("tr");
     let situacao = p.situacao;
 
-    if (situacao == "0") {
+    /*if (situacao == "0") {
       situacao = "INDEFINIDO";
     } else if(situacao == "1") {
       situacao = "ATIVO";
@@ -19,7 +19,7 @@ async function carregarProdutos() {
       situacao = "EM FALTA";
     } else if(situacao == "4") {
       situacao = "AGUARDANDO ENTREGA";
-    } 
+    } Para o Segundo Estágio*/
     linha.innerHTML = `
       <td>${p.codigo}</td>
       <td>${p.nome}</td>
@@ -27,11 +27,10 @@ async function carregarProdutos() {
       <td>${p.quantidadeEstoque}</td>
       <td>R$ ${p.valorVenda.toFixed(2)}</td>
       <td>R$ ${p.valorCusto.toFixed(2)}</td>
-      <td>${situacao}</td>
       <td class="text-center">
           <button class="btn btn-primary" onclick="visualizarProduto('${p.id}')">Visualizar</button>
           <button class="btn btn-warning" onclick="editarProduto('${p.id}')">Editar</button>
-          <button class="btn btn-danger" onclick="excluirProduto(${p.id})">Excluir</button>
+          <button class="btn btn-danger" onclick="excluirProduto('${p.id}')">Excluir</button>
       </td>
     `;
     tbody.appendChild(linha);

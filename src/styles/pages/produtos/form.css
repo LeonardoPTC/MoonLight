@@ -1,16 +1,16 @@
 #content {
-    border: 2px solid #2B4C7E;
-    background-color: #F0F4F9;
-    margin-top: 80px;
-    margin-left: 310px;
-    margin-right: 280px;
-    padding: 20px;
-    padding-bottom: 50px;
-    box-sizing: border-box;
-    justify-items: center;
-    transition: margin-left 0.3s ease;
-    font-family: "Roboto Mono", monospace;
-  }
+  border: 2px solid #2B4C7E;
+  background-color: #F0F4F9;
+  margin-top: 80px;
+  margin-left: 310px;
+  margin-right: 280px;
+  padding: 20px;
+  padding-bottom: 50px;
+  box-sizing: border-box;
+  justify-items: center;
+  transition: margin-left 0.3s ease;
+  font-family: "Roboto Mono", monospace;
+}
 
 #TituloCad h1 {
   margin: 0 0 20px 0;
@@ -18,12 +18,12 @@
 
 #buttons {
   display: flex;
-  justify-content: center; 
+  justify-content: center;
 }
 
 #buttons button {
-    width: 100%;
-    padding: 6px;
+  width: 100%;
+  padding: 6px;
 }
 
 #idDescricao {
@@ -38,4 +38,14 @@ textarea {
 
 .borda {
   border: 1px solid #2B4C7E;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
 }

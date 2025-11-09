@@ -33,7 +33,7 @@ function preencherCampos(produto) {
     let descricao = produto.descricao;
     let NCM = produto.ncm;
     let marca = produto.marca;
-    let situacao = produto.situacao;
+    //let situacao = produto.situacao; Para o Segundo Estágio
 
 
     if (codBarras === "N/D") {
@@ -78,5 +78,5 @@ function preencherCampos(produto) {
     document.getElementById('inputprecoCusto').value = produto.valorCusto.toFixed(2) || "";
     document.getElementById('inputEstoque').value = produto.quantidadeEstoque || "";
     document.getElementById('inputEstoqueMin').value = produto.quantidadeEstoqueMinimo || "";
-    document.getElementById('inputSituacao').value = situacao;
+    //document.getElementById('inputSituacao').value = situacao; Para o Segundo Estágio
 }
