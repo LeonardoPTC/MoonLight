@@ -81,7 +81,7 @@ document.addEventListener('submit', async function (event) {
     });
 
     if (!resposta.ok) {
-      alert("Erro ao buscar produto!")
+      alert("Produto não Encontrado!")
     }
 
     const produtos = await resposta.json();
@@ -109,6 +109,13 @@ document.addEventListener('submit', async function (event) {
   } catch (erro) {
     alert("Erro ao aplicar filtro", erro);
   }
+});
+
+document.getElementById('limparFiltros').addEventListener('click', function () {
+  carregarProdutos();
+  document.getElementById('filterCodigo').value = "";
+  document.getElementById('filterNome').value = "";
+  document.getElementById('filterMarca').value = "";
 });
 
 function editarProduto(id) {
