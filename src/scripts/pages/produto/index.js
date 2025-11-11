@@ -69,10 +69,6 @@ document.addEventListener('submit', async function (event) {
     marca: marca
   };
 
-  console.log(dto);
-  console.log(JSON.stringify(dto));
-
-
   try {
     const resposta = await fetch("http://localhost:5164/BlueMoon/Produtos/Search", {
       method: "POST",

@@ -5,26 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Cliente</title>
-    <link rel="stylesheet" href="/src/styles/pages/produtos/form.css">
+    <link rel="stylesheet" href="/src/styles/pages/clientes/form.css">
 </head>
 
 <body>
     <div id="header"></div>
 
     <div id="content" class="shadow body-tertiary rounded">
-        <form id="formProduto" class="container g-2">
-            <h1 class="text-center mb-4">Visualizar Produto</h1>
+        <form id="formCliente" class="container g-2">
+            <h1 class="text-center mb-4">Visualizar Cliente</h1>
             <div class="row g-2">
                 <div class="col-md-6">
                     <label for="inputcodBarras" class="form-label">Código de Barras:</label>
                     <input type="text" class="form-control" id="inputcodBarras" name="CodigoBarras">
                 </div>
                 <div class="col-md-6">
-                    <label for="inputnomeProduto" class="form-label">Nome do Produto:</label>
+                    <label for="inputnomeCliente" class="form-label">Nome do Cliente:</label>
                     <input type="text" class="form-control" id="Nome" name="Nome">
                 </div>
                 <div class="col-12">
-                    <label for="inputDescricao" class="form-label">Descrição do Produto:</label>
+                    <label for="inputDescricao" class="form-label">Descrição do Cliente:</label>
                     <textarea class="form-control" id="inputDescricao" name="Descricao"></textarea>
                 </div>
             </div>
@@ -63,7 +63,7 @@
 
         <div class="row mt-5" id="buttons">
             <div class="col-12">
-                <button type="button" onclick="window.location.href='/src/pages/produtos/index.html'"
+                <button type="button" onclick="window.location.href='/src/pages/Clientes/index.html'"
                     class="btn btn-secondary px-5 p-2">Voltar</button>
             </div>
         </div>
@@ -76,7 +76,7 @@
         includeHTML("header", "/src/include/header.html");
         includeHTML("footer", "/src/include/footer.html");
     </script>
-    <script src="/src/scripts/pages/produto/viewproduto.js"></script>
+    <script src="/src/scripts/pages/Cliente/viewCliente.js"></script>
 
 </body>
 </html>
