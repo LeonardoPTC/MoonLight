@@ -24,7 +24,7 @@ async function carregarProdutos() {
       <td>${p.codigo}</td>
       <td>${p.nome}</td>
       <td>${p.marca}</td>
-      <td>${p.estoque}</td>
+      <td>${p.quantidadeEstoque}</td>
       <td>R$ ${p.valorVenda.toFixed(2)}</td>
       <td>R$ ${p.valorCusto.toFixed(2)}</td>
       <td class="text-center">

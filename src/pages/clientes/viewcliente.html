@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Cliente</title>
+    <link rel="stylesheet" href="/src/styles/pages/produtos/form.css">
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div id="content" class="shadow body-tertiary rounded">
+        <form id="formProduto" class="container g-2">
+            <h1 class="text-center mb-4">Visualizar Produto</h1>
+            <div class="row g-2">
+                <div class="col-md-6">
+                    <label for="inputcodBarras" class="form-label">Código de Barras:</label>
+                    <input type="text" class="form-control" id="inputcodBarras" name="CodigoBarras">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputnomeProduto" class="form-label">Nome do Produto:</label>
+                    <input type="text" class="form-control" id="Nome" name="Nome">
+                </div>
+                <div class="col-12">
+                    <label for="inputDescricao" class="form-label">Descrição do Produto:</label>
+                    <textarea class="form-control" id="inputDescricao" name="Descricao"></textarea>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-6">
+                    <label for="inputNCM" class="form-label">NCM:</label>
+                    <input type="text" class="form-control" id="inputNCM" name="ncm">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputMarca" class="form-label">Marca:</label>
+                    <input type="text" class="form-control" id="inputMarca" name="Marca">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <label for="inputValorVenda" class="form-label">Preço de Venda:</label>
+                    <input type="number" step="0.01" class="form-control" id="inputValorVenda" name="ValorVenda">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputprecoCusto" class="form-label">Preço de Custo:</label>
+                    <input type="number" step="0.01" class="form-control" id="inputprecoCusto" name="ValorCusto">
+
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <label for="inputEstoque" class="form-label">Estoque:</label>
+                    <input type="number" class="form-control" id="inputEstoque" name="QuantidadeEstoque">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputEstoqueMin" class="form-label">Estoque Minímo:</label>
+                    <input type="number" class="form-control" id="inputEstoqueMin" name="QuantidadeEstoqueMinimo">
+                </div>
+            </div>
+        </form>
+
+        <div class="row mt-5" id="buttons">
+            <div class="col-12">
+                <button type="button" onclick="window.location.href='/src/pages/produtos/index.html'"
+                    class="btn btn-secondary px-5 p-2">Voltar</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="footer"></div>
+    <script src="/src/scripts/includes.js"></script>
+    <script>
+        includeHTML("header", "/src/include/header.html");
+        includeHTML("footer", "/src/include/footer.html");
+    </script>
+    <script src="/src/scripts/pages/produto/viewproduto.js"></script>
+
+</body>
+</html>
