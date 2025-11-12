@@ -16,9 +16,9 @@ async function carregarClientes() {
       <td>${c.cidade}</td>
       <td>${c.logradouro}, ${c.numero}</td>
       <td class="text-center">
-          <button class="btn btn-primary" onclick="visualizarCliente('${c.id}')">Visualizar</button>
-          <button class="btn btn-warning" onclick="editarCliente('${c.id}')">Editar</button>
-          <button class="btn btn-danger" onclick="excluirCliente('${c.id}')">Excluir</button>
+          <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Cliente" onclick="visualizarCliente('${c.id}')"><img src="/src/assets/View.png"></button>
+          <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Cliente" onclick="editarCliente('${c.id}')"><img src="/src/assets/Edit.png"></button>
+          <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir Cliente" onclick="excluirCliente('${c.id}')"><img src="/src/assets/Delete.png"></button>
       </td>
     `;
     tbody.appendChild(linha);
@@ -81,9 +81,9 @@ document.addEventListener('DOMContentLoaded', function () {
       <td>${p.cidade}</td>
       <td>${p.bairro + p.complemento}</td>
       <td class="text-center">
-          <button class="btn btn-primary" onclick="visualizarProduto('${p.id}')">Visualizar</button>
-          <button class="btn btn-warning" onclick="editarProduto('${p.id}')">Editar</button>
-          <button class="btn btn-danger" onclick="excluirProduto('${p.id}')">Excluir</button>
+          <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Cliente" onclick="visualizarCliente('${c.id}')"><img src="/src/assets/View.png"></button>
+          <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Cliente" onclick="editarCliente('${c.id}')"><img src="/src/assets/Edit.png"></button>
+          <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir Cliente" onclick="excluirCliente('${c.id}')"><img src="/src/assets/Delete.png"></button>
       </td>
     `;
       tbody.appendChild(linha);
