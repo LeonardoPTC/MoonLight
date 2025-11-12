@@ -3,30 +3,34 @@ document.getElementById("formCliente").addEventListener("submit", async (e) => {
 
   const pessoaFisica = document.getElementById("pessoaFisica");
   const pessoaJuridica = document.getElementById("pessoaJuridica");
+  const form = e.target;
+
+
+  let removido = null;
 
   if (pessoaFisica.classList.contains("hidden")) {
-    pessoaFisica.querySelectorAll("[required]").forEach(el => el.removeAttribute("required"));
-    pessoaJuridica.querySelectorAll("input[data-required], select[data-required], textarea[data-required]").forEach(el => el.setAttribute("required", ""));
+    removido = pessoaFisica;
+    pessoaFisica.remove();
   } else {
-    pessoaJuridica.querySelectorAll("[required]").forEach(el => el.removeAttribute("required"));
-    pessoaFisica.querySelectorAll("input[data-required], select[data-required], textarea[data-required]").forEach(el => el.setAttribute("required", ""));
+    removido = pessoaJuridica;
+    pessoaJuridica.remove();
   }
 
-  const form = e.target;
   const formData = new FormData(form);
   const dados = {};
 
   formData.forEach((valor, chave) => {
-    const camposEnum = ["Estado"];
-    if (camposEnum.includes(chave)) {
+    if (chave === "Estado") {
       dados[chave] = valor === "0" ? 0 : parseInt(valor);
     } else {
-      dados[chave] = valor.trim() === "" ? "" : valor.trim();
+      dados[chave] = valor.trim();
     }
-
-
   });
 
+  form.appendChild(removido);
+
+  console.log(dados);
+  
   try {
     const resposta = await fetch("http://localhost:5164/BlueMoon/Pessoas", {
       method: "POST",
