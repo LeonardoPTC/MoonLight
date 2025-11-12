@@ -28,9 +28,9 @@ async function carregarProdutos() {
       <td>R$ ${p.valorVenda.toFixed(2)}</td>
       <td>R$ ${p.valorCusto.toFixed(2)}</td>
       <td class="text-center">
-          <button class="btn btn-primary" onclick="visualizarProduto('${p.id}')">Visualizar</button>
-          <button class="btn btn-warning" onclick="editarProduto('${p.id}')">Editar</button>
-          <button class="btn btn-danger" onclick="excluirProduto('${p.id}')">Excluir</button>
+          <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Produto" onclick="visualizarProduto('${p.id}')"><img src="/src/assets/View.png"></button>
+          <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Produto" onclick="editarProduto('${p.id}')"><img src="/src/assets/Edit.png"></button>
+          <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir Produto" onclick="excluirProduto('${p.id}')"><img src="/src/assets/Delete.png"></button>
       </td>
     `;
     tbody.appendChild(linha);
@@ -94,9 +94,9 @@ document.addEventListener('submit', async function (event) {
       <td>R$ ${p.valorVenda.toFixed(2)}</td>
       <td>R$ ${p.valorCusto.toFixed(2)}</td>
       <td class="text-center">
-          <button class="btn btn-primary" onclick="visualizarProduto('${p.id}')">Visualizar</button>
-          <button class="btn btn-warning" onclick="editarProduto('${p.id}')">Editar</button>
-          <button class="btn btn-danger" onclick="excluirProduto('${p.id}')">Excluir</button>
+         <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Produto" onclick="visualizarProduto('${p.id}')"><img src="/src/assets/View.png"></button>
+          <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Produto" onclick="editarProduto('${p.id}')"><img src="/src/assets/Edit.png"></button>
+          <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir Produto" onclick="excluirProduto('${p.id}')"><img src="/src/assets/Delete.png"></button>
       </td>
     `;
       tbody.appendChild(linha);
