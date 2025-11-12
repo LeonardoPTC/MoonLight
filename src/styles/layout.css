@@ -1,12 +1,13 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow-y: scroll;
-    background-color: #DCE0E6;
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-y: scroll;
+  background-color: #DCE0E6;
 }
 
-#nav-top{
+#nav-top {
   position: fixed;
   top: 0;
   left: 0;
@@ -22,10 +23,11 @@ body, html {
   box-sizing: border-box;
 }
 
-#nomeProjeto, a{
-    margin: 0;
-    text-decoration: none;
-    color: white;
+#nomeProjeto,
+a {
+  margin: 0;
+  text-decoration: none;
+  color: white;
 }
 
 .sidebar {
@@ -35,7 +37,7 @@ body, html {
   width: 60px;
   height: calc(100vh - 60px);
   background-color: #1F1F20;
-  overflow: hidden; 
+  overflow: hidden;
   transition: width 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -44,7 +46,7 @@ body, html {
 }
 
 .sidebar:hover {
-  width: 250px; 
+  width: 250px;
 }
 
 .sidebar:hover + #content {
@@ -54,25 +56,34 @@ body, html {
 .sidebar-item {
   display: flex;
   align-items: center;
-  padding: 10px 10px;
+  padding: 10px 10px 10px;
   text-decoration: none;
   color: white;
   font-size: 16px;
   white-space: nowrap;
 }
 
-.sidebar .icon img {
-    width: 40px;
-    height: 40px;
+.sidebar .sidebar-item img {
+  display: block;
+  width: 40px;
+  height: 40px;
+  transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
 
 }
 
 .sidebar-item .text {
   margin-left: 10px;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, font-size 0.1s ease-in-out;
 }
 
 .sidebar:hover .sidebar-item .text {
   opacity: 1;
+  font-size: 20px;
+  transition: font-size 0.1s ease-in-out;
+}
+
+.sidebar:hover .sidebar-item img {
+  width: 45px;
+  height:45px;
 }

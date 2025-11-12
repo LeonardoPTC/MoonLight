@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adicionar Produto</title>
+  <title>Cadastrar Cliente</title>
   <link rel="stylesheet" href="/src/styles/pages/produtos/index.css">
 </head>
 
@@ -12,7 +12,7 @@
   <div id="header"></div>
   <div id="content" class="shadow body-tertiary rounded">
 
-    <h1 class="mb-3">Produtos Cadastrados</h1>
+    <h1 class="mb-3">Clientes Cadastrados</h1>
 
     <div class="d-flex justify-content-between mb-3 w-100" name="Cabeçalho">
       <div class="filter-bar" id="filterBar">
@@ -23,10 +23,10 @@
         </button>
 
         <div class="input-container" id="inputContainer">
-           <form id="formPesquisa" class="container g-2">
-          <input type="int" id="filterCodigo" placeholder="Código" name="Codigo">
-          <input type="text" id="filterNome" placeholder="Nome" name="Nome">
-          <input type="text" id="filterMarca" placeholder="Marca" name="Marca">
+          <form id="formPesquisa" class="container g-2">
+          <input type="text" id="filterCodigo" placeholder="Código" name="codigo">
+          <input type="text" id="filterNome" placeholder="Nome" name="nome">
+          <input type="text" id="filterMarca" placeholder="Marca" name="marca"> <!--Alterar-->
 
           <button type="submit" id="aplicarFiltros" class="btn btn-primary search-final">Aplicar</button>
           <button type="button" id="limparFiltros" class="btn btn-secondary limpar-filtros">Limpar Filtros</button>
@@ -36,21 +36,21 @@
       </div>
 
       <div>
-        <button id="NovoProduto" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Adicionar Novo Produto"
-          onclick="window.location.href='http://localhost:5500/src/pages/produtos/addproduto.html'">
-          <img src="/src/assets/AddProduto.png" alt="Adicionar Novo Produto">
+        <button id="NovoCliente" class="btn btn-success"
+          onclick="window.location.href='http://localhost:5500/src/pages/clientes/addcliente.html'">
+          <img src="/src/assets/AddProduto.png" alt="Adicionar Novo Cliente">
+          Cadastrar Novo Cliente
         </button>
       </div>
     </div>
-    <table id="tabela-produtos" class="table table-bordered">
+    <table id="tabela-clientes" class="table table-bordered">
       <thead>
         <tr class="text-center">
           <th>Código</th>
           <th>Nome</th>
-          <th>Marca</th>
-          <th>Estoque</th>
-          <th>Valor de Venda</th>
-          <th>Valor de Custo</th>
+          <th>Telefone</th>
+          <th>Cidade</th>
+          <th>Endereco</th>
           <th>Ação</th>
         </tr>
       </thead>
@@ -64,8 +64,8 @@
     includeHTML("header", "/src/include/header.html");
     includeHTML("footer", "/src/include/footer.html");
   </script>
-  <script src="/src/scripts/pages/produto/index.js"></script>
-  <script src="/src/scripts/pages/produto/excluirproduto.js"></script>
+  <script src="/src/scripts/pages/cliente/index.js"></script>
+  <script src="/src/scripts/pages/cliente/excluirproduto.js"></script>
 </body>
 
 </html>

@@ -24,13 +24,13 @@ async function carregarProdutos() {
       <td>${p.codigo}</td>
       <td>${p.nome}</td>
       <td>${p.marca}</td>
-      <td>${p.quantidadeEstoque}</td>
+      <td>${p.estoque}</td>
       <td>R$ ${p.valorVenda.toFixed(2)}</td>
       <td>R$ ${p.valorCusto.toFixed(2)}</td>
       <td class="text-center">
-          <button class="btn btn-primary" onclick="visualizarProduto('${p.id}')">Visualizar</button>
-          <button class="btn btn-warning" onclick="editarProduto('${p.id}')">Editar</button>
-          <button class="btn btn-danger" onclick="excluirProduto('${p.id}')">Excluir</button>
+          <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Produto" onclick="visualizarProduto('${p.id}')"><img src="/src/assets/View.png"></button>
+          <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Produto" onclick="editarProduto('${p.id}')"><img src="/src/assets/Edit.png"></button>
+          <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir Produto" onclick="excluirProduto('${p.id}')"><img src="/src/assets/Delete.png"></button>
       </td>
     `;
     tbody.appendChild(linha);
@@ -40,20 +40,78 @@ async function carregarProdutos() {
 carregarProdutos();
 
 document.addEventListener('DOMContentLoaded', function () {
-    const checkSidebarLoaded = setInterval(function () {
-        const sidebar = document.querySelector('.sidebar');
-        if (sidebar) {
-            clearInterval(checkSidebarLoaded);
+  const checkSidebarLoaded = setInterval(function () {
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebar) {
+      clearInterval(checkSidebarLoaded);
 
-            sidebar.addEventListener('mouseenter', function () {
-                document.querySelector('#content').style.marginLeft = '310px';
-            });
+      sidebar.addEventListener('mouseenter', function () {
+        document.querySelector('#content').style.marginLeft = '310px';
+      });
 
-            sidebar.addEventListener('mouseleave', function () {
-                document.querySelector('#content').style.marginLeft = '187px';
-            });
-        }
-    }, 100);
+      sidebar.addEventListener('mouseleave', function () {
+        document.querySelector('#content').style.marginLeft = '187px';
+      });
+    }
+  }, 100);
+});
+
+document.addEventListener('submit', async function (event) {
+  event.preventDefault();
+
+  const codigo = document.getElementById('filterCodigo').value.trim();
+  const nome = document.getElementById('filterNome').value;
+  const marca = document.getElementById('filterMarca').value;
+
+  const dto = {
+    codigo: codigo ? parseInt(codigo) : 0,
+    nome: nome,
+    marca: marca
+  };
+
+  try {
+    const resposta = await fetch("http://localhost:5164/BlueMoon/Produtos/Search", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(dto)
+    });
+
+    if (!resposta.ok) {
+      alert("Produto não Encontrado!")
+    }
+
+    const produtos = await resposta.json();
+
+    const tbody = document.querySelector("#tabela-produtos tbody");
+    tbody.innerHTML = "";
+    produtos.forEach(p => {
+      const linha = document.createElement("tr");
+      linha.innerHTML = `
+      <td>${p.codigo}</td>
+      <td>${p.nome}</td>
+      <td>${p.marca}</td>
+      <td>${p.estoque}</td>
+      <td>R$ ${p.valorVenda.toFixed(2)}</td>
+      <td>R$ ${p.valorCusto.toFixed(2)}</td>
+      <td class="text-center">
+         <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Produto" onclick="visualizarProduto('${p.id}')"><img src="/src/assets/View.png"></button>
+          <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Produto" onclick="editarProduto('${p.id}')"><img src="/src/assets/Edit.png"></button>
+          <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir Produto" onclick="excluirProduto('${p.id}')"><img src="/src/assets/Delete.png"></button>
+      </td>
+    `;
+      tbody.appendChild(linha);
+    })
+
+  } catch (erro) {
+    alert("Erro ao aplicar filtro", erro);
+  }
+});
+
+document.getElementById('limparFiltros').addEventListener('click', function () {
+  carregarProdutos();
+  document.getElementById('filterCodigo').value = "";
+  document.getElementById('filterNome').value = "";
+  document.getElementById('filterMarca').value = "";
 });
 
 function editarProduto(id) {
@@ -63,3 +121,13 @@ function editarProduto(id) {
 function visualizarProduto(id) {
   window.location.href = `http://localhost:5500/src/pages/produtos/viewproduto.html?id=${id}`;
 }
+
+document.getElementById('toggleSearch').addEventListener('click', function () {
+  const filterBar = document.getElementById('filterBar');
+  filterBar.classList.toggle('expanded');
+});
+
+document.getElementById('fecharFiltros').addEventListener('click', function () {
+  const filterBar = document.getElementById('filterBar');
+  filterBar.classList.remove('expanded');
+});

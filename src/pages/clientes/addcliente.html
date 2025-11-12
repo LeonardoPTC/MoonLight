@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Cliente</title>
+    <link rel="stylesheet" href="/src/styles/pages/clientes/form.css">
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div id="content" class="shadow body-tertiary rounded">
+        <form id="formCliente" class="container g-2">
+            <h1 class="text-center mb-4">Cadastro de Cliente</h1>
+            <div class="row g-2">
+                <div class="col-md-4">
+                    <label for="inputcodBarras" class="form-label">Documento:</label>
+                    <input type="text" class="form-control" id="inputDocumento" name="Documento">
+                </div>
+                <div class="col-md-4">
+                    <label for="inputnomeCliente" class="form-label">Inscrição Municipal: </label>
+                    <input type="text" class="form-control" id="inputInscricaoMunicipal" name="InscricaoMunicipal">
+                </div>
+                <div class="col-4">
+                    <label for="inputDescricao" class="form-label">Inscrição Estadual: </label>
+                    <input class="form-control" id="inputInscricaoEstadual" name="inputInscricaoEstadual"></textarea>
+                </div>
+            </div>
+            <hr>
+            <h4 style="text-align: center;">Contato</h4>
+            <div class="row mt-2 g-2">
+                <div class="col-md-6">
+                    <label for="inputNCM" class="form-label">Nome: </label>
+                    <input type="text" class="form-control" id="inputNome" name="Nome">
+                </div>
+                <div class="col-md-3">
+                    <label for="inputTelefone" class="form-label">Telefone: </label>
+                    <input type="text" class="form-control" id="inputTelefone" name="Telefone">
+                </div>
+                <div class="col-md-3">
+                    <label for="inputEmail" class="form-label">Email: </label>
+                    <input type="text" class="form-control" id="inputEmail" name="Email">
+                </div>
+                <hr>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-2">
+                    <label for="inputValorVenda" class="form-label">CEP:</label>
+                    <input type="number" step="0.01" class="form-control" id="inputValorVenda" name="ValorVenda">
+                </div>
+                <div class="col-md-5">
+                    <label for="inputValorVenda" class="form-label">Logradouro:</label>
+                    <input type="number" step="0.01" class="form-control" id="inputValorVenda" name="ValorVenda">
+                </div>
+                <div class="col-md-5">
+                    <label for="inputValorVenda" class="form-label">Bairro:</label>
+                    <input type="number" step="0.01" class="form-control" id="inputValorVenda" name="ValorVenda">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-2">
+                    <label for="inputValorVenda" class="form-label">Número:</label>
+                    <input type="number" step="0.01" class="form-control" id="inputValorVenda" name="ValorVenda">
+                </div>
+                <div class="col-md-3">
+                    <label for="inputValorVenda" class="form-label">Complemento:</label>
+                    <input type="number" step="0.01" class="form-control" id="inputValorVenda" name="ValorVenda">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-3">
+                    <label for="inputEstoque" class="form-label">Cidade:</label>
+                    <input type="number" class="form-control" id="inputEstoque" name="QuantidadeEstoque">
+                </div>
+                <div class="col-md-3">
+                    <label for="inputEstoqueMin" class="form-label">Estado:</label>
+                    <select name="estado" id="estado">
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mt-5" id="buttons">
+                <div class="col-2 mr-3">
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+                <div class="col-2">
+                    <button type="button" onclick="window.location.href='/src/pages/Clientes/index.html'"
+                        class="btn btn-secondary">Cancelar</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div id="footer"></div>
+    <script src="/src/scripts/includes.js"></script>
+    <script src="/src/scripts/vendor/form.js"></script>
+    <script>
+        includeHTML("header", "/src/include/header.html");
+        includeHTML("footer", "/src/include/footer.html");
+    </script>
+    <script src="/src/scripts/pages/Cliente/addCliente.js"></script>
+</body>
+
+</html>
