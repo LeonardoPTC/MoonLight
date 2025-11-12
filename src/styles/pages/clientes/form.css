@@ -12,6 +12,14 @@
   font-family: "Roboto Mono", monospace;
 }
 
+#pessoaFisica.hidden {
+  display: none;
+}
+
+#pessoaJuridica.hidden {
+  display: none;
+}
+
 #TituloCad h1 {
   margin: 0 0 20px 0;
 }
@@ -24,16 +32,6 @@
 #buttons button {
   width: 100%;
   padding: 6px;
-}
-
-#idDescricao {
-  height: 100px;
-}
-
-textarea {
-  resize: none !important;
-  overflow-y: hidden;
-  height: 80px;
 }
 
 .borda {
