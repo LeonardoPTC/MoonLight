@@ -24,19 +24,20 @@
 
         <div class="input-container" id="inputContainer">
           <form id="formPesquisa" class="container g-2">
-          <input type="text" id="filterCodigo" placeholder="Código" name="codigo">
-          <input type="text" id="filterNome" placeholder="Nome" name="nome">
-          <input type="text" id="filterMarca" placeholder="Marca" name="marca"> <!--Alterar-->
+            <input type="text" id="filterCodigo" placeholder="Código" name="codigo">
+            <input type="text" id="filterNome" placeholder="Nome" name="nome">
+            <input type="text" id="filterMarca" placeholder="Marca" name="marca"> <!--Alterar-->
 
-          <button type="submit" id="aplicarFiltros" class="btn btn-primary search-final">Aplicar</button>
-          <button type="button" id="limparFiltros" class="btn btn-secondary limpar-filtros">Limpar Filtros</button>
-          <button type="button" id="fecharFiltros" class="btn btn-danger fechar-btn">Fechar</button>
+            <button type="submit" id="aplicarFiltros" class="btn btn-primary search-final">Aplicar</button>
+            <button type="button" id="limparFiltros" class="btn btn-secondary limpar-filtros">Limpar Filtros</button>
+            <button type="button" id="fecharFiltros" class="btn btn-danger fechar-btn">Fechar</button>
           </form>
         </div>
       </div>
 
       <div>
-        <button id="NovoCliente" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Adicionar Novo Cliente"
+        <button id="NovoCliente" class="btn btn-success" data-toggle="tooltip" data-placement="top"
+          title="Adicionar Novo Cliente"
           onclick="window.location.href='http://localhost:5500/src/pages/clientes/addcliente.html'">
           <img src="/src/assets/AddProduto.png" alt="Adicionar Novo Cliente">
         </button>
@@ -64,7 +65,6 @@
     includeHTML("footer", "/src/include/footer.html");
   </script>
   <script src="/src/scripts/pages/cliente/index.js"></script>
-  <script src="/src/scripts/pages/cliente/excluirproduto.js"></script>
+  <script src="/src/scripts/pages/cliente/excluircliente.js"></script>
 </body>
-
 </html>

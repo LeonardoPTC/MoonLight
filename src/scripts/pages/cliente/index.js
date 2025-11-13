@@ -44,6 +44,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 100);
 });
 
+
+
 /*document.addEventListener('submit', async function (event) {
   event.preventDefault();
 

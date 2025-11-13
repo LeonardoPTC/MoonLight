@@ -19,6 +19,7 @@ const tipoPessoa = document.getElementsByName('tipo');
 const formularioClienteFisico = document.getElementById('pessoaFisica')
 const formularioClienteJuridico = document.getElementById('pessoaJuridica')
 
+
 formularioClienteJuridico.classList.add('hidden');
 
 tipoPessoa.forEach(radio => {
