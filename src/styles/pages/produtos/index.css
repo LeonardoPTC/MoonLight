@@ -1,21 +1,54 @@
+/* ===== ÁREA PRINCIPAL ===== */
+
 #content {
-  border: 2px solid #2B4C7E;
-  background-color: #F0F4F9;
+  border: 2px solid #2b4c7e;
+  background-color: #f0f4f9;
   margin-top: 80px;
   margin-left: 200px;
   margin-right: 170px;
   padding: 20px;
   padding-bottom: 50px;
   box-sizing: border-box;
-  justify-items: center;
   transition: margin-left 0.3s ease;
-  font-family: "Roboto Mono", monospace;
+  font-family: Arial, Helvetica, sans-serif;
 }
+
+label {
+  font-weight: bold;
+}
+
+/* Responsivo */
+@media (max-width: 1200px) {
+  #content {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  #content {
+    margin-left: 15px;
+    margin-right: 15px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  #content {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 12px;
+  }
+}
+
+/* ===== ÍCONES ===== */
 
 img {
   width: 30px;
   margin-right: 5px;
 }
+
+/* ===== FILTRO ===== */
 
 .filter-bar {
   display: flex;
@@ -32,6 +65,7 @@ img {
   margin-right: 0px;
 }
 
+/* Container dos inputs */
 .input-container {
   width: 0;
   overflow: hidden;
@@ -48,6 +82,7 @@ img {
   border-radius: 4px;
 }
 
+/* Quando expandido */
 .filter-bar.expanded .input-container {
   width: 1100px;
   margin-left: 0px;
@@ -55,4 +90,85 @@ img {
 
 .filter-bar.expanded #toggleSearch {
   display: none;
+}
+
+/* ===== FILTROS RESPONSIVOS ===== */
+
+/* Ajusta a barra de filtros para tablets */
+@media (max-width: 992px) {
+  .filter-bar.expanded {
+    width: 100%;
+  }
+
+  .filter-bar.expanded .input-container {
+    width: 100%;
+  }
+
+  .input-container input {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  #formPesquisa {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
+/* Ajusta tudo no mobile */
+@media (max-width: 576px) {
+  #toggleSearch img {
+    width: 22px;
+  }
+
+  .filter-bar {
+    width: auto;
+    margin-right: 20px;
+  }
+
+  .filter-bar.expanded {
+    margin-right: 0;
+  }
+
+  #formPesquisa button {
+    width: 100%;
+  }
+
+  #formPesquisa {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== TABELA RESPONSIVA ===== */
+
+table {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  table thead {
+    display: none;
+  }
+
+  table tbody tr {
+    display: block;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    padding: 12px;
+    border-radius: 6px;
+  }
+
+  table tbody td {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    font-size: 14px;
+  }
+
+  table tbody td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #2b4c7e;
+  }
 }

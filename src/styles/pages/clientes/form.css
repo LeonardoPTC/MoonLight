@@ -1,6 +1,6 @@
 #content {
-  border: 2px solid #2B4C7E;
-  background-color: #F0F4F9;
+  border: 2px solid #2b4c7e;
+  background-color: #f0f4f9;
   margin-top: 80px;
   margin-left: 310px;
   margin-right: 280px;
@@ -9,18 +9,15 @@
   box-sizing: border-box;
   justify-items: center;
   transition: margin-left 0.3s ease;
-  font-family: "Roboto Mono", monospace;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-#pessoaFisica.hidden {
-  display: none;
-}
-
+#pessoaFisica.hidden,
 #pessoaJuridica.hidden {
   display: none;
 }
 
-#TituloCad h1 {
+#content h1 {
   margin: 0 0 20px 0;
 }
 
@@ -35,15 +32,48 @@
 }
 
 .borda {
-  border: 1px solid #2B4C7E;
+  border: 1px solid #2b4c7e;
 }
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
+#content label,
+#content .form-label {
+  font-weight: bold;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
+}
+
+#content .form-floating > label {
+  font-weight: bold;
+  padding-left: 5px;
+}
+
+#content hr {
+  border-top: 1px solid #2b4c7e;
+  opacity: 0.4;
+}
+
+#content input[type="radio"] {
+  margin-right: 6px;
+}
+
+#content h4 {
+  font-weight: bold;
+  color: #2b4c7e;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@media screen and (max-width: 1400px) {
+  #content {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
 }
