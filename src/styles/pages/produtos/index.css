@@ -1,5 +1,3 @@
-/* ===== ÁREA PRINCIPAL ===== */
-
 #content {
   border: 2px solid #2b4c7e;
   background-color: #f0f4f9;
@@ -17,7 +15,6 @@ label {
   font-weight: bold;
 }
 
-/* Responsivo */
 @media (max-width: 1200px) {
   #content {
     margin-left: 40px;
@@ -41,14 +38,10 @@ label {
   }
 }
 
-/* ===== ÍCONES ===== */
-
 img {
   width: 30px;
   margin-right: 5px;
 }
-
-/* ===== FILTRO ===== */
 
 .filter-bar {
   display: flex;
@@ -65,7 +58,6 @@ img {
   margin-right: 0px;
 }
 
-/* Container dos inputs */
 .input-container {
   width: 0;
   overflow: hidden;
@@ -82,7 +74,6 @@ img {
   border-radius: 4px;
 }
 
-/* Quando expandido */
 .filter-bar.expanded .input-container {
   width: 1100px;
   margin-left: 0px;
@@ -92,9 +83,6 @@ img {
   display: none;
 }
 
-/* ===== FILTROS RESPONSIVOS ===== */
-
-/* Ajusta a barra de filtros para tablets */
 @media (max-width: 992px) {
   .filter-bar.expanded {
     width: 100%;
@@ -116,7 +104,6 @@ img {
   }
 }
 
-/* Ajusta tudo no mobile */
 @media (max-width: 576px) {
   #toggleSearch img {
     width: 22px;
@@ -139,8 +126,6 @@ img {
     grid-template-columns: 1fr;
   }
 }
-
-/* ===== TABELA RESPONSIVA ===== */
 
 table {
   width: 100%;

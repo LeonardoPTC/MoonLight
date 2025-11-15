@@ -50,11 +50,6 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-#content .form-floating > label {
-  font-weight: bold;
-  padding-left: 5px;
-}
-
 #content hr {
   border-top: 1px solid #2b4c7e;
   opacity: 0.4;
