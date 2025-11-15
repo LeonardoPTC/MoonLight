@@ -13,6 +13,9 @@ document.getElementById("formCliente").addEventListener("submit", async (e) => {
 
   const inputInscricaoEstadual = document.getElementById("inputInscricaoEstadual");
 
+  const valorDocumento = inputDocumento ? inputDocumento.value.trim() : "";
+  const valorIE = inputInscricaoEstadual ? inputInscricaoEstadual.value.trim() : "";
+
   let removido = null;
 
   if (isPessoaFisica) {
@@ -34,10 +37,11 @@ document.getElementById("formCliente").addEventListener("submit", async (e) => {
     }
   });
 
-  dados.Documento = inputDocumento.value.trim();
-  dados.InscricaoEstadual = inputInscricaoEstadual ? inputInscricaoEstadual.value.trim() : "";
+  dados.Documento = valorDocumento;
+  dados.InscricaoEstadual = valorIE;
 
-  const camposObrigatorios = (isPessoaFisica ? pessoaFisica : pessoaJuridica).querySelectorAll("[data-required]");
+  const camposObrigatorios = (isPessoaFisica ? pessoaFisica : pessoaJuridica)
+    .querySelectorAll("[data-required]");
 
   for (let campo of camposObrigatorios) {
     if (!campo.value.trim()) {
@@ -119,16 +123,13 @@ document.getElementById("formCliente").addEventListener("submit", async (e) => {
   function validarInscricaoEstadual(inscricao) {
     if (!inscricao) return true;
 
-    inscricao = inscricao.trim();
-    inscricao = inscricao.replace(/[^\d]/g, '');
+    inscricao = inscricao.trim().replace(/[^\d]/g, '');
 
     if (inscricao.length < 8 || inscricao.length > 13) return false;
-
     if (/^(\d)\1+$/.test(inscricao)) return false;
 
     return true;
   }
-
 
   try {
     const resposta = await fetch("http://localhost:5164/BlueMoon/Pessoas", {
