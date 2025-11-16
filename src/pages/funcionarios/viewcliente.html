@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Cliente</title>
+    <link rel="stylesheet" href="/src/styles/pages/clientes/form.css">
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div id="content" class="shadow body-tertiary rounded">
+        <h1 class="text-center mb-4">Visualizar Cliente</h1>
+        <h2 style="justify-self: flex-start; display: flex;font-size: 25px;">Selecione o tipo do cliente</h2>
+
+        <form id="formCliente" class="container g-2">
+            <label>
+                <input type="radio" id="ClienteFisico" name="tipo" value="1" checked> Pessoa Física </input>
+            </label>
+            <label>
+                <input type="radio" id="ClienteJuridico" name="tipo" value="2"> Pessoa Jurídica </input>
+            </label><br><br>
+
+            <div id="pessoaFisica">
+                <div class="row g-2">
+                    <div class="col-md-4">
+                        <label for="inputCPF" class="form-label">CPF:</label>
+                        <input type="text" class="form-control" id="inputCPF" name="Documento">
+                    </div>
+                </div>
+                <hr>
+                <h4 style="text-align: center;">Contato</h4>
+                <div class="row mt-2 g-2">
+                    <div class="col-md-6">
+                        <label for="inputNomeFisico" class="form-label">Nome: </label>
+                        <input type="text" class="form-control" id="inputNomeFisico" name="nome" data-required>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="inputTelefoneFisico" class="form-label">Telefone: </label>
+                        <input type="text" class="form-control" id="inputTelefoneFisico" name="telefone" data-required>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="inputEmailFisico" class="form-label">Email: </label>
+                        <input type="email" class="form-control" id="inputEmailFisico" name="Email">
+                    </div>
+                    <hr>
+                </div>
+                <div class="row mt-3 g-2">
+                    <h4 style="text-align: center;">Endereço</h4>
+                    <div class="col-md-2 width: 20px;">
+                        <label for="inputCEPFisico" class="form-label">CEP:</label>
+                        <input type="text" class="form-control" id="inputCEPFisico" name="cep" maxlength="8">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="inputLogradouroFisico" class="form-label">Logradouro:</label>
+                        <input type="text" class="form-control" id="inputLogradouroFisico" name="Logradouro">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="inputBairroFisico" class="form-label">Bairro:</label>
+                        <input type="text" class="form-control" id="inputBairroFisico" name="Bairro">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="inputNumeroFisico" class="form-label">Número:</label>
+                        <input type="text" class="form-control" id="inputNumeroFisico" name="Numero">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="inputComplementoFisico" class="form-label">Complemento:</label>
+                        <input type="text" class="form-control" id="inputComplementoFisico" name="Complemento">
+                    </div>
+                </div>
+                <div class="row mt-3 align-items-end">
+                    <div class="col-md-3">
+                        <label for="inputCidadeFisico" class="form-label">Cidade:</label>
+                        <input type="text" class="form-control" id="inputCidadeFisico" name="Cidade">
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-floating">
+                            <select class="form-select" id="estadoFisico" name="Estado" aria-label="Selecione um estado"
+                                data-required>
+                                <option value="0">Selecione um estado</option>
+                                <option value="1">AC</option>
+                                <option value="2">AL</option>
+                                <option value="3">AP</option>
+                                <option value="4">AM</option>
+                                <option value="5">BA</option>
+                                <option value="6">CE</option>
+                                <option value="7">DF</option>
+                                <option value="8">ES</option>
+                                <option value="9">GO</option>
+                                <option value="10">MA</option>
+                                <option value="11">MT</option>
+                                <option value="12">MS</option>
+                                <option value="13">PA</option>
+                                <option value="14">PB</option>
+                                <option value="15">PR</option>
+                                <option value="16">PE</option>
+                                <option value="17">PI</option>
+                                <option value="18">RJ</option>
+                                <option value="19">RN</option>
+                                <option value="20">RS</option>
+                                <option value="21">RO</option>
+                                <option value="22">RR</option>
+                                <option value="23">SC</option>
+                                <option value="24">SP</option>
+                                <option value="25">SE</option>
+                                <option value="26">TO</option>
+                            </select>
+                            <label for="estadoFisico">Estado</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="pessoaJuridica">
+                <div class="row g-2">
+                    <div class="col-md-4">
+                        <label for="inputCNPJ" class="form-label">CNPJ:</label>
+                        <input type="text" class="form-control" id="inputCNPJ" name="Documento">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="inputInscricaoMunicipal" class="form-label">Inscrição Municipal: </label>
+                        <input type="text" class="form-control" id="inputInscricaoMunicipal" name="InscricaoMunicipal">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="inputInscricaoEstadual" class="form-label">Inscrição Estadual: </label>
+                        <input type="text" class="form-control" id="inputInscricaoEstadual" name="InscricaoEstadual">
+                    </div>
+                </div>
+                <hr>
+                <h4 style="text-align: center;">Contato</h4>
+                <div class="row mt-2 g-2">
+                    <div class="col-md-6">
+                        <label for="inputNomeJuridico" class="form-label">Nome: </label>
+                        <input type="text" class="form-control" id="inputNomeJuridico" name="Nome" data-required>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="inputTelefoneJuridico" class="form-label">Telefone: </label>
+                        <input type="text" class="form-control" id="inputTelefoneJuridico" name="Telefone" data-required>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="inputEmailJuridico" class="form-label">Email: </label>
+                        <input type="email" class="form-control" id="inputEmailJuridico" name="Email">
+                    </div>
+                    <hr>
+                </div>
+                <div class="row mt-3 g-2">
+                    <h4 style="text-align: center;">Endereço </h4>
+                    <div class="col-md-2 width: 20px;">
+                        <label for="inputCEPJuridico" class="form-label">CEP: </label>
+                        <input type="text" class="form-control" id="inputCEPJuridico" name="cep" maxlength="8">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="inputLogradouroJuridico" class="form-label">Logradouro: </label>
+                        <input type="text" class="form-control" id="inputLogradouroJuridico" name="Logradouro">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="inputBairroJuridico" class="form-label">Bairro: </label>
+                        <input type="text" class="form-control" id="inputBairroJuridico" name="Bairro">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="inputNumeroJuridico" class="form-label">Número: </label>
+                        <input type="text" class="form-control" id="inputNumeroJuridico" name="Numero">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="inputComplementoJuridico" class="form-label">Complemento: </label>
+                        <input type="text" class="form-control" id="inputComplementoJuridico" name="Complemento">
+                    </div>
+                </div>
+                <div class="row mt-3 align-items-end">
+                    <div class="col-md-3">
+                        <label for="inputCidadeJuridico" class="form-label">Cidade:</label>
+                        <input type="text" class="form-control" id="inputCidadeJuridico" name="Cidade">
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-floating">
+                            <select class="form-select" id="estadoJuridico" name="Estado" aria-label="Selecione um estado"
+                                data-required>
+                                <option value="0">Selecione um estado</option>
+                                <option value="1">AC</option>
+                                <option value="2">AL</option>
+                                <option value="3">AP</option>
+                                <option value="4">AM</option>
+                                <option value="5">BA</option>
+                                <option value="6">CE</option>
+                                <option value="7">DF</option>
+                                <option value="8">ES</option>
+                                <option value="9">GO</option>
+                                <option value="10">MA</option>
+                                <option value="11">MT</option>
+                                <option value="12">MS</option>
+                                <option value="13">PA</option>
+                                <option value="14">PB</option>
+                                <option value="15">PR</option>
+                                <option value="16">PE</option>
+                                <option value="17">PI</option>
+                                <option value="18">RJ</option>
+                                <option value="19">RN</option>
+                                <option value="20">RS</option>
+                                <option value="21">RO</option>
+                                <option value="22">RR</option>
+                                <option value="23">SC</option>
+                                <option value="24">SP</option>
+                                <option value="25">SE</option>
+                                <option value="26">TO</option>
+                            </select>
+                            <label for="estadoJuridico">Estado</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="row mt-5" id="buttons">
+            <div class="col-12">
+                <button type="button" onclick="window.location.href='/src/pages/clientes/index.html'"
+                    class="btn btn-secondary px-5 p-2">Voltar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+    <script src="/src/scripts/includes.js"></script>
+    <script>
+        includeHTML("header", "/src/include/header.html");
+        includeHTML("footer", "/src/include/footer.html");
+    </script>
+    <script src="/src/scripts/pages/cliente/viewcliente.js"></script>
+</body>
+
+</html>
