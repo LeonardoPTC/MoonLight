@@ -17,42 +17,8 @@ img {
   margin-right: 5px;
 }
 
-.filter-bar {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: 168px;
-  margin-right: 100px;
-  transition: width 0.3s ease-in-out, margin-right 1s ease-in-out;
-  overflow: hidden;
-}
-
-.filter-bar.expanded {
-  width: 1320px;
-  margin-right: 0px;
-}
-
-.input-container {
-  width: 0;
-  overflow: hidden;
-  transition: width 0.3s ease-in-out;
-  display: flex;
-  margin-left: 11px;
-  align-items: center;
-  white-space: nowrap;
-}
-
 .input-container input {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
-}
-
-.filter-bar.expanded .input-container {
-  width: 1400px;
-  margin-left: 0px;
-}
-
-.filter-bar.expanded #toggleSearch {
-  display: none;
 }
