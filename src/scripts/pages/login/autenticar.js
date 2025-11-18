@@ -45,10 +45,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 body: JSON.stringify(dto)
             });
 
-            const body = await resposta.text();
-
             if (!resposta.ok) {
-                alert("Login ou Senha Inválidos! " + body);
+                alert("Login ou Senha Inválidos! ");
                 return;
             }
 
