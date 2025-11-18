@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar Cliente</title>
+    <title>Adicionar Funcionário</title>
     <link rel="stylesheet" href="/src/styles/pages/funcionarios/form.css">
 </head>
 
@@ -12,15 +12,15 @@
     <div id="header"></div>
 
     <div id="content" class="shadow body-tertiary rounded">
-        <h1 class="text-center mb-4">Atualização de Cadastro</h1>
+        <h1 class="text-center mb-4">Dados Cadastrais do Funcionário</h1>
         <h2 style="justify-self: flex-start; display: flex;font-size: 25px;">Tipo do funcionário</h2>
 
-        <form id="formCliente" class="container g-2">
+        <form id="formFuncionario" class="container g-2">
             <label>
-                <input type="radio" id="ClienteFisico" name="tipo" value="1" checked> Pessoa Física </input>
+                <input type="radio" id="FuncionarioFisico" name="tipo" value="1" checked> Pessoa Física </input>
             </label>
             <label>
-                <input type="radio" id="ClienteJuridico" name="tipo" value="2"> Pessoa Jurídica </input>
+                <input type="radio" id="FuncionarioJuridico" name="tipo" value="2"> Pessoa Jurídica </input>
             </label><br><br>
 
             <div id="pessoaFisica">
@@ -146,8 +146,7 @@
                     </div>
                     <div class="col-md-3">
                         <label for="inputTelefoneJuridico" class="form-label">Telefone: </label>
-                        <input type="text" class="form-control" id="inputTelefoneJuridico" name="Telefone"
-                            data-required>
+                        <input type="text" class="form-control" id="inputTelefoneJuridico" name="Telefone" data-required>
                     </div>
                     <div class="col-md-3">
                         <label for="inputEmailJuridico" class="form-label">Email: </label>
@@ -185,8 +184,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-floating">
-                            <select class="form-select" id="estadoJuridico" name="Estado"
-                                aria-label="Selecione um estado" data-required>
+                            <select class="form-select" id="estadoJuridico" name="Estado" aria-label="Selecione um estado" data-required>
                                 <option value="0">Selecione um estado</option>
                                 <option value="1">AC</option>
                                 <option value="2">AL</option>
@@ -224,8 +222,7 @@
                         <button type="submit" class="btn btn-primary">Salvar</button>
                     </div>
                     <div class="col-2">
-                        <button type="button" onclick="window.location.href='/src/pages/funcionarios/index.html'"
-                            class="btn btn-secondary">Cancelar</button>
+                        <button type="button" onclick="window.location.href='/src/pages/funcionarios/index.html'" class="btn btn-secondary">Cancelar</button>
                     </div>
                 </div>
             </div>
@@ -238,8 +235,7 @@
         includeHTML("header", "/src/include/header.html");
         includeHTML("footer", "/src/include/footer.html");
     </script>
-    <script></script>
-    <script src="/src/scripts/pages/funcionarios/atualizacaofuncionario.js"></script>
+    <script src="/src/scripts/pages/funcionarios/addDadosCadastraisFuncionario.js"></script>
 </body>
 
 </html>

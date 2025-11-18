@@ -28,6 +28,7 @@ async function carregarCliente(id) {
 
 function preencherCampos(cliente) {
 
+    let codigo = cliente.codigo || "";
     let cpf = cliente.documento || "";
     let cnpj = cliente.documento || "";
     let nome = cliente.nome || "";
@@ -57,6 +58,7 @@ function preencherCampos(cliente) {
         pessoaJuridica.classList.add("hidden");
         document.getElementById("ClienteFisico").checked = true;
 
+        document.getElementById("inputCodigoFisico").value = codigo;
         document.getElementById("inputCPF").value = cpf;
         document.getElementById("inputNomeFisico").value = nome;
         document.getElementById("inputTelefoneFisico").value = telefone;
@@ -78,6 +80,8 @@ function preencherCampos(cliente) {
         pessoaFisica.classList.add("hidden");
         pessoaJuridica.classList.remove("hidden");
         document.getElementById("ClienteJuridico").checked = true;
+
+        document.getElementById("inputCodigoJuridico").value = codigo;
         document.getElementById("inputCNPJ").value = cnpj;
         document.getElementById("inputInscricaoMunicipal").value = inscricaoMunicipal;
         document.getElementById("inputInscricaoEstadual").value = inscricaoEstadual;

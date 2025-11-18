@@ -8,12 +8,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const pessoaId = localStorage.getItem("pessoaId");
+    console.log("ID da pessoa carregado:", pessoaId);
 
     const btnVoltar = document.getElementById("btnVoltar");
 
     btnVoltar.addEventListener("click", () => {
         localStorage.setItem("pessoaId", pessoaId);
-        window.location.href = `/src/pages/funcionarios/atualizacaofuncionario.html?id=${pessoaId}`
+        window.location.href = `/src/pages/funcionarios/editDadosCadastrais.html?id=${pessoaId}`
     });
 
     if (!pessoaId) {

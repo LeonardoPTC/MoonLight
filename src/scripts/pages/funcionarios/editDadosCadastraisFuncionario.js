@@ -9,12 +9,25 @@ window.addEventListener('load', async () => {
     if (inputCNPJ) inputCNPJ.setAttribute('disabled', 'true');
 
     const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id');
-    if (id) {
-        carregarCliente(id);
-        localStorage.setItem("pessoaId", id);
+    const idPessoa = urlParams.get('idPessoa');
+    const idUsuario = urlParams.get('idUsuario');
+
+    if (idPessoa) {
+        carregarFuncionario(idPessoa);
+        localStorage.setItem("pessoaId", idPessoa);
+    }
+
+    if (idUsuario) {
+        localStorage.setItem("funcionarioId", idUsuario);
     }
 });
+
+function converterDataParaBack(data) {
+    if (!data) return "";
+
+    const partes = data.split("-");
+    return partes[2] + partes[1] + partes[0];
+}
 
 function habilitarDivFisica() {
     document.querySelectorAll('#pessoaFisica input, #pessoaFisica select')
@@ -30,8 +43,7 @@ function habilitarDivJuridica() {
         .forEach(el => el.disabled = true);
 }
 
-async function carregarCliente(id) {
-
+async function carregarFuncionario(id) {
     try {
         const resposta = await fetch(`http://localhost:5164/BlueMoon/Pessoas/${id}`);
 
@@ -40,34 +52,34 @@ async function carregarCliente(id) {
             alert(erro);
         }
 
-        cliente = await resposta.json();
-        preencherCampos(cliente);
+        funcionario = await resposta.json();
+        preencherCampos(funcionario);
     } catch (err) {
         alert("Erro na conexão: " + err.message);
     }
 }
 
-function preencherCampos(cliente) {
+function preencherCampos(funcionario) {
 
-    for (let campo in cliente) {
-        if (cliente[campo] === "N/D") cliente[campo] = "";
+    for (let campo in funcionario) {
+        if (funcionario[campo] === "N/D") funcionario[campo] = "";
     }
 
-    let CPF = cliente.documento || "";
-    let CNPJ = cliente.documento || "";
-    let Nome = cliente.nome || "";
-    let Telefone = cliente.telefone || "";
-    let Email = cliente.email || "";
-    let CEP = cliente.cep || "";
-    let Logradouro = cliente.logradouro || "";
-    let Bairro = cliente.bairro || "";
-    let Numero = cliente.numero || "";
-    let Complemento = cliente.complemento || "";
-    let Cidade = cliente.cidade || "";
-    let Estado = cliente.estado || 0;
-    let InscricaoMunicipal = cliente.inscricaoMunicipal || "";
-    let InscricaoEstadual = cliente.inscricaoEstadual || "";
-    let Tipo = cliente.tipo || 1;
+    let CPF = funcionario.documento || "";
+    let CNPJ = funcionario.documento || "";
+    let Nome = funcionario.nome || "";
+    let Telefone = funcionario.telefone || "";
+    let Email = funcionario.email || "";
+    let CEP = funcionario.cep || "";
+    let Logradouro = funcionario.logradouro || "";
+    let Bairro = funcionario.bairro || "";
+    let Numero = funcionario.numero || "";
+    let Complemento = funcionario.complemento || "";
+    let Cidade = funcionario.cidade || "";
+    let Estado = funcionario.estado || 0;
+    let InscricaoMunicipal = funcionario.inscricaoMunicipal || "";
+    let InscricaoEstadual = funcionario.inscricaoEstadual || "";
+    let Tipo = funcionario.tipo || 1;
 
     const pessoaFisica = document.getElementById("pessoaFisica");
     const pessoaJuridica = document.getElementById("pessoaJuridica");
@@ -75,7 +87,7 @@ function preencherCampos(cliente) {
     if (Tipo === 1) {
         pessoaFisica.classList.remove("hidden");
         pessoaJuridica.classList.add("hidden");
-        document.getElementById("ClienteFisico").checked = true;
+        document.getElementById("FuncionarioFisico").checked = true;
 
         habilitarDivFisica();
 
@@ -99,12 +111,11 @@ function preencherCampos(cliente) {
 
         pessoaFisica.classList.add("hidden");
         pessoaJuridica.classList.remove("hidden");
-        document.getElementById("ClienteJuridico").checked = true;
+        document.getElementById("FuncionarioJuridico").checked = true;
 
         habilitarDivJuridica();
 
         document.getElementById("inputCNPJ").value = CNPJ;
-
 
         document.getElementById("inputCNPJ").setAttribute("disabled", "true");
         document.getElementById("inputInscricaoMunicipal").value = InscricaoMunicipal;
@@ -124,10 +135,10 @@ function preencherCampos(cliente) {
     }
 }
 
-document.getElementById('formCliente').addEventListener('submit', async (e) => {
+document.getElementById('formFuncionario').addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const isPessoaFisica = document.getElementById('ClienteFisico').checked;
+    const isPessoaFisica = document.getElementById('FuncionarioFisico').checked;
     const containerAtivo = isPessoaFisica
         ? document.getElementById('pessoaFisica')
         : document.getElementById('pessoaJuridica');
@@ -143,8 +154,8 @@ document.getElementById('formCliente').addEventListener('submit', async (e) => {
         }
     });
 
-    dados.id = cliente.id;
-    dados.situacao = cliente.situacao;
+    dados.id = funcionario.id;
+    dados.situacao = funcionario.situacao;
 
     console.log(dados);
 
@@ -165,11 +176,11 @@ document.getElementById('formCliente').addEventListener('submit', async (e) => {
         });
 
         if (resposta.ok) {
-            alert("Cliente atualizado com sucesso!");
-            window.location.href = "/src/pages/funcionarios/addfuncionario.html";
+            alert("Funcionário atualizado com sucesso!");
+            window.location.href = "/src/pages/funcionarios/editDadosFuncionais.html";
         } else {
             const erro = await resposta.text();
-            alert("Erro ao atualizar cliente: " + erro);
+            alert("Erro ao atualizar funcionário: " + erro);
         }
     } catch (err) {
         alert("Erro na conexão: " + err.message);

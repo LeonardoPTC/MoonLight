@@ -1,22 +1,29 @@
 async function carregarFuncionario() {
   const resposta = await fetch("http://localhost:5164/BlueMoon/Usuarios");
-  const clientes = await resposta.json();
+  const funcionarios = await resposta.json();
+
 
   const tbody = document.querySelector("#tabela-funcionarios tbody");
-  tbody.innerHTML = ""; // limpa a tabela
-
-  clientes.forEach(c => {
+  tbody.innerHTML = ""; 
+  const cargosEnum = {
+    0: "INDEFINIDO",
+    1: "VENDEDOR",
+    2: "GERENTE",
+    3: "FINANCEIRO",
+    4: "ADMIN"
+  };
+  funcionarios.forEach(f => {
     const linha = document.createElement("tr");
-    let situacao = c.situacao;
+    let situacao = f.situacao;
 
     linha.innerHTML = `
-      <td>${c.codigoUsuario}</td>
-      <td>${c.nome}</td>
-      <td>${c.cargo}</td>
+      <td>${f.codigoUsuario}</td>
+      <td>${f.nome}</td>
+      <td>${cargosEnum[f.cargo] || "INDEFINIDO"}</td>
       <td class="text-center">
-          <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Cliente" onclick="visualizarCliente('${c.id}')"><img src="/src/assets/View.png"></button>
-          <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Cliente" onclick="editarCliente('${c.id}')"><img src="/src/assets/Edit.png"></button>
-          <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir Cliente" onclick="excluirCliente('${c.id}')"><img src="/src/assets/Delete.png"></button>
+          <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Funcionario" onclick="visualizarFuncionario('${f.idPessoa}', '${f.id}')"><img src="/src/assets/View.png"></button>
+          <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Funcionario" onclick="editarFuncionario('${f.idPessoa}', '${f.id}')"><img src="/src/assets/Edit.png"></button>
+          <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir Funcionario" onclick="excluirFuncionario('${f.id}')"><img src="/src/assets/Delete.png"></button>
       </td>
     `;
     tbody.appendChild(linha);
@@ -26,20 +33,20 @@ async function carregarFuncionario() {
 carregarFuncionario();
 
 document.addEventListener('DOMContentLoaded', function () {
-    const checkSidebarLoaded = setInterval(function () {
-        const sidebar = document.querySelector('.sidebar');
-        if (sidebar) {
-            clearInterval(checkSidebarLoaded);
+  const checkSidebarLoaded = setInterval(function () {
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebar) {
+      clearInterval(checkSidebarLoaded);
 
-            sidebar.addEventListener('mouseenter', function () {
-                document.querySelector('#content').style.marginLeft = '310px';
-            });
+      sidebar.addEventListener('mouseenter', function () {
+        document.querySelector('#content').style.marginLeft = '310px';
+      });
 
-            sidebar.addEventListener('mouseleave', function () {
-                document.querySelector('#content').style.marginLeft = '187px';
-            });
-        }
-    }, 100);
+      sidebar.addEventListener('mouseleave', function () {
+        document.querySelector('#content').style.marginLeft = '187px';
+      });
+    }
+  }, 100);
 });
 
 
@@ -101,20 +108,20 @@ document.getElementById('limparFiltros').addEventListener('click', function () {
   document.getElementById('filterMarca').value = "";
 });
 */
-function editarCliente(id) {
-  window.location.href = `http://localhost:5500/src/pages/clientes/editcliente.html?id=${id}`;
+function editarFuncionario(idPessoa, idUsuario) {
+  window.location.href = `http://localhost:5500/src/pages/funcionarios/editDadosCadastrais.html?idPessoa=${idPessoa}&idUsuario=${idUsuario}`;
 }
 
-function visualizarCliente(id) {
-  window.location.href = `http://localhost:5500/src/pages/clientes/viewcliente.html?id=${id}`;
+function visualizarFuncionario(idPessoa, idUsuario) {
+  window.location.href = `http://localhost:5500/src/pages/funcionarios/viewDadosCadastraisFuncionario.html?idPessoa=${idPessoa}&idUsuario=${idUsuario}`;
 }
 
-document.getElementById('toggleSearch').addEventListener('click', function() {
-    const filterBar = document.getElementById('filterBar');
-    filterBar.classList.toggle('expanded');
+document.getElementById('toggleSearch').addEventListener('click', function () {
+  const filterBar = document.getElementById('filterBar');
+  filterBar.classList.toggle('expanded');
 });
 
-document.getElementById('fecharFiltros').addEventListener('click', function() {
-    const filterBar = document.getElementById('filterBar');
-    filterBar.classList.remove('expanded'); 
+document.getElementById('fecharFiltros').addEventListener('click', function () {
+  const filterBar = document.getElementById('filterBar');
+  filterBar.classList.remove('expanded');
 });
