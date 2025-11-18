@@ -1,0 +1,40 @@
+window.addEventListener('load', async () => {
+    await includeHTML("header", "/src/include/header.html");
+    await includeHTML("footer", "/src/include/footer.html");
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+});
+
+async function excluirFuncionario(id) {
+    const confirmar = confirm("Tem certeza que deseja excluir este Funcionário?");
+    if (!confirmar) {
+        return;
+    }
+
+    try {
+        const resposta = await fetch(`http://localhost:5164/BlueMoon/Usuarios/${id}`);
+
+        if (!resposta.ok) {
+            const erro = await resposta.text();
+            alert(erro);
+        }
+
+        funcionario = await resposta.json();
+
+        const reqdelete = await fetch(`http://localhost:5164/BlueMoon/Usuarios/${id}`, {
+            method: "DELETE"
+        });
+
+        if (reqdelete.ok) {
+            alert(`${funcionario.nome ?? $funcionario.codigo} excluído com sucesso!`);
+            window.location.reload();
+        } else {
+            const erro = await reqdelete.text();
+            alert("Erro ao deletar funcionario: " + erro);
+        }
+    } catch (err) {
+        alert("Erro na conexão: " + err.message);
+    }
+}
+

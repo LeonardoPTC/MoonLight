@@ -28,6 +28,7 @@ async function carregarProduto(id) {
 
 function preencherCampos(produto) {
 
+    let codigo = produto.codigo || "";
     let codBarras = produto.codigoBarras;
     let nome = produto.nome;
     let descricao = produto.descricao;
@@ -56,19 +57,8 @@ function preencherCampos(produto) {
         marca = "";
     }
 
-    const inputs = document.querySelectorAll('#formProduto input, #formProduto textarea');
-    inputs.forEach(input => {
-        input.setAttribute('disabled', true);
-    });
 
-    const selects = document.querySelectorAll('#formProduto select');
-    selects.forEach(select => {
-        select.addEventListener('mousedown', e => e.preventDefault());
-        select.addEventListener('keydown', e => e.preventDefault());   
-    });
-
-
-
+    document.getElementById('inputCodigo').value = codigo || "";
     document.getElementById('inputcodBarras').value = codBarras || "";
     document.getElementById('Nome').value = nome || "";
     document.getElementById('inputDescricao').value = descricao || "";
@@ -79,4 +69,16 @@ function preencherCampos(produto) {
     document.getElementById('inputEstoque').value = produto.quantidadeEstoque || "";
     document.getElementById('inputEstoqueMin').value = produto.quantidadeEstoqueMinimo || "";
     //document.getElementById('inputSituacao').value = situacao; Para o Segundo Estágio
+
+
+    const inputs = document.querySelectorAll('#formProduto input, #formProduto textarea');
+    inputs.forEach(input => {
+        input.setAttribute('disabled', true);
+    });
+
+    const selects = document.querySelectorAll('#formProduto select');
+    selects.forEach(select => {
+        select.addEventListener('mousedown', e => e.preventDefault());
+        select.addEventListener('keydown', e => e.preventDefault());
+    });
 }

@@ -14,7 +14,7 @@
     <div id="content" class="shadow body-tertiary rounded">
         <form id="formProduto" class="container g-2">
             <h1 class="text-center mb-4">Visualizar Produto</h1>
-           <!-- <div class="col-mr-6 mb-4">
+            <!-- <div class="col-mr-6 mb-4">
                 <label for="inputSituacao">Situação do Produto:</label>
                 <select id="inputSituacao" name="Situacao">
                     <option value="0">INDEFINIDO</option>
@@ -24,7 +24,13 @@
                     <option value="4">AGUARDANDO ENTREGA</option>
                 </select>
             </div> -->
-            <div class="row g-2">
+            <div class="row g-3">
+                <div class="row g-2">
+                    <div class="col-md-2">
+                        <label for="inputCodigo" class="form-label">Código:</label>
+                        <input type="text" class="form-control" id="inputCodigo" name="Codigo">
+                    </div>
+                </div>
                 <div class="col-md-6">
                     <label for="inputcodBarras" class="form-label">Código de Barras:</label>
                     <input type="text" class="form-control" id="inputcodBarras" name="CodigoBarras">
@@ -87,6 +93,5 @@
         includeHTML("footer", "/src/include/footer.html");
     </script>
     <script src="/src/scripts/pages/produto/viewproduto.js"></script>
-
 </body>
 </html>
