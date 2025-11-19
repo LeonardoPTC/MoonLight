@@ -7,16 +7,16 @@ window.addEventListener('load', async () => {
     const idUsuario = urlParams.get('idUsuario');
 
     if (idPessoa) {
-        carregarFuncionario(idPessoa, idUsuario);
+        carregarpessoa(idPessoa, idUsuario);
         localStorage.setItem("pessoaId", idPessoa);
     }
 
     if (idUsuario) {
-        localStorage.setItem("funcionarioId", idUsuario);
+        localStorage.setItem("usuarioId", idUsuario);
     }
 });
 
-async function carregarFuncionario(id, idUsuario) {
+async function carregarpessoa(id, idUsuario) {
 
     try {
         const resposta = await fetch(`http://localhost:5164/BlueMoon/Pessoas/${id}`);
@@ -27,36 +27,36 @@ async function carregarFuncionario(id, idUsuario) {
             alert(erro);
         }
 
-        funcionario = await resposta.json();
+        pessoa = await resposta.json();
         usuario = await respostaUsuario.json();
 
-        preencherCampos(funcionario, usuario);
+        preencherCampos(pessoa, usuario);
 
     } catch (err) {
         alert("Erro na conexão: " + err.message);
     }
 }
 
-function preencherCampos(funcionario, usuario) {
+function preencherCampos(pessoa, usuario) {
 
     let codigo = usuario.codigoUsuario || "";
-    let documento = funcionario.documento || "";
-    let nome = funcionario.nome || "";
-    let telefone = funcionario.telefone || "";
-    let email = funcionario.email || "";
-    let cep = funcionario.cep || "";
-    let logradouro = funcionario.logradouro || "";
-    let bairro = funcionario.bairro || "";
-    let numero = funcionario.numero || "";
-    let complemento = funcionario.complemento || "";
-    let cidade = funcionario.cidade || "";
-    let estado = funcionario.estado || 0;
-    let inscricaoMunicipal = funcionario.inscricaoMunicipal || "";
-    let inscricaoEstadual = funcionario.inscricaoEstadual || "";
-    let tipo = funcionario.tipo || 1;
+    let documento = pessoa.documento || "";
+    let nome = pessoa.nome || "";
+    let telefone = pessoa.telefone || "";
+    let email = pessoa.email || "";
+    let cep = pessoa.cep || "";
+    let logradouro = pessoa.logradouro || "";
+    let bairro = pessoa.bairro || "";
+    let numero = pessoa.numero || "";
+    let complemento = pessoa.complemento || "";
+    let cidade = pessoa.cidade || "";
+    let estado = pessoa.estado || 0;
+    let inscricaoMunicipal = pessoa.inscricaoMunicipal || "";
+    let inscricaoEstadual = pessoa.inscricaoEstadual || "";
+    let tipo = pessoa.tipo || 1;
 
-    for (let campo in funcionario) {
-        if (funcionario[campo] === "N/D") funcionario[campo] = "";
+    for (let campo in pessoa) {
+        if (pessoa[campo] === "N/D") pessoa[campo] = "";
     }
 
     const pessoaFisica = document.getElementById("pessoaFisica");
@@ -65,7 +65,7 @@ function preencherCampos(funcionario, usuario) {
     if (tipo === 1) {
         pessoaFisica.classList.remove("hidden");
         pessoaJuridica.classList.add("hidden");
-        document.getElementById("FuncionarioFisico").checked = true;
+        document.getElementById("UsuarioFisico").checked = true;
 
         document.getElementById("inputCodigoFisico").value = codigo;
         document.getElementById("inputCPF").value = documento;
@@ -90,7 +90,7 @@ function preencherCampos(funcionario, usuario) {
     } else {
         pessoaFisica.classList.add("hidden");
         pessoaJuridica.classList.remove("hidden");
-        document.getElementById("FuncionarioJuridico").checked = true;
+        document.getElementById("UsuarioJuridico").checked = true;
 
         document.getElementById("inputCodigoJuridico").value = codigo;
         document.getElementById("inputCNPJ").value = documento;
@@ -121,7 +121,7 @@ function preencherCampos(funcionario, usuario) {
 
     tipoPessoa.forEach(radio => {
         radio.addEventListener('change', () => {
-            if (document.getElementById("FuncionarioFisico").checked) {
+            if (document.getElementById("pessoaFisico").checked) {
                 formularioFisico.classList.remove('hidden');
                 formularioJuridico.classList.add('hidden');
             } else {
@@ -131,10 +131,10 @@ function preencherCampos(funcionario, usuario) {
         });
     });
 
-    const inputs = document.querySelectorAll('#formFuncionario input, #formFuncionario select');
+    const inputs = document.querySelectorAll('#formUsuario input, #formUsuario select');
     inputs.forEach(input => input.setAttribute('disabled', true));
 
-    const selects = document.querySelectorAll('#formFuncionario select');
+    const selects = document.querySelectorAll('#formUsuario select');
     selects.forEach(select => {
         select.addEventListener('mousedown', e => e.preventDefault());
         select.addEventListener('keydown', e => e.preventDefault());
