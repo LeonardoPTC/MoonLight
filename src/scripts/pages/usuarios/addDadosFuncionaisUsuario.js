@@ -12,10 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const btnVoltar = document.getElementById("btnVoltar");
 
-    btnVoltar.addEventListener("click", () => {
+    /*btnVoltar.addEventListener("click", () => {
         localStorage.setItem("pessoaId", pessoaId);
-        window.location.href = `/src/pages/funcionarios/editDadosCadastrais.html?id=${pessoaId}`
-    });
+        window.location.href = `/src/pages/usuarios/editDadosCadastrais.html?id=${pessoaId}`
+    });*/
 
     if (!pessoaId) {
         console.warn("Nenhuma pessoa foi selecionada antes de entrar nesta tela.");
@@ -36,10 +36,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    const form = document.getElementById("formFuncionario");
+    const form = document.getElementById("formUsuario");
 
     if (!form) {
-        console.error("Formulário de funcionário não encontrado.");
+        console.error("Formulário de usuário não encontrado.");
         return;
     }
 
@@ -85,12 +85,12 @@ document.addEventListener("DOMContentLoaded", () => {
             const body = await resposta.text();
 
             if (!resposta.ok) {
-                alert("Erro ao cadastrar funcionário: " + body);
+                alert("Erro ao cadastrar usuário: " + body);
                 return;
             }
 
-            alert("Funcionário cadastrado com sucesso!");
-            window.location.href = "/src/pages/funcionarios/index.html";
+            alert("Usuário cadastrado com sucesso!");
+            window.location.href = "/src/pages/usuarios/index.html";
 
         } catch (erro) {
             console.error(erro);

@@ -1,0 +1,24 @@
+#content {
+  border: 2px solid #2b4c7e;
+  background-color: #f0f4f9;
+  margin-top: 80px;
+  margin-left: 200px;
+  margin-right: 170px;
+  padding: 20px;
+  padding-bottom: 50px;
+  box-sizing: border-box;
+  justify-items: center;
+  transition: margin-left 0.3s ease;
+  font-family: "Roboto Mono", monospace;
+}
+
+img {
+  width: 30px;
+  margin-right: 5px;
+}
+
+.input-container input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

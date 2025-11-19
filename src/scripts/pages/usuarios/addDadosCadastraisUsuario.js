@@ -3,10 +3,10 @@ window.addEventListener('load', async () => {
     await includeHTML("footer", "/src/include/footer.html");
 
     const tipoPessoa = document.querySelectorAll('input[name="tipo"]');
-    const formularioFuncionarioFisico = document.getElementById('pessoaFisica');
-    const formularioFuncionarioJuridico = document.getElementById('pessoaJuridica');
+    const formularioUsuarioFisico = document.getElementById('pessoaFisica');
+    const formularioUsuarioJuridico = document.getElementById('pessoaJuridica');
 
-    formularioFuncionarioJuridico.classList.add('hidden');
+    formularioUsuarioJuridico.classList.add('hidden');
 });
 
 
@@ -30,23 +30,23 @@ function habilitarDivJuridica() {
 document.addEventListener("DOMContentLoaded", () => {
 
     const tipoPessoa = document.getElementsByName('tipo');
-    const formularioFuncionarioFisico = document.getElementById('pessoaFisica');
-    const formularioFuncionarioJuridico = document.getElementById('pessoaJuridica');
+    const formularioUsuarioFisico = document.getElementById('pessoaFisica');
+    const formularioUsuarioJuridico = document.getElementById('pessoaJuridica');
 
-    formularioFuncionarioJuridico.classList.add('hidden');
+    formularioUsuarioJuridico.classList.add('hidden');
 
     tipoPessoa.forEach(radio => {
         radio.addEventListener('change', () => {
 
-            if (document.getElementById("FuncionarioFisico").checked) {
-                formularioFuncionarioFisico.classList.remove('hidden');
-                formularioFuncionarioJuridico.classList.add('hidden');
+            if (document.getElementById("UsuarioFisico").checked) {
+                formularioUsuarioFisico.classList.remove('hidden');
+                formularioUsuarioJuridico.classList.add('hidden');
                 habilitarDivFisica();
             }
 
-            else if (document.getElementById("FuncionarioJuridico").checked) {
-                formularioFuncionarioJuridico.classList.remove('hidden');
-                formularioFuncionarioFisico.classList.add('hidden');
+            else if (document.getElementById("UsuarioJuridico").checked) {
+                formularioUsuarioJuridico.classList.remove('hidden');
+                formularioUsuarioFisico.classList.add('hidden');
                 habilitarDivJuridica();
             }
         });
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-document.getElementById("formFuncionario").addEventListener("submit", async (e) => {
+document.getElementById("formUsuario").addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const pessoaFisica = document.getElementById("pessoaFisica");
@@ -197,11 +197,11 @@ document.getElementById("formFuncionario").addEventListener("submit", async (e) 
         if (resposta.ok) {
             const pessoa = await resposta.json();
             localStorage.setItem("pessoaId", pessoa.id);
-            alert("Dados do Funcionário cadastrados com sucesso!");
-            window.location.href = "/src/pages/funcionarios/addDadosFuncionaisFuncionario.html";
+            alert("Dados do Usuário cadastrados com sucesso!");
+            window.location.href = "/src/pages/usuarios/addDadosFuncionaisUsuario.html";
         } else {
             const erro = await resposta.text();
-            alert("Erro ao cadastrar dados do funcionário: " + erro);
+            alert("Erro ao cadastrar dados do usuário: " + erro);
         }
     } catch (err) {
         alert("Erro na conexão: " + err.message);

@@ -4,15 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastrar Cliente</title>
-  <link rel="stylesheet" href="/src/styles/pages/produtos/index.css">
+  <title>Início</title>
+  <link rel="stylesheet" href="/src/styles/pages/usuarios/index.css">
 </head>
 
 <body>
   <div id="header"></div>
   <div id="content" class="shadow body-tertiary rounded">
 
-    <h1 class="mb-3">Funcionários Cadastrados</h1>
+    <h1 class="mb-3">Usuários Cadastrados</h1>
 
     <div class="d-flex justify-content-between mb-3 w-100" name="Cabeçalho">
       <div class="filter-bar" id="filterBar">
@@ -26,7 +26,8 @@
           <form id="formPesquisa" class="container g-2">
             <input type="text" id="filterCodigo" placeholder="Código" name="codigo">
             <input type="text" id="filterNome" placeholder="Nome" name="nome">
-            <input type="text" id="filterMarca" placeholder="Marca" name="marca"> 
+            <input type="text" id="filterTelefone" placeholder="Telefone" name="telefone">
+            <input type="text" id="filterDocumento" placeholder="Documento" name="documento">
 
             <button type="submit" id="aplicarFiltros" class="btn btn-primary search-final">Aplicar</button>
             <button type="button" id="limparFiltros" class="btn btn-secondary limpar-filtros">Limpar Filtros</button>
@@ -36,14 +37,14 @@
       </div>
 
       <div>
-        <button id="NovoCliente" class="btn btn-success" data-toggle="tooltip" data-placement="top"
-          title="Adicionar Novo Cliente"
-          onclick="window.location.href='http://localhost:5500/src/pages/funcionarios/consultarcadastro.html'">
-          <img src="/src/assets/AddProduto.png" alt="Adicionar Novo Cliente">
+        <button id="NovoUsuario" class="btn btn-success" data-toggle="tooltip" data-placement="top"
+          title="Adicionar Novo Usuário"
+          onclick="window.location.href='http://localhost:5500/src/pages/usuarios/consultarcadastro.html'">
+          <img src="/src/assets/AddProduto.png" alt="Adicionar Novo Usuário">
         </button>
       </div>
     </div>
-    <table id="tabela-funcionarios" class="table table-bordered">
+    <table id="tabela-usuarios" class="table table-bordered">
       <thead>
         <tr class="text-center">
           <th>Código</th>
@@ -62,7 +63,8 @@
     includeHTML("header", "/src/include/header.html");
     includeHTML("footer", "/src/include/footer.html");
   </script>
-  <script src="/src/scripts/pages/funcionarios/index.js"></script>
-  <script src="/src/scripts/pages/funcionarios/excluirfuncionario.js"></script>
+  <script src="/src/scripts/pages/usuarios/index.js"></script>
+  <script src="/src/scripts/pages/usuarios/excluirusuario.js"></script>
 </body>
+
 </html>

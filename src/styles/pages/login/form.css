@@ -1,29 +1,117 @@
-#content {
-  border: 2px solid #2B4C7E;
-  background-color: #F0F4F9;
-  margin-top: 10%;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 45px;
-  padding-bottom: 50px;
-  box-sizing: border-box;
-  justify-items: center;
-  transition: margin-left 0.3s ease;
-  font-family: "Roboto Mono", monospace;
-  width: 30%;
-  height: 55%;
+:root {
+  --primary: #000000;
+  --bg-light: #f0f4f9;
+  --border-light: #ccc;
+
+  --font-main: "Rubik", sans-serif;
 }
 
-#buttons {
+#nav-top {
+  width: 100%;
+  padding: 15px 30px;
+  background-color: var(--primary);
   display: flex;
-  justify-content: center;
+  align-items: center;
 }
 
+#nav-top a {
+  text-decoration: none;
+}
+
+#nomeProjeto {
+  color: white;
+  font-family: var(--font-main);
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+}
+
+#content {
+  border: 2px solid var(--primary);
+  background-color: var(--bg-light);
+  margin: 80px 500px 0 500px;
+  padding: 30px 30px 100px 30px;
+  box-sizing: border-box;
+  transition: margin-left 0.3s ease, margin-right 0.3s ease;
+  font-family: var(--font-main);
+}
+
+#content h1 {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+label {
+  font-weight: bold;
+  color: #333;
+}
+
+/* ---------- FORM ---------- */
+
+#formLogin input {
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+}
+
+#formLogin .input-group button {
+  border-radius: 4px;
+}
+
+/* Botões */
 #buttons button {
   width: 100%;
-  padding: 6px;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  background-color: var(--primary);
+  border-color: var(--primary);
 }
 
-.borda {
-  border: 1px solid #2B4C7E;
+#buttons button:hover {
+  background-color: #213c62;
+  border-color: #213c62;
+}
+
+/* ---------- RESPONSIVIDADE ---------- */
+
+/* <= 1200px */
+@media (max-width: 1200px) {
+  #content {
+    margin: 80px 120px 0 120px;
+  }
+}
+
+/* <= 992px */
+@media (max-width: 992px) {
+  #content {
+    margin: 80px 60px 0 60px;
+  }
+}
+
+/* <= 768px */
+@media (max-width: 768px) {
+  #content {
+    margin: 80px 20px 0 20px;
+    padding: 20px;
+  }
+
+  #buttons button {
+    font-size: 16px;
+  }
+}
+
+/* <= 480px */
+@media (max-width: 480px) {
+  #content {
+    margin: 80px 10px 0 10px;
+    padding: 15px;
+  }
+
+  #nomeProjeto {
+    font-size: 22px;
+  }
+
+  #buttons button {
+    font-size: 15px;
+  }
 }

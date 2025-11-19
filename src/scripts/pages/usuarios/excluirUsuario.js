@@ -6,8 +6,8 @@ window.addEventListener('load', async () => {
     const id = urlParams.get('id');
 });
 
-async function excluirFuncionario(id) {
-    const confirmar = confirm("Tem certeza que deseja excluir este Funcionário?");
+async function excluirUsuario(id) {
+    const confirmar = confirm("Tem certeza que deseja excluir este Usuário?");
     if (!confirmar) {
         return;
     }
@@ -20,18 +20,18 @@ async function excluirFuncionario(id) {
             alert(erro);
         }
 
-        funcionario = await resposta.json();
+        usuario = await resposta.json();
 
         const reqdelete = await fetch(`http://localhost:5164/BlueMoon/Usuarios/${id}`, {
             method: "DELETE"
         });
 
         if (reqdelete.ok) {
-            alert(`${funcionario.nome ?? $funcionario.codigo} excluído com sucesso!`);
+            alert(`${usuario.nome ?? $usuario.codigo} excluído com sucesso!`);
             window.location.reload();
         } else {
             const erro = await reqdelete.text();
-            alert("Erro ao deletar funcionario: " + erro);
+            alert("Erro ao deletar usuario: " + erro);
         }
     } catch (err) {
         alert("Erro na conexão: " + err.message);
