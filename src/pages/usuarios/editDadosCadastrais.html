@@ -4,23 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar Funcionário</title>
-    <link rel="stylesheet" href="/src/styles/pages/funcionarios/form.css">
+    <title>Editar Usuário</title>
+    <link rel="stylesheet" href="/src/styles/pages/usuarios/form.css">
 </head>
 
 <body>
     <div id="header"></div>
 
     <div id="content" class="shadow body-tertiary rounded">
-        <h1 class="text-center mb-4">Atualização de Cadastro</h1>
-        <h2 style="justify-self: flex-start; display: flex;font-size: 25px;">Tipo do funcionário</h2>
+        <h1 class="text-center mb-4">Edição de Cadastro</h1>
+        <h2 style="justify-self: flex-start; display: flex;font-size: 25px;">Tipo do usuário</h2>
 
-        <form id="formFuncionario" class="container g-2">
+        <form id="formUsuario" class="container g-2">
             <label>
-                <input type="radio" id="FuncionarioFisico" name="tipo" value="1" checked> Pessoa Física </input>
+                <input type="radio" id="UsuarioFisico" name="tipo" value="1" checked> Pessoa Física </input>
             </label>
             <label>
-                <input type="radio" id="FuncionarioJuridico" name="tipo" value="2"> Pessoa Jurídica </input>
+                <input type="radio" id="UsuarioJuridico" name="tipo" value="2"> Pessoa Jurídica </input>
             </label><br><br>
 
             <div id="pessoaFisica">
@@ -116,7 +116,7 @@
                         <button type="submit" class="btn btn-primary">Salvar</button>
                     </div>
                     <div class="col-2">
-                        <button type="button" onclick="window.location.href='/src/pages/funcionarios/index.html'"
+                        <button type="button" onclick="window.location.href='/src/pages/usuarios/index.html'"
                             class="btn btn-secondary">Cancelar</button>
                     </div>
                 </div>
@@ -222,7 +222,7 @@
                         <button type="submit" class="btn btn-primary">Salvar</button>
                     </div>
                     <div class="col-2">
-                        <button type="button" onclick="window.location.href='/src/pages/funcionarios/index.html'" class="btn btn-secondary">Cancelar</button>
+                        <button type="button" onclick="window.location.href='/src/pages/usuarios/index.html'" class="btn btn-secondary">Cancelar</button>
                     </div>
                 </div>
             </div>
@@ -235,7 +235,7 @@
         includeHTML("header", "/src/include/header.html");
         includeHTML("footer", "/src/include/footer.html");
     </script>
-    <script src="/src/scripts/pages/funcionarios/atualizarCadastroExistente.js"></script>
+    <script src="/src/scripts/pages/usuarios/editDadosCadastraisUsuario.js"></script>
 </body>
 
 </html>

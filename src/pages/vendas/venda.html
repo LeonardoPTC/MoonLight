@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Venda</title>
+    <link rel="stylesheet" href="/src/styles/pages/vendas/form.css">
+</head>
+
+<body>
+
+    <div id="header"></div>
+
+    <div id="content" class="shadow body-tertiary rounded">
+        <form id="formVenda" class="container g-2">
+            <h1 class="text-center mb-4">Registrar Venda</h1>
+
+            <div id="etapa1">
+                <div class="row g-2">
+                    <div class="col-md-6">
+                        <label class="form-label">Cliente:</label>
+                        <select id="selectCliente" class="form-control" required>
+                            <option value="">Selecione um cliente</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Usuário:</label>
+                        <select id="selectUsuario" class="form-control" required>
+                            <option value="">Selecione um cliente</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mt-4 justify-content-center">
+                    <div class="col-3">
+                        <button type="button" id="btnIniciarVenda" class="btn btn-primary w-100">
+                            Iniciar Venda
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="etapa2" class="mt-4">
+                <h4 class="mt-4">Adicionar Produtos</h4>
+
+                <div class="row g-2">
+                    <div class="col-md-8">
+                        <label class="form-label">Produto:</label>
+                        <select id="selectProduto" class="form-control"></select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <label class="form-label">Qtd:</label>
+                        <input type="number" id="inputQtd" class="form-control" min="1" value="1">
+                    </div>
+
+                    <div class="col-md-2">
+                        <label class="form-label">&nbsp;</label>
+                        <button type="button" id="btnAddProduto" class="btn btn-success w-100">
+                            Adicionar
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Produto</th>
+                                <th>Qtd</th>
+                                <th>Preço</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelaItens"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="etapa3" style="display: none;">
+                <h4 class="mt-4">Finalização</h4>
+
+                <div class="row mt-2">
+                    <div class="col-md-4">
+                        <label class="form-label">Total da Venda:</label>
+                        <input type="text" id="inputTotalVenda"
+                               class="form-control" readonly value="0,00">
+                    </div>
+                </div>
+
+                <div class="row mt-4 mb-4" id="buttons">
+                    <div class="col-md-3">
+                        <button type="button" id="btnFaturar" class="btn btn-primary w-100">
+                            Faturar
+                        </button>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" id="btnCancelar" class="btn btn-secondary w-100">
+                            Cancelar Venda
+                        </button>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" id="btnEstornar" class="btn btn-danger w-100">
+                            Estornar
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+
+    <div id="footer"></div>
+
+    <script src="/src/scripts/includes.js"></script>
+    <script src="/src/scripts/pages/venda/venda.js"></script>
+
+    <script>
+        includeHTML("header", "/src/include/header.html");
+        includeHTML("footer", "/src/include/footer.html");
+    </script>
+
+</body>
+
+</html>

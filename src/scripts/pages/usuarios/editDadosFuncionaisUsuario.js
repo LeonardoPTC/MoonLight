@@ -10,22 +10,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     await includeHTML("header", "/src/include/header.html");
     await includeHTML("footer", "/src/include/footer.html");
 
-    const funcionarioId = localStorage.getItem("funcionarioId");
-    console.log("ID carregado:", funcionarioId);
+    const usuarioId = localStorage.getItem("usuarioId");
+    console.log("ID carregado:", usuarioId);
 
-    if (!funcionarioId) {
+    if (!usuarioId) {
         alert("Nenhum usuário selecionado para edição.");
         return;
     }
 
-    await buscarDadosUsuario(funcionarioId);
+    await buscarDadosUsuario(usuarioId);
 
     /*const btnVoltar = document.getElementById("btnVoltar");
 
     if (btnVoltar) {
         btnVoltar.addEventListener("click", () => {
-            localStorage.setItem("funcionarioId", funcionarioId);
-            window.location.href = "/src/pages/funcionarios/index.html";
+            localStorage.setItem("usuarioId", usuarioId);
+            window.location.href = "/src/pages/usuarios/index.html";
         });
     }
         */
@@ -45,16 +45,16 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
-    const form = document.getElementById("formFuncionario");
+    const form = document.getElementById("formUsuario");
 
     if (!form) {
-        console.error("Formulário de funcionário não encontrado.");
+        console.error("Formulário de usuário não encontrado.");
         return;
     }
 
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
-        await atualizarFuncionario();
+        await atualizarUsuario();
     });
 });
 
@@ -63,7 +63,7 @@ async function buscarDadosUsuario(id) {
         const resposta = await fetch(`http://localhost:5164/BlueMoon/Usuarios/${id}`);
 
         if (!resposta.ok) {
-            throw new Error("Erro ao carregar dados do funcionário.");
+            throw new Error("Erro ao carregar dados do usuário.");
         }
 
         const usuario = await resposta.json();
@@ -74,7 +74,7 @@ async function buscarDadosUsuario(id) {
 
     } catch (erro) {
         console.error("Erro:", erro);
-        alert("Não foi possível carregar os dados do funcionário.");
+        alert("Não foi possível carregar os dados do usuário.");
     }
 }
 
@@ -101,24 +101,18 @@ function preencherFormulario(usuario) {
 
     document.getElementById("HorarioInicioCargaHoraria").value = usuario.horarioInicioCargaHoraria;
     document.getElementById("HorarioFimCargaHoraria").value = usuario.horarioFimCargaHoraria;
-
-    document.getElementById("inputEmail").value = usuario.email;
-
-    document.getElementById("senha").value = "";
 }
 
-async function atualizarFuncionario() {
+async function atualizarUsuario() {
 
-    const funcionarioId = localStorage.getItem("funcionarioId");
+    const usuarioId = localStorage.getItem("usuarioId");
     const idPessoa = localStorage.getItem("idPessoa");
 
-    if (!funcionarioId || !idPessoa) {
-        alert("Erro interno: ID do funcionário ou pessoa não encontrado.");
+    if (!usuarioId || !idPessoa) {
+        alert("Erro interno: ID do usuário ou pessoa não encontrado.");
         return;
     }
 
-    const Login = document.getElementById("inputEmail").value;
-    const Senha = document.getElementById("senha").value;
     const Cargo = document.getElementById("cargo").value;
     const Salario = document.getElementById("inputSalario").value;
     const Admissao = document.getElementById("inputAdmissao").value;
@@ -128,16 +122,14 @@ async function atualizarFuncionario() {
     const HorarioFim = document.querySelector("input[name='HorarioFimCargaHoraria']").value;
 
     const dto = {
-        id: funcionarioId,
-        idPessoa: idPessoa,
-        login: Login,
-        senha: Senha,
-        cargo: Number(Cargo),
-        salario: Number(Salario),
-        admissao: AdmissaoConvertida,
-        horarioInicioCargaHoraria: HorarioInicio.toString(),
-        horarioFimCargaHoraria: HorarioFim.toString(),
-        situacao: 1
+        Id: usuarioId,
+        IdPessoa: idPessoa,
+        Cargo: Number(Cargo),
+        Salario: Number(Salario),
+        Admissao: AdmissaoConvertida,
+        HorarioInicioCargaHoraria: HorarioInicio.toString(),
+        HorarioFimCargaHoraria: HorarioFim.toString(),
+        Situacao: 1
     };
 
     console.log("DTO enviado:", dto);
@@ -154,12 +146,12 @@ async function atualizarFuncionario() {
         const body = await resposta.text();
 
         if (!resposta.ok) {
-            alert("Erro ao atualizar funcionário: " + body);
+            alert("Erro ao atualizar usuário: " + body);
             return;
         }
 
-        alert("Funcionário atualizado com sucesso!");
-        window.location.href = "/src/pages/funcionarios/index.html";
+        alert("Usuário atualizado com sucesso!");
+        window.location.href = "/src/pages/usuarios/index.html";
 
     } catch (erro) {
         console.error(erro);

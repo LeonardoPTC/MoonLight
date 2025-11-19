@@ -11,7 +11,7 @@ window.addEventListener('load', async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
     if (id) {
-        carregarCliente(id);
+        carregarUsuario(id);
         localStorage.setItem("pessoaId", id);
     }
 });
@@ -30,8 +30,7 @@ function habilitarDivJuridica() {
         .forEach(el => el.disabled = true);
 }
 
-async function carregarCliente(id) {
-
+async function carregarUsuario(id) {
     try {
         const resposta = await fetch(`http://localhost:5164/BlueMoon/Pessoas/${id}`);
 
@@ -40,34 +39,34 @@ async function carregarCliente(id) {
             alert(erro);
         }
 
-        cliente = await resposta.json();
-        preencherCampos(cliente);
+        usuario = await resposta.json();
+        preencherCampos(usuario);
     } catch (err) {
         alert("Erro na conexão: " + err.message);
     }
 }
 
-function preencherCampos(cliente) {
+function preencherCampos(usuario) {
 
-    for (let campo in cliente) {
-        if (cliente[campo] === "N/D") cliente[campo] = "";
+    for (let campo in usuario) {
+        if (usuario[campo] === "N/D") usuario[campo] = "";
     }
 
-    let CPF = cliente.documento || "";
-    let CNPJ = cliente.documento || "";
-    let Nome = cliente.nome || "";
-    let Telefone = cliente.telefone || "";
-    let Email = cliente.email || "";
-    let CEP = cliente.cep || "";
-    let Logradouro = cliente.logradouro || "";
-    let Bairro = cliente.bairro || "";
-    let Numero = cliente.numero || "";
-    let Complemento = cliente.complemento || "";
-    let Cidade = cliente.cidade || "";
-    let Estado = cliente.estado || 0;
-    let InscricaoMunicipal = cliente.inscricaoMunicipal || "";
-    let InscricaoEstadual = cliente.inscricaoEstadual || "";
-    let Tipo = cliente.tipo || 1;
+    let CPF = usuario.documento || "";
+    let CNPJ = usuario.documento || "";
+    let Nome = usuario.nome || "";
+    let Telefone = usuario.telefone || "";
+    let Email = usuario.email || "";
+    let CEP = usuario.cep || "";
+    let Logradouro = usuario.logradouro || "";
+    let Bairro = usuario.bairro || "";
+    let Numero = usuario.numero || "";
+    let Complemento = usuario.complemento || "";
+    let Cidade = usuario.cidade || "";
+    let Estado = usuario.estado || 0;
+    let InscricaoMunicipal = usuario.inscricaoMunicipal || "";
+    let InscricaoEstadual = usuario.inscricaoEstadual || "";
+    let Tipo = usuario.tipo || 1;
 
     const pessoaFisica = document.getElementById("pessoaFisica");
     const pessoaJuridica = document.getElementById("pessoaJuridica");
@@ -75,7 +74,7 @@ function preencherCampos(cliente) {
     if (Tipo === 1) {
         pessoaFisica.classList.remove("hidden");
         pessoaJuridica.classList.add("hidden");
-        document.getElementById("ClienteFisico").checked = true;
+        document.getElementById("UsuarioFisico").checked = true;
 
         habilitarDivFisica();
 
@@ -99,12 +98,11 @@ function preencherCampos(cliente) {
 
         pessoaFisica.classList.add("hidden");
         pessoaJuridica.classList.remove("hidden");
-        document.getElementById("ClienteJuridico").checked = true;
+        document.getElementById("UsuarioJuridico").checked = true;
 
         habilitarDivJuridica();
 
         document.getElementById("inputCNPJ").value = CNPJ;
-
 
         document.getElementById("inputCNPJ").setAttribute("disabled", "true");
         document.getElementById("inputInscricaoMunicipal").value = InscricaoMunicipal;
@@ -124,10 +122,10 @@ function preencherCampos(cliente) {
     }
 }
 
-document.getElementById('formCliente').addEventListener('submit', async (e) => {
+document.getElementById('formUsuario').addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const isPessoaFisica = document.getElementById('ClienteFisico').checked;
+    const isPessoaFisica = document.getElementById('UsuarioFisico').checked;
     const containerAtivo = isPessoaFisica
         ? document.getElementById('pessoaFisica')
         : document.getElementById('pessoaJuridica');
@@ -143,8 +141,8 @@ document.getElementById('formCliente').addEventListener('submit', async (e) => {
         }
     });
 
-    dados.id = cliente.id;
-    dados.situacao = cliente.situacao;
+    dados.id = usuario.id;
+    dados.situacao = usuario.situacao;
 
     console.log(dados);
 
@@ -165,11 +163,11 @@ document.getElementById('formCliente').addEventListener('submit', async (e) => {
         });
 
         if (resposta.ok) {
-            alert("Cliente atualizado com sucesso!");
-            window.location.href = "/src/pages/funcionarios/addfuncionario.html";
+            alert("Funcionário atualizado com sucesso!");
+            window.location.href = "/src/pages/usuarios/addDadosFuncionaisUsuario.html";
         } else {
             const erro = await resposta.text();
-            alert("Erro ao atualizar cliente: " + erro);
+            alert("Erro ao atualizar funcionário: " + erro);
         }
     } catch (err) {
         alert("Erro na conexão: " + err.message);

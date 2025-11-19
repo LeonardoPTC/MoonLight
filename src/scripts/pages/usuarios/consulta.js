@@ -85,5 +85,5 @@ document.getElementById('limparFiltros').addEventListener('click', function () {
 });
 
 function selecionarCliente(id) {
-  window.location.href = `http://localhost:5500/src/pages/funcionarios/atualizarCadastroExistente.html?id=${id}`;
+  window.location.href = `http://localhost:5500/src/pages/usuarios/atualizarCadastroExistente.html?id=${id}`;
 }

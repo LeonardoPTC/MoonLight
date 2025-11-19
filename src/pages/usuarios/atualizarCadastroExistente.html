@@ -4,31 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar Funcionário</title>
-    <link rel="stylesheet" href="/src/styles/pages/funcionarios/form.css">
+    <title>Adicionar Usuário</title>
+    <link rel="stylesheet" href="/src/styles/pages/usuarios/form.css">
 </head>
 
 <body>
     <div id="header"></div>
 
     <div id="content" class="shadow body-tertiary rounded">
-        <h1 class="text-center mb-4">Visualização de Cadastro</h1>
-        <h2 style="justify-self: flex-start; display: flex;font-size: 25px;">Tipo do funcionário</h2>
+        <h1 class="text-center mb-4">Atualização de Cadastro</h1>
+        <h2 style="justify-self: flex-start; display: flex;font-size: 25px;">Tipo do usuário</h2>
 
-        <form id="formFuncionario" class="container g-2">
+        <form id="formUsuario" class="container g-2">
             <label>
-                <input type="radio" id="FuncionarioFisico" name="tipo" value="1" checked> Pessoa Física </input>
+                <input type="radio" id="UsuarioFisico" name="tipo" value="1" checked> Pessoa Física </input>
             </label>
             <label>
-                <input type="radio" id="FuncionarioJuridico" name="tipo" value="2"> Pessoa Jurídica </input>
+                <input type="radio" id="UsuarioJuridico" name="tipo" value="2"> Pessoa Jurídica </input>
             </label><br><br>
 
             <div id="pessoaFisica">
-                <div class="row g-4">
-                    <div class="col-md-2">
-                        <label for="inputCodigo" class="form-label">Código:</label>
-                        <input type="text" class="form-control" id="inputCodigoFisico" name="Codigo">
-                    </div>
+                <div class="row g-2">
                     <div class="col-md-4">
                         <label for="inputCPF" class="form-label">CPF:</label>
                         <input type="text" class="form-control" id="inputCPF" name="Documento">
@@ -116,26 +112,17 @@
                     </div>
                 </div>
                 <div class="row mt-5" id="buttons">
-                    <div class="col-2">
-                        <button type="button"
-                            onclick="window.location.href='/src/pages/funcionarios/viewDadosFuncionaisFuncionario.html'"
-                            class="btn btn-primary">Próximo</button>
+                    <div class="col-2 mr-3">
+                        <button type="submit" class="btn btn-primary">Salvar</button>
                     </div>
                     <div class="col-2">
-                        <button type="button" onclick="window.location.href='/src/pages/funcionarios/index.html'"
+                        <button type="button" onclick="window.location.href='/src/pages/usuarios/index.html'"
                             class="btn btn-secondary">Cancelar</button>
                     </div>
                 </div>
             </div>
 
             <div id="pessoaJuridica">
-                <div class="row g-2">
-                    <div class="col-md-2">
-                        <label for="inputCodigo" class="form-label">Código:</label>
-                        <input type="text" class="form-control" id="inputCodigoJuridico" name="Codigo">
-                    </div>
-                </div>
-                <hr>
                 <div class="row g-2">
                     <div class="col-md-4">
                         <label for="inputCNPJ" class="form-label">CNPJ:</label>
@@ -159,8 +146,7 @@
                     </div>
                     <div class="col-md-3">
                         <label for="inputTelefoneJuridico" class="form-label">Telefone: </label>
-                        <input type="text" class="form-control" id="inputTelefoneJuridico" name="Telefone"
-                            data-required>
+                        <input type="text" class="form-control" id="inputTelefoneJuridico" name="Telefone" data-required>
                     </div>
                     <div class="col-md-3">
                         <label for="inputEmailJuridico" class="form-label">Email: </label>
@@ -198,8 +184,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-floating">
-                            <select class="form-select" id="estadoJuridico" name="Estado"
-                                aria-label="Selecione um estado" data-required>
+                            <select class="form-select" id="estadoJuridico" name="Estado" aria-label="Selecione um estado" data-required>
                                 <option value="0">Selecione um estado</option>
                                 <option value="1">AC</option>
                                 <option value="2">AL</option>
@@ -233,14 +218,11 @@
                     </div>
                 </div>
                 <div class="row mt-5" id="buttons">
-                    <div class="col-2">
-                        <button type="button"
-                            onclick="window.location.href='/src/pages/funcionarios/viewDadosFuncionaisFuncionario.html'"
-                            class="btn btn-primary">Próximo</button>
+                    <div class="col-2 mr-3">
+                        <button type="submit" class="btn btn-primary">Salvar</button>
                     </div>
                     <div class="col-2">
-                        <button type="button" onclick="window.location.href='/src/pages/funcionarios/index.html'"
-                            class="btn btn-secondary">Cancelar</button>
+                        <button type="button" onclick="window.location.href='/src/pages/usuarios/index.html'" class="btn btn-secondary">Cancelar</button>
                     </div>
                 </div>
             </div>
@@ -253,7 +235,7 @@
         includeHTML("header", "/src/include/header.html");
         includeHTML("footer", "/src/include/footer.html");
     </script>
-    <script src="/src/scripts/pages/funcionarios/viewDadosCadastraisFuncionario.js"></script>
+    <script src="/src/scripts/pages/usuarios/atualizarCadastroExistente.js"></script>
 </body>
 
 </html>

@@ -4,17 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar Cliente</title>
-    <link rel="stylesheet" href="/src/styles/pages/funcionarios/form.css">
+    <title>Adicionar Usuário</title>
+    <link rel="stylesheet" href="/src/styles/pages/usuarios/form.css">
 </head>
 
 <body>
     <div id="header"></div>
 
     <div id="content" class="shadow body-tertiary rounded">
-        <h1 class="text-center mb-4">Visualização de Cadastro</h1>
+        <h1 class="text-center mb-4">Cadastro Funcional do Usuário</h1>
 
-        <form id="formFuncionario" class="container g-2">
+        <form id="formUsuario" class="container g-2">
             <hr>
             <h4 style="text-align: center;">Informações do Contrato</h4>
             <div class="row mt-2 g-4 justify-content-center">
@@ -45,15 +45,13 @@
 
                         <div class="input-group" style="width: 200px;">
                             <span class="input-group-text">Início</span>
-                            <input type="time" class="form-control" id="HorarioInicioCargaHoraria"
-                                name="HorarioInicioCargaHoraria">
+                            <input type="time" class="form-control" name="HorarioInicioCargaHoraria">
                         </div>
 
 
                         <div class="input-group" style="width: 200px;">
                             <span class="input-group-text">Fim</span>
-                            <input type="time" class="form-control" id="HorarioFimCargaHoraria"
-                                name="HorarioFimCargaHoraria">
+                            <input type="time" class="form-control" name="HorarioFimCargaHoraria">
                         </div>
                     </div>
                 </div>
@@ -79,20 +77,27 @@
                 </div>
             </div>
             <div class="row mt-5" id="buttons">
-                <div class="col-2">
-                    <button type="button" id="btnVoltar" class="btn btn-primary">Voltar</button>
+                <div class="col-2 mr-3">
+                    <button type="submit" class="btn btn-primary">Salvar</button>
                 </div>
                 <div class="col-2">
-                    <button type="button" onclick="window.location.href='/src/pages/funcionarios/index.html'"
+                    <button type="button" onclick="window.location.href='/src/pages/usuarios/index.html'"
                         class="btn btn-secondary">Cancelar</button>
                 </div>
+                <!--<div class="col-2">
+                    <button type="button" id="btnVoltar" class="btn btn-warning">Voltar</button>
+                </div>-->
             </div>
         </form>
     </div>
 
     <div id="footer"></div>
     <script src="/src/scripts/includes.js"></script>
-    <script src="/src/scripts/pages/funcionarios/viewDadosFuncionaisFuncionario.js"></script>
+    <script>
+        includeHTML("header", "/src/include/header.html");
+        includeHTML("footer", "/src/include/footer.html");
+    </script>
+    <script src="/src/scripts/pages/usuarios/addDadosFuncionaisUsuario.js"></script>
 </body>
 
 </html>
