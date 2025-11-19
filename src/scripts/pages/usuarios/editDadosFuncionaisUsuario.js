@@ -101,10 +101,6 @@ function preencherFormulario(usuario) {
 
     document.getElementById("HorarioInicioCargaHoraria").value = usuario.horarioInicioCargaHoraria;
     document.getElementById("HorarioFimCargaHoraria").value = usuario.horarioFimCargaHoraria;
-
-    document.getElementById("inputEmail").value = usuario.email;
-
-    document.getElementById("senha").value = "";
 }
 
 async function atualizarUsuario() {
@@ -117,8 +113,6 @@ async function atualizarUsuario() {
         return;
     }
 
-    const Login = document.getElementById("inputEmail").value;
-    const Senha = document.getElementById("senha").value;
     const Cargo = document.getElementById("cargo").value;
     const Salario = document.getElementById("inputSalario").value;
     const Admissao = document.getElementById("inputAdmissao").value;
@@ -130,8 +124,6 @@ async function atualizarUsuario() {
     const dto = {
         Id: usuarioId,
         IdPessoa: idPessoa,
-        Login: Login,
-        Senha: Senha,
         Cargo: Number(Cargo),
         Salario: Number(Salario),
         Admissao: AdmissaoConvertida,

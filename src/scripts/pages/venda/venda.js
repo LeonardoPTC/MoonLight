@@ -6,6 +6,8 @@ window.addEventListener('load', async () => {
     await carregarUsuarios();
     await carregarProdutos();
 
+    document.getElementById("etapa2").style.display = "block";
+
     document.getElementById("btnIniciarVenda").addEventListener("click", iniciarVenda);
     document.getElementById("btnAddProduto").addEventListener("click", adicionarProduto);
 });
@@ -124,8 +126,10 @@ async function iniciarVenda() {
 
 async function adicionarProduto() {
     if (!vendaAtual) {
-        alert("Inicie a venda antes de adicionar produtos.");
-        return;
+        vendaAtual = { id: 0, fake: true };
+
+        //alert("Inicie a venda antes de adicionar produtos.");
+        //return;
     }
 
     const idProduto = document.getElementById("selectProduto").value;

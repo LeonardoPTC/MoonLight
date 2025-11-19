@@ -27,21 +27,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         window.location.href = `http://localhost:5500/src/pages/usuarios/viewDadosCadastraisUsuario.html?idPessoa=${pessoaId}&idUsuario=${usuarioId}`;
     });
 
-    const inputSenha = document.getElementById("senha");
-    const toggleSenha = document.getElementById("toggleSenha");
-
-    if (inputSenha && toggleSenha) {
-        toggleSenha.addEventListener("click", function () {
-            if (inputSenha.type === "password") {
-                inputSenha.type = "text";
-                this.textContent = "🙈";
-            } else {
-                inputSenha.type = "password";
-                this.textContent = "👁️";
-            }
-        });
-    }
-
     const form = document.getElementById("formUsuario");
 
     if (!form) {
@@ -109,8 +94,4 @@ function preencherFormulario(usuario) {
 
     document.getElementById("HorarioInicioCargaHoraria").value = usuario.horarioInicioCargaHoraria;
     document.getElementById("HorarioFimCargaHoraria").value = usuario.horarioFimCargaHoraria;
-
-    document.getElementById("inputEmail").value = usuario.email;
-
-    document.getElementById("senha").value = "";
 }
