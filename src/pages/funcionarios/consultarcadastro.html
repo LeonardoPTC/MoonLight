@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastrar Cliente</title>
+  <link rel="stylesheet" href="/src/styles/pages/funcionarios/consultarcadastro.css">
+</head>
+
+<body>
+  <div id="header"></div>
+  <div id="content" class="shadow body-tertiary rounded">
+
+    <h1 class="mb-3">Consultar Cadastro</h1>
+
+    <div class="d-flex justify-content-between mb-3 w-100" name="Cabeçalho">
+      
+        <div class="input-container" id="inputContainer">
+          <form id="formPesquisa" class="container g-2">
+            <input type="text" id="filterCodigo" placeholder="Código" name="codigo">
+            <input type="text" id="filterNome" placeholder="Nome" name="nome">
+            <input type="text" id="filterTelefone" placeholder="Telefone" name="telefone">
+            <input type="text" id="filterDocumento" placeholder="Documento" name="documento">
+
+            <button type="submit" id="aplicarFiltros" class="btn btn-primary search-final" data-toggle="tooltip" data-placement="top" title="Buscar"><img src="/src/assets/lupaBusca.png"></button>
+            <button type="button" id="limparFiltros" class="btn btn-secondary limpar-filtros">Limpar Campos</button>
+          </form>
+        </div>
+
+      <div>
+        <button id="NovoFuncionario" class="btn btn-success" data-toggle="tooltip" data-placement="top"
+          title="Adicionar Novo Cliente"
+          onclick="window.location.href='http://localhost:5500/src/pages/funcionarios/addDadosCadastraisFuncionario.html'">
+          <img src="/src/assets/AddProduto.png" alt="Adicionar Novo Cliente">
+        </button>
+      </div>
+    </div>
+    <table id="tabela-clientes" class="table table-bordered">
+      <thead>
+        <tr class="text-center">
+          <th>Código</th>
+          <th>Nome</th>
+          <th>Telefone</th>
+          <th>Cidade</th>
+          <th>Endereco</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <div id="footer"></div>
+  <script src="/src/scripts/includes.js"></script>
+  <script>
+    includeHTML("header", "/src/include/header.html");
+    includeHTML("footer", "/src/include/footer.html");
+  </script>
+  <script src="/src/scripts/pages/funcionarios/consulta.js"></script>
+</body>
+</html>

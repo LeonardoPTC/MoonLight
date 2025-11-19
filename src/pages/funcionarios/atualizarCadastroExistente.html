@@ -4,31 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar Cliente</title>
-    <link rel="stylesheet" href="/src/styles/pages/clientes/form.css">
+    <title>Adicionar Funcionário</title>
+    <link rel="stylesheet" href="/src/styles/pages/funcionarios/form.css">
 </head>
 
 <body>
     <div id="header"></div>
 
     <div id="content" class="shadow body-tertiary rounded">
-        <h1 class="text-center mb-4">Visualizar Cliente</h1>
-        <h2 style="justify-self: flex-start; display: flex;font-size: 25px;">Selecione o tipo do cliente</h2>
+        <h1 class="text-center mb-4">Atualização de Cadastro</h1>
+        <h2 style="justify-self: flex-start; display: flex;font-size: 25px;">Tipo do funcionário</h2>
 
-        <form id="formCliente" class="container g-2">
+        <form id="formFuncionario" class="container g-2">
             <label>
-                <input type="radio" id="ClienteFisico" name="tipo" value="1" checked> Pessoa Física </input>
+                <input type="radio" id="FuncionarioFisico" name="tipo" value="1" checked> Pessoa Física </input>
             </label>
             <label>
-                <input type="radio" id="ClienteJuridico" name="tipo" value="2"> Pessoa Jurídica </input>
+                <input type="radio" id="FuncionarioJuridico" name="tipo" value="2"> Pessoa Jurídica </input>
             </label><br><br>
 
             <div id="pessoaFisica">
-                <div class="row g-4">
-                    <div class="col-md-2">
-                        <label for="inputCodigo" class="form-label">Código:</label>
-                        <input type="text" class="form-control" id="inputCodigoFisico" name="Codigo">
-                    </div>
+                <div class="row g-2">
                     <div class="col-md-4">
                         <label for="inputCPF" class="form-label">CPF:</label>
                         <input type="text" class="form-control" id="inputCPF" name="Documento">
@@ -39,11 +35,11 @@
                 <div class="row mt-2 g-2">
                     <div class="col-md-6">
                         <label for="inputNomeFisico" class="form-label">Nome: </label>
-                        <input type="text" class="form-control" id="inputNomeFisico" name="nome" data-required>
+                        <input type="text" class="form-control" id="inputNomeFisico" name="Nome" data-required>
                     </div>
                     <div class="col-md-3">
                         <label for="inputTelefoneFisico" class="form-label">Telefone: </label>
-                        <input type="text" class="form-control" id="inputTelefoneFisico" name="telefone" data-required>
+                        <input type="text" class="form-control" id="inputTelefoneFisico" name="Telefone" data-required>
                     </div>
                     <div class="col-md-3">
                         <label for="inputEmailFisico" class="form-label">Email: </label>
@@ -55,7 +51,7 @@
                     <h4 style="text-align: center;">Endereço</h4>
                     <div class="col-md-2 width: 20px;">
                         <label for="inputCEPFisico" class="form-label">CEP:</label>
-                        <input type="text" class="form-control" id="inputCEPFisico" name="cep" maxlength="8">
+                        <input type="text" class="form-control" id="inputCEPFisico" name="CEP" maxlength="8">
                     </div>
                     <div class="col-md-3">
                         <label for="inputLogradouroFisico" class="form-label">Logradouro:</label>
@@ -115,15 +111,19 @@
                         </div>
                     </div>
                 </div>
+                <div class="row mt-5" id="buttons">
+                    <div class="col-2 mr-3">
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                    <div class="col-2">
+                        <button type="button" onclick="window.location.href='/src/pages/funcionarios/index.html'"
+                            class="btn btn-secondary">Cancelar</button>
+                    </div>
+                </div>
             </div>
 
             <div id="pessoaJuridica">
                 <div class="row g-2">
-                    <div class="col-md-2">
-                        <label for="inputCodigo" class="form-label">Código:</label>
-                        <input type="text" class="form-control" id="inputCodigoJuridico" name="Codigo">
-                    </div>
-                    <hr>
                     <div class="col-md-4">
                         <label for="inputCNPJ" class="form-label">CNPJ:</label>
                         <input type="text" class="form-control" id="inputCNPJ" name="Documento">
@@ -184,8 +184,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-floating">
-                            <select class="form-select" id="estadoJuridico" name="Estado" aria-label="Selecione um estado"
-                                data-required>
+                            <select class="form-select" id="estadoJuridico" name="Estado" aria-label="Selecione um estado" data-required>
                                 <option value="0">Selecione um estado</option>
                                 <option value="1">AC</option>
                                 <option value="2">AL</option>
@@ -218,15 +217,16 @@
                         </div>
                     </div>
                 </div>
+                <div class="row mt-5" id="buttons">
+                    <div class="col-2 mr-3">
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                    <div class="col-2">
+                        <button type="button" onclick="window.location.href='/src/pages/funcionarios/index.html'" class="btn btn-secondary">Cancelar</button>
+                    </div>
+                </div>
             </div>
         </form>
-
-        <div class="row mt-5" id="buttons">
-            <div class="col-12">
-                <button type="button" onclick="window.location.href='/src/pages/clientes/index.html'"
-                    class="btn btn-secondary px-5 p-2">Voltar</button>
-            </div>
-        </div>
     </div>
 
     <div id="footer"></div>
@@ -235,7 +235,7 @@
         includeHTML("header", "/src/include/header.html");
         includeHTML("footer", "/src/include/footer.html");
     </script>
-    <script src="/src/scripts/pages/cliente/viewcliente.js"></script>
+    <script src="/src/scripts/pages/funcionarios/atualizarCadastroExistente.js"></script>
 </body>
 
 </html>

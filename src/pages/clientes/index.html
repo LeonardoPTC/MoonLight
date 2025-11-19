@@ -87,6 +87,17 @@
               alt="Adicionar Novo Cliente"
             />
           </button>
+        <div class="input-container" id="inputContainer">
+          <form id="formPesquisa" class="container g-2">
+            <input type="text" id="filterCodigo" placeholder="Código" name="codigo">
+            <input type="text" id="filterNome" placeholder="Nome" name="nome">
+            <input type="text" id="filterTelefone" placeholder="Telefone" name="telefone">
+            <input type="text" id="filterDocumento" placeholder="Documento" name="documento">
+
+            <button type="submit" id="aplicarFiltros" class="btn btn-primary search-final">Aplicar</button>
+            <button type="button" id="limparFiltros" class="btn btn-secondary limpar-filtros">Limpar Filtros</button>
+            <button type="button" id="fecharFiltros" class="btn btn-danger fechar-btn">Fechar</button>
+          </form>
         </div>
       </div>
       <table id="tabela-clientes" class="table table-bordered">

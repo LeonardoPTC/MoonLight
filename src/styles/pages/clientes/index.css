@@ -50,7 +50,7 @@ img {
 }
 
 .filter-bar.expanded {
-  width: 1100px;
+  width: 1320px;
   margin-right: 0px;
 }
 
@@ -90,7 +90,7 @@ img {
 }
 
 .filter-bar.expanded .input-container {
-  width: 100%;
+  width: 1400px;
   margin-left: 0px;
 }
 

@@ -3,29 +3,8 @@ async function carregarClientes() {
   const clientes = await resposta.json();
 
   const tbody = document.querySelector("#tabela-clientes tbody");
-  tbody.innerHTML = ""; // limpa a tabela
-
-  clientes.forEach(c => {
-    const linha = document.createElement("tr");
-    let situacao = c.situacao;
-
-    linha.innerHTML = `
-      <td>${c.codigo}</td>
-      <td>${c.nome}</td>
-      <td>${c.telefone}</td>
-      <td>${c.cidade}</td>
-      <td>${c.endereco}</td>
-      <td class="text-center">
-          <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Cliente" onclick="visualizarCliente('${c.id}')"><img src="/src/assets/View.png"></button>
-          <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Cliente" onclick="editarCliente('${c.id}')"><img src="/src/assets/Edit.png"></button>
-          <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir Cliente" onclick="excluirCliente('${c.id}')"><img src="/src/assets/Delete.png"></button>
-      </td>
-    `;
-    tbody.appendChild(linha);
-  });
+  tbody.innerHTML = ""; 
 }
-
-carregarClientes();
 
 document.addEventListener('DOMContentLoaded', function () {
     const checkSidebarLoaded = setInterval(function () {
@@ -86,9 +65,7 @@ document.addEventListener('submit', async function (event) {
       <td>${c.cidade}</td>
       <td>${c.endereco}</td>
       <td class="text-center">
-          <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Cliente" onclick="visualizarCliente('${c.id}')"><img src="/src/assets/View.png"></button>
-          <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Cliente" onclick="editarCliente('${c.id}')"><img src="/src/assets/Edit.png"></button>
-          <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir Cliente" onclick="excluirCliente('${c.id}')"><img src="/src/assets/Delete.png"></button>
+          <button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Selecionar Cliente" onclick="selecionarCliente('${c.id}')"><img src="/src/assets/Selecionar.png"></button>
       </td>
     `;
       tbody.appendChild(linha);
@@ -107,20 +84,6 @@ document.getElementById('limparFiltros').addEventListener('click', function () {
   document.getElementById('filterDocumento').value = "";
 });
 
-function editarCliente(id) {
-  window.location.href = `http://localhost:5500/src/pages/clientes/editcliente.html?id=${id}`;
+function selecionarCliente(id) {
+  window.location.href = `http://localhost:5500/src/pages/funcionarios/atualizarCadastroExistente.html?id=${id}`;
 }
-
-function visualizarCliente(id) {
-  window.location.href = `http://localhost:5500/src/pages/clientes/viewcliente.html?id=${id}`;
-}
-
-document.getElementById('toggleSearch').addEventListener('click', function() {
-    const filterBar = document.getElementById('filterBar');
-    filterBar.classList.toggle('expanded');
-});
-
-document.getElementById('fecharFiltros').addEventListener('click', function() {
-    const filterBar = document.getElementById('filterBar');
-    filterBar.classList.remove('expanded'); 
-});
