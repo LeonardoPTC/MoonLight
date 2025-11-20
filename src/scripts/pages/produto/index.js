@@ -24,9 +24,9 @@ async function carregarProdutos() {
       <td>${p.codigo}</td>
       <td>${p.nome}</td>
       <td>${p.marca}</td>
-      <td>${p.estoque}</td>
-      <td>R$ ${p.valorVenda.toFixed(2)}</td>
-      <td>R$ ${p.valorCusto.toFixed(2)}</td>
+      <td style="text-align: right">${p.estoque}</td>
+      <td style="text-align: right">R$ ${p.valorVenda.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+      <td style="text-align: right">R$ ${p.valorCusto.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
       <td class="text-center">
           <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Produto" onclick="visualizarProduto('${p.id}')"><img src="/src/assets/View.png"></button>
           <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Produto" onclick="editarProduto('${p.id}')"><img src="/src/assets/Edit.png"></button>
@@ -90,9 +90,15 @@ document.addEventListener('submit', async function (event) {
       <td>${p.codigo}</td>
       <td>${p.nome}</td>
       <td>${p.marca}</td>
-      <td>${p.estoque}</td>
-      <td>R$ ${p.valorVenda.toFixed(2)}</td>
-      <td>R$ ${p.valorCusto.toFixed(2)}</td>
+      <td style="text-align: right;">${p.estoque}</td>
+      <td style="text-align: right;">R$ ${Number(p.valorVenda).toLocaleString('pt-BR', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      })}</td>
+      <td style="text-align: right;">R$ ${Number(p.valorCusto).toLocaleString('pt-BR', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      })}</td>
       <td class="text-center">
          <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Produto" onclick="visualizarProduto('${p.id}')"><img src="/src/assets/View.png"></button>
           <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Produto" onclick="editarProduto('${p.id}')"><img src="/src/assets/Edit.png"></button>

@@ -74,7 +74,10 @@ function desativarInputs() {
 function preencherFormulario(usuario) {
 
     document.getElementById("cargo").value = usuario.cargo;
-    document.getElementById("inputSalario").value = usuario.salario;
+    document.getElementById("inputSalario").value = "R$ " + Number(usuario.salario).toLocaleString('pt-BR', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
 
     let dataAdmissao = usuario.admissao;
     let formatada = "";

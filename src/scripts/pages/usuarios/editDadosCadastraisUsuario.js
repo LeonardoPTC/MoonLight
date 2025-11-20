@@ -93,7 +93,6 @@ function preencherCampos(usuario) {
 
         document.getElementById("inputCPF").value = CPF;
 
-        document.getElementById("inputCPF").setAttribute("disabled", "true");
         document.getElementById("inputNomeFisico").value = Nome;
         document.getElementById("inputTelefoneFisico").value = Telefone;
         document.getElementById("inputEmailFisico").value = Email;
@@ -116,8 +115,6 @@ function preencherCampos(usuario) {
         habilitarDivJuridica();
 
         document.getElementById("inputCNPJ").value = CNPJ;
-
-        document.getElementById("inputCNPJ").setAttribute("disabled", "true");
         document.getElementById("inputInscricaoMunicipal").value = InscricaoMunicipal;
         document.getElementById("inputInscricaoEstadual").value = InscricaoEstadual;
         document.getElementById("inputNomeJuridico").value = Nome;

@@ -41,7 +41,7 @@ document.addEventListener('submit', async function (event) {
   };
 
   try {
-    const resposta = await fetch("http://localhost:5164/BlueMoon/Pessoas/Search", {
+    const resposta = await fetch("http://localhost:5164/BlueMoon/Pessoas/Search-No-Users", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(dto)

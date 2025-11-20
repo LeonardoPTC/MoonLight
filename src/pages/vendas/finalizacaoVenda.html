@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nova Venda</title>
+    <title>Finalização da Venda</title>
     <link rel="stylesheet" href="/src/styles/pages/vendas/form.css">
 </head>
 
@@ -14,7 +14,7 @@
 
     <div id="content" class="shadow body-tertiary rounded">
         <form id="formVenda" class="container g-2">
-            <h1 class="text-center mb-4">Registrar Venda</h1>
+            <h1 class="text-center mb-4">Finalização da Venda</h1>
 
             <div id="etapa1">
                 <div class="row g-2">
@@ -43,77 +43,69 @@
             </div>
 
             <div id="etapa2" class="mt-4">
-                <h4 class="text-center mt-5">Adicionar Produtos</h4>
-
-                <div class="row g-2">
-                    <div class="col-md-7">
-                        <label class="form-label">Produto:</label>
-                        <select id="selectProduto" class="form-control"></select>
-                    </div>
-
-                    <div class="col-md-2">
-                        <label class="form-label">Qtd:</label>
-                        <input type="number" id="inputQtd" class="form-control" min="1" value="1">
+                <div class="row align-items-center">
+                    <div class="text-center">
+                        <h4 class="mt-3">Lista dos Produtos</h4>
                     </div>
 
                     <div class="col-md-1">
-                        <label class="form-label"></label>
                         <button type="button" id="btnAddProduto" class="btn btn-success w-100">
                             <img src="../../assets/AddProduto.png" alt="">
                         </button>
                     </div>
+
                     <div class="col-md-1">
-                        <label class="form-label"></label>
-                        <button type="button" id="btnRemoveProduto" style="color: white;" class="btn btn-warning w-100">
+                        <button type="button" id="btnRemoveProduto" class="btn btn-warning w-100" style="color: white;">
                             <img src="../../assets/Remover.png" alt="">
                         </button>
                     </div>
+
                     <div class="col-md-1">
-                        <label class="form-label"></label>
                         <button type="button" id="btnDeleteProduto" class="btn btn-danger w-100">
                             <img src="/src/assets/Delete.png">
                         </button>
                     </div>
                 </div>
+            </div>
 
-                <div class="row mt-4">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Produto</th>
-                                <th>Qtd</th>
-                                <th>Preço</th>
-                                <th>Total</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tabelaItens"></tbody>
-                    </table>
+            <div class="row mt-4">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Qtd</th>
+                            <th>Preço</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaItens"></tbody>
+                </table>
+            </div>
+            <div class="row mt-5 mb-4 justify-content-center" id="buttons">
+                <div class="col-md-3">
+                    <button type="button" id="btnFaturar" class="btn btn-primary w-100">
+                        Faturar
+                    </button>
                 </div>
-                <div class="row mt-5 mb-4 justify-content-center" id="buttons">
-                    <div class="col-md-3">
-                        <button type="button" id="btnFaturar" class="btn btn-primary w-100">
-                            Fechar
-                        </button>
-                    </div>
-                    <div class="col-md-3">
-                        <button type="button" id="btnCancelar" class="btn btn-secondary w-100">
-                            Cancelar Venda
-                        </button>
-                    </div>
-                    <!-- <div class="col-md-3">
+                <div class="col-md-3">
+                    <button type="button" id="btnCancelar" class="btn btn-secondary w-100">
+                        Cancelar Venda
+                    </button>
+                </div>
+                <!-- <div class="col-md-3">
                         <button type="button" id="btnEstornar" class="btn btn-danger w-100">
                             Estornar
                         </button>
                     </div> -->
-                </div>
             </div>
-        </form>
+    </div>
+    </form>
     </div>
 
     <div id="footer"></div>
 
     <script src="/src/scripts/includes.js"></script>
-    <script src="/src/scripts/pages/venda/venda.js"></script>
+    <script src="/src/scripts/pages/venda/finalizacaoVenda.js"></script>
 
     <script>
         includeHTML("header", "/src/include/header.html");

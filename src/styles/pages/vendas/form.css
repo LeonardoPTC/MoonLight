@@ -15,3 +15,15 @@
 #etapa2 {
   display: none;
 }
+
+img {
+  width: 30px;
+}
+
+#tabelaItens td:nth-child(n+2), #tabelaItens th:nth-child(n+2) {
+    text-align: right;
+}
+
+#tabelaItens td:first-child, #tabelaItens th:first-child {
+    text-align: left;
+}

@@ -64,8 +64,18 @@ function preencherCampos(produto) {
     document.getElementById('inputDescricao').value = descricao || "";
     document.getElementById('inputNCM').value = NCM || "";
     document.getElementById('inputMarca').value = marca || "";
-    document.getElementById('inputValorVenda').value = produto.valorVenda.toFixed(2) || "" || "";
-    document.getElementById('inputprecoCusto').value = produto.valorCusto.toFixed(2) || "";
+    const venda = Number(produto.valorVenda);
+
+    document.getElementById('inputValorVenda').value = "R$ " + venda.toLocaleString("pt-BR", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+    const custo = Number(produto.valorCusto);
+
+    document.getElementById('inputprecoCusto').value = "R$ " + custo.toLocaleString("pt-BR", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
     document.getElementById('inputEstoque').value = produto.quantidadeEstoque || "";
     document.getElementById('inputEstoqueMin').value = produto.quantidadeEstoqueMinimo || "";
     //document.getElementById('inputSituacao').value = situacao; Para o Segundo Estágio
