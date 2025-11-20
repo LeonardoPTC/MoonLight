@@ -1,8 +1,8 @@
 let vendaAtual = null;
 
 window.addEventListener("load", async () => {
-    await includeHTML("header", "/src/include/header.html");
-    await includeHTML("footer", "/src/include/footer.html");
+    await includeHTML("header", "../../include/header.html");
+    await includeHTML("footer", "../../include/footer.html");
 
     const idVenda = localStorage.getItem("idVenda");
     if (!idVenda) {
@@ -14,7 +14,7 @@ window.addEventListener("load", async () => {
 
     document.getElementById("etapa2").style.display = "block";
     document.getElementById("btnVoltar").onclick = () => {
-    window.location.href = "/src/pages/vendas/index.html";
+    window.location.href = "../vendas/index.html";
 };
 
     bloquearEdicao();
@@ -38,6 +38,23 @@ async function carregarVenda(idVenda) {
 
 function preencherCampos(venda) {
 
+    const situacao = {
+        0: "INDEFINIDO",
+        1: "ABERTA",
+        2: "FECHADA",
+        3: "CANCELADA",
+        4: "ESTORNADA",
+        5: "FATURADA"
+    };
+
+    if(venda.dataFaturamento === "01/01/0001 00:00:00" && situacao[venda.situacao] === "FECHADA" || situacao[venda.situacao] === "ABERTA"){
+      venda.dataFaturamento = "Não Faturada!";
+    } else if (venda.dataFaturamento === "01/01/0001 00:00:00" && situacao[venda.situacao] === "CANCELADA"){
+      venda.dataFaturamento = "Venda Cancelada!";
+    } else if (venda.dataFaturamento === "01/01/0001 00:00:00" && situacao[venda.situacao] === "ESTORNADA"){
+      venda.dataFaturamento = "Venda Estornada!";
+    } 
+
     document.getElementById("selectCliente").innerHTML = `
         <option selected>${venda.nomeCliente}</option>
     `;
@@ -49,15 +66,6 @@ function preencherCampos(venda) {
     document.getElementById("inputCodigo").value = venda.codigo;
     document.getElementById("inputDataAbertura").value = venda.dataAbertura || "";
     document.getElementById("inputDataFaturamento").value = venda.dataFaturamento || "";
-
-    const situacao = {
-        0: "INDEFINIDO",
-        1: "ABERTA",
-        2: "FECHADA",
-        3: "CANCELADA",
-        4: "ESTORNADA",
-        5: "FATURADA"
-    };
 
     document.getElementById("inputSituacao").value = situacao[venda.situacao] || "INDEFINIDO";
 
@@ -74,7 +82,7 @@ function preencherTabela(itens) {
         const tr = document.createElement("tr");
 
         tr.innerHTML = `
-            <td>${item.produtoNome}</td>
+            <td style="text-align: center;">${item.produtoNome}</td>
             <td>${item.quantidade}</td>
             <td>R$ ${item.produtoValorVenda.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</td>
             <td>R$ ${item.subTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</td>

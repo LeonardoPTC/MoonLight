@@ -2,6 +2,16 @@ async function carregarVenda() {
   const resposta = await fetch("http://localhost:5164/BlueMoon/Vendas");
   const vendas = await resposta.json();
 
+  const ordemSituacao = {
+    1: 1,
+    2: 2,
+    5: 3,
+    4: 4,
+    3: 5,
+    0: 6
+  };
+
+  vendas.sort((a, b) => ordemSituacao[a.situacao] - ordemSituacao[b.situacao]);
 
   const tbody = document.querySelector("#tabela-vendas tbody");
   tbody.innerHTML = "";
@@ -16,44 +26,67 @@ async function carregarVenda() {
   vendas.forEach(v => {
     const linha = document.createElement("tr");
 
-    linha.innerHTML = `
-      <td>${v.codigo}</td>
-      <td>${v.dataAbertura}</td>
-      <td>${v.dataFaturamento}</td>
-      <td>${v.nomeVendedor}</td>
-      <td>${v.nomeCliente}</td>
+    if (v.dataFaturamento === "01/01/0001 00:00:00" && situacao[v.situacao] === "FECHADA" || situacao[v.situacao] === "ABERTA") {
+      v.dataFaturamento = "Não Faturada!";
+    } else if (v.dataFaturamento === "01/01/0001 00:00:00" && situacao[v.situacao] === "CANCELADA") {
+      v.dataFaturamento = "Venda Cancelada!";
+    } else if (v.dataFaturamento === "01/01/0001 00:00:00" && situacao[v.situacao] === "ESTORNADA") {
+      v.dataFaturamento = "Venda Estornada!";
+    }
+
+
+    if (situacao[v.situacao] === "ABERTA" || situacao[v.situacao] === "FECHADA") {
+
+      linha.innerHTML = `
+      <td style="text-align: center">${v.codigo}</td>
+      <td style="text-align: center">${v.dataAbertura}</td>
+      <td style="text-align: center">${v.dataFaturamento}</td>
+      <td style="text-align: center">${v.nomeVendedor}</td>
+      <td style="text-align: center">${v.nomeCliente}</td>
       <td style="text-align: right">R$ ${v.valorTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
       <td style="text-align: center">${situacao[v.situacao] || "INDEFINIDO"}</td>
       <td class="text-center">
-          <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Venda" onclick="visualizarVenda('${v.id}')"><img src="/src/assets/View.png"></button>
-          <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Estornar Venda" onclick="estornarVenda('${v.id}')"><img src="/src/assets/EstornoIcon.png"></button>
+          <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Venda" onclick="visualizarVenda('${v.id}')"><img src="../../assets/View.png"></button>
+          <button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Finalizar Venda" onclick="finalizarVenda('${v.id}')"><img src="../../assets/finalizarVenda.png"></button>
       </td>
-      
     `;
-    tbody.appendChild(linha);
+      tbody.appendChild(linha);
+    } else if (situacao[v.situacao] === "FATURADA") {
+      linha.innerHTML = `
+      <td style="text-align: center">${v.codigo}</td>
+      <td style="text-align: center">${v.dataAbertura}</td>
+      <td style="text-align: center">${v.dataFaturamento}</td>
+      <td style="text-align: center">${v.nomeVendedor}</td>
+      <td style="text-align: center">${v.nomeCliente}</td>
+      <td style="text-align: right">R$ ${v.valorTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+      <td style="text-align: center">${situacao[v.situacao] || "INDEFINIDO"}</td>
+      <td class="text-center">
+          <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Venda" onclick="visualizarVenda('${v.id}')"><img src="../../assets/View.png"></button>
+          <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Estornar Venda" onclick="estornarVenda('${v.id}')"><img src="../../assets/EstornoIcon.png"></button>
+      </td>
+    `;
+      tbody.appendChild(linha);
+    } else {
+      linha.innerHTML = `
+      <td style="text-align: center">${v.codigo}</td>
+      <td style="text-align: center">${v.dataAbertura}</td>
+      <td style="text-align: center">${v.dataFaturamento}</td>
+      <td style="text-align: center">${v.nomeVendedor}</td>
+      <td style="text-align: center">${v.nomeCliente}</td>
+      <td style="text-align: right">R$ ${v.valorTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+      <td style="text-align: center">${situacao[v.situacao] || "INDEFINIDO"}</td>
+      <td class="text-center">
+          <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Venda" onclick="visualizarVenda('${v.id}')"><img src="../../assets/View.png"></button>
+      </td>
+    `;
+      tbody.appendChild(linha);
+    }
   });
 }
 
 carregarVenda();
 
-document.addEventListener('DOMContentLoaded', function () {
-  const checkSidebarLoaded = setInterval(function () {
-    const sidebar = document.querySelector('.sidebar');
-    if (sidebar) {
-      clearInterval(checkSidebarLoaded);
-
-      sidebar.addEventListener('mouseenter', function () {
-        document.querySelector('#content').style.marginLeft = '310px';
-      });
-
-      sidebar.addEventListener('mouseleave', function () {
-        document.querySelector('#content').style.marginLeft = '187px';
-      });
-    }
-  }, 100);
-});
-
-document.addEventListener('submit', async function (event) {
+/*document.addEventListener('submit', async function (event) {
   event.preventDefault();
 
   const codigo = document.getElementById('filterCodigo').value.trim();
@@ -103,7 +136,7 @@ document.addEventListener('submit', async function (event) {
       <td>${v.nomeCliente}</td>
       <td>${v.valorTotal}</td>
       <td class="text-center">
-          <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Venda" onclick="visualizarVenda('${f.idPessoa}', '${f.idVenda}')"><img src="/src/assets/View.png"></button>
+          <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Venda" onclick="visualizarVenda('${f.idPessoa}', '${f.idVenda}')"><img src="../../assets/View.png"></button>
       </td>
     `;
       tbody.appendChild(linha);
@@ -121,6 +154,7 @@ document.getElementById('limparFiltros').addEventListener('click', function () {
   document.getElementById('filterTelefone').value = "";
   document.getElementById('filterDocumento').value = "";
 });
+*/
 
 async function estornarVenda(idVenda) {
   try {
@@ -148,7 +182,12 @@ async function estornarVenda(idVenda) {
 
 function visualizarVenda(idVenda) {
   localStorage.setItem("idVenda", idVenda);
-  window.location.href = `http://localhost:5500/src/pages/vendas/visualizarVenda.html`;
+  window.location.href = `../vendas/visualizarVenda.html`;
+}
+
+function finalizarVenda(idVenda) {
+  localStorage.setItem("idVenda", idVenda);
+  window.location.href = `../vendas/finalizacaoVenda.html`;
 }
 
 document.getElementById('toggleSearch').addEventListener('click', function () {

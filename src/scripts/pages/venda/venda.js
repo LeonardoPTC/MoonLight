@@ -1,6 +1,6 @@
 window.addEventListener('load', async () => {
-    await includeHTML("header", "/src/include/header.html");
-    await includeHTML("footer", "/src/include/footer.html");
+    await includeHTML("header", "../../include/header.html");
+    await includeHTML("footer", "../../include/footer.html");
 
     await carregarClientes();
     await carregarUsuarios();
@@ -215,11 +215,10 @@ async function excluirProduto() {
 
     const idProduto = document.getElementById("selectProduto").value;
 
-    const itemExistente = itens.find(item => item.idProduto === idProduto)
+    const index = itens.findIndex(item => item.idProduto === idProduto);
 
-    if (itemExistente) {
-        itemExistente.quantidade = 0
-        itens.splice(itemExistente, 1);
+    if (index !== -1) {
+        itens.splice(index, 1);
         atualizarTabela(itens)
     } else {
         alert("Lista Vazia!")
@@ -258,7 +257,7 @@ async function fecharVenda() {
 
         localStorage.setItem("idVenda", idVenda);
 
-        window.location.href = "/src/pages/vendas/finalizacaoVenda.html";
+        window.location.href = "../vendas/finalizacaoVenda.html";
     } catch (err) {
         alert("Erro ao adicionar produto: " + err.message);
     }
@@ -281,7 +280,7 @@ async function cancelarVenda() {
         }
 
         alert("Venda cancelada com sucesso!");
-        window.location.href = "/src/pages/vendas/index.html";
+        window.location.href = "../vendas/index.html";
 
 
     } catch (err) {
@@ -320,7 +319,7 @@ async function atualizarTabela(itens) {
 
                 const tr = document.createElement("tr");
                 tr.innerHTML = `
-                <td>${nomeProduto}</td>
+                <td style="text-align: center;">${nomeProduto}</td>
                 <td>${item.quantidade}</td>
                 <td>R$ ${preco.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                 <td>R$ ${somaItem.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>

@@ -7,8 +7,8 @@ function converterDataParaBack(data) {
 
 document.addEventListener("DOMContentLoaded", async () => {
 
-    await includeHTML("header", "/src/include/header.html");
-    await includeHTML("footer", "/src/include/footer.html");
+    await includeHTML("header", "../../include/header.html");
+    await includeHTML("footer", "../../include/footer.html");
 
     const usuarioId = localStorage.getItem("usuarioId");
     console.log("ID carregado:", usuarioId);
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (btnVoltar) {
         btnVoltar.addEventListener("click", () => {
             localStorage.setItem("usuarioId", usuarioId);
-            window.location.href = "/src/pages/usuarios/index.html";
+            window.location.href = "../usuarios/index.html";
         });
     }
         */
@@ -151,7 +151,7 @@ async function atualizarUsuario() {
         }
 
         alert("Usuário atualizado com sucesso!");
-        window.location.href = "/src/pages/usuarios/index.html";
+        window.location.href = "../usuarios/index.html";
 
     } catch (erro) {
         console.error(erro);

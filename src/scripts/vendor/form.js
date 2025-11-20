@@ -27,7 +27,7 @@ document.getElementById("formProduto").addEventListener("submit", async (e) => {
 
     if (resposta.ok) {
       alert("Produto cadastrado com sucesso!");
-      window.location.href = "/src/pages/produtos/index.html";
+      window.location.href = "../produtos/index.html";
     } else {
       const erro = await resposta.text();
       alert("Erro ao cadastrar produto: " + erro);

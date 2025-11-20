@@ -17,6 +17,11 @@ img {
   margin-right: 5px;
 }
 
+#btnBaixarRelatorio {
+ top: 20px; 
+ right: 20px;
+}
+
 .filter-bar {
   display: flex;
   align-items: center;

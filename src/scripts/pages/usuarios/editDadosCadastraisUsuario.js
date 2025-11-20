@@ -1,6 +1,6 @@
 window.addEventListener('load', async () => {
-    await includeHTML("header", "/src/include/header.html");
-    await includeHTML("footer", "/src/include/footer.html");
+    await includeHTML("header", "../../include/header.html");
+    await includeHTML("footer", "../../include/footer.html");
 
     const radios = document.querySelectorAll('input[type="radio"]');
     const inputCNPJ = document.getElementById('inputCNPJ');
@@ -174,7 +174,7 @@ document.getElementById('formUsuario').addEventListener('submit', async (e) => {
 
         if (resposta.ok) {
             alert("Usuário atualizado com sucesso!");
-            window.location.href = "/src/pages/usuarios/editDadosFuncionais.html";
+            window.location.href = "../usuarios/editDadosFuncionais.html";
         } else {
             const erro = await resposta.text();
             alert("Erro ao atualizar usuário: " + erro);

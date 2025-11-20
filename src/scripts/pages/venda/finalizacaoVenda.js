@@ -1,8 +1,8 @@
 let vendaAtual = null;
 
 window.addEventListener("load", async () => {
-    await includeHTML("header", "/src/include/header.html");
-    await includeHTML("footer", "/src/include/footer.html");
+    await includeHTML("header", "../../include/header.html");
+    await includeHTML("footer", "../../include/footer.html");
 
     const idVenda = localStorage.getItem("idVenda");
     if (!idVenda) {
@@ -58,7 +58,7 @@ function preencherTabela(itens) {
         const tr = document.createElement("tr");
 
         tr.innerHTML = `
-            <td>${item.produtoNome}</td>
+            <td style="text-align: center;">${item.produtoNome}</td>
             <td>${item.quantidade}</td>
             <td>R$ ${item.produtoValorVenda.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</td>
             <td>R$ ${item.subTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</td>
@@ -104,7 +104,7 @@ async function faturarVenda(idVenda) {
         }
 
         alert("Venda faturada com sucesso!");
-        window.location.href = "/src/pages/vendas/index.html";
+        window.location.href = "../vendas/index.html";
 
     } catch (erro) {
         alert("Erro na conexão: " + erro);
@@ -128,7 +128,7 @@ async function cancelarVenda(idVenda) {
         }
 
         alert("Venda cancelada com sucesso!");
-        window.location.href = "/src/pages/vendas/index.html";
+        window.location.href = "../vendas/index.html";
 
 
     } catch (err) {

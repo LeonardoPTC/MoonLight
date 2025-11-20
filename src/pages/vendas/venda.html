@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nova Venda</title>
-    <link rel="stylesheet" href="/src/styles/pages/vendas/form.css">
+    <link rel="stylesheet" href="../../styles/pages/vendas/form.css">
 </head>
 
 <body>
@@ -71,7 +71,7 @@
                     <div class="col-md-1">
                         <label class="form-label"></label>
                         <button type="button" id="btnDeleteProduto" class="btn btn-danger w-100">
-                            <img src="/src/assets/Delete.png">
+                            <img src="../../assets/Delete.png">
                         </button>
                     </div>
                 </div>
@@ -80,10 +80,10 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Produto</th>
-                                <th>Qtd</th>
-                                <th>Preço</th>
-                                <th>Total</th>
+                                <th style="text-align: center;">Produto</th>
+                                <th style="text-align: center;">Qtd</th>
+                                <th style="text-align: center;">Preço</th>
+                                <th style="text-align: center;">Total</th>
                             </tr>
                         </thead>
                         <tbody id="tabelaItens"></tbody>
@@ -112,12 +112,12 @@
 
     <div id="footer"></div>
 
-    <script src="/src/scripts/includes.js"></script>
-    <script src="/src/scripts/pages/venda/venda.js"></script>
+    <script src="../../scripts/includes.js"></script>
+    <script src="../../scripts/pages/venda/venda.js"></script>
 
     <script>
-        includeHTML("header", "/src/include/header.html");
-        includeHTML("footer", "/src/include/footer.html");
+        includeHTML("header", "../../include/header.html");
+        includeHTML("footer", "../../include/footer.html");
     </script>
 
 </body>

@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             alert("Login realizado com sucesso!");
-            window.location.href = "/src/dashboard/index.html";
+            window.location.href = "../dashboard/index.html";
 
         } catch (erro) {
             console.error(erro);

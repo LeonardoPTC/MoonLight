@@ -1,18 +1,54 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Início</title>
+    <title>BlueMoon</title>
+    <link rel="stylesheet" href="../styles/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="../styles/layout.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
 </head>
-<body>
 
-    <div id="header"></div>
-    <div id="footer"></div>
-    <script src="/src/scripts/includes.js"></script>
-    <script>
-        includeHTML("header", "/src/include/header.html");
-        includeHTML("footer", "/src/include/footer.html");
-    </script>
-</body>
+<body>
+    <nav id="nav-top">
+        <a href="/src/dashboard/index.html">
+            <h1 id="nomeProjeto">BlueMoon</h1>
+        </a>
+    </nav>
+    <aside class="sidebar">
+        <a href="../pages/produtos/index.html" class="sidebar-item">
+            <span class="iconProduto"><img src="../assets/Produtos.png" alt=""></span>
+            <span class="text">Produtos</span>
+        </a>
+        <a href="../pages/clientes/index.html" class="sidebar-item">
+            <span class="iconCliente"><img src="../assets/Cliente.png" alt=""></span>
+            <span class="text">Clientes</span>
+        </a>
+        <a href="../pages/usuarios/index.html" class="sidebar-item">
+            <span class="iconCliente"><img src="../assets/usuarios.png" alt=""></span>
+            <span class="text">Usuários</span>
+        </a>
+        <a href="../pages/vendas/index.html" class="sidebar-item">
+            <span class="iconCliente"><img src="../assets/vendasIcon.png" alt=""></span>
+            <span class="text">Vendas</span>
+        </a>
+    </aside>
+    <!--<a href="#" class="sidebar-item">
+                    <span class="icon">⚙️</span>
+                    <span class="text">Configurações</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <span class="icon">❓</span>
+                    <span class="text">Ajuda</span>
+                </a>
+            </aside>
+        </div>
+    </div>-->
+    
+    </body>
 </html>
