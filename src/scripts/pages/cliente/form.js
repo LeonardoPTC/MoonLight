@@ -140,7 +140,7 @@ document.getElementById("formCliente").addEventListener("submit", async (e) => {
 
     if (resposta.ok) {
       alert("Cliente cadastrado com sucesso!");
-      window.location.href = "/src/pages/clientes/index.html";
+      window.location.href = "../clientes/index.html";
     } else {
       const erro = await resposta.text();
       alert("Erro ao cadastrar cliente: " + erro);

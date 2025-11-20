@@ -1,6 +1,6 @@
 window.addEventListener('load', async () => {
-    await includeHTML("header", "/src/include/header.html");
-    await includeHTML("footer", "/src/include/footer.html");
+    await includeHTML("header", "../../include/header.html");
+    await includeHTML("footer", "../../include/footer.html");
 
     const radios = document.querySelectorAll('input[type="radio"]');
     const inputCNPJ = document.getElementById('inputCNPJ');
@@ -93,7 +93,6 @@ function preencherCampos(usuario) {
 
         document.getElementById("inputCPF").value = CPF;
 
-        document.getElementById("inputCPF").setAttribute("disabled", "true");
         document.getElementById("inputNomeFisico").value = Nome;
         document.getElementById("inputTelefoneFisico").value = Telefone;
         document.getElementById("inputEmailFisico").value = Email;
@@ -116,8 +115,6 @@ function preencherCampos(usuario) {
         habilitarDivJuridica();
 
         document.getElementById("inputCNPJ").value = CNPJ;
-
-        document.getElementById("inputCNPJ").setAttribute("disabled", "true");
         document.getElementById("inputInscricaoMunicipal").value = InscricaoMunicipal;
         document.getElementById("inputInscricaoEstadual").value = InscricaoEstadual;
         document.getElementById("inputNomeJuridico").value = Nome;
@@ -177,7 +174,7 @@ document.getElementById('formUsuario').addEventListener('submit', async (e) => {
 
         if (resposta.ok) {
             alert("Usuário atualizado com sucesso!");
-            window.location.href = "/src/pages/usuarios/editDadosFuncionais.html";
+            window.location.href = "../usuarios/editDadosFuncionais.html";
         } else {
             const erro = await resposta.text();
             alert("Erro ao atualizar usuário: " + erro);

@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /*btnVoltar.addEventListener("click", () => {
         localStorage.setItem("pessoaId", pessoaId);
-        window.location.href = `/src/pages/usuarios/editDadosCadastrais.html?id=${pessoaId}`
+        window.location.href = `../usuarios/editDadosCadastrais.html?id=${pessoaId}`
     });*/
 
     if (!pessoaId) {
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             alert("Usuário cadastrado com sucesso!");
-            window.location.href = "/src/pages/usuarios/index.html";
+            window.location.href = "../usuarios/index.html";
 
         } catch (erro) {
             console.error(erro);

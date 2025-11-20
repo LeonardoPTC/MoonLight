@@ -41,7 +41,7 @@ document.addEventListener('submit', async function (event) {
   };
 
   try {
-    const resposta = await fetch("http://localhost:5164/BlueMoon/Pessoas/Search", {
+    const resposta = await fetch("http://localhost:5164/BlueMoon/Pessoas/Search-No-Users", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(dto)
@@ -65,7 +65,7 @@ document.addEventListener('submit', async function (event) {
       <td>${c.cidade}</td>
       <td>${c.endereco}</td>
       <td class="text-center">
-          <button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Selecionar Cliente" onclick="selecionarCliente('${c.id}')"><img src="/src/assets/Selecionar.png"></button>
+          <button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Selecionar Cliente" onclick="selecionarCliente('${c.id}')"><img src="../../assets/Selecionar.png"></button>
       </td>
     `;
       tbody.appendChild(linha);
@@ -84,6 +84,10 @@ document.getElementById('limparFiltros').addEventListener('click', function () {
   document.getElementById('filterDocumento').value = "";
 });
 
+document.getElementById('Voltar').addEventListener('click', function () { 
+            window.location.href = "../usuarios/index.html";
+});
+
 function selecionarCliente(id) {
-  window.location.href = `http://localhost:5500/src/pages/usuarios/atualizarCadastroExistente.html?id=${id}`;
+  window.location.href = `../usuarios/atualizarCadastroExistente.html?id=${id}`;
 }

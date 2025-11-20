@@ -15,3 +15,24 @@
 #etapa2 {
   display: none;
 }
+
+img {
+  width: 30px;
+}
+
+
+#tabelaItens td:nth-child(2),
+#tabelaItens th:nth-child(2) {
+    text-align: center;
+}
+
+#tabelaItens td:nth-child(3),
+#tabelaItens th:nth-child(3) {
+    text-align: center; 
+}
+
+#tabelaItens td:nth-child(4),
+#tabelaItens th:nth-child(4) {
+    text-align: center; 
+}
+

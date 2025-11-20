@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Início</title>
+    <link rel="stylesheet" href="../../styles/pages/vendas/index.css">
+</head>
+
+<body>
+    <div id="header"></div>
+    <div id="content" class="shadow body-tertiary rounded">
+
+        <h1 class="mb-3">Vendas Cadastradas</h1>
+
+        <div class="d-flex justify-content-between mb-3 w-100" name="Cabeçalho">
+            <div class="filter-bar" id="filterBar">
+                <button id="toggleSearch" style="border: 1px solid black; background-color: rgb(235, 235, 235);"
+                    class="btn shadow body-tertiary rounded">
+                    <img src="../../assets/lupa.png" alt="Pesquisar">
+                    Pesquisar
+                </button>
+
+                <div class="input-container" id="inputContainer">
+                    <form id="formPesquisa" class="container g-2">
+                        <input type="text" id="filterCodigo" placeholder="Código" name="codigo">
+                        <input type="text" id="filterNome" placeholder="Nome" name="nome">
+                        <input type="text" id="filterTelefone" placeholder="Telefone" name="telefone">
+                        <input type="text" id="filterDocumento" placeholder="Documento" name="documento">
+
+                        <button type="submit" id="aplicarFiltros" class="btn btn-primary search-final">Aplicar</button>
+                        <button type="button" id="limparFiltros" class="btn btn-secondary limpar-filtros">Limpar
+                            Filtros</button>
+                        <button type="button" id="fecharFiltros" class="btn btn-danger fechar-btn">Fechar</button>
+                    </form>
+                </div>
+            </div>
+
+            <div>
+                <button id="NovaVenda" class="btn btn-success" data-toggle="tooltip" data-placement="top"
+                    title="Nova Venda"
+                    onclick="window.location.href='../vendas/venda.html'">
+                    <img src="../../assets/AddProduto.png" alt="Nova Venda">
+                </button>
+            </div>
+        </div>
+        <table id="tabela-vendas" class="table table-bordered">
+            <thead>
+                <tr class="text-center">
+                    <th>Código</th>
+                    <th>Abertura</th>
+                    <th>Faturamento</th>
+                    <th>Vendedor</th>
+                    <th>Cliente</th>
+                    <th>Valor Total</th>
+                    <th>Situacao</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div id="footer"></div>
+    <script src="../../scripts/includes.js"></script>
+    <script>
+        includeHTML("header", "../../include/header.html");
+        includeHTML("footer", "../../include/footer.html");
+    </script>
+    <script src="../../scripts/pages/venda/index.js"></script>
+</body>
+
+</html>

@@ -1,6 +1,6 @@
 window.addEventListener('load', async () => {
-  await includeHTML("header", "/src/include/header.html");
-  await includeHTML("footer", "/src/include/footer.html");
+  await includeHTML("header", "../../include/header.html");
+  await includeHTML("footer", "../../include/footer.html");
   
   const radios = document.querySelectorAll('input[type="radio"]');
   const inputCNPJ = document.getElementById('inputCNPJ');
@@ -158,7 +158,7 @@ document.getElementById('formCliente').addEventListener('submit', async (e) => {
 
     if (resposta.ok) {
       alert("Cliente atualizado com sucesso!");
-      window.location.href = "/src/pages/clientes/index.html";
+      window.location.href = "../clientes/index.html";
     } else {
       const erro = await resposta.text();
       alert("Erro ao atualizar cliente: " + erro);

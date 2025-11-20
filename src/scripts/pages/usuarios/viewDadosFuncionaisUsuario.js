@@ -7,8 +7,8 @@ function converterDataParaBack(data) {
 
 document.addEventListener("DOMContentLoaded", async () => {
 
-    await includeHTML("header", "/src/include/header.html");
-    await includeHTML("footer", "/src/include/footer.html");
+    await includeHTML("header", "../../include/header.html");
+    await includeHTML("footer", "../../include/footer.html");
 
     const usuarioId = localStorage.getItem("usuarioId");
     const pessoaId = localStorage.getItem("pessoaId");
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const btnVoltar = document.getElementById("btnVoltar");
 
     btnVoltar.addEventListener("click", () => {
-        window.location.href = `http://localhost:5500/src/pages/usuarios/viewDadosCadastraisUsuario.html?idPessoa=${pessoaId}&idUsuario=${usuarioId}`;
+        window.location.href = `../usuarios/viewDadosCadastraisUsuario.html?idPessoa=${pessoaId}&idUsuario=${usuarioId}`;
     });
 
     const form = document.getElementById("formUsuario");
@@ -74,23 +74,18 @@ function desativarInputs() {
 function preencherFormulario(usuario) {
 
     document.getElementById("cargo").value = usuario.cargo;
-    document.getElementById("inputSalario").value = usuario.salario;
+    document.getElementById("inputSalario").value = "R$ " + Number(usuario.salario).toLocaleString('pt-BR', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
 
     let dataAdmissao = usuario.admissao;
-    let formatada = "";
-
-    if (dataAdmissao) {
-        if (dataAdmissao.includes("/")) {
-            const partes = dataAdmissao.split("/");
-            formatada = `${partes[2]}-${partes[1].padStart(2, "0")}-${partes[0].padStart(2, "0")}`;
-        } else if (dataAdmissao.includes("T")) {
-            formatada = dataAdmissao.split("T")[0];
-        } else if (dataAdmissao.includes("-")) {
-            formatada = dataAdmissao;
-        }
+    
+    if(dataAdmissao == "01/01/0001"){
+        dataAdmissao = "Não Cadastrada"
     }
 
-    document.getElementById("inputAdmissao").value = formatada;
+    document.getElementById("inputAdmissao").value = dataAdmissao;
 
     document.getElementById("HorarioInicioCargaHoraria").value = usuario.horarioInicioCargaHoraria;
     document.getElementById("HorarioFimCargaHoraria").value = usuario.horarioFimCargaHoraria;

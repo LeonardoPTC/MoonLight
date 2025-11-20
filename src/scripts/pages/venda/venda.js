@@ -1,15 +1,21 @@
 window.addEventListener('load', async () => {
-    await includeHTML("header", "/src/include/header.html");
-    await includeHTML("footer", "/src/include/footer.html");
+    await includeHTML("header", "../../include/header.html");
+    await includeHTML("footer", "../../include/footer.html");
 
     await carregarClientes();
     await carregarUsuarios();
     await carregarProdutos();
 
-    document.getElementById("etapa2").style.display = "block";
+    document.getElementById("etapa2").style.display = "none";
 
     document.getElementById("btnIniciarVenda").addEventListener("click", iniciarVenda);
+    document.getElementById("btnFaturar").addEventListener("click", fecharVenda);
+    document.getElementById("btnCancelar").addEventListener("click", cancelarVenda);
     document.getElementById("btnAddProduto").addEventListener("click", adicionarProduto);
+    document.getElementById("btnRemoveProduto").addEventListener("click", removerProduto);
+    document.getElementById("btnDeleteProduto").addEventListener("click", excluirProduto);
+
+
 });
 
 let vendaAtual = null;
@@ -116,9 +122,14 @@ async function iniciarVenda() {
 
         vendaAtual = await resposta.json();
         alert("Venda iniciada!");
+        document.getElementById("btnIniciarVenda").style.display = "none";
+
+        const inputs = document.querySelectorAll('#selectCliente, #selectUsuario');
+        inputs.forEach(input => input.setAttribute('disabled', true));
+
         document.getElementById("etapa2").style.display = "block";
         itens = [];
-        atualizarTabela();
+        atualizarTabela(itens);
     } catch (err) {
         alert("Erro ao iniciar venda: " + err.message);
     }
@@ -126,26 +137,107 @@ async function iniciarVenda() {
 
 async function adicionarProduto() {
     if (!vendaAtual) {
-        vendaAtual = { id: 0, fake: true };
-
-        //alert("Inicie a venda antes de adicionar produtos.");
-        //return;
+        alert("Inicie a venda antes de adicionar produtos.");
+        return;
     }
 
     const idProduto = document.getElementById("selectProduto").value;
-    const qtd = parseInt(document.getElementById("inputQtd").value);
+    const quantidade = parseInt(document.getElementById("inputQtd").value);
 
-    if (!idProduto || qtd <= 0) {
+    if (!idProduto || quantidade <= 0) {
         alert("Selecione um produto e a quantidade.");
         return;
     }
 
     const dto = { idProduto, quantidade };
-    itens.push(dto);
-    atualizarTabela(itens);
+    const qtdDisponivel = await verificaQuantidade(dto.idProduto, dto.quantidade);
+    if (qtdDisponivel < 0) {
+        alert("Qauntidade de Estoque indisponível!");
+        return;
+    }
+
+    const itemExistente = itens.find(item => item.idProduto == dto.idProduto);
+
+    if (itemExistente) {
+        let quantidadeAtualizada = itemExistente.quantidade + dto.quantidade;
+        const qtdDisponivel = await verificaQuantidade(dto.idProduto, quantidadeAtualizada);
+
+        if (qtdDisponivel < 0) {
+            alert("Quantidade de Estoque indisponível!");
+            return;
+        }
+
+        itemExistente.quantidade += dto.quantidade;
+
+    } else {
+        itens.push(dto);
+    }
+    await atualizarTabela(itens);
 }
 
-async function fecharVenda(dto) {
+async function removerProduto() {
+    if (!vendaAtual) {
+        alert("Inicie a venda antes de remover produtos.");
+        return;
+    }
+
+    const idProduto = document.getElementById("selectProduto").value;
+    const quantidade = parseInt(document.getElementById("inputQtd").value);
+
+    if (!idProduto || quantidade <= 0) {
+        alert("Selecione um produto e a quantidade.");
+        return;
+    }
+
+    const dto = { idProduto, quantidade };
+    const itemExistente = itens.find(item => item.idProduto == dto.idProduto);
+
+    if (itemExistente) {
+        let quantidadeAtualizada = itemExistente.quantidade - dto.quantidade;
+
+        if (quantidadeAtualizada < 0) {
+            alert("Quantidade para remoção inválida!");
+            return;
+        }
+
+        itemExistente.quantidade -= dto.quantidade;
+
+    }
+
+    await atualizarTabela(itens);
+}
+
+async function excluirProduto() {
+    if (!vendaAtual) {
+        alert("Inicie a venda antes de excluir produtos.");
+        return;
+    }
+
+    const idProduto = document.getElementById("selectProduto").value;
+
+    const index = itens.findIndex(item => item.idProduto === idProduto);
+
+    if (index !== -1) {
+        itens.splice(index, 1);
+        atualizarTabela(itens)
+    } else {
+        alert("Lista Vazia!")
+    }
+
+}
+
+async function fecharVenda() {
+    if (!vendaAtual || itens.length === 0) {
+        alert("Não há venda em andamento ou produtos adicionados.");
+        return;
+    }
+
+    const dto = itens
+        .filter(item => item.quantidade > 0)
+        .map(item => ({
+            IdProduto: item.idProduto,
+            Quantidade: item.quantidade
+        }));
     try {
         const resposta = await fetch(`http://localhost:5164/BlueMoon/Vendas/${vendaAtual.id}/Itens`, {
             method: "POST",
@@ -158,8 +250,41 @@ async function fecharVenda(dto) {
             throw new Error(erro);
         }
 
+        alert("Venda finalizada com sucesso!");
+
+        const dados = await resposta.json();
+        const idVenda = dados.id ?? vendaAtual.id;
+
+        localStorage.setItem("idVenda", idVenda);
+
+        window.location.href = "../vendas/finalizacaoVenda.html";
     } catch (err) {
         alert("Erro ao adicionar produto: " + err.message);
+    }
+}
+
+async function cancelarVenda() {
+    if (!vendaAtual) {
+        alert("Não há venda em andamento.");
+        return;
+    }
+
+    try {
+        const resposta = await fetch(`http://localhost:5164/BlueMoon/Vendas/${vendaAtual.id}/Cancelar`, {
+            method: "PATCH"
+        });
+
+        if (!resposta.ok) {
+            const erro = await resposta.text();
+            throw new Error(erro);
+        }
+
+        alert("Venda cancelada com sucesso!");
+        window.location.href = "../vendas/index.html";
+
+
+    } catch (err) {
+        alert("Erro ao cancelar venda: " + err.message);
     }
 }
 
@@ -172,21 +297,42 @@ async function atualizarTabela(itens) {
         tabela.innerHTML = "";
         let subtotal = 0;
 
-        itens.forEach(item => {
-            const produtoEncontrado = produtos.find(p => p.id === item.idProduto);
-            const nomeProduto = produtoEncontrado ? produtoEncontrado.nome : "Produto não encontrado";
-            const preco = produtoEncontrado ? produtoEncontrado.valorVenda : 0;
-
-            const soma = calcularSubTotal(preco, item.quantidade);
-            subtotal += soma;
-
-            const tr = document.createElement("tr");
-            tr.innerHTML = `
-                <td>${nomeProduto}</td>
-                <td>${item.quantidade}</td>
+        if (!itens || itens.length === 0) {
+            const trTotalVazio = document.createElement("tr");
+            trTotalVazio.innerHTML = `
+                <td colspan="3"><strong>Total</strong></td>
+                <td><strong>R$ 0,00</strong></td>
             `;
-            tabela.appendChild(tr);
+            tabela.appendChild(trTotalVazio);
+            return;
+        }
+
+
+        itens.forEach(item => {
+            if (item.quantidade > 0) {
+                const produtoEncontrado = produtos.find(p => p.id === item.idProduto);
+                const nomeProduto = produtoEncontrado ? produtoEncontrado.nome : "Produto não encontrado";
+                const preco = produtoEncontrado ? produtoEncontrado.valorVenda : 0;
+
+                const somaItem = calcularSubTotal(preco, item.quantidade);
+                subtotal += somaItem;
+
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                <td style="text-align: center;">${nomeProduto}</td>
+                <td>${item.quantidade}</td>
+                <td>R$ ${preco.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                <td>R$ ${somaItem.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+            `;
+                tabela.appendChild(tr);
+            }
         });
+        const trTotal = document.createElement("tr");
+        trTotal.innerHTML = `
+    <td colspan="3"><strong>Total</strong></td>
+    <td><strong>R$ ${subtotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td></strong></td>
+`;
+        tabela.appendChild(trTotal);
 
         console.log("Subtotal:", subtotal);
     } catch (erro) {
@@ -194,8 +340,18 @@ async function atualizarTabela(itens) {
     }
 }
 
-async function calcularSubTotal(preco, quantidade) {
-    let soma = 0;
-    soma = preco * quantidade;
-    return soma;
+function calcularSubTotal(preco, quantidade) {
+    return preco * quantidade;
+}
+
+async function verificaQuantidade(idProduto, quantidade) {
+    try {
+        const resposta = await fetch(`http://localhost:5164/BlueMoon/Produtos`);
+        const produtos = await resposta.json();
+
+        const produto = produtos.find(p => p.id === idProduto);
+        return produto.estoque - quantidade;
+    } catch {
+        alert("Erro")
+    }
 }

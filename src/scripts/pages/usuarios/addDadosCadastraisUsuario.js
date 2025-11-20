@@ -1,6 +1,6 @@
 window.addEventListener('load', async () => {
-    await includeHTML("header", "/src/include/header.html");
-    await includeHTML("footer", "/src/include/footer.html");
+    await includeHTML("header", "../../include/header.html");
+    await includeHTML("footer", "../../include/footer.html");
 
     const tipoPessoa = document.querySelectorAll('input[name="tipo"]');
     const formularioUsuarioFisico = document.getElementById('pessoaFisica');
@@ -198,7 +198,7 @@ document.getElementById("formUsuario").addEventListener("submit", async (e) => {
             const pessoa = await resposta.json();
             localStorage.setItem("pessoaId", pessoa.id);
             alert("Dados do Usuário cadastrados com sucesso!");
-            window.location.href = "/src/pages/usuarios/addDadosFuncionaisUsuario.html";
+            window.location.href = "../usuarios/addDadosFuncionaisUsuario.html";
         } else {
             const erro = await resposta.text();
             alert("Erro ao cadastrar dados do usuário: " + erro);

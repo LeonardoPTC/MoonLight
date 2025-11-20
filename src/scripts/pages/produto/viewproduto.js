@@ -1,6 +1,6 @@
 window.addEventListener('load', async () => {
-    await includeHTML("header", "/src/include/header.html");
-    await includeHTML("footer", "/src/include/footer.html");
+    await includeHTML("header", "../../include/header.html");
+    await includeHTML("footer", "../../include/footer.html");
 
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
@@ -58,16 +58,26 @@ function preencherCampos(produto) {
     }
 
 
-    document.getElementById('inputCodigo').value = codigo || "";
+    document.getElementById('inputCodigo').value = codigo || 0;
     document.getElementById('inputcodBarras').value = codBarras || "";
     document.getElementById('Nome').value = nome || "";
     document.getElementById('inputDescricao').value = descricao || "";
     document.getElementById('inputNCM').value = NCM || "";
     document.getElementById('inputMarca').value = marca || "";
-    document.getElementById('inputValorVenda').value = produto.valorVenda.toFixed(2) || "" || "";
-    document.getElementById('inputprecoCusto').value = produto.valorCusto.toFixed(2) || "";
-    document.getElementById('inputEstoque').value = produto.quantidadeEstoque || "";
-    document.getElementById('inputEstoqueMin').value = produto.quantidadeEstoqueMinimo || "";
+    const venda = Number(produto.valorVenda);
+
+    document.getElementById('inputValorVenda').value = "R$ " + venda.toLocaleString("pt-BR", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+    const custo = Number(produto.valorCusto);
+
+    document.getElementById('inputprecoCusto').value = "R$ " + custo.toLocaleString("pt-BR", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+    document.getElementById('inputEstoque').value = produto.quantidadeEstoque || 0;
+    document.getElementById('inputEstoqueMin').value = produto.quantidadeEstoqueMinimo || 0;
     //document.getElementById('inputSituacao').value = situacao; Para o Segundo Estágio
 
 
