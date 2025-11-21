@@ -104,7 +104,13 @@ function preencherCampos(usuario) {
         document.getElementById("inputCidadeFisico").value = Cidade;
 
         const selectEstadoFisico = document.getElementById("estadoFisico");
-        selectEstadoFisico.value = Estado && Estado !== 0 ? Estado : 0;
+        if (Estado && Estado !== 0 && Estado <= 26) {
+            selectEstadoFisico.value = Estado;
+        } else {
+            selectEstadoFisico.value = 0;
+            selectEstadoFisico.options[0].text = "Estado não definido";
+        }
+
 
     } else {
 
@@ -127,8 +133,14 @@ function preencherCampos(usuario) {
         document.getElementById("inputComplementoJuridico").value = Complemento;
         document.getElementById("inputCidadeJuridico").value = Cidade;
 
-        const selectEstadoJuridico = document.getElementById("estadoJuridico");
-        selectEstadoJuridico.value = Estado && Estado !== 0 ? Estado : 0;
+        const selectEstadoFisico = document.getElementById("estadoJuridico");
+        if (Estado && Estado !== 0 && Estado <= 26) {
+            selectEstadoFisico.value = Estado;
+        } else {
+            selectEstadoFisico.value = 0;
+            selectEstadoFisico.options[0].text = "Estado não definido";
+        }
+
     }
 }
 
