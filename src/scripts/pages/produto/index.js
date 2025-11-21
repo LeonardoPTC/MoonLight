@@ -45,12 +45,17 @@ document.addEventListener('DOMContentLoaded', function () {
     if (sidebar) {
       clearInterval(checkSidebarLoaded);
 
+
+      if (sidebar.matches(':hover')) {
+        document.querySelector('#content').style.marginLeft = '310px';
+      }
+
       sidebar.addEventListener('mouseenter', function () {
         document.querySelector('#content').style.marginLeft = '310px';
       });
 
       sidebar.addEventListener('mouseleave', function () {
-        document.querySelector('#content').style.marginLeft = '187px';
+        document.querySelector('#content').style.marginLeft = '200px';
       });
     }
   }, 100);
@@ -120,7 +125,7 @@ document.getElementById('limparFiltros').addEventListener('click', function () {
   document.getElementById('filterMarca').value = "";
 });
 
-document.getElementById('btnBaixarRelatorio').addEventListener('click', () =>  {
+document.getElementById('btnBaixarRelatorio').addEventListener('click', () => {
   window.location.href = `../produtos/relatorioProdutosMaisVendidos.html`;
 });
 

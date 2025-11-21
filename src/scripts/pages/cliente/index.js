@@ -28,20 +28,24 @@ async function carregarClientes() {
 carregarClientes();
 
 document.addEventListener('DOMContentLoaded', function () {
-    const checkSidebarLoaded = setInterval(function () {
-        const sidebar = document.querySelector('.sidebar');
-        if (sidebar) {
-            clearInterval(checkSidebarLoaded);
+  const checkSidebarLoaded = setInterval(function () {
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebar) {
+      clearInterval(checkSidebarLoaded);
 
-            sidebar.addEventListener('mouseenter', function () {
-                document.querySelector('#content').style.marginLeft = '310px';
-            });
+      if (sidebar.matches(':hover')) {
+        document.querySelector('#content').style.marginLeft = '310px';
+      }
 
-            sidebar.addEventListener('mouseleave', function () {
-                document.querySelector('#content').style.marginLeft = '187px';
-            });
-        }
-    }, 100);
+      sidebar.addEventListener('mouseenter', function () {
+        document.querySelector('#content').style.marginLeft = '310px';
+      });
+
+      sidebar.addEventListener('mouseleave', function () {
+        document.querySelector('#content').style.marginLeft = '200px';
+      });
+    }
+  }, 100);
 });
 
 
@@ -107,7 +111,7 @@ document.getElementById('limparFiltros').addEventListener('click', function () {
   document.getElementById('filterDocumento').value = "";
 });
 
-document.getElementById('btnBaixarRelatorio').addEventListener('click', () =>  {
+document.getElementById('btnBaixarRelatorio').addEventListener('click', () => {
   window.location.href = `../clientes/relatorioClientesQueMaisCompraram.html`;
 });
 
@@ -119,12 +123,12 @@ function visualizarCliente(id) {
   window.location.href = `../clientes/viewcliente.html?id=${id}`;
 }
 
-document.getElementById('toggleSearch').addEventListener('click', function() {
-    const filterBar = document.getElementById('filterBar');
-    filterBar.classList.toggle('expanded');
+document.getElementById('toggleSearch').addEventListener('click', function () {
+  const filterBar = document.getElementById('filterBar');
+  filterBar.classList.toggle('expanded');
 });
 
-document.getElementById('fecharFiltros').addEventListener('click', function() {
-    const filterBar = document.getElementById('filterBar');
-    filterBar.classList.remove('expanded'); 
+document.getElementById('fecharFiltros').addEventListener('click', function () {
+  const filterBar = document.getElementById('filterBar');
+  filterBar.classList.remove('expanded');
 });
