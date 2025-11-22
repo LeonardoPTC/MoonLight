@@ -3,11 +3,10 @@ async function carregarClientes() {
   const clientes = await resposta.json();
 
   const tbody = document.querySelector("#tabela-clientes tbody");
-  tbody.innerHTML = ""; // limpa a tabela
+  tbody.innerHTML = ""; 
 
   clientes.forEach(c => {
     const linha = document.createElement("tr");
-    //let situacao = c.situacao;
 
     linha.innerHTML = `
       <td style="text-align: center">${c.codigo}</td>

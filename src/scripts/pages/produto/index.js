@@ -3,7 +3,7 @@ async function carregarProdutos() {
   const produtos = await resposta.json();
 
   const tbody = document.querySelector("#tabela-produtos tbody");
-  tbody.innerHTML = ""; // limpa a tabela
+  tbody.innerHTML = ""; 
 
   produtos.forEach(p => {
     const linha = document.createElement("tr");

@@ -12,6 +12,7 @@
   font-family: "Roboto Mono", monospace;
 }
 
+
 img {
   width: 30px;
   margin-right: 5px;
@@ -48,11 +49,20 @@ img {
   border-radius: 4px;
 }
 
+.input-container select {
+  padding: 8px;
+  width: 150px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
 .filter-bar.expanded .input-container {
   width: 1400px;
   margin-left: 0px;
+
 }
 
 .filter-bar.expanded #toggleSearch {
   display: none;
 }
+

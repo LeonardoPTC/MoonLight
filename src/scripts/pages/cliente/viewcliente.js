@@ -57,6 +57,9 @@ function preencherCampos(cliente) {
         pessoaFisica.classList.remove("hidden");
         pessoaJuridica.classList.add("hidden");
         document.getElementById("ClienteFisico").checked = true;
+        document.getElementById("content").style.height = "740px";
+        document.getElementById("content").style.marginTop = "115px";
+        document.getElementById("buttons").className = "row mt-4";
 
         document.getElementById("inputCodigoFisico").value = codigo;
         document.getElementById("inputCPF").value = cpf;
@@ -80,6 +83,9 @@ function preencherCampos(cliente) {
         pessoaFisica.classList.add("hidden");
         pessoaJuridica.classList.remove("hidden");
         document.getElementById("ClienteJuridico").checked = true;
+        document.getElementById("content").style.height = "830px";
+        document.getElementById("content").style.marginTop = "72px";
+        document.getElementById("buttons").className = "row mt-3";
 
         document.getElementById("inputCodigoJuridico").value = codigo;
         document.getElementById("inputCNPJ").value = cnpj;

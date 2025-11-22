@@ -24,11 +24,19 @@
 
                 <div class="input-container" id="inputContainer">
                     <form id="formPesquisa" class="container g-2">
-                        <input type="text" id="filterCodigo" placeholder="Código" name="codigo">
-                        <input type="text" id="filterNome" placeholder="Nome" name="nome">
-                        <input type="text" id="filterTelefone" placeholder="Telefone" name="telefone">
-                        <input type="text" id="filterDocumento" placeholder="Documento" name="documento">
+                        <input style="width: 150px;" type="text" id="filterCodigo" placeholder="Código" name="codigo">
+                        <label for="filterDataAbertura">Data Abertura:</label>
+                        <input type="date" id="filterDataAbertura" placeholder="DataAbertura" name="DataAbertura">
+                        <input style="width: 280px;" type="text" id="filterNomeCliente" placeholder="Nome Cliente" name="NomeCliente">
+                        <select id="selectSituacao" name="Situacao">
+                            <option value="0" disabled selected hidden>Situacao</option>
+                            <option value="1">ABERTA</option>
+                            <option value="2">FECHADA</option>
+                            <option value="3">CANCELADA</option>
+                            <option value="4">ESTORNADA</option>
+                            <option value="5">FATURADA</option>
 
+                        </select>
                         <button type="submit" id="aplicarFiltros" class="btn btn-primary search-final">Aplicar</button>
                         <button type="button" id="limparFiltros" class="btn btn-secondary limpar-filtros">Limpar
                             Filtros</button>
@@ -39,8 +47,7 @@
 
             <div>
                 <button id="NovaVenda" class="btn btn-success" data-toggle="tooltip" data-placement="top"
-                    title="Nova Venda"
-                    onclick="window.location.href='../vendas/venda.html'">
+                    title="Nova Venda" onclick="window.location.href='../vendas/venda.html'">
                     <img src="../../assets/AddProduto.png" alt="Nova Venda">
                 </button>
             </div>
