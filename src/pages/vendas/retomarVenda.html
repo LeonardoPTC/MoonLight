@@ -15,12 +15,6 @@
     <div id="content" class="shadow body-tertiary rounded position-relative">
         <h1 class="text-center mb-4">Registrar Venda</h1>
 
-        <button id="btnCadastrarCliente" class="btn btn-success shadow body-tertiary rounded position-absolute"
-            data-toggle="tooltip" data-placement="top" title="CadastrarCliente">
-            <img style="margin-bottom: 2px;" src="../../assets/AddProduto.png" alt="Cadastrar Cliente">
-            Cadastrar Novo Cliente
-        </button>
-
         <form id="formVenda" class="container g-2">
             <div id="etapa1">
                 <div class="row g-2">
@@ -36,14 +30,6 @@
                         <select id="selectUsuario" class="form-control" required>
                             <option value="">Selecione um cliente</option>
                         </select>
-                    </div>
-                </div>
-
-                <div class="row mt-4 justify-content-center">
-                    <div class="col-3">
-                        <button type="button" id="btnIniciarVenda" class="btn btn-primary w-100">
-                            Iniciar Venda
-                        </button>
                     </div>
                 </div>
             </div>
@@ -98,7 +84,7 @@
                 <div class="row mt-5 mb-4 justify-content-center" id="buttons">
                     <div class="col-md-3">
                         <button type="button" id="btnFechar" class="btn btn-primary w-100">
-                            Fechar
+                            Fechar Venda
                         </button>
                     </div>
                     <div class="col-md-3">
@@ -119,7 +105,7 @@
     <div id="footer"></div>
 
     <script src="../../scripts/includes.js"></script>
-    <script src="../../scripts/pages/venda/venda.js"></script>
+    <script src="../../scripts/pages/venda/retomarVenda.js"></script>
 
     <script>
         includeHTML("header", "../../include/header.html");

@@ -15,6 +15,8 @@
 img {
     width: 30px;
     margin-right: 5px;
+    padding-top: 2px;
+    margin-bottom: 4px;
 }
 
 .input-container input {

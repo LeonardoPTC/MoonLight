@@ -11,7 +11,15 @@ async function carregarVenda() {
     0: 6
   };
 
-  vendas.sort((a, b) => ordemSituacao[a.situacao] - ordemSituacao[b.situacao]);
+  vendas.sort((a, b) => {
+    const ordem = ordemSituacao[a.situacao] - ordemSituacao[b.situacao];
+    if (ordem !== 0) return ordem;
+
+    const dataA = new Date(a.dataAbertura.split('/').reverse().join('-'));
+    const dataB = new Date(b.dataAbertura.split('/').reverse().join('-'));
+
+    return dataB - dataA;
+  });
 
   const tbody = document.querySelector("#tabela-vendas tbody");
   tbody.innerHTML = "";
@@ -35,7 +43,23 @@ async function carregarVenda() {
     }
 
 
-    if (situacao[v.situacao] === "ABERTA" || situacao[v.situacao] === "FECHADA") {
+    if (situacao[v.situacao] === "ABERTA") {
+
+      linha.innerHTML = `
+      <td style="text-align: center">${v.codigo}</td>
+      <td style="text-align: center">${v.dataAbertura}</td>
+      <td style="text-align: center">${v.dataFaturamento}</td>
+      <td style="text-align: center">${v.nomeVendedor}</td>
+      <td style="text-align: center">${v.nomeCliente}</td>
+      <td style="text-align: right">R$ ${v.valorTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+      <td style="text-align: center">${situacao[v.situacao] || "INDEFINIDO"}</td>
+      <td class="text-center">
+          <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Venda" onclick="visualizarVenda('${v.id}')"><img src="../../assets/View.png"></button>
+          <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Retomar Venda" onclick="retomarVenda('${v.id}')"><img src="../../assets/Edit.png"></button>
+      </td>
+    `;
+      tbody.appendChild(linha);
+    } else if (situacao[v.situacao] === "FECHADA") {
 
       linha.innerHTML = `
       <td style="text-align: center">${v.codigo}</td>
@@ -206,6 +230,11 @@ async function estornarVenda(idVenda) {
 function visualizarVenda(idVenda) {
   localStorage.setItem("idVenda", idVenda);
   window.location.href = `../vendas/visualizarVenda.html`;
+}
+
+function retomarVenda(idVenda) {
+  localStorage.setItem("idVenda", idVenda);
+  window.location.href = `../vendas/retomarVenda.html`;
 }
 
 function finalizarVenda(idVenda) {

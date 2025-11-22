@@ -12,6 +12,11 @@
   font-family: "Roboto Mono", monospace;
 }
 
+#btnCadastrarCliente {
+  top: 20px;
+  right: 20px;
+}
+
 #etapa2 {
   display: none;
 }
