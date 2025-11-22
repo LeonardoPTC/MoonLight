@@ -6,13 +6,13 @@ Ele se conecta à API do projeto BlueMoon, permitindo o controle direto de:
 
 - Vendas  
 - Produtos  
-- Funcionários  
+- Usuários  
 - Estoque  
 - *(Futuramente)* Fornecedores  
 - *(Futuramente)* Ordens de Serviço (O.S)  
 - *(Futuramente)* Cupons
 
-Com foco em **usabilidade e desempenho**, o MoonLight traz uma experiência visual moderna e responsiva, ideal para o ambiente administrativo da **Atuall Informática**.
+Com foco em **usabilidade e desempenho**, o MoonLight traz uma experiência visual simples e direta, ideal para o ambiente administrativo da **Atuall Informática**.
 
 ---
 
@@ -45,7 +45,7 @@ O MoonLight utiliza tecnologias modernas do ecossistema web para garantir veloci
 - JavaScript   
 
 ### 🧱 Frameworks e Bibliotecas  
-⚠️ Em desenvolvimento...
+⚠️ Bootstrap 5
 
 ---
 
