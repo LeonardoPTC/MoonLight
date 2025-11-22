@@ -129,7 +129,8 @@ async function iniciarVenda() {
         };
 
         alert("Venda iniciada!");
-        document.getElementById("btnIniciarVenda").style.display = "none";
+        document.getElementById("btnIniciarVenda").style.display =  'none';
+        document.getElementById('btnCadastrarCliente').style.display = 'none';
 
         const inputs = document.querySelectorAll('#selectCliente, #selectUsuario');
         inputs.forEach(input => input.setAttribute('disabled', true));
