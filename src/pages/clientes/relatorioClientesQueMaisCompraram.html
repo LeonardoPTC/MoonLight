@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baixar Relatório</title>
+    <link rel="stylesheet" href="../../styles/pages/index.css">
+    <link rel="stylesheet" href="../../styles/pages/produtos/formRelatorio.css">
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div id="content" class="shadow body-tertiary rounded">
+        <h1 class="text-center mb-4">Clientes Que Mais Compraram</h1>
+
+        <form id="formClientes" class="container g-2">
+            <hr>
+            <h4 style="text-align: center;">Selecione o Período</h4>
+            <div class="row mt-2 g-4 justify-content-center">
+
+                <div class="col-md-2">
+                    <label for="inicio" class="form-label">Início: </label>
+                    <input type="date" class="form-control" id="inicio" name="inicio">
+                </div>
+                <div class="col-md-2">
+                    <label for="fim" class="form-label">Fim: </label>
+                    <input type="date" class="form-control" id="fim" name="fim">
+                </div>
+            </div>
+            <hr>
+            <div class="row mt-5" id="buttons">
+                <div class="col-2 mr-3">
+                    <button type="submit" class="btn btn-primary">Baixar</button>
+                </div>
+                <div class="col-2">
+                    <button type="button" onclick="window.location.href='../clientes/index.html'"
+                        class="btn btn-secondary">Voltar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div id="footer"></div>
+    <script src="../../scripts/includes.js"></script>
+    <script>
+        includeHTML("header", "../../include/header.html");
+        includeHTML("footer", "../../include/footer.html");
+    </script>
+    <script src="../../scripts/pages/cliente/baixarRelatorioClientesQueMaisCompraram.js"></script>
+</body>
+
+</html>

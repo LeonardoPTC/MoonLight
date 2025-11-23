@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Consulta de Cadastro</title>
-  <link rel="stylesheet" href="/src/styles/pages/usuarios/consultarcadastro.css">
+  <link rel="stylesheet" href="../../styles/pages/usuarios/consultarcadastro.css">
 </head>
 
 <body>
@@ -15,24 +15,25 @@
     <h1 class="mb-3">Consultar Cadastro</h1>
 
     <div class="d-flex justify-content-between mb-3 w-100" name="Cabeçalho">
-      
-        <div class="input-container" id="inputContainer">
-          <form id="formPesquisa" class="container g-2">
-            <input type="text" id="filterCodigo" placeholder="Código" name="codigo">
-            <input type="text" id="filterNome" placeholder="Nome" name="nome">
-            <input type="text" id="filterTelefone" placeholder="Telefone" name="telefone">
-            <input type="text" id="filterDocumento" placeholder="Documento" name="documento">
 
-            <button type="submit" id="aplicarFiltros" class="btn btn-primary search-final" data-toggle="tooltip" data-placement="top" title="Buscar"><img src="/src/assets/lupaBusca.png"></button>
-            <button type="button" id="limparFiltros" class="btn btn-secondary limpar-filtros">Limpar Campos</button>
-          </form>
-        </div>
+      <div class="input-container" id="inputContainer">
+        <form id="formPesquisa" class="container g-2">
+          <input type="text" id="filterCodigo" placeholder="Código" name="codigo">
+          <input type="text" id="filterNome" placeholder="Nome" name="nome">
+          <input type="text" id="filterTelefone" placeholder="Telefone" name="telefone">
+          <input type="text" id="filterDocumento" placeholder="Documento" name="documento">
+
+          <button type="submit" id="aplicarFiltros" class="btn btn-primary search-final" data-toggle="tooltip"
+            data-placement="top" title="Buscar"><img src="../../assets/lupaBusca.png"></button>
+          <button type="button" id="limparFiltros" class="btn btn-secondary limpar-filtros">Limpar Campos</button>
+          <button type="button" id="Voltar" class="btn btn-danger">Voltar</button>
+        </form>
+      </div>
 
       <div>
         <button id="NovoUsuario" class="btn btn-success" data-toggle="tooltip" data-placement="top"
-          title="Adicionar Novo Cliente"
-          onclick="window.location.href='http://localhost:5500/src/pages/usuarios/addDadosCadastraisUsuario.html'">
-          <img src="/src/assets/AddProduto.png" alt="Adicionar Novo Cliente">
+          title="Adicionar Novo Cliente" onclick="window.location.href='../usuarios/addDadosCadastraisUsuario.html'">
+          <img src="../../assets/AddProduto.png" alt="Adicionar Novo Cliente">
         </button>
       </div>
     </div>
@@ -52,11 +53,12 @@
   </div>
 
   <div id="footer"></div>
-  <script src="/src/scripts/includes.js"></script>
+  <script src="../../scripts/includes.js"></script>
   <script>
-    includeHTML("header", "/src/include/header.html");
-    includeHTML("footer", "/src/include/footer.html");
+    includeHTML("header", "../../include/header.html");
+    includeHTML("footer", "../../include/footer.html");
   </script>
-  <script src="/src/scripts/pages/usuarios/consulta.js"></script>
+  <script src="../../scripts/pages/usuarios/consulta.js"></script>
 </body>
+
 </html>

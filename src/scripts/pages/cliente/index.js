@@ -3,22 +3,21 @@ async function carregarClientes() {
   const clientes = await resposta.json();
 
   const tbody = document.querySelector("#tabela-clientes tbody");
-  tbody.innerHTML = ""; // limpa a tabela
+  tbody.innerHTML = ""; 
 
   clientes.forEach(c => {
     const linha = document.createElement("tr");
-    let situacao = c.situacao;
 
     linha.innerHTML = `
-      <td>${c.codigo}</td>
-      <td>${c.nome}</td>
-      <td>${c.telefone}</td>
-      <td>${c.cidade}</td>
-      <td>${c.endereco}</td>
+      <td style="text-align: center">${c.codigo}</td>
+      <td style="text-align: center">${c.nome}</td>
+      <td style="text-align: center">${c.telefone}</td>
+      <td style="text-align: center">${c.cidade}</td>
+      <td style="text-align: center">${c.endereco}</td>
       <td class="text-center">
-          <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Cliente" onclick="visualizarCliente('${c.id}')"><img src="/src/assets/View.png"></button>
-          <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Cliente" onclick="editarCliente('${c.id}')"><img src="/src/assets/Edit.png"></button>
-          <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir Cliente" onclick="excluirCliente('${c.id}')"><img src="/src/assets/Delete.png"></button>
+          <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Cliente" onclick="visualizarCliente('${c.id}')"><img src="../../assets/View.png"></button>
+          <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Cliente" onclick="editarCliente('${c.id}')"><img src="../../assets/Edit.png"></button>
+          <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir Cliente" onclick="excluirCliente('${c.id}')"><img src="../../assets/Delete.png"></button>
       </td>
     `;
     tbody.appendChild(linha);
@@ -28,20 +27,24 @@ async function carregarClientes() {
 carregarClientes();
 
 document.addEventListener('DOMContentLoaded', function () {
-    const checkSidebarLoaded = setInterval(function () {
-        const sidebar = document.querySelector('.sidebar');
-        if (sidebar) {
-            clearInterval(checkSidebarLoaded);
+  const checkSidebarLoaded = setInterval(function () {
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebar) {
+      clearInterval(checkSidebarLoaded);
 
-            sidebar.addEventListener('mouseenter', function () {
-                document.querySelector('#content').style.marginLeft = '310px';
-            });
+      if (sidebar.matches(':hover')) {
+        document.querySelector('#content').style.marginLeft = '310px';
+      }
 
-            sidebar.addEventListener('mouseleave', function () {
-                document.querySelector('#content').style.marginLeft = '187px';
-            });
-        }
-    }, 100);
+      sidebar.addEventListener('mouseenter', function () {
+        document.querySelector('#content').style.marginLeft = '310px';
+      });
+
+      sidebar.addEventListener('mouseleave', function () {
+        document.querySelector('#content').style.marginLeft = '200px';
+      });
+    }
+  }, 100);
 });
 
 
@@ -80,15 +83,15 @@ document.addEventListener('submit', async function (event) {
     clientes.forEach(c => {
       const linha = document.createElement("tr");
       linha.innerHTML = `
-      <td>${c.codigo}</td>
-      <td>${c.nome}</td>
-      <td>${c.telefone}</td>
-      <td>${c.cidade}</td>
-      <td>${c.endereco}</td>
+      <td style="text-align: center">${c.codigo}</td>
+      <td style="text-align: center">${c.nome}</td>
+      <td style="text-align: center">${c.telefone}</td>
+      <td style="text-align: center">${c.cidade}</td>
+      <td style="text-align: center">${c.endereco}</td>
       <td class="text-center">
-          <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Cliente" onclick="visualizarCliente('${c.id}')"><img src="/src/assets/View.png"></button>
-          <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Cliente" onclick="editarCliente('${c.id}')"><img src="/src/assets/Edit.png"></button>
-          <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir Cliente" onclick="excluirCliente('${c.id}')"><img src="/src/assets/Delete.png"></button>
+          <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Cliente" onclick="visualizarCliente('${c.id}')"><img src="../../assets/View.png"></button>
+          <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Cliente" onclick="editarCliente('${c.id}')"><img src="../../assets/Edit.png"></button>
+          <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir Cliente" onclick="excluirCliente('${c.id}')"><img src="../../assets/Delete.png"></button>
       </td>
     `;
       tbody.appendChild(linha);
@@ -107,20 +110,24 @@ document.getElementById('limparFiltros').addEventListener('click', function () {
   document.getElementById('filterDocumento').value = "";
 });
 
+document.getElementById('btnBaixarRelatorio').addEventListener('click', () => {
+  window.location.href = `../clientes/relatorioClientesQueMaisCompraram.html`;
+});
+
 function editarCliente(id) {
-  window.location.href = `http://localhost:5500/src/pages/clientes/editcliente.html?id=${id}`;
+  window.location.href = `../clientes/editcliente.html?id=${id}`;
 }
 
 function visualizarCliente(id) {
-  window.location.href = `http://localhost:5500/src/pages/clientes/viewcliente.html?id=${id}`;
+  window.location.href = `../clientes/viewcliente.html?id=${id}`;
 }
 
-document.getElementById('toggleSearch').addEventListener('click', function() {
-    const filterBar = document.getElementById('filterBar');
-    filterBar.classList.toggle('expanded');
+document.getElementById('toggleSearch').addEventListener('click', function () {
+  const filterBar = document.getElementById('filterBar');
+  filterBar.classList.toggle('expanded');
 });
 
-document.getElementById('fecharFiltros').addEventListener('click', function() {
-    const filterBar = document.getElementById('filterBar');
-    filterBar.classList.remove('expanded'); 
+document.getElementById('fecharFiltros').addEventListener('click', function () {
+  const filterBar = document.getElementById('filterBar');
+  filterBar.classList.remove('expanded');
 });

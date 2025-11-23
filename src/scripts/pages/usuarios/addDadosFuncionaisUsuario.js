@@ -10,31 +10,33 @@ document.addEventListener("DOMContentLoaded", () => {
     const pessoaId = localStorage.getItem("pessoaId");
     console.log("ID da pessoa carregado:", pessoaId);
 
-    const btnVoltar = document.getElementById("btnVoltar");
-
-    /*btnVoltar.addEventListener("click", () => {
-        localStorage.setItem("pessoaId", pessoaId);
-        window.location.href = `/src/pages/usuarios/editDadosCadastrais.html?id=${pessoaId}`
-    });*/
-
     if (!pessoaId) {
         console.warn("Nenhuma pessoa foi selecionada antes de entrar nesta tela.");
     }
 
     const inputSenha = document.getElementById("senha");
     const toggleSenha = document.getElementById("toggleSenha");
+    const iconeSenha = document.getElementById("iconeSenha");
 
-    if (inputSenha && toggleSenha) {
-        toggleSenha.addEventListener("click", function () {
+
+
+    if (inputSenha && toggleSenha && iconeSenha) {
+        iconeSenha.style = "width: 22px";
+        toggleSenha.addEventListener("click", () => {
             if (inputSenha.type === "password") {
                 inputSenha.type = "text";
-                this.textContent = "🙈";
+                iconeSenha.src = "../../assets/olhoFechado.png";
+                iconeSenha.style = "width: 22px";
+                iconeSenha.alt = "Ocultar senha";
             } else {
                 inputSenha.type = "password";
-                this.textContent = "👁️";
+                iconeSenha.src = "../../assets/olhoAberto.png";
+                iconeSenha.style = "width: 22px";
+                iconeSenha.alt = "Mostrar Senha"
             }
         });
     }
+
 
     const form = document.getElementById("formUsuario");
 
@@ -90,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             alert("Usuário cadastrado com sucesso!");
-            window.location.href = "/src/pages/usuarios/index.html";
+            window.location.href = "../usuarios/index.html";
 
         } catch (erro) {
             console.error(erro);

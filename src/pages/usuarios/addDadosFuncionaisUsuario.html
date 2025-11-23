@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adicionar Usuário</title>
-    <link rel="stylesheet" href="/src/styles/pages/usuarios/form.css">
+    <link rel="stylesheet" href="../../styles/pages/usuarios/form.css">
 </head>
 
 <body>
@@ -71,7 +71,8 @@
                     <div class="input-group">
                         <input type="password" class="form-control" id="senha" name="Senha">
                         <button type="button" class="btn btn-outline-secondary" id="toggleSenha">
-                            👁️
+                            <img style="width: 22px;" id="iconeSenha" src="../../assets/olhoAberto.png"
+                                alt="Mostrar Senha">
                         </button>
                     </div>
                 </div>
@@ -81,23 +82,20 @@
                     <button type="submit" class="btn btn-primary">Salvar</button>
                 </div>
                 <div class="col-2">
-                    <button type="button" onclick="window.location.href='/src/pages/usuarios/index.html'"
+                    <button type="button" onclick="window.location.href='../usuarios/index.html'"
                         class="btn btn-secondary">Cancelar</button>
                 </div>
-                <!--<div class="col-2">
-                    <button type="button" id="btnVoltar" class="btn btn-warning">Voltar</button>
-                </div>-->
             </div>
         </form>
     </div>
 
     <div id="footer"></div>
-    <script src="/src/scripts/includes.js"></script>
+    <script src="../../scripts/includes.js"></script>
     <script>
-        includeHTML("header", "/src/include/header.html");
-        includeHTML("footer", "/src/include/footer.html");
+        includeHTML("header", "../../include/header.html");
+        includeHTML("footer", "../../include/footer.html");
     </script>
-    <script src="/src/scripts/pages/usuarios/addDadosFuncionaisUsuario.js"></script>
+    <script src="../../scripts/pages/usuarios/addDadosFuncionaisUsuario.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,6 @@
 window.addEventListener('load', async () => {
-    await includeHTML("header", "/src/include/header.html");
-    await includeHTML("footer", "/src/include/footer.html");
+    await includeHTML("header", "../../include/header.html");
+    await includeHTML("footer", "../../include/footer.html");
 
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
@@ -39,7 +39,7 @@ document.getElementById("formProduto").addEventListener("submit", async (e) => {
 
     if (resposta.ok) {
       alert("Produto Atualizado com sucesso!");
-      window.location.href = "/src/pages/produtos/index.html";
+      window.location.href = "../produtos/index.html";
     } else {
       const erro = await resposta.text();
       alert("Erro ao atualizar produto: " + erro);
@@ -106,7 +106,7 @@ function preencherCampos(produto) {
     document.getElementById('inputMarca').value = marca || "";
     document.getElementById('inputValorVenda').value = produto.valorVenda.toFixed(2) || "" || "";
     document.getElementById('inputprecoCusto').value = produto.valorCusto.toFixed(2) || "";
-    document.getElementById('inputEstoque').value = produto.quantidadeEstoque || "";
-    document.getElementById('inputEstoqueMin').value = produto.quantidadeEstoqueMinimo || "";
+    document.getElementById('inputEstoque').value = produto.quantidadeEstoque || 0;
+    document.getElementById('inputEstoqueMin').value = produto.quantidadeEstoqueMinimo || 0;
     //document.getElementById('inputSituacao').value = produto.situacao;
 }

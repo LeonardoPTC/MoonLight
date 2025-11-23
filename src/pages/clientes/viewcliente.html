@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar Cliente</title>
-    <link rel="stylesheet" href="/src/styles/pages/clientes/form.css">
+    <title>Visualizar Cliente</title>
+    <link rel="stylesheet" href="../../styles/pages/clientes/form.css">
 </head>
 
 <body>
@@ -223,19 +223,19 @@
 
         <div class="row mt-5" id="buttons">
             <div class="col-12">
-                <button type="button" onclick="window.location.href='/src/pages/clientes/index.html'"
-                    class="btn btn-secondary px-5 p-2">Voltar</button>
+                <button id type="button" onclick="window.location.href='../clientes/index.html'"
+                    class="btn btn-primary px-5 p-2">Voltar</button>
             </div>
         </div>
     </div>
 
     <div id="footer"></div>
-    <script src="/src/scripts/includes.js"></script>
+    <script src="../../scripts/includes.js"></script>
     <script>
-        includeHTML("header", "/src/include/header.html");
-        includeHTML("footer", "/src/include/footer.html");
+        includeHTML("header", "../../include/header.html");
+        includeHTML("footer", "../../include/footer.html");
     </script>
-    <script src="/src/scripts/pages/cliente/viewcliente.js"></script>
+    <script src="../../scripts/pages/cliente/viewcliente.js"></script>
 </body>
 
 </html>

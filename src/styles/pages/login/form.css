@@ -29,7 +29,7 @@
 #content {
   border: 2px solid var(--primary);
   background-color: var(--bg-light);
-  margin: 80px 500px 0 500px;
+  margin: 80px 400px 0 400px;
   padding: 30px 30px 100px 30px;
   box-sizing: border-box;
   transition: margin-left 0.3s ease, margin-right 0.3s ease;
@@ -46,8 +46,6 @@ label {
   color: #333;
 }
 
-/* ---------- FORM ---------- */
-
 #formLogin input {
   border: 1px solid var(--border-light);
   border-radius: 4px;
@@ -57,9 +55,10 @@ label {
   border-radius: 4px;
 }
 
-/* Botões */
 #buttons button {
   width: 100%;
+  display: flex;
+  justify-content: center;
   padding: 10px;
   font-size: 18px;
   font-weight: 500;
@@ -72,23 +71,18 @@ label {
   border-color: #213c62;
 }
 
-/* ---------- RESPONSIVIDADE ---------- */
-
-/* <= 1200px */
-@media (max-width: 1200px) {
+@media (max-width: 1400px) {
   #content {
     margin: 80px 120px 0 120px;
   }
 }
 
-/* <= 992px */
 @media (max-width: 992px) {
   #content {
     margin: 80px 60px 0 60px;
   }
 }
 
-/* <= 768px */
 @media (max-width: 768px) {
   #content {
     margin: 80px 20px 0 20px;
@@ -100,7 +94,6 @@ label {
   }
 }
 
-/* <= 480px */
 @media (max-width: 480px) {
   #content {
     margin: 80px 10px 0 10px;

@@ -1,24 +1,124 @@
+:root {
+  --primary: #2b4c7e;
+  --bg-light: #f0f4f9;
+  --border-light: #ccc;
+}
+
 #content {
-  border: 2px solid #2b4c7e;
-  background-color: #f0f4f9;
-  margin-top: 80px;
-  margin-left: 200px;
-  margin-right: 170px;
-  padding: 20px;
-  padding-bottom: 50px;
+  border: 2px solid var(--primary);
+  position: relative;
+  background-color: var(--bg-light);
+  margin: 80px 80px 0 100px;
+  padding: 20px 20px 50px;
   box-sizing: border-box;
   justify-items: center;
-  transition: margin-left 0.3s ease;
-  font-family: "Roboto Mono", monospace;
+  transition: margin-left 0.3s ease, margin-right 0.3s ease;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-img {
-  width: 30px;
-  margin-right: 5px;
+.input-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-grow: 1;
+  overflow: hidden;
 }
 
-.input-container input {
+#formPesquisa {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+#formPesquisa input {
   padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  transition: border 0.2s ease;
+}
+
+#formPesquisa input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+#formPesquisa button img {
+  width: 20px;
+}
+
+#NovoUsuario img {
+  width: 26px;
+  margin-right: 6px;
+}
+
+#tabela-clientes {
+  background-color: white;
+  margin-top: 20px;
+}
+
+@media (max-width: 1400px) {
+  #content {
+    margin: 80px 40px 0;
+    margin-left: 80px;
+  }
+}
+
+@media (max-width: 992px) {
+  .d-flex[name="Cabeçalho"] {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  #formPesquisa {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #formPesquisa button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  #content {
+    margin: 80px 20px 0;
+    padding: 15px;
+    margin-left: 80px;
+  }
+
+  #formPesquisa {
+    grid-template-columns: 1fr;
+  }
+
+  #NovoUsuario {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  #formPesquisa input {
+    width: 100%;
+  }
+
+  #formPesquisa button img {
+    width: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  #content {
+    margin: 20px 10px 0;
+    padding: 12px;
+  }
+
+  #formPesquisa {
+    gap: 10px;
+  }
+
+  #formPesquisa input {
+    font-size: 14px;
+    padding: 6px;
+  }
 }

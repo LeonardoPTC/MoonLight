@@ -1,3 +1,25 @@
+document.addEventListener('DOMContentLoaded', function () {
+  const checkSidebarLoaded = setInterval(function () {
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebar) {
+      clearInterval(checkSidebarLoaded);
+
+
+      if (sidebar.matches(':hover')) {
+        document.querySelector('#content').style.marginLeft = '310px';
+      }
+
+      sidebar.addEventListener('mouseenter', function () {
+        document.querySelector('#content').style.marginLeft = '310px';
+      });
+
+      sidebar.addEventListener('mouseleave', function () {
+        document.querySelector('#content').style.marginLeft = '200px';
+      });
+    }
+  }, 100);
+});
+
 async function carregarUsuario() {
   const resposta = await fetch("http://localhost:5164/BlueMoon/Usuarios");
   const usuarios = await resposta.json();
@@ -17,13 +39,13 @@ async function carregarUsuario() {
     let situacao = f.situacao;
 
     linha.innerHTML = `
-      <td>${f.codigo}</td>
-      <td>${f.nome}</td>
-      <td>${cargosEnum[f.cargo] || "INDEFINIDO"}</td>
+      <td style="text-align: center">${f.codigo}</td>
+      <td style="text-align: center">${f.nome}</td>
+      <td style="text-align: center">${cargosEnum[f.cargo] || "INDEFINIDO"}</td>
       <td class="text-center">
-          <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Usuario" onclick="visualizarUsuario('${f.idPessoa}', '${f.idUsuario}')"><img src="/src/assets/View.png"></button>
-          <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Usuario" onclick="editarUsuario('${f.idPessoa}', '${f.idUsuario}')"><img src="/src/assets/Edit.png"></button>
-          <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir Usuario" onclick="excluirUsuario('${f.idUsuario}')"><img src="/src/assets/Delete.png"></button>
+          <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Usuario" onclick="visualizarUsuario('${f.idPessoa}', '${f.idUsuario}')"><img src="../../assets/View.png"></button>
+          <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Usuario" onclick="editarUsuario('${f.idPessoa}', '${f.idUsuario}')"><img src="../../assets/Edit.png"></button>
+          <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir Usuario" onclick="excluirUsuario('${f.idUsuario}')"><img src="../../assets/Delete.png"></button>
       </td>
     `;
     tbody.appendChild(linha);
@@ -31,23 +53,6 @@ async function carregarUsuario() {
 }
 
 carregarUsuario();
-
-document.addEventListener('DOMContentLoaded', function () {
-  const checkSidebarLoaded = setInterval(function () {
-    const sidebar = document.querySelector('.sidebar');
-    if (sidebar) {
-      clearInterval(checkSidebarLoaded);
-
-      sidebar.addEventListener('mouseenter', function () {
-        document.querySelector('#content').style.marginLeft = '310px';
-      });
-
-      sidebar.addEventListener('mouseleave', function () {
-        document.querySelector('#content').style.marginLeft = '187px';
-      });
-    }
-  }, 100);
-});
 
 document.addEventListener('submit', async function (event) {
   event.preventDefault();
@@ -92,13 +97,13 @@ document.addEventListener('submit', async function (event) {
       let situacao = f.situacao;
 
       linha.innerHTML = `
-      <td>${f.codigo}</td>
-      <td>${f.nome}</td>
-      <td>${cargosEnum[f.cargo] || "INDEFINIDO"}</td>
+      <td style="text-align: center">${f.codigo}</td>
+      <td style="text-align: center">${f.nome}</td>
+      <td style="text-align: center">${cargosEnum[f.cargo] || "INDEFINIDO"}</td>
       <td class="text-center">
-          <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Usuario" onclick="visualizarUsuario('${f.idPessoa}', '${f.idUsuario}')"><img src="/src/assets/View.png"></button>
-          <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Usuario" onclick="editarUsuario('${f.idPessoa}', '${f.idUsuario}')"><img src="/src/assets/Edit.png"></button>
-          <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir Usuario" onclick="excluirUsuario('${f.idUsuario}')"><img src="/src/assets/Delete.png"></button>
+          <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Usuario" onclick="visualizarUsuario('${f.idPessoa}', '${f.idUsuario}')"><img src="../../assets/View.png"></button>
+          <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Usuario" onclick="editarUsuario('${f.idPessoa}', '${f.idUsuario}')"><img src="../../assets/Edit.png"></button>
+          <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir Usuario" onclick="excluirUsuario('${f.idUsuario}')"><img src="../../assets/Delete.png"></button>
       </td>
     `;
       tbody.appendChild(linha);
@@ -117,12 +122,16 @@ document.getElementById('limparFiltros').addEventListener('click', function () {
   document.getElementById('filterDocumento').value = "";
 });
 
+document.getElementById('btnBaixarRelatorio').addEventListener('click', () => {
+  window.location.href = `../usuarios/relatorioVendedoresQueMaisVenderam.html`;
+});
+
 function editarUsuario(idPessoa, idUsuario) {
-  window.location.href = `http://localhost:5500/src/pages/usuarios/editDadosCadastrais.html?idPessoa=${idPessoa}&idUsuario=${idUsuario}`;
+  window.location.href = `../usuarios/editDadosCadastrais.html?idPessoa=${idPessoa}&idUsuario=${idUsuario}`;
 }
 
 function visualizarUsuario(idPessoa, idUsuario) {
-  window.location.href = `http://localhost:5500/src/pages/usuarios/viewDadosCadastraisUsuario.html?idPessoa=${idPessoa}&idUsuario=${idUsuario}`;
+  window.location.href = `../usuarios/viewDadosCadastraisUsuario.html?idPessoa=${idPessoa}&idUsuario=${idUsuario}`;
 }
 
 document.getElementById('toggleSearch').addEventListener('click', function () {

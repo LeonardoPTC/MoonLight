@@ -1,6 +1,6 @@
 window.addEventListener('load', async () => {
-    await includeHTML("header", "/src/include/header.html");
-    await includeHTML("footer", "/src/include/footer.html");
+    await includeHTML("header", "../../include/header.html");
+    await includeHTML("footer", "../../include/footer.html");
 
     const radios = document.querySelectorAll('input[type="radio"]');
     const inputCNPJ = document.getElementById('inputCNPJ');
@@ -64,6 +64,7 @@ function preencherCampos(usuario) {
     let Complemento = usuario.complemento || "";
     let Cidade = usuario.cidade || "";
     let Estado = usuario.estado || 0;
+    console.log(Estado)
     let InscricaoMunicipal = usuario.inscricaoMunicipal || "";
     let InscricaoEstadual = usuario.inscricaoEstadual || "";
     let Tipo = usuario.tipo || 1;
@@ -79,8 +80,6 @@ function preencherCampos(usuario) {
         habilitarDivFisica();
 
         document.getElementById("inputCPF").value = CPF;
-
-        document.getElementById("inputCPF").setAttribute("disabled", "true");
         document.getElementById("inputNomeFisico").value = Nome;
         document.getElementById("inputTelefoneFisico").value = Telefone;
         document.getElementById("inputEmailFisico").value = Email;
@@ -90,9 +89,14 @@ function preencherCampos(usuario) {
         document.getElementById("inputNumeroFisico").value = Numero;
         document.getElementById("inputComplementoFisico").value = Complemento;
         document.getElementById("inputCidadeFisico").value = Cidade;
-
+        
         const selectEstadoFisico = document.getElementById("estadoFisico");
-        selectEstadoFisico.value = Estado && Estado !== 0 ? Estado : 0;
+        if (Estado && Estado !== 0 && Estado <= 26) {
+            selectEstadoFisico.value = Estado;
+        } else {
+            selectEstadoFisico.value = 0;
+            selectEstadoFisico.options[0].text = "Estado não definido";
+        }
 
     } else {
 
@@ -103,8 +107,6 @@ function preencherCampos(usuario) {
         habilitarDivJuridica();
 
         document.getElementById("inputCNPJ").value = CNPJ;
-
-        document.getElementById("inputCNPJ").setAttribute("disabled", "true");
         document.getElementById("inputInscricaoMunicipal").value = InscricaoMunicipal;
         document.getElementById("inputInscricaoEstadual").value = InscricaoEstadual;
         document.getElementById("inputNomeJuridico").value = Nome;
@@ -117,8 +119,14 @@ function preencherCampos(usuario) {
         document.getElementById("inputComplementoJuridico").value = Complemento;
         document.getElementById("inputCidadeJuridico").value = Cidade;
 
-        const selectEstadoJuridico = document.getElementById("estadoJuridico");
-        selectEstadoJuridico.value = Estado && Estado !== 0 ? Estado : 0;
+        const selectEstadoFisico = document.getElementById("estadoJuridico");
+        if (Estado && Estado !== 0 && Estado <= 26) {
+            selectEstadoFisico.value = Estado;
+        } else {
+            selectEstadoFisico.value = 0;
+            selectEstadoFisico.options[0].text = "Estado não definido";
+        }
+
     }
 }
 
@@ -163,8 +171,8 @@ document.getElementById('formUsuario').addEventListener('submit', async (e) => {
         });
 
         if (resposta.ok) {
-            alert("Funcionário atualizado com sucesso!");
-            window.location.href = "/src/pages/usuarios/addDadosFuncionaisUsuario.html";
+            alert("Cadastro do usuário atualizado com sucesso!");
+            window.location.href = "../usuarios/addDadosFuncionaisUsuario.html";
         } else {
             const erro = await resposta.text();
             alert("Erro ao atualizar funcionário: " + erro);

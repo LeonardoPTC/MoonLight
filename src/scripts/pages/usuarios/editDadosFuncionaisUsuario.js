@@ -7,8 +7,8 @@ function converterDataParaBack(data) {
 
 document.addEventListener("DOMContentLoaded", async () => {
 
-    await includeHTML("header", "/src/include/header.html");
-    await includeHTML("footer", "/src/include/footer.html");
+    await includeHTML("header", "../../include/header.html");
+    await includeHTML("footer", "../../include/footer.html");
 
     const usuarioId = localStorage.getItem("usuarioId");
     console.log("ID carregado:", usuarioId);
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (btnVoltar) {
         btnVoltar.addEventListener("click", () => {
             localStorage.setItem("usuarioId", usuarioId);
-            window.location.href = "/src/pages/usuarios/index.html";
+            window.location.href = "../usuarios/index.html";
         });
     }
         */
@@ -101,10 +101,6 @@ function preencherFormulario(usuario) {
 
     document.getElementById("HorarioInicioCargaHoraria").value = usuario.horarioInicioCargaHoraria;
     document.getElementById("HorarioFimCargaHoraria").value = usuario.horarioFimCargaHoraria;
-
-    document.getElementById("inputEmail").value = usuario.email;
-
-    document.getElementById("senha").value = "";
 }
 
 async function atualizarUsuario() {
@@ -117,8 +113,6 @@ async function atualizarUsuario() {
         return;
     }
 
-    const Login = document.getElementById("inputEmail").value;
-    const Senha = document.getElementById("senha").value;
     const Cargo = document.getElementById("cargo").value;
     const Salario = document.getElementById("inputSalario").value;
     const Admissao = document.getElementById("inputAdmissao").value;
@@ -130,8 +124,6 @@ async function atualizarUsuario() {
     const dto = {
         Id: usuarioId,
         IdPessoa: idPessoa,
-        Login: Login,
-        Senha: Senha,
         Cargo: Number(Cargo),
         Salario: Number(Salario),
         Admissao: AdmissaoConvertida,
@@ -159,7 +151,7 @@ async function atualizarUsuario() {
         }
 
         alert("Usuário atualizado com sucesso!");
-        window.location.href = "/src/pages/usuarios/index.html";
+        window.location.href = "../usuarios/index.html";
 
     } catch (erro) {
         console.error(erro);

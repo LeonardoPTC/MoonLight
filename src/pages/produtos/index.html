@@ -4,15 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Início</title>
-    <link rel="stylesheet" href="/src/styles/pages/produtos/index.css" />
+    <link rel="stylesheet" href="../../styles/pages/produtos/index.css" />
   </head>
 
   <body>
     <div id="header"></div>
-    <div id="content" class="shadow body-tertiary rounded">
+    <div id="content" class="shadow body-tertiary rounded position-relative">
       <h1 class="mb-3">Produtos Cadastrados</h1>
 
-      <div class="d-flex justify-content-between mb-3 w-100" name="Cabeçalho">
+      <button
+        id="btnBaixarRelatorio"
+        class="btn btn-primary shadow body-tertiary rounded position-absolute"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Baixar Relatório"
+      >
+        <img src="../../assets/Download.png" alt="Baixar Relatório" />
+        Gerar Relatório
+      </button>
+
+      <div
+        class="d-flex justify-content-between mt-4 mb-3 w-100"
+        name="Cabeçalho"
+      >
         <div class="filter-bar" id="filterBar">
           <button
             id="toggleSearch"
@@ -25,7 +39,7 @@
             data-placement="top"
             title="Adicionar Novo Produto"
           >
-            <img src="/src/assets/lupa.png" alt="Adicionar Novo Produto" />
+            <img src="../../assets/lupa.png" alt="Adicionar Novo Produto" />
             Pesquisar
           </button>
 
@@ -82,10 +96,10 @@
             data-toggle="tooltip"
             data-placement="top"
             title="Adicionar Novo Produto"
-            onclick="window.location.href='http://localhost:5500/src/pages/produtos/addproduto.html'"
+            onclick="window.location.href='../produtos/addproduto.html'"
           >
             <img
-              src="/src/assets/AddProduto.png"
+              src="../../assets/AddProduto.png"
               alt="Adicionar Novo Produto"
             />
           </button>
@@ -108,12 +122,12 @@
     </div>
 
     <div id="footer"></div>
-    <script src="/src/scripts/includes.js"></script>
+    <script src="../../scripts/includes.js"></script>
     <script>
-      includeHTML("header", "/src/include/header.html");
-      includeHTML("footer", "/src/include/footer.html");
+      await includeHTML("header", "../../include/header.html");
+      await includeHTML("footer", "../../include/footer.html");
     </script>
-    <script src="/src/scripts/pages/produto/index.js"></script>
-    <script src="/src/scripts/pages/produto/excluirproduto.js"></script>
+    <script src="../../scripts/pages/produto/index.js"></script>
+    <script src="../../scripts/pages/produto/excluirproduto.js"></script>
   </body>
 </html>

@@ -33,7 +33,7 @@ a {
 .sidebar {
   position: fixed;
   top: 60px;
-  left: 0;
+  left: 10px;
   width: 60px;
   height: calc(100vh - 60px);
   background-color: #1f1f20;

@@ -1,0 +1,113 @@
+:root {
+  --primary: #2b4c7e;
+  --bg-light: #f0f4f9;
+  --border-light: #ccc;
+}
+
+/* CONTAINER PRINCIPAL */
+#content {
+  border: 2px solid var(--primary);
+  background-color: var(--bg-light);
+  margin: 80px 80px 0 100px;
+  padding: 20px 20px 50px;
+  box-sizing: border-box;
+  justify-items: center;
+  transition: margin-left 0.3s ease, margin-right 0.3s ease;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+/* BOTÃO CADASTRAR CLIENTE */
+#btnCadastrarCliente {
+  top: 20px;
+  right: 20px;
+}
+
+img {
+  width: 30px;
+  margin-right: 4px;
+}
+
+/* ETAPA 2 INICIALMENTE OCULTA */
+#etapa2 {
+  display: none;
+}
+
+/* TABELA DE ITENS */
+#tabelaItens td:nth-child(2),
+#tabelaItens th:nth-child(2),
+#tabelaItens td:nth-child(3),
+#tabelaItens th:nth-child(3),
+#tabelaItens td:nth-child(4),
+#tabelaItens th:nth-child(4) {
+  text-align: center;
+}
+
+/* ➤ RESPONSIVIDADE */
+
+/* 1200px */
+@media (max-width: 1200px) {
+  #content {
+    margin: 80px 40px 0;
+    margin-left: 80px;
+  }
+}
+
+/* 768px */
+@media (max-width: 768px) {
+  #content {
+    margin: 80px 15px 0;
+    padding: 15px;
+    margin-left: 80px;
+  }
+
+  #btnCadastrarCliente {
+    right: 10px;
+    top: 15px;
+  }
+}
+
+/* 480px */
+@media (max-width: 480px) {
+  #content {
+    margin: 80px 10px 0;
+    padding: 12px;
+  }
+
+  img {
+    width: 24px;
+  }
+
+  #btnCadastrarCliente {
+    font-size: 14px;
+    padding: 5px 8px;
+  }
+}
+
+/* 992px — Ajustes gerais para tabelas e botões */
+@media (max-width: 992px) {
+  #buttons button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  table {
+    font-size: 14px;
+  }
+}
+
+/* 576px - Ajustes finos */
+@media (max-width: 576px) {
+  #content h1 {
+    font-size: 22px;
+  }
+
+  #tabelaItens th,
+  #tabelaItens td {
+    font-size: 13px;
+  }
+
+  #btnCadastrarCliente img {
+    width: 20px;
+  }
+}

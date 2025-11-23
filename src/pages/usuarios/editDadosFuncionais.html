@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Usuário</title>
-    <link rel="stylesheet" href="/src/styles/pages/usuarios/form.css">
+    <link rel="stylesheet" href="../../styles/pages/usuarios/form.css">
 </head>
 
 <body>
@@ -57,31 +57,12 @@
                 </div>
             </div>
             <hr>
-
-            <div class="row mt-3 g-2 justify-content-center">
-                <h4 style="text-align: center;">Dados de Acesso</h4>
-                <div class="col-md-6 width: 20px;">
-                    <label for="inputEmail" class="form-label">Login:</label>
-                    <input type="email" class="form-control" id="inputEmail" name="Login" maxlength="100">
-                </div>
-                <div class="w-100"></div>
-                <div class="col-md-6">
-                    <label for="senha" class="form-label">Senha:</label>
-
-                    <div class="input-group">
-                        <input type="password" class="form-control" id="senha" name="Senha">
-                        <button type="button" class="btn btn-outline-secondary" id="toggleSenha">
-                            👁️
-                        </button>
-                    </div>
-                </div>
-            </div>
             <div class="row mt-5" id="buttons">
                 <div class="col-2 mr-3">
                     <button type="submit" class="btn btn-primary">Salvar</button>
                 </div>
                 <div class="col-2">
-                    <button type="button" onclick="window.location.href='/src/pages/usuarios/index.html'"
+                    <button type="button" onclick="window.location.href='../usuarios/index.html'"
                         class="btn btn-secondary">Cancelar</button>
                 </div>
                 <!--<div class="col-2">
@@ -92,8 +73,8 @@
     </div>
 
     <div id="footer"></div>
-    <script src="/src/scripts/includes.js"></script>
-    <script src="/src/scripts/pages/usuarios/editDadosFuncionaisUsuario.js"></script>
+    <script src="../../scripts/includes.js"></script>
+    <script src="../../scripts/pages/usuarios/editDadosFuncionaisUsuario.js"></script>
 </body>
 
 </html>

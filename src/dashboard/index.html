@@ -1,18 +1,143 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Início</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BlueMoon</title>
+    <link rel="stylesheet" href="../styles/vendor/bootstrap.min.css" />
+    <link rel="stylesheet" href="../styles/layout.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/pages/dashboard/index.css" />
+  </head>
 
-    <div id="header"></div>
+  <body>
+    <nav id="nav-top">
+      <a href="/src/dashboard/index.html">
+        <h1 id="nomeProjeto">BlueMoon</h1>
+      </a>
+    </nav>
+    <aside class="sidebar">
+      <a href="../pages/produtos/index.html" class="sidebar-item">
+        <span class="iconProduto"
+          ><img src="../assets/Produtos.png" alt=""
+        /></span>
+        <span class="text">Produtos</span>
+      </a>
+      <a href="../pages/clientes/index.html" class="sidebar-item">
+        <span class="iconCliente"
+          ><img src="../assets/Cliente.png" alt=""
+        /></span>
+        <span class="text">Clientes</span>
+      </a>
+      <a href="../pages/usuarios/index.html" class="sidebar-item">
+        <span class="iconCliente"
+          ><img src="../assets/usuarios.png" alt=""
+        /></span>
+        <span class="text">Usuários</span>
+      </a>
+      <a href="../pages/vendas/index.html" class="sidebar-item">
+        <span class="iconCliente"
+          ><img src="../assets/vendasIcon.png" alt=""
+        /></span>
+        <span class="text">Vendas</span>
+      </a>
+    </aside>
+
+    <div
+      id="content"
+      class="shadow body-tertiary rounded position-relative justify-content-center"
+    >
+      <div id="titulo">
+        <img id="logo" src="../assets/Projeto Bluemoon 2.png" alt="Logo" />
+        <h1>Apresentação</h1>
+      </div>
+      <p>
+        O BlueMoon é uma API back-end desenvolvida em C#/.NET para oferecer um
+        gerenciamento completo e eficiente de lojas de informática. Inicialmente
+        criado para a Atuall Informática, seu design permite expansão para
+        outras empresas. O sistema facilita o controle de produtos, clientes,
+        usuários e vendas, além de estar preparado para incorporar futuramente o
+        gerenciamento de fornecedores e ordens de serviço. Seu objetivo
+        principal é automatizar e otimizar processos internos, tornando a gestão
+        mais eficiente, segura e confiável, e garantindo crescimento junto com o
+        negócio.
+      </p>
+
+      <h2 class="mt-4">Funcionalidades do BlueMoon</h2>
+
+      <div class="row text-center mt-3">
+        <div class="col-6 col-md-3 mb-4">
+          <a
+            href="../pages/produtos/index.html"
+            class="funcionalidade d-block text-decoration-none text-white p-3"
+          >
+            <div class="icone mb-2">
+              <img src="../assets/Produtos.png" alt="Produtos" />
+            </div>
+            <div>Produtos</div>
+          </a>
+        </div>
+
+        <div class="col-6 col-md-3 mb-4">
+          <a
+            href="../pages/clientes/index.html"
+            class="funcionalidade d-block text-decoration-none text-white p-3"
+          >
+            <div class="icone mb-2">
+              <img src="../assets/Cliente.png" alt="Clientes" />
+            </div>
+            <div>Clientes</div>
+          </a>
+        </div>
+
+        <div class="col-6 col-md-3 mb-4">
+          <a
+            href="../pages/usuarios/index.html"
+            class="funcionalidade d-block text-decoration-none text-white p-3"
+          >
+            <div class="icone mb-2">
+              <img src="../assets/usuarios.png" alt="Usuários" />
+            </div>
+            <div>Usuários</div>
+          </a>
+        </div>
+
+        <div class="col-6 col-md-3 mb-4">
+          <a
+            href="../pages/vendas/index.html"
+            class="funcionalidade d-block text-decoration-none text-white p-3"
+          >
+            <div class="icone mb-2">
+              <img src="../assets/vendasIcon.png" alt="Vendas" />
+            </div>
+            <div>Vendas</div>
+          </a>
+        </div>
+      </div>
+    </div>
+
     <div id="footer"></div>
-    <script src="/src/scripts/includes.js"></script>
+    <script src="../../scripts/includes.js"></script>
     <script>
-        includeHTML("header", "/src/include/header.html");
-        includeHTML("footer", "/src/include/footer.html");
+      includeHTML("header", "../../include/header.html");
+      includeHTML("footer", "../../include/footer.html");
     </script>
-</body>
+    <script src="../scripts/pages/index.js"></script>
+    <!--<a href="#" class="sidebar-item">
+                    <span class="icon">⚙️</span>
+                    <span class="text">Configurações</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <span class="icon">❓</span>
+                    <span class="text">Ajuda</span>
+                </a>
+            </aside>
+        </div>
+    </div>-->
+  </body>
 </html>
