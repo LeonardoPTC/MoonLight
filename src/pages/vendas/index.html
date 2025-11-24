@@ -25,11 +25,12 @@
                 <div class="input-container" id="inputContainer">
                     <form id="formPesquisa" class="container g-2">
                         <input style="width: 150px;" type="text" id="filterCodigo" placeholder="Código" name="codigo">
-                        <label for="filterDataAbertura">Data Abertura:</label>
+                        <label for="filterDataAbertura">Abertura:</label>
                         <input type="date" id="filterDataAbertura" placeholder="DataAbertura" name="DataAbertura">
                         <input style="width: 280px;" type="text" id="filterNomeCliente" placeholder="Nome Cliente" name="NomeCliente">
-                        <select id="selectSituacao" name="Situacao">
-                            <option value="0" disabled selected hidden>Situacao</option>
+                        <label for="selectSituacao">Situação</label>
+                        <select id="selectSituacao" name="Situacao"> 
+                            <option value="0" selected>TODAS</option>
                             <option value="1">ABERTA</option>
                             <option value="2">FECHADA</option>
                             <option value="3">CANCELADA</option>
@@ -61,7 +62,7 @@
                     <th>Vendedor</th>
                     <th>Cliente</th>
                     <th>Valor Total</th>
-                    <th>Situacao</th>
+                    <th>Situação</th>
                     <th>Ação</th>
                 </tr>
             </thead>
