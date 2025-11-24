@@ -1,9 +1,31 @@
+window.addEventListener('load', async () => {
+  await includeHTML("header", "../../include/header.html");
+  await includeHTML("footer", "../../include/footer.html");
+
+  const sidebar = document.querySelector(".sidebar")
+
+   if (sidebar) {
+
+      if (sidebar.matches(':hover')) {
+        document.querySelector('#content').style.marginLeft = '310px';
+      }
+
+      sidebar.addEventListener('mouseenter', function () {
+        document.querySelector('#content').style.marginLeft = '310px';
+      });
+
+      sidebar.addEventListener('mouseleave', function () {
+        document.querySelector('#content').style.marginLeft = '200px';
+      });
+    }
+});
+
 async function carregarProdutos() {
   const resposta = await fetch("http://localhost:5164/BlueMoon/Produtos");
   const produtos = await resposta.json();
 
   const tbody = document.querySelector("#tabela-produtos tbody");
-  tbody.innerHTML = ""; 
+  tbody.innerHTML = "";
 
   produtos.forEach(p => {
     const linha = document.createElement("tr");
@@ -38,28 +60,6 @@ async function carregarProdutos() {
 }
 
 carregarProdutos();
-
-document.addEventListener('DOMContentLoaded', function () {
-  const checkSidebarLoaded = setInterval(function () {
-    const sidebar = document.querySelector('.sidebar');
-    if (sidebar) {
-      clearInterval(checkSidebarLoaded);
-
-
-      if (sidebar.matches(':hover')) {
-        document.querySelector('#content').style.marginLeft = '310px';
-      }
-
-      sidebar.addEventListener('mouseenter', function () {
-        document.querySelector('#content').style.marginLeft = '310px';
-      });
-
-      sidebar.addEventListener('mouseleave', function () {
-        document.querySelector('#content').style.marginLeft = '200px';
-      });
-    }
-  }, 100);
-});
 
 document.addEventListener('submit', async function (event) {
   event.preventDefault();
