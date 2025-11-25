@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("formLogin");
 
     if (!form) {
-        console.error("Formulário de Login não encontrado.");
         return;
     }
 
@@ -57,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
             window.location.href = "src/dashboard/index.html";
 
         } catch (erro) {
-            console.error(erro);
             alert("Erro ao conectar com servidor.");
         }
     });

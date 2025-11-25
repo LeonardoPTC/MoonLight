@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     await includeHTML("footer", "../../include/footer.html");
 
     const usuarioId = localStorage.getItem("usuarioId");
-    console.log("ID carregado:", usuarioId);
 
     if (!usuarioId) {
         alert("Nenhum usuário selecionado para edição.");
@@ -31,7 +30,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const form = document.getElementById("formUsuario");
 
     if (!form) {
-        console.error("Formulário de usuário não encontrado.");
         return;
     }
 
@@ -63,7 +61,6 @@ async function buscarDadosUsuario(id) {
         localStorage.setItem("idPessoa", usuario.idPessoa);
 
     } catch (erro) {
-        console.error("Erro:", erro);
         alert("Não foi possível carregar os dados do usuário.");
     }
 }
@@ -121,8 +118,6 @@ async function atualizarUsuario() {
         Situacao: 1
     };
 
-    console.log("DTO enviado:", dto);
-
     try {
         const resposta = await fetch("http://localhost:5164/BlueMoon/Usuarios", {
             method: "PUT",
@@ -143,7 +138,6 @@ async function atualizarUsuario() {
         window.location.href = "../usuarios/index.html";
 
     } catch (erro) {
-        console.error(erro);
         alert("Erro ao conectar com servidor.");
     }
 }

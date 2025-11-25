@@ -40,7 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
             URL.revokeObjectURL(link.href);
 
         } catch (erro) {
-            console.error(erro);
             alert("Erro ao conectar com servidor.");
         }
     });

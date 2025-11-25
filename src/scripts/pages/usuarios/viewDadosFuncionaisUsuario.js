@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const form = document.getElementById("formUsuario");
 
     if (!form) {
-        console.error("Formulário de usuário não encontrado.");
         return;
     }
 
@@ -48,7 +47,6 @@ async function buscarDadosUsuario(id) {
         }
 
         const usuario = await resposta.json();
-        console.log(usuario)
 
         preencherFormulario(usuario);
 
@@ -57,7 +55,6 @@ async function buscarDadosUsuario(id) {
         desativarInputs();
 
     } catch (erro) {
-        console.error("Erro:", erro);
         alert("Não foi possível carregar os dados do usuário.");
     }
 }

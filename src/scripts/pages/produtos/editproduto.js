@@ -3,7 +3,6 @@ window.addEventListener('load', async () => {
     await includeHTML("footer", "../../include/footer.html");
 
     const id = localStorage.getItem("idProduto");
-    console.log("ID recebido:", id);
     if (id) carregarProduto(id);
 });
 

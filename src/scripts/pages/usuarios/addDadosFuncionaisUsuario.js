@@ -8,11 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const pessoaId = localStorage.getItem("pessoaId");
-    console.log("ID da pessoa carregado:", pessoaId);
-
-    if (!pessoaId) {
-        console.warn("Nenhuma pessoa foi selecionada antes de entrar nesta tela.");
-    }
 
     const inputSenha = document.getElementById("senha");
     const toggleSenha = document.getElementById("toggleSenha");
@@ -41,7 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("formUsuario");
 
     if (!form) {
-        console.error("Formulário de usuário não encontrado.");
         return;
     }
 
@@ -73,8 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
             idPessoa: pessoaId
         };
 
-        console.log("DTO enviado:", dto);
-
         try {
             const resposta = await fetch("http://localhost:5164/BlueMoon/Usuarios", {
                 method: "POST",
@@ -95,7 +87,6 @@ document.addEventListener("DOMContentLoaded", () => {
             window.location.href = "../usuarios/index.html";
 
         } catch (erro) {
-            console.error(erro);
             alert("Erro ao conectar com servidor.");
         }
     });

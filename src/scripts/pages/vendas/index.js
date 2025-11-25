@@ -162,8 +162,6 @@ document.getElementById("formPesquisa").addEventListener("submit", async functio
     };
   }
 
-  console.log(dto);
-
   try {
     const resposta = await fetch("http://localhost:5164/BlueMoon/Vendas/Search", {
       method: "POST",

@@ -134,8 +134,6 @@ document.getElementById('formCliente').addEventListener('submit', async (e) => {
   dados.id = cliente.id;
   dados.situacao = cliente.situacao;
 
-  console.log(dados);
-
   const camposObrigatorios = containerAtivo.querySelectorAll('[data-required]');
   for (let campo of camposObrigatorios) {
     if (!campo.value || !campo.value.trim()) {

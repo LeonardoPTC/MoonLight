@@ -17,7 +17,6 @@ async function carregarCliente(id) {
         }
 
         cliente = await resposta.json();
-        console.log(cliente);
         preencherCampos(cliente);
     } catch (err) {
         alert("Erro na conexão: " + err.message);

@@ -34,7 +34,6 @@ async function carregarClientes() {
             throw new Error("Erro ao buscar clientes");
         }
         clientes = await resposta.json();
-        console.log(clientes);
         preencherSelect("selectCliente", clientes, "id");
     } catch (err) {
         alert("Erro ao carregar clientes: " + err.message);
@@ -88,7 +87,7 @@ async function atualizarSelects() {
 function preencherSelect(idSelect, lista, keyId) {
     const select = document.getElementById(idSelect);
     if (!select) {
-        return console.error(`Select com id "${idSelect}" não encontrado.`);
+        return;
     }
     select.innerHTML = "";
     const placeholder = document.createElement("option");
@@ -280,9 +279,8 @@ async function atualizarTabela(itens) {
 `;
         tabela.appendChild(trTotal);
 
-        console.log("Subtotal:", subtotal);
     } catch (erro) {
-        console.error("Erro ao atualizar tabela:", erro);
+        alert("Erro ao atualizar tabela:", erro);
     }
 }
 
