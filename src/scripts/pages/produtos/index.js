@@ -29,7 +29,7 @@ async function carregarProdutos() {
 
   produtos.forEach(p => {
     const linha = document.createElement("tr");
-    let situacao = p.situacao;
+    //let situacao = p.situacao;
 
     /*if (situacao == "0") {
       situacao = "INDEFINIDO";
