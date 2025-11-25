@@ -24,7 +24,6 @@ async function carregarVenda() {
   const resposta = await fetch("http://localhost:5164/BlueMoon/Vendas");
   const vendas = await resposta.json();
 
-
   const ordemSituacao = {
     1: 1,
     2: 2,

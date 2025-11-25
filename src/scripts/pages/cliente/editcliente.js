@@ -3,10 +3,7 @@ window.addEventListener('load', async () => {
   await includeHTML("footer", "../../include/footer.html");
   
   const radios = document.querySelectorAll('input[type="radio"]');
-  const inputCNPJ = document.getElementById('inputCNPJ');
-
   radios.forEach(radio => radio.setAttribute('disabled', 'true'));
-  if (inputCNPJ) inputCNPJ.setAttribute('disabled', 'true');
 
   const urlParams = new URLSearchParams(window.location.search);
   const id = urlParams.get('id');
@@ -144,7 +141,6 @@ document.getElementById('formCliente').addEventListener('submit', async (e) => {
   for (let campo of camposObrigatorios) {
     if (!campo.value || !campo.value.trim()) {
       alert(`O campo ${campo.name} é obrigatório!`);
-      campo.focus();
       return;
     }
   }

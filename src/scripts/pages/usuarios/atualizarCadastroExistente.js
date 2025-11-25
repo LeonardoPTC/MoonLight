@@ -3,10 +3,7 @@ window.addEventListener('load', async () => {
     await includeHTML("footer", "../../include/footer.html");
 
     const radios = document.querySelectorAll('input[type="radio"]');
-    const inputCNPJ = document.getElementById('inputCNPJ');
-
     radios.forEach(radio => radio.setAttribute('disabled', 'true'));
-    if (inputCNPJ) inputCNPJ.setAttribute('disabled', 'true');
 
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
@@ -64,7 +61,6 @@ function preencherCampos(usuario) {
     let Complemento = usuario.complemento || "";
     let Cidade = usuario.cidade || "";
     let Estado = usuario.estado || 0;
-    console.log(Estado)
     let InscricaoMunicipal = usuario.inscricaoMunicipal || "";
     let InscricaoEstadual = usuario.inscricaoEstadual || "";
     let Tipo = usuario.tipo || 1;

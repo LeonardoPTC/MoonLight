@@ -4,20 +4,20 @@ window.addEventListener('load', async () => {
 
   const sidebar = document.querySelector(".sidebar")
 
-   if (sidebar) {
+  if (sidebar) {
 
-      if (sidebar.matches(':hover')) {
-        document.querySelector('#content').style.marginLeft = '270px';
-      }
-
-      sidebar.addEventListener('mouseenter', function () {
-        document.querySelector('#content').style.marginLeft = '270px';
-      });
-
-      sidebar.addEventListener('mouseleave', function () {
-        document.querySelector('#content').style.marginLeft = '200px';
-      });
+    if (sidebar.matches(':hover')) {
+      document.querySelector('#content').style.marginLeft = '270px';
     }
+
+    sidebar.addEventListener('mouseenter', function () {
+      document.querySelector('#content').style.marginLeft = '270px';
+    });
+
+    sidebar.addEventListener('mouseleave', function () {
+      document.querySelector('#content').style.marginLeft = '200px';
+    });
+  }
 });
 
 async function carregarUsuario() {
@@ -94,7 +94,6 @@ document.addEventListener('submit', async function (event) {
     };
     usuarios.forEach(f => {
       const linha = document.createElement("tr");
-      let situacao = f.situacao;
 
       linha.innerHTML = `
       <td style="text-align: center">${f.codigo}</td>

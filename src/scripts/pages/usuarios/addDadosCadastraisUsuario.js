@@ -2,11 +2,7 @@ window.addEventListener('load', async () => {
     await includeHTML("header", "../../include/header.html");
     await includeHTML("footer", "../../include/footer.html");
 
-    const tipoPessoa = document.querySelectorAll('input[name="tipo"]');
-    const formularioUsuarioFisico = document.getElementById('pessoaFisica');
-    const formularioUsuarioJuridico = document.getElementById('pessoaJuridica');
-
-    formularioUsuarioJuridico.classList.add('hidden');
+    inicializarPagina();
 });
 
 
@@ -27,7 +23,7 @@ function habilitarDivJuridica() {
 }
 
 
-document.addEventListener("DOMContentLoaded", () => {
+function inicializarPagina() {
 
     const tipoPessoa = document.getElementsByName('tipo');
     const formularioUsuarioFisico = document.getElementById('pessoaFisica');
@@ -51,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
-});
+}
 
 
 document.getElementById("formUsuario").addEventListener("submit", async (e) => {

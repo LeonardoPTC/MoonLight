@@ -1,10 +1,3 @@
-function converterDataParaBack(data) {
-    if (!data) return "";
-
-    const partes = data.split("-");
-    return partes[2] + partes[1] + partes[0];
-}
-
 document.addEventListener("DOMContentLoaded", async () => {
 
     await includeHTML("header", "../../include/header.html");
@@ -40,6 +33,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 });
 
+function converterDataParaBack(data) {
+    if (!data) return "";
+
+    const partes = data.split("-");
+    return partes[2] + partes[1] + partes[0];
+}
+
+
 async function buscarDadosUsuario(id) {
     try {
         const resposta = await fetch(`http://localhost:5164/BlueMoon/Usuarios/${id}`);
@@ -63,14 +64,6 @@ async function buscarDadosUsuario(id) {
     }
 }
 
-function desativarInputs() {
-    const inputs = document.querySelectorAll("input, select, textarea");
-
-    inputs.forEach(input => {
-        input.setAttribute("disabled", true);
-    });
-}
-
 function preencherFormulario(usuario) {
 
     document.getElementById("cargo").value = usuario.cargo;
@@ -80,8 +73,8 @@ function preencherFormulario(usuario) {
     });
 
     let dataAdmissao = usuario.admissao;
-    
-    if(dataAdmissao == "01/01/0001"){
+
+    if (dataAdmissao == "01/01/0001") {
         dataAdmissao = "Não Cadastrada"
     }
 
@@ -89,4 +82,12 @@ function preencherFormulario(usuario) {
 
     document.getElementById("HorarioInicioCargaHoraria").value = usuario.horarioInicioCargaHoraria;
     document.getElementById("HorarioFimCargaHoraria").value = usuario.horarioFimCargaHoraria;
+}
+
+function desativarInputs() {
+    const inputs = document.querySelectorAll("input, select, textarea");
+
+    inputs.forEach(input => {
+        input.setAttribute("disabled", true);
+    });
 }

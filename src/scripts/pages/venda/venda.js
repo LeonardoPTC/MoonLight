@@ -1,3 +1,6 @@
+let vendaAtual = null;
+let itens = [];
+
 window.addEventListener('load', async () => {
     await includeHTML("header", "../../include/header.html");
     await includeHTML("footer", "../../include/footer.html");
@@ -19,9 +22,6 @@ window.addEventListener('load', async () => {
     });
 
 });
-
-let vendaAtual = null;
-let itens = [];
 
 document.getElementById("selectCliente").addEventListener("change", atualizarSelects);
 document.getElementById("selectUsuario").addEventListener("change", atualizarSelects);
@@ -129,7 +129,7 @@ async function iniciarVenda() {
         };
 
         alert("Venda iniciada!");
-        document.getElementById("btnIniciarVenda").style.display =  'none';
+        document.getElementById("btnIniciarVenda").style.display = 'none';
         document.getElementById('btnCadastrarCliente').style.display = 'none';
 
         const inputs = document.querySelectorAll('#selectCliente, #selectUsuario');
@@ -234,71 +234,6 @@ async function excluirProduto() {
 
 }
 
-async function fecharVenda() {
-    if (!vendaAtual || itens.length === 0) {
-        alert("Não há venda em andamento ou produtos adicionados.");
-        return;
-    }
-
-    const dto = itens
-        .filter(item => item.quantidade > 0)
-        .map(item => ({
-            IdProduto: item.idProduto,
-            Quantidade: item.quantidade
-        }));
-    try {
-        const resposta = await fetch(`http://localhost:5164/BlueMoon/Vendas/${vendaAtual.id}/Itens`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(dto)
-        });
-
-        if (!resposta.ok) {
-            const erro = await resposta.text();
-            throw new Error(erro);
-        }
-
-        alert("Venda finalizada com sucesso!");
-
-        const dados = await resposta.json();
-        const idVenda = dados.id ?? vendaAtual.id;
-
-        localStorage.setItem("idVenda", idVenda);
-
-        window.onbeforeunload = null;
-        window.location.href = "../vendas/finalizacaoVenda.html";
-    } catch (err) {
-        alert("Erro ao adicionar produto: " + err.message);
-    }
-}
-
-async function cancelarVenda() {
-    if (!vendaAtual) {
-        alert("Não há venda em andamento.");
-        return;
-    }
-
-    try {
-        const resposta = await fetch(`http://localhost:5164/BlueMoon/Vendas/${vendaAtual.id}/Cancelar`, {
-            method: "PATCH"
-        });
-
-        if (!resposta.ok) {
-            const erro = await resposta.text();
-            throw new Error(erro);
-        }
-
-        alert("Venda cancelada com sucesso!");
-
-        window.onbeforeunload = null;
-        window.location.href = "../vendas/index.html";
-
-
-    } catch (err) {
-        alert("Erro ao cancelar venda: " + err.message);
-    }
-}
-
 async function atualizarTabela(itens) {
     try {
         const resposta = await fetch(`http://localhost:5164/BlueMoon/Produtos`);
@@ -364,5 +299,70 @@ async function verificaQuantidade(idProduto, quantidade) {
         return produto.estoque - quantidade;
     } catch {
         alert("Erro")
+    }
+}
+
+async function fecharVenda() {
+    if (!vendaAtual || itens.length === 0) {
+        alert("Não há venda em andamento ou produtos adicionados.");
+        return;
+    }
+
+    const dto = itens
+        .filter(item => item.quantidade > 0)
+        .map(item => ({
+            IdProduto: item.idProduto,
+            Quantidade: item.quantidade
+        }));
+    try {
+        const resposta = await fetch(`http://localhost:5164/BlueMoon/Vendas/${vendaAtual.id}/Itens`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(dto)
+        });
+
+        if (!resposta.ok) {
+            const erro = await resposta.text();
+            throw new Error(erro);
+        }
+
+        alert("Venda finalizada com sucesso!");
+
+        const dados = await resposta.json();
+        const idVenda = dados.id ?? vendaAtual.id;
+
+        localStorage.setItem("idVenda", idVenda);
+
+        window.onbeforeunload = null;
+        window.location.href = "../vendas/finalizacaoVenda.html";
+    } catch (err) {
+        alert("Erro ao adicionar produto: " + err.message);
+    }
+}
+
+async function cancelarVenda() {
+    if (!vendaAtual) {
+        alert("Não há venda em andamento.");
+        return;
+    }
+
+    try {
+        const resposta = await fetch(`http://localhost:5164/BlueMoon/Vendas/${vendaAtual.id}/Cancelar`, {
+            method: "PATCH"
+        });
+
+        if (!resposta.ok) {
+            const erro = await resposta.text();
+            throw new Error(erro);
+        }
+
+        alert("Venda cancelada com sucesso!");
+
+        window.onbeforeunload = null;
+        window.location.href = "../vendas/index.html";
+
+
+    } catch (err) {
+        alert("Erro ao cancelar venda: " + err.message);
     }
 }

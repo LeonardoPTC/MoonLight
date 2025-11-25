@@ -17,7 +17,6 @@ window.addEventListener('load', async () => {
 });
 
 async function carregarpessoa(id, idUsuario) {
-
     try {
         const resposta = await fetch(`http://localhost:5164/BlueMoon/Pessoas/${id}`);
         const respostaUsuario = await fetch(`http://localhost:5164/BlueMoon/Usuarios/${idUsuario}`);

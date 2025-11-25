@@ -33,6 +33,11 @@ async function carregarVenda(idVenda) {
 
     document.getElementById("selectCliente").innerHTML = `<option selected>${vendaAtual.nomeCliente}</option>`;
     document.getElementById("selectUsuario").innerHTML = `<option selected>${vendaAtual.nomeVendedor}</option>`;
+
+    window.onbeforeunload = function () {
+        return true;
+    };
+
 }
 
 async function carregarClientes() {
@@ -60,23 +65,6 @@ async function carregarProdutos() {
     }
 }
 
-async function atualizarSelects() {
-    const selectCliente = document.getElementById("selectCliente");
-    const selectUsuario = document.getElementById("selectUsuario");
-
-    const nomeClienteSelecionado = selectCliente.options[selectCliente.selectedIndex].text;
-    const nomeUsuarioSelecionado = selectUsuario.options[selectUsuario.selectedIndex].text;
-
-    const clientesFiltrados = clientes.filter(c => c.nome !== nomeUsuarioSelecionado);
-    const usuariosFiltrados = usuarios.filter(u => u.nome !== nomeClienteSelecionado);
-
-    preencherSelect("selectCliente", clientesFiltrados, "id");
-    preencherSelect("selectUsuario", usuariosFiltrados, "idUsuario");
-
-    selectCliente.value = clientesFiltrados.find(c => c.nome === nomeClienteSelecionado)?.id || "";
-    selectUsuario.value = usuariosFiltrados.find(u => u.nome === nomeUsuarioSelecionado)?.idUsuario || "";
-}
-
 function preencherSelect(id, lista, keyId) {
     const select = document.getElementById(id);
     select.innerHTML = `<option value="">Selecione uma opção...</option>`;
@@ -93,9 +81,6 @@ function bloquearSomenteClienteEVendedor() {
     document.getElementById("selectUsuario").disabled = true;
 }
 
-bloquearSomenteClienteEVendedor();
-
-
 async function adicionarProduto() {
     if (!vendaAtual) {
         alert("Inicie a venda antes de adicionar produtos.");
@@ -110,28 +95,28 @@ async function adicionarProduto() {
         return;
     }
 
-    const dto = { idProduto, quantidade };
-    const qtdDisponivel = await verificaQuantidade(dto.idProduto, dto.quantidade);
+    const produtoSelecionado = { idProduto, quantidade };
+    const qtdDisponivel = await verificaQuantidade(produtoSelecionado.idProduto, produtoSelecionado.quantidade);
     if (qtdDisponivel < 0) {
-        alert("Qauntidade de Estoque indisponível!");
+        alert("Quantidade de Estoque indisponível!");
         return;
     }
 
-    const itemExistente = itens.find(item => item.idProduto == dto.idProduto);
+    const itemExistente = itens.find(item => item.idProduto == produtoSelecionado.idProduto);
 
     if (itemExistente) {
-        let quantidadeAtualizada = itemExistente.quantidade + dto.quantidade;
-        const qtdDisponivel = await verificaQuantidade(dto.idProduto, quantidadeAtualizada);
+        let quantidadeAtualizada = itemExistente.quantidade + produtoSelecionado.quantidade;
+        const qtdDisponivel = await verificaQuantidade(produtoSelecionado.idProduto, quantidadeAtualizada);
 
         if (qtdDisponivel < 0) {
             alert("Quantidade de Estoque indisponível!");
             return;
         }
 
-        itemExistente.quantidade += dto.quantidade;
+        itemExistente.quantidade += produtoSelecionado.quantidade;
 
     } else {
-        itens.push(dto);
+        itens.push(produtoSelecionado);
     }
     await atualizarTabela(itens);
 }
@@ -149,18 +134,18 @@ async function removerProduto() {
         return;
     }
 
-    const dto = { idProduto, quantidade };
-    const itemExistente = itens.find(item => item.idProduto == dto.idProduto);
+    const produtoSelecionado = { idProduto, quantidade };
+    const itemExistente = itens.find(item => item.idProduto == produtoSelecionado.idProduto);
 
     if (itemExistente) {
-        let quantidadeAtualizada = itemExistente.quantidade - dto.quantidade;
+        let quantidadeAtualizada = itemExistente.quantidade - produtoSelecionado.quantidade;
 
         if (quantidadeAtualizada < 0) {
             alert("Quantidade para remoção inválida!");
             return;
         }
 
-        itemExistente.quantidade -= dto.quantidade;
+        itemExistente.quantidade -= produtoSelecionado.quantidade;
 
     }
 
@@ -183,7 +168,6 @@ async function excluirProduto() {
     } else {
         alert("Lista Vazia!")
     }
-
 }
 
 async function atualizarTabela(itensVenda) {
@@ -220,6 +204,22 @@ async function atualizarTabela(itensVenda) {
         <td><strong>R$ ${subtotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</strong></td>
     `;
     tabela.appendChild(trTotal);
+}
+
+function calcularSubTotal(preco, quantidade) {
+    return preco * quantidade;
+}
+
+async function verificaQuantidade(idProduto, quantidade) {
+    try {
+        const resposta = await fetch(`http://localhost:5164/BlueMoon/Produtos`);
+        const produtos = await resposta.json();
+
+        const produto = produtos.find(p => p.id === idProduto);
+        return produto.estoque - quantidade;
+    } catch (erro) {
+        alert("Erro " + erro.message)
+    }
 }
 
 async function fecharVenda() {
@@ -278,21 +278,4 @@ async function cancelarVenda() {
 
     alert("Venda cancelada com sucesso!");
     window.location.href = "../vendas/index.html";
-}
-
-
-function calcularSubTotal(preco, quantidade) {
-    return preco * quantidade;
-}
-
-async function verificaQuantidade(idProduto, quantidade) {
-    try {
-        const resposta = await fetch(`http://localhost:5164/BlueMoon/Produtos`);
-        const produtos = await resposta.json();
-
-        const produto = produtos.find(p => p.id === idProduto);
-        return produto.estoque - quantidade;
-    } catch {
-        alert("Erro")
-    }
 }

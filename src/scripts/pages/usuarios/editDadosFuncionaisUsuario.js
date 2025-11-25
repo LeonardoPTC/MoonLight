@@ -1,10 +1,3 @@
-function converterDataParaBack(data) {
-    if (!data) return "";
-
-    const partes = data.split("-");
-    return partes[2] + partes[1] + partes[0];
-}
-
 document.addEventListener("DOMContentLoaded", async () => {
 
     await includeHTML("header", "../../include/header.html");
@@ -19,16 +12,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     await buscarDadosUsuario(usuarioId);
-
-    /*const btnVoltar = document.getElementById("btnVoltar");
-
-    if (btnVoltar) {
-        btnVoltar.addEventListener("click", () => {
-            localStorage.setItem("usuarioId", usuarioId);
-            window.location.href = "../usuarios/index.html";
-        });
-    }
-        */
 
     const inputSenha = document.getElementById("senha");
     const toggleSenha = document.getElementById("toggleSenha");
@@ -57,6 +40,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         await atualizarUsuario();
     });
 });
+
+function converterDataParaBack(data) {
+    if (!data) return "";
+
+    const partes = data.split("-");
+    return partes[2] + partes[1] + partes[0];
+}
 
 async function buscarDadosUsuario(id) {
     try {
@@ -98,7 +88,6 @@ function preencherFormulario(usuario) {
     }
 
     document.getElementById("inputAdmissao").value = formatada;
-
     document.getElementById("HorarioInicioCargaHoraria").value = usuario.horarioInicioCargaHoraria;
     document.getElementById("HorarioFimCargaHoraria").value = usuario.horarioFimCargaHoraria;
 }
