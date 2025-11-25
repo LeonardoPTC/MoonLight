@@ -334,17 +334,17 @@ async function estornarVenda(idVenda) {
 
 function visualizarVenda(idVenda) {
   localStorage.setItem("idVenda", idVenda);
-  window.location.href = `../vendas/visualizarVenda.html`;
+  window.location.href = '../vendas/visualizarVenda.html';
 }
 
 function retomarVenda(idVenda) {
   localStorage.setItem("idVenda", idVenda);
-  window.location.href = `../vendas/retomarVenda.html`;
+  window.location.href = '../vendas/retomarVenda.html';
 }
 
 function finalizarVenda(idVenda) {
   localStorage.setItem("idVenda", idVenda);
-  window.location.href = `../vendas/finalizacaoVenda.html`;
+  window.location.href = '../vendas/finalizacaoVenda.html';
 }
 
 document.getElementById('toggleSearch').addEventListener('click', function () {

@@ -1,8 +1,3 @@
-window.addEventListener('load', async () => {
-    await includeHTML("header", "../../include/header.html");
-    await includeHTML("footer", "../../include/footer.html");
-});
-
 async function excluirUsuario(id) {
     const confirmar = confirm("Tem certeza que deseja excluir este Usuário?");
     if (!confirmar) {

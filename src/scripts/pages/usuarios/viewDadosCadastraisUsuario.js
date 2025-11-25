@@ -2,9 +2,8 @@ window.addEventListener('load', async () => {
     await includeHTML("header", "../../include/header.html");
     await includeHTML("footer", "../../include/footer.html");
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const idPessoa = urlParams.get('idPessoa');
-    const idUsuario = urlParams.get('idUsuario');
+    const idPessoa = localStorage.getItem("idPessoa");
+    const idUsuario = localStorage.getItem("idUsuario");
 
     if (idPessoa) {
         carregarpessoa(idPessoa, idUsuario);

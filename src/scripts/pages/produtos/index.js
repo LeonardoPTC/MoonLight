@@ -4,20 +4,20 @@ window.addEventListener('load', async () => {
 
   const sidebar = document.querySelector(".sidebar")
 
-   if (sidebar) {
+  if (sidebar) {
 
-      if (sidebar.matches(':hover')) {
-        document.querySelector('#content').style.marginLeft = '270px';
-      }
-
-      sidebar.addEventListener('mouseenter', function () {
-        document.querySelector('#content').style.marginLeft = '270px';
-      });
-
-      sidebar.addEventListener('mouseleave', function () {
-        document.querySelector('#content').style.marginLeft = '200px';
-      });
+    if (sidebar.matches(':hover')) {
+      document.querySelector('#content').style.marginLeft = '270px';
     }
+
+    sidebar.addEventListener('mouseenter', function () {
+      document.querySelector('#content').style.marginLeft = '270px';
+    });
+
+    sidebar.addEventListener('mouseleave', function () {
+      document.querySelector('#content').style.marginLeft = '200px';
+    });
+  }
 });
 
 async function carregarProdutos() {
@@ -130,11 +130,13 @@ document.getElementById('btnBaixarRelatorio').addEventListener('click', () => {
 });
 
 function editarProduto(id) {
-  window.location.href = `../produtos/editproduto.html?id=${id}`;
+  localStorage.setItem("idProduto", id);
+  window.location.href = '../produtos/editproduto.html';
 }
 
 function visualizarProduto(id) {
-  window.location.href = `../produtos/viewproduto.html?id=${id}`;
+  localStorage.setItem("idProduto", id);
+  window.location.href = '../produtos/viewproduto.html';
 }
 
 document.getElementById('toggleSearch').addEventListener('click', function () {

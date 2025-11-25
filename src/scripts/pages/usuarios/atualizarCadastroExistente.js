@@ -5,8 +5,7 @@ window.addEventListener('load', async () => {
     const radios = document.querySelectorAll('input[type="radio"]');
     radios.forEach(radio => radio.setAttribute('disabled', 'true'));
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id');
+    const id = localStorage.getItem("idClienteExistente");
     if (id) {
         carregarUsuario(id);
         localStorage.setItem("pessoaId", id);

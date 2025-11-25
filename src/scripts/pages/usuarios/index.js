@@ -126,11 +126,15 @@ document.getElementById('btnBaixarRelatorio').addEventListener('click', () => {
 });
 
 function editarUsuario(idPessoa, idUsuario) {
-  window.location.href = `../usuarios/editDadosCadastrais.html?idPessoa=${idPessoa}&idUsuario=${idUsuario}`;
+  localStorage.setItem("idPessoa", idPessoa);
+  localStorage.setItem("idUsuario", idUsuario);
+  window.location.href = '../usuarios/editDadosCadastrais.html';
 }
 
 function visualizarUsuario(idPessoa, idUsuario) {
-  window.location.href = `../usuarios/viewDadosCadastraisUsuario.html?idPessoa=${idPessoa}&idUsuario=${idUsuario}`;
+  localStorage.setItem("idPessoa", idPessoa);
+  localStorage.setItem("idUsuario", idUsuario);
+  window.location.href = '../usuarios/viewDadosCadastraisUsuario.html';
 }
 
 document.getElementById('toggleSearch').addEventListener('click', function () {

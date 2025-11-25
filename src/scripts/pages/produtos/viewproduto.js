@@ -2,8 +2,7 @@ window.addEventListener('load', async () => {
     await includeHTML("header", "../../include/header.html");
     await includeHTML("footer", "../../include/footer.html");
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id');
+    const id = localStorage.getItem("idProduto");
     console.log("ID recebido:", id);
     if (id) carregarProduto(id);
 });

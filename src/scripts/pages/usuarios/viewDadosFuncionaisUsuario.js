@@ -4,8 +4,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     await includeHTML("footer", "../../include/footer.html");
 
     const usuarioId = localStorage.getItem("usuarioId");
-    const pessoaId = localStorage.getItem("pessoaId");
-
 
     if (!usuarioId) {
         alert("Nenhum usuário selecionado para edição.");
@@ -17,7 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const btnVoltar = document.getElementById("btnVoltar");
 
     btnVoltar.addEventListener("click", () => {
-        window.location.href = `../usuarios/viewDadosCadastraisUsuario.html?idPessoa=${pessoaId}&idUsuario=${usuarioId}`;
+        window.location.href = '../usuarios/viewDadosCadastraisUsuario.html';
     });
 
     const form = document.getElementById("formUsuario");

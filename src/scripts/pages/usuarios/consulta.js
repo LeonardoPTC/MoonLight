@@ -135,5 +135,6 @@ document.getElementById('Voltar').addEventListener('click', function () {
 });
 
 function selecionarCliente(id) {
-  window.location.href = `../usuarios/atualizarCadastroExistente.html?id=${id}`;
+  localStorage.setItem("idClienteExistente", id);
+  window.location.href = '../usuarios/atualizarCadastroExistente.html';
 }

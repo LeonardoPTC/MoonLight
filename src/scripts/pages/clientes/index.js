@@ -4,20 +4,20 @@ window.addEventListener('load', async () => {
 
   const sidebar = document.querySelector(".sidebar")
 
-   if (sidebar) {
+  if (sidebar) {
 
-      if (sidebar.matches(':hover')) {
-        document.querySelector('#content').style.marginLeft = '270px';
-      }
-
-      sidebar.addEventListener('mouseenter', function () {
-        document.querySelector('#content').style.marginLeft = '270px';
-      });
-
-      sidebar.addEventListener('mouseleave', function () {
-        document.querySelector('#content').style.marginLeft = '200px';
-      });
+    if (sidebar.matches(':hover')) {
+      document.querySelector('#content').style.marginLeft = '270px';
     }
+
+    sidebar.addEventListener('mouseenter', function () {
+      document.querySelector('#content').style.marginLeft = '270px';
+    });
+
+    sidebar.addEventListener('mouseleave', function () {
+      document.querySelector('#content').style.marginLeft = '200px';
+    });
+  }
 });
 
 async function carregarClientes() {
@@ -25,7 +25,7 @@ async function carregarClientes() {
   const clientes = await resposta.json();
 
   const tbody = document.querySelector("#tabela-clientes tbody");
-  tbody.innerHTML = ""; 
+  tbody.innerHTML = "";
 
   clientes.forEach(c => {
     const linha = document.createElement("tr");
@@ -115,11 +115,13 @@ document.getElementById('btnBaixarRelatorio').addEventListener('click', () => {
 });
 
 function editarCliente(id) {
-  window.location.href = `../clientes/editcliente.html?id=${id}`;
+  localStorage.setItem("idCliente", id);
+  window.location.href = '../clientes/editcliente.html';
 }
 
 function visualizarCliente(id) {
-  window.location.href = `../clientes/viewcliente.html?id=${id}`;
+  localStorage.setItem("idCliente", id);
+  window.location.href = '../clientes/viewcliente.html';
 }
 
 document.getElementById('toggleSearch').addEventListener('click', function () {

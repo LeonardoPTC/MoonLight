@@ -1,12 +1,11 @@
 window.addEventListener('load', async () => {
   await includeHTML("header", "../../include/header.html");
   await includeHTML("footer", "../../include/footer.html");
-  
+
   const radios = document.querySelectorAll('input[type="radio"]');
   radios.forEach(radio => radio.setAttribute('disabled', 'true'));
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const id = urlParams.get('id');
+  const id = localStorage.getItem("idCliente");
   if (id) carregarCliente(id);
 });
 
