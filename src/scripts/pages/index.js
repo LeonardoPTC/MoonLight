@@ -1,21 +1,20 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const checkSidebarLoaded = setInterval(function () {
-        const sidebar = document.querySelector('.sidebar');
-        if (sidebar) {
-            clearInterval(checkSidebarLoaded);
+window.addEventListener("load", async () => {
+  await includeHTML("header", "../include/header.html");
+  await includeHTML("footer", "../include/footer.html");
 
+  const sidebar = document.querySelector(".sidebar");
 
-            if (sidebar.matches(':hover')) {
-                document.querySelector('#content').style.marginLeft = '320px';
-            }
+  if (sidebar) {
+    if (sidebar.matches(":hover")) {
+      document.querySelector("#content").style.marginLeft = "290px";
+    }
 
-            sidebar.addEventListener('mouseenter', function () {
-                document.querySelector('#content').style.marginLeft = '320px';
-            });
+    sidebar.addEventListener("mouseenter", function () {
+      document.querySelector("#content").style.marginLeft = "290px";
+    });
 
-            sidebar.addEventListener('mouseleave', function () {
-                document.querySelector('#content').style.marginLeft = '200px';
-            });
-        }
-    }, 100);
+    sidebar.addEventListener("mouseleave", function () {
+      document.querySelector("#content").style.marginLeft = "290px";
+    });
+  }
 });

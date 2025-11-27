@@ -3,14 +3,10 @@ window.addEventListener('load', async () => {
     await includeHTML("footer", "../../include/footer.html");
 
     const radios = document.querySelectorAll('input[type="radio"]');
-    const inputCNPJ = document.getElementById('inputCNPJ');
-
     radios.forEach(radio => radio.setAttribute('disabled', 'true'));
-    if (inputCNPJ) inputCNPJ.setAttribute('disabled', 'true');
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const idPessoa = urlParams.get('idPessoa');
-    const idUsuario = urlParams.get('idUsuario');
+    const idPessoa = localStorage.getItem("idPessoa");
+    const idUsuario = localStorage.getItem("idUsuario");
 
     if (idPessoa) {
         carregarUsuario(idPessoa);
@@ -165,8 +161,6 @@ document.getElementById('formUsuario').addEventListener('submit', async (e) => {
 
     dados.id = usuario.id;
     dados.situacao = usuario.situacao;
-
-    console.log(dados);
 
     const camposObrigatorios = containerAtivo.querySelectorAll('[data-required]');
     for (let campo of camposObrigatorios) {

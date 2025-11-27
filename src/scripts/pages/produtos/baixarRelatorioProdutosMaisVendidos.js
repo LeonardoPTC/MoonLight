@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return `${partes[2]}-${partes[1]}-${partes[0]}`;
     }
 
-    const form = document.getElementById("formClientes");
+    const form = document.getElementById("formProdutos");
     if (!form) return;
 
     form.addEventListener("submit", async (e) => {
@@ -17,13 +17,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const dataInicio = converterDataParaBack(inicio);
         const dataFim = converterDataParaBack(fim);
 
-        const dto = { dataInicio, dataFim };
-
+        const dto = {dataInicio, dataFim};
+        
         try {
-            const resposta = await fetch("http://localhost:5164/BlueMoon/Relatorios/PessoasQueMaisCompraram_R", {
+            const resposta = await fetch("http://localhost:5164/BlueMoon/Relatorios/ProdutosMaisVendidos_R", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(dto) 
+                headers: {"Content-Type": "application/json" },
+                body: JSON.stringify(dto)
             });
 
             if (!resposta.ok) {
@@ -35,12 +35,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const blob = await resposta.blob();
             const link = document.createElement("a");
             link.href = URL.createObjectURL(blob);
-            link.download = "RelatorioClientesQueMaisCompraram.pdf";
+            link.download = "RelatorioProdutosMaisVendidos.pdf";
             link.click();
             URL.revokeObjectURL(link.href);
 
         } catch (erro) {
-            console.error(erro);
             alert("Erro ao conectar com servidor.");
         }
     });

@@ -1,103 +1,105 @@
 document.addEventListener("DOMContentLoaded", () => {
+  function converterDataParaBack(data) {
+    if (!data) return "";
 
-    function converterDataParaBack(data) {
-        if (!data) return "";
+    const partes = data.split("-");
+    return partes[2] + partes[1] + partes[0];
+  }
 
-        const partes = data.split("-");
-        return partes[2] + partes[1] + partes[0];
-    }
+  const pessoaId = localStorage.getItem("pessoaId");
 
-    const pessoaId = localStorage.getItem("pessoaId");
-    console.log("ID da pessoa carregado:", pessoaId);
+  const inputSenha = document.getElementById("senha");
+  const toggleSenha = document.getElementById("toggleSenha");
+  const iconeSenha = document.getElementById("iconeSenha");
 
-    if (!pessoaId) {
-        console.warn("Nenhuma pessoa foi selecionada antes de entrar nesta tela.");
-    }
-
-    const inputSenha = document.getElementById("senha");
-    const toggleSenha = document.getElementById("toggleSenha");
-    const iconeSenha = document.getElementById("iconeSenha");
-
-
-
-    if (inputSenha && toggleSenha && iconeSenha) {
+  if (inputSenha && toggleSenha && iconeSenha) {
+    iconeSenha.style = "width: 22px";
+    toggleSenha.addEventListener("click", () => {
+      if (inputSenha.type === "password") {
+        inputSenha.type = "text";
+        iconeSenha.src = "../../assets/olhoFechado.png";
         iconeSenha.style = "width: 22px";
-        toggleSenha.addEventListener("click", () => {
-            if (inputSenha.type === "password") {
-                inputSenha.type = "text";
-                iconeSenha.src = "../../assets/olhoFechado.png";
-                iconeSenha.style = "width: 22px";
-                iconeSenha.alt = "Ocultar senha";
-            } else {
-                inputSenha.type = "password";
-                iconeSenha.src = "../../assets/olhoAberto.png";
-                iconeSenha.style = "width: 22px";
-                iconeSenha.alt = "Mostrar Senha"
-            }
-        });
-    }
+        iconeSenha.alt = "Ocultar senha";
+      } else {
+        inputSenha.type = "password";
+        iconeSenha.src = "../../assets/olhoAberto.png";
+        iconeSenha.style = "width: 22px";
+        iconeSenha.alt = "Mostrar Senha";
+      }
+    });
+  }
 
+  const form = document.getElementById("formUsuario");
 
-    const form = document.getElementById("formUsuario");
+  if (!form) {
+    return;
+  }
 
-    if (!form) {
-        console.error("Formulário de usuário não encontrado.");
-        return;
-    }
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-    form.addEventListener("submit", async (e) => {
-        e.preventDefault();
+    const Login = document.getElementById("inputEmail").value;
+    const Senha = document.getElementById("senha").value;
+    const Cargo = document.getElementById("cargo").value;
+    const Salario = document.getElementById("inputSalario").value;
+    const Admissao = document.getElementById("inputAdmissao").value;
+    const AdmissaoConvertida = converterDataParaBack(Admissao);
 
+    const HorarioInicioCargaHoraria = document.querySelector(
+      "input[name='HorarioInicioCargaHoraria']"
+    ).value;
 
-        const Login = document.getElementById("inputEmail").value;
-        const Senha = document.getElementById("senha").value;
-        const Cargo = document.getElementById("cargo").value;
-        const Salario = document.getElementById("inputSalario").value;
-        const Admissao = document.getElementById("inputAdmissao").value;
-        const AdmissaoConvertida = converterDataParaBack(Admissao);
+    const HorarioFimCargaHoraria = document.querySelector(
+      "input[name='HorarioFimCargaHoraria']"
+    ).value;
 
-        const HorarioInicioCargaHoraria =
-            document.querySelector("input[name='HorarioInicioCargaHoraria']").value;
+    const dto = {
+      login: Login,
+      senha: Senha,
+      cargo: Number(Cargo),
+      salario: Number(Salario),
+      admissao: AdmissaoConvertida,
+      horarioInicioCargaHoraria: HorarioInicioCargaHoraria.toString(),
+      horarioFimCargaHoraria: HorarioFimCargaHoraria.toString(),
+      idPessoa: pessoaId,
+    };
 
-        const HorarioFimCargaHoraria =
-            document.querySelector("input[name='HorarioFimCargaHoraria']").value;
+    try {
+      const resposta = await fetch("http://localhost:5164/BlueMoon/Usuarios", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dto),
+      });
 
-        const dto = {
-            login: Login,
-            senha: Senha,
-            cargo: Number(Cargo),
-            salario: Number(Salario),
-            admissao: AdmissaoConvertida,
-            horarioInicioCargaHoraria: HorarioInicioCargaHoraria.toString(),
-            horarioFimCargaHoraria: HorarioFimCargaHoraria.toString(),
-            idPessoa: pessoaId
-        };
-
-        console.log("DTO enviado:", dto);
+      if (!resposta.ok) {
+        let detalhesErro = "";
 
         try {
-            const resposta = await fetch("http://localhost:5164/BlueMoon/Usuarios", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(dto)
-            });
+          const json = JSON.parse(await resposta.text());
 
-            const body = await resposta.text();
-
-            if (!resposta.ok) {
-                alert("Erro ao cadastrar usuário: " + body);
-                return;
+          if (json.errors) {
+            for (const campo in json.errors) {
+              detalhesErro += `${campo}: ${json.errors[campo].join(", ")}\n`;
             }
-
-            alert("Usuário cadastrado com sucesso!");
-            window.location.href = "../usuarios/index.html";
-
-        } catch (erro) {
-            console.error(erro);
-            alert("Erro ao conectar com servidor.");
+          } else if (json.title) {
+            detalhesErro = json.title;
+          } else {
+            detalhesErro = "Erro desconhecido do servidor.";
+          }
+        } catch {
+          detalhesErro = "Erro ao interpretar resposta do servidor.";
         }
-    });
 
+        alert("Erro ao cadastrar usuário:\n\n" + detalhesErro);
+        return;
+      }
+
+      alert("Usuário cadastrado com sucesso!");
+      window.location.href = "../usuarios/index.html";
+    } catch (erro) {
+      alert("Erro ao conectar com servidor.");
+    }
+  });
 });

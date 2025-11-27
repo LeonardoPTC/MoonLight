@@ -17,10 +17,10 @@
         class="btn btn-primary shadow body-tertiary rounded position-absolute"
         data-toggle="tooltip"
         data-placement="top"
-        title="Baixar Relatório"
+        title="Gerar Relatório"
       >
-        <img src="../../assets/Download.png" alt="Baixar Relatório" />
-        Gerar Relatório
+        <img src="../../assets/Download.png" alt="Gerar Relatório" />
+        Gerar Relatório - Produtos vendidos
       </button>
 
       <div
@@ -95,12 +95,12 @@
             class="btn btn-success"
             data-toggle="tooltip"
             data-placement="top"
-            title="Adicionar Novo Produto"
+            title="Cadastrar Novo Produto"
             onclick="window.location.href='../produtos/addproduto.html'"
           >
             <img
               src="../../assets/AddProduto.png"
-              alt="Adicionar Novo Produto"
+              alt="Cadastrar Novo Produto"
             />
           </button>
         </div>
@@ -123,11 +123,7 @@
 
     <div id="footer"></div>
     <script src="../../scripts/includes.js"></script>
-    <script>
-      await includeHTML("header", "../../include/header.html");
-      await includeHTML("footer", "../../include/footer.html");
-    </script>
-    <script src="../../scripts/pages/produto/index.js"></script>
-    <script src="../../scripts/pages/produto/excluirproduto.js"></script>
+    <script src="../../scripts/pages/produtos/index.js"></script>
+    <script src="../../scripts/pages/produtos/excluirproduto.js"></script>
   </body>
 </html>

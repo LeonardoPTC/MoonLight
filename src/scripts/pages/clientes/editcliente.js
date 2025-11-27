@@ -1,36 +1,37 @@
-window.addEventListener('load', async () => {
+window.addEventListener("load", async () => {
   await includeHTML("header", "../../include/header.html");
   await includeHTML("footer", "../../include/footer.html");
-  
+
   const radios = document.querySelectorAll('input[type="radio"]');
-  const inputCNPJ = document.getElementById('inputCNPJ');
+  radios.forEach((radio) => radio.setAttribute("disabled", "true"));
 
-  radios.forEach(radio => radio.setAttribute('disabled', 'true'));
-  if (inputCNPJ) inputCNPJ.setAttribute('disabled', 'true');
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const id = urlParams.get('id');
+  const id = localStorage.getItem("idCliente");
   if (id) carregarCliente(id);
 });
 
 function habilitarDivFisica() {
-  document.querySelectorAll('#pessoaFisica input, #pessoaFisica select')
-    .forEach(el => el.disabled = false);
-  document.querySelectorAll('#pessoaJuridica input, #pessoaJuridica select')
-    .forEach(el => el.disabled = true);
+  document
+    .querySelectorAll("#pessoaFisica input, #pessoaFisica select")
+    .forEach((el) => (el.disabled = false));
+  document
+    .querySelectorAll("#pessoaJuridica input, #pessoaJuridica select")
+    .forEach((el) => (el.disabled = true));
 }
 
 function habilitarDivJuridica() {
-  document.querySelectorAll('#pessoaJuridica input, #pessoaJuridica select')
-    .forEach(el => el.disabled = false);
-  document.querySelectorAll('#pessoaFisica input, #pessoaFisica select')
-    .forEach(el => el.disabled = true);
+  document
+    .querySelectorAll("#pessoaJuridica input, #pessoaJuridica select")
+    .forEach((el) => (el.disabled = false));
+  document
+    .querySelectorAll("#pessoaFisica input, #pessoaFisica select")
+    .forEach((el) => (el.disabled = true));
 }
 
 async function carregarCliente(id) {
-
   try {
-    const resposta = await fetch(`http://localhost:5164/BlueMoon/Pessoas/${id}`);
+    const resposta = await fetch(
+      `http://localhost:5164/BlueMoon/Pessoas/${id}`
+    );
 
     if (!resposta.ok) {
       const erro = await resposta.text();
@@ -45,7 +46,6 @@ async function carregarCliente(id) {
 }
 
 function preencherCampos(cliente) {
-
   for (let campo in cliente) {
     if (cliente[campo] === "N/D") cliente[campo] = "";
   }
@@ -89,9 +89,7 @@ function preencherCampos(cliente) {
 
     const selectEstadoFisico = document.getElementById("estadoFisico");
     selectEstadoFisico.value = Estado && Estado !== 0 ? Estado : 0;
-
   } else {
-
     pessoaFisica.classList.add("hidden");
     pessoaJuridica.classList.remove("hidden");
     document.getElementById("ClienteJuridico").checked = true;
@@ -99,7 +97,8 @@ function preencherCampos(cliente) {
     habilitarDivJuridica();
 
     document.getElementById("inputCNPJ").value = CNPJ;
-    document.getElementById("inputInscricaoMunicipal").value = InscricaoMunicipal;
+    document.getElementById("inputInscricaoMunicipal").value =
+      InscricaoMunicipal;
     document.getElementById("inputInscricaoEstadual").value = InscricaoEstadual;
     document.getElementById("inputNomeJuridico").value = Nome;
     document.getElementById("inputTelefoneJuridico").value = Telefone;
@@ -116,16 +115,16 @@ function preencherCampos(cliente) {
   }
 }
 
-document.getElementById('formCliente').addEventListener('submit', async (e) => {
+document.getElementById("formCliente").addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const isPessoaFisica = document.getElementById('ClienteFisico').checked;
+  const isPessoaFisica = document.getElementById("ClienteFisico").checked;
   const containerAtivo = isPessoaFisica
-    ? document.getElementById('pessoaFisica')
-    : document.getElementById('pessoaJuridica');
+    ? document.getElementById("pessoaFisica")
+    : document.getElementById("pessoaJuridica");
 
   const dados = {};
-  containerAtivo.querySelectorAll('input, select').forEach(el => {
+  containerAtivo.querySelectorAll("input, select").forEach((el) => {
     if (el.name) {
       if (el.name === "Estado") {
         dados[el.name] = el.value === "0" ? 0 : parseInt(el.value);
@@ -138,13 +137,10 @@ document.getElementById('formCliente').addEventListener('submit', async (e) => {
   dados.id = cliente.id;
   dados.situacao = cliente.situacao;
 
-  console.log(dados);
-
-  const camposObrigatorios = containerAtivo.querySelectorAll('[data-required]');
+  const camposObrigatorios = containerAtivo.querySelectorAll("[data-required]");
   for (let campo of camposObrigatorios) {
     if (!campo.value || !campo.value.trim()) {
       alert(`O campo ${campo.name} é obrigatório!`);
-      campo.focus();
       return;
     }
   }
@@ -153,7 +149,7 @@ document.getElementById('formCliente').addEventListener('submit', async (e) => {
     const resposta = await fetch("http://localhost:5164/BlueMoon/Pessoas", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(dados)
+      body: JSON.stringify(dados),
     });
 
     if (resposta.ok) {

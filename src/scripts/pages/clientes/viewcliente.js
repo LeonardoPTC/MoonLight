@@ -2,8 +2,7 @@ window.addEventListener('load', async () => {
     await includeHTML("header", "../../include/header.html");
     await includeHTML("footer", "../../include/footer.html");
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id');
+    const id = localStorage.getItem("idCliente");
     if (id) carregarCliente(id);
 });
 
@@ -18,7 +17,6 @@ async function carregarCliente(id) {
         }
 
         cliente = await resposta.json();
-        console.log(cliente);
         preencherCampos(cliente);
     } catch (err) {
         alert("Erro na conexão: " + err.message);

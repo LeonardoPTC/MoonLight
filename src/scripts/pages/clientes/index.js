@@ -1,11 +1,32 @@
+window.addEventListener("load", async () => {
+  await includeHTML("header", "../../include/header.html");
+  await includeHTML("footer", "../../include/footer.html");
+
+  const sidebar = document.querySelector(".sidebar");
+
+  if (sidebar) {
+    if (sidebar.matches(":hover")) {
+      document.querySelector("#content").style.marginLeft = "270px";
+    }
+
+    sidebar.addEventListener("mouseenter", function () {
+      document.querySelector("#content").style.marginLeft = "270px";
+    });
+
+    sidebar.addEventListener("mouseleave", function () {
+      document.querySelector("#content").style.marginLeft = "100px";
+    });
+  }
+});
+
 async function carregarClientes() {
   const resposta = await fetch("http://localhost:5164/BlueMoon/Pessoas");
   const clientes = await resposta.json();
 
   const tbody = document.querySelector("#tabela-clientes tbody");
-  tbody.innerHTML = ""; 
+  tbody.innerHTML = "";
 
-  clientes.forEach(c => {
+  clientes.forEach((c) => {
     const linha = document.createElement("tr");
 
     linha.innerHTML = `
@@ -26,50 +47,30 @@ async function carregarClientes() {
 
 carregarClientes();
 
-document.addEventListener('DOMContentLoaded', function () {
-  const checkSidebarLoaded = setInterval(function () {
-    const sidebar = document.querySelector('.sidebar');
-    if (sidebar) {
-      clearInterval(checkSidebarLoaded);
-
-      if (sidebar.matches(':hover')) {
-        document.querySelector('#content').style.marginLeft = '310px';
-      }
-
-      sidebar.addEventListener('mouseenter', function () {
-        document.querySelector('#content').style.marginLeft = '310px';
-      });
-
-      sidebar.addEventListener('mouseleave', function () {
-        document.querySelector('#content').style.marginLeft = '200px';
-      });
-    }
-  }, 100);
-});
-
-
-
-document.addEventListener('submit', async function (event) {
+document.addEventListener("submit", async function (event) {
   event.preventDefault();
 
-  const codigo = document.getElementById('filterCodigo').value.trim();
-  const nome = document.getElementById('filterNome').value;
-  const telefone = document.getElementById('filterTelefone').value;
-  const documento = document.getElementById('filterDocumento').value;
+  const codigo = document.getElementById("filterCodigo").value.trim();
+  const nome = document.getElementById("filterNome").value;
+  const telefone = document.getElementById("filterTelefone").value;
+  const documento = document.getElementById("filterDocumento").value;
 
   const dto = {
     codigo: codigo ? parseInt(codigo) : 0,
     nome: nome.trim(),
     telefone: telefone,
-    documento: documento
+    documento: documento,
   };
 
   try {
-    const resposta = await fetch("http://localhost:5164/BlueMoon/Pessoas/Search", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(dto)
-    });
+    const resposta = await fetch(
+      "http://localhost:5164/BlueMoon/Pessoas/Search",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dto),
+      }
+    );
 
     if (!resposta.ok) {
       alert("Cliente não Encontrado!");
@@ -80,7 +81,7 @@ document.addEventListener('submit', async function (event) {
 
     const tbody = document.querySelector("#tabela-clientes tbody");
     tbody.innerHTML = "";
-    clientes.forEach(c => {
+    clientes.forEach((c) => {
       const linha = document.createElement("tr");
       linha.innerHTML = `
       <td style="text-align: center">${c.codigo}</td>
@@ -95,39 +96,40 @@ document.addEventListener('submit', async function (event) {
       </td>
     `;
       tbody.appendChild(linha);
-    })
-
+    });
   } catch (erro) {
     alert("Erro ao aplicar filtro: " + erro.message);
   }
 });
 
-document.getElementById('limparFiltros').addEventListener('click', function () {
+document.getElementById("limparFiltros").addEventListener("click", function () {
   carregarClientes();
-  document.getElementById('filterCodigo').value = "";
-  document.getElementById('filterNome').value = "";
-  document.getElementById('filterTelefone').value = "";
-  document.getElementById('filterDocumento').value = "";
+  document.getElementById("filterCodigo").value = "";
+  document.getElementById("filterNome").value = "";
+  document.getElementById("filterTelefone").value = "";
+  document.getElementById("filterDocumento").value = "";
 });
 
-document.getElementById('btnBaixarRelatorio').addEventListener('click', () => {
+document.getElementById("btnBaixarRelatorio").addEventListener("click", () => {
   window.location.href = `../clientes/relatorioClientesQueMaisCompraram.html`;
 });
 
 function editarCliente(id) {
-  window.location.href = `../clientes/editcliente.html?id=${id}`;
+  localStorage.setItem("idCliente", id);
+  window.location.href = "../clientes/editcliente.html";
 }
 
 function visualizarCliente(id) {
-  window.location.href = `../clientes/viewcliente.html?id=${id}`;
+  localStorage.setItem("idCliente", id);
+  window.location.href = "../clientes/viewcliente.html";
 }
 
-document.getElementById('toggleSearch').addEventListener('click', function () {
-  const filterBar = document.getElementById('filterBar');
-  filterBar.classList.toggle('expanded');
+document.getElementById("toggleSearch").addEventListener("click", function () {
+  const filterBar = document.getElementById("filterBar");
+  filterBar.classList.toggle("expanded");
 });
 
-document.getElementById('fecharFiltros').addEventListener('click', function () {
-  const filterBar = document.getElementById('filterBar');
-  filterBar.classList.remove('expanded');
+document.getElementById("fecharFiltros").addEventListener("click", function () {
+  const filterBar = document.getElementById("filterBar");
+  filterBar.classList.remove("expanded");
 });

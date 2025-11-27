@@ -1,18 +1,9 @@
-function converterDataParaBack(data) {
-    if (!data) return "";
-
-    const partes = data.split("-");
-    return partes[2] + partes[1] + partes[0];
-}
-
 document.addEventListener("DOMContentLoaded", async () => {
 
     await includeHTML("header", "../../include/header.html");
     await includeHTML("footer", "../../include/footer.html");
 
     const usuarioId = localStorage.getItem("usuarioId");
-    const pessoaId = localStorage.getItem("pessoaId");
-
 
     if (!usuarioId) {
         alert("Nenhum usuário selecionado para edição.");
@@ -24,13 +15,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     const btnVoltar = document.getElementById("btnVoltar");
 
     btnVoltar.addEventListener("click", () => {
-        window.location.href = `../usuarios/viewDadosCadastraisUsuario.html?idPessoa=${pessoaId}&idUsuario=${usuarioId}`;
+        window.location.href = '../usuarios/viewDadosCadastraisUsuario.html';
     });
 
     const form = document.getElementById("formUsuario");
 
     if (!form) {
-        console.error("Formulário de usuário não encontrado.");
         return;
     }
 
@@ -39,6 +29,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         await atualizarUsuario();
     });
 });
+
+function converterDataParaBack(data) {
+    if (!data) return "";
+
+    const partes = data.split("-");
+    return partes[2] + partes[1] + partes[0];
+}
+
 
 async function buscarDadosUsuario(id) {
     try {
@@ -49,7 +47,6 @@ async function buscarDadosUsuario(id) {
         }
 
         const usuario = await resposta.json();
-        console.log(usuario)
 
         preencherFormulario(usuario);
 
@@ -58,17 +55,8 @@ async function buscarDadosUsuario(id) {
         desativarInputs();
 
     } catch (erro) {
-        console.error("Erro:", erro);
         alert("Não foi possível carregar os dados do usuário.");
     }
-}
-
-function desativarInputs() {
-    const inputs = document.querySelectorAll("input, select, textarea");
-
-    inputs.forEach(input => {
-        input.setAttribute("disabled", true);
-    });
 }
 
 function preencherFormulario(usuario) {
@@ -80,8 +68,8 @@ function preencherFormulario(usuario) {
     });
 
     let dataAdmissao = usuario.admissao;
-    
-    if(dataAdmissao == "01/01/0001"){
+
+    if (dataAdmissao == "01/01/0001") {
         dataAdmissao = "Não Cadastrada"
     }
 
@@ -89,4 +77,12 @@ function preencherFormulario(usuario) {
 
     document.getElementById("HorarioInicioCargaHoraria").value = usuario.horarioInicioCargaHoraria;
     document.getElementById("HorarioFimCargaHoraria").value = usuario.horarioFimCargaHoraria;
+}
+
+function desativarInputs() {
+    const inputs = document.querySelectorAll("input, select, textarea");
+
+    inputs.forEach(input => {
+        input.setAttribute("disabled", true);
+    });
 }

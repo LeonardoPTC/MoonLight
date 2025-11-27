@@ -2,9 +2,8 @@ window.addEventListener('load', async () => {
     await includeHTML("header", "../../include/header.html");
     await includeHTML("footer", "../../include/footer.html");
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const idPessoa = urlParams.get('idPessoa');
-    const idUsuario = urlParams.get('idUsuario');
+    const idPessoa = localStorage.getItem("idPessoa");
+    const idUsuario = localStorage.getItem("idUsuario");
 
     if (idPessoa) {
         carregarpessoa(idPessoa, idUsuario);
@@ -17,7 +16,6 @@ window.addEventListener('load', async () => {
 });
 
 async function carregarpessoa(id, idUsuario) {
-
     try {
         const resposta = await fetch(`http://localhost:5164/BlueMoon/Pessoas/${id}`);
         const respostaUsuario = await fetch(`http://localhost:5164/BlueMoon/Usuarios/${idUsuario}`);
@@ -91,6 +89,9 @@ function preencherCampos(pessoa, usuario) {
         pessoaFisica.classList.add("hidden");
         pessoaJuridica.classList.remove("hidden");
         document.getElementById("UsuarioJuridico").checked = true;
+        document.getElementById("content").style.height = "830px";
+        document.getElementById("content").style.marginTop = "72px";
+        document.getElementById("buttons").className = "row mt-3";
 
         document.getElementById("inputCodigoJuridico").value = codigo;
         document.getElementById("inputCNPJ").value = documento;

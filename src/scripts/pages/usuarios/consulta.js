@@ -1,51 +1,48 @@
-async function carregarClientes() {
-  const resposta = await fetch("http://localhost:5164/BlueMoon/Pessoas");
-  const clientes = await resposta.json();
+window.addEventListener("load", async () => {
+  await includeHTML("header", "../../include/header.html");
+  await includeHTML("footer", "../../include/footer.html");
 
-  const tbody = document.querySelector("#tabela-clientes tbody");
-  tbody.innerHTML = ""; 
-}
+  const sidebar = document.querySelector(".sidebar");
 
-document.addEventListener('DOMContentLoaded', function () {
-    const checkSidebarLoaded = setInterval(function () {
-        const sidebar = document.querySelector('.sidebar');
-        if (sidebar) {
-            clearInterval(checkSidebarLoaded);
+  if (sidebar) {
+    if (sidebar.matches(":hover")) {
+      document.querySelector("#content").style.marginLeft = "270px";
+    }
 
-            sidebar.addEventListener('mouseenter', function () {
-                document.querySelector('#content').style.marginLeft = '310px';
-            });
+    sidebar.addEventListener("mouseenter", function () {
+      document.querySelector("#content").style.marginLeft = "270px";
+    });
 
-            sidebar.addEventListener('mouseleave', function () {
-                document.querySelector('#content').style.marginLeft = '187px';
-            });
-        }
-    }, 100);
+    sidebar.addEventListener("mouseleave", function () {
+      document.querySelector("#content").style.marginLeft = "100px";
+    });
+  }
+
+  carregarClientes();
 });
 
-
-
-document.addEventListener('submit', async function (event) {
-  event.preventDefault();
-
-  const codigo = document.getElementById('filterCodigo').value.trim();
-  const nome = document.getElementById('filterNome').value;
-  const telefone = document.getElementById('filterTelefone').value;
-  const documento = document.getElementById('filterDocumento').value;
+async function carregarClientes() {
+  const codigo = document.getElementById("filterCodigo").value.trim();
+  const nome = document.getElementById("filterNome").value;
+  const telefone = document.getElementById("filterTelefone").value;
+  const documento = document.getElementById("filterDocumento").value;
 
   const dto = {
     codigo: codigo ? parseInt(codigo) : 0,
     nome: nome.trim(),
     telefone: telefone,
-    documento: documento
+    documento: documento,
   };
 
   try {
-    const resposta = await fetch("http://localhost:5164/BlueMoon/Pessoas/Search-No-Users", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(dto)
-    });
+    const resposta = await fetch(
+      "http://localhost:5164/BlueMoon/Pessoas/Search-No-Users",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dto),
+      }
+    );
 
     if (!resposta.ok) {
       alert("Cliente não Encontrado!");
@@ -56,9 +53,64 @@ document.addEventListener('submit', async function (event) {
 
     const tbody = document.querySelector("#tabela-clientes tbody");
     tbody.innerHTML = "";
-    clientes.forEach(c => {
+    clientes.forEach((c) => {
       const linha = document.createElement("tr");
       linha.innerHTML = `
+      <td style="text-align: center">${c.codigo}</td>
+      <td style="text-align: center">${c.nome}</td>
+      <td style="text-align: center">${c.telefone}</td>
+      <td style="text-align: center">${c.cidade}</td>
+      <td style="text-align: center">${c.endereco}</td>
+      <td class="text-center">
+          <button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Selecionar Cliente" onclick="selecionarCliente('${c.id}')"><img src="../../assets/Selecionar.png"></button>
+      </td>
+    `;
+      tbody.appendChild(linha);
+    });
+  } catch (erro) {
+    alert("Erro ao aplicar filtro: " + erro.message);
+  }
+}
+
+document
+  .getElementById("formPesquisa")
+  .addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const codigo = document.getElementById("filterCodigo").value.trim();
+    const nome = document.getElementById("filterNome").value;
+    const telefone = document.getElementById("filterTelefone").value;
+    const documento = document.getElementById("filterDocumento").value;
+
+    const dto = {
+      codigo: codigo ? parseInt(codigo) : 0,
+      nome: nome.trim(),
+      telefone: telefone,
+      documento: documento,
+    };
+
+    try {
+      const resposta = await fetch(
+        "http://localhost:5164/BlueMoon/Pessoas/Search-No-Users",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(dto),
+        }
+      );
+
+      if (!resposta.ok) {
+        alert("Cliente não Encontrado!");
+        return;
+      }
+
+      const clientes = await resposta.json();
+
+      const tbody = document.querySelector("#tabela-clientes tbody");
+      tbody.innerHTML = "";
+      clientes.forEach((c) => {
+        const linha = document.createElement("tr");
+        linha.innerHTML = `
       <td>${c.codigo}</td>
       <td>${c.nome}</td>
       <td>${c.telefone}</td>
@@ -68,26 +120,26 @@ document.addEventListener('submit', async function (event) {
           <button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Selecionar Cliente" onclick="selecionarCliente('${c.id}')"><img src="../../assets/Selecionar.png"></button>
       </td>
     `;
-      tbody.appendChild(linha);
-    })
+        tbody.appendChild(linha);
+      });
+    } catch (erro) {
+      alert("Erro ao aplicar filtro: " + erro.message);
+    }
+  });
 
-  } catch (erro) {
-    alert("Erro ao aplicar filtro: " + erro.message);
-  }
-});
-
-document.getElementById('limparFiltros').addEventListener('click', function () {
+document.getElementById("limparFiltros").addEventListener("click", function () {
+  document.getElementById("filterCodigo").value = "";
+  document.getElementById("filterNome").value = "";
+  document.getElementById("filterTelefone").value = "";
+  document.getElementById("filterDocumento").value = "";
   carregarClientes();
-  document.getElementById('filterCodigo').value = "";
-  document.getElementById('filterNome').value = "";
-  document.getElementById('filterTelefone').value = "";
-  document.getElementById('filterDocumento').value = "";
 });
 
-document.getElementById('Voltar').addEventListener('click', function () { 
-            window.location.href = "../usuarios/index.html";
+document.getElementById("Voltar").addEventListener("click", function () {
+  window.location.href = "../usuarios/index.html";
 });
 
 function selecionarCliente(id) {
-  window.location.href = `../usuarios/atualizarCadastroExistente.html?id=${id}`;
+  localStorage.setItem("idClienteExistente", id);
+  window.location.href = "../usuarios/atualizarCadastroExistente.html";
 }

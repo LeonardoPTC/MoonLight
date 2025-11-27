@@ -1,3 +1,6 @@
+let vendaAtual = null;
+let itens = [];
+
 window.addEventListener('load', async () => {
     await includeHTML("header", "../../include/header.html");
     await includeHTML("footer", "../../include/footer.html");
@@ -20,9 +23,6 @@ window.addEventListener('load', async () => {
 
 });
 
-let vendaAtual = null;
-let itens = [];
-
 document.getElementById("selectCliente").addEventListener("change", atualizarSelects);
 document.getElementById("selectUsuario").addEventListener("change", atualizarSelects);
 
@@ -34,7 +34,6 @@ async function carregarClientes() {
             throw new Error("Erro ao buscar clientes");
         }
         clientes = await resposta.json();
-        console.log(clientes);
         preencherSelect("selectCliente", clientes, "id");
     } catch (err) {
         alert("Erro ao carregar clientes: " + err.message);
@@ -88,7 +87,7 @@ async function atualizarSelects() {
 function preencherSelect(idSelect, lista, keyId) {
     const select = document.getElementById(idSelect);
     if (!select) {
-        return console.error(`Select com id "${idSelect}" não encontrado.`);
+        return;
     }
     select.innerHTML = "";
     const placeholder = document.createElement("option");
@@ -129,7 +128,7 @@ async function iniciarVenda() {
         };
 
         alert("Venda iniciada!");
-        document.getElementById("btnIniciarVenda").style.display =  'none';
+        document.getElementById("btnIniciarVenda").style.display = 'none';
         document.getElementById('btnCadastrarCliente').style.display = 'none';
 
         const inputs = document.querySelectorAll('#selectCliente, #selectUsuario');
@@ -234,6 +233,73 @@ async function excluirProduto() {
 
 }
 
+async function atualizarTabela(itens) {
+    try {
+        const resposta = await fetch(`http://localhost:5164/BlueMoon/Produtos`);
+        const produtos = await resposta.json();
+
+        const tabela = document.getElementById("tabelaItens");
+        tabela.innerHTML = "";
+        let subtotal = 0;
+
+        if (!itens || itens.length === 0) {
+            const trTotalVazio = document.createElement("tr");
+            trTotalVazio.innerHTML = `
+                <td colspan="3"><strong>Total</strong></td>
+                <td><strong>R$ 0,00</strong></td>
+            `;
+            tabela.appendChild(trTotalVazio);
+            return;
+        }
+
+
+        itens.forEach(item => {
+            if (item.quantidade > 0) {
+                const produtoEncontrado = produtos.find(p => p.id === item.idProduto);
+                const nomeProduto = produtoEncontrado ? produtoEncontrado.nome : "Produto não encontrado";
+                const preco = produtoEncontrado ? produtoEncontrado.valorVenda : 0;
+
+                const somaItem = calcularSubTotal(preco, item.quantidade);
+                subtotal += somaItem;
+
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                <td style="text-align: center;">${nomeProduto}</td>
+                <td>${item.quantidade}</td>
+                <td>R$ ${preco.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                <td>R$ ${somaItem.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+            `;
+                tabela.appendChild(tr);
+            }
+        });
+        const trTotal = document.createElement("tr");
+        trTotal.innerHTML = `
+    <td colspan="3"><strong>Total</strong></td>
+    <td><strong>R$ ${subtotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td></strong></td>
+`;
+        tabela.appendChild(trTotal);
+
+    } catch (erro) {
+        alert("Erro ao atualizar tabela:", erro);
+    }
+}
+
+function calcularSubTotal(preco, quantidade) {
+    return preco * quantidade;
+}
+
+async function verificaQuantidade(idProduto, quantidade) {
+    try {
+        const resposta = await fetch(`http://localhost:5164/BlueMoon/Produtos`);
+        const produtos = await resposta.json();
+
+        const produto = produtos.find(p => p.id === idProduto);
+        return produto.estoque - quantidade;
+    } catch {
+        alert("Erro")
+    }
+}
+
 async function fecharVenda() {
     if (!vendaAtual || itens.length === 0) {
         alert("Não há venda em andamento ou produtos adicionados.");
@@ -296,73 +362,5 @@ async function cancelarVenda() {
 
     } catch (err) {
         alert("Erro ao cancelar venda: " + err.message);
-    }
-}
-
-async function atualizarTabela(itens) {
-    try {
-        const resposta = await fetch(`http://localhost:5164/BlueMoon/Produtos`);
-        const produtos = await resposta.json();
-
-        const tabela = document.getElementById("tabelaItens");
-        tabela.innerHTML = "";
-        let subtotal = 0;
-
-        if (!itens || itens.length === 0) {
-            const trTotalVazio = document.createElement("tr");
-            trTotalVazio.innerHTML = `
-                <td colspan="3"><strong>Total</strong></td>
-                <td><strong>R$ 0,00</strong></td>
-            `;
-            tabela.appendChild(trTotalVazio);
-            return;
-        }
-
-
-        itens.forEach(item => {
-            if (item.quantidade > 0) {
-                const produtoEncontrado = produtos.find(p => p.id === item.idProduto);
-                const nomeProduto = produtoEncontrado ? produtoEncontrado.nome : "Produto não encontrado";
-                const preco = produtoEncontrado ? produtoEncontrado.valorVenda : 0;
-
-                const somaItem = calcularSubTotal(preco, item.quantidade);
-                subtotal += somaItem;
-
-                const tr = document.createElement("tr");
-                tr.innerHTML = `
-                <td style="text-align: center;">${nomeProduto}</td>
-                <td>${item.quantidade}</td>
-                <td>R$ ${preco.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-                <td>R$ ${somaItem.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-            `;
-                tabela.appendChild(tr);
-            }
-        });
-        const trTotal = document.createElement("tr");
-        trTotal.innerHTML = `
-    <td colspan="3"><strong>Total</strong></td>
-    <td><strong>R$ ${subtotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td></strong></td>
-`;
-        tabela.appendChild(trTotal);
-
-        console.log("Subtotal:", subtotal);
-    } catch (erro) {
-        console.error("Erro ao atualizar tabela:", erro);
-    }
-}
-
-function calcularSubTotal(preco, quantidade) {
-    return preco * quantidade;
-}
-
-async function verificaQuantidade(idProduto, quantidade) {
-    try {
-        const resposta = await fetch(`http://localhost:5164/BlueMoon/Produtos`);
-        const produtos = await resposta.json();
-
-        const produto = produtos.find(p => p.id === idProduto);
-        return produto.estoque - quantidade;
-    } catch {
-        alert("Erro")
     }
 }

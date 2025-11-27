@@ -1,13 +1,13 @@
 :root {
   --primary: #2b4c7e;
-  --bg-light: #f0f4f9;
+  --bg-light: #9dc5f7;
   --border-light: #ccc;
 }
 
 #content {
   border: 2px solid var(--primary);
   background-color: var(--bg-light);
-  margin: 80px 80px 0 100px;
+  margin: 80px 30px 0 100px;
   padding: 20px 20px 50px;
   box-sizing: border-box;
   justify-items: center;

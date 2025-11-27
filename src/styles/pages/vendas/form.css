@@ -1,10 +1,9 @@
 :root {
   --primary: #2b4c7e;
-  --bg-light: #f0f4f9;
+  --bg-light: #9dc5f7;
   --border-light: #ccc;
 }
 
-/* CONTAINER PRINCIPAL */
 #content {
   border: 2px solid var(--primary);
   background-color: var(--bg-light);
@@ -17,10 +16,11 @@
   font-weight: bold;
 }
 
-/* BOTÃO CADASTRAR CLIENTE */
-#btnCadastrarCliente {
-  top: 20px;
-  right: 20px;
+.wrapper-botao-cliente {
+  width: 100%;
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: center;
 }
 
 img {
@@ -28,12 +28,10 @@ img {
   margin-right: 4px;
 }
 
-/* ETAPA 2 INICIALMENTE OCULTA */
 #etapa2 {
   display: none;
 }
 
-/* TABELA DE ITENS */
 #tabelaItens td:nth-child(2),
 #tabelaItens th:nth-child(2),
 #tabelaItens td:nth-child(3),
@@ -43,9 +41,6 @@ img {
   text-align: center;
 }
 
-/* ➤ RESPONSIVIDADE */
-
-/* 1200px */
 @media (max-width: 1200px) {
   #content {
     margin: 80px 40px 0;
@@ -53,7 +48,6 @@ img {
   }
 }
 
-/* 768px */
 @media (max-width: 768px) {
   #content {
     margin: 80px 15px 0;
@@ -67,7 +61,6 @@ img {
   }
 }
 
-/* 480px */
 @media (max-width: 480px) {
   #content {
     margin: 80px 10px 0;
@@ -84,7 +77,6 @@ img {
   }
 }
 
-/* 992px — Ajustes gerais para tabelas e botões */
 @media (max-width: 992px) {
   #buttons button {
     width: 100%;
@@ -96,7 +88,6 @@ img {
   }
 }
 
-/* 576px - Ajustes finos */
 @media (max-width: 576px) {
   #content h1 {
     font-size: 22px;

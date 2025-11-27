@@ -1,6 +1,6 @@
 :root {
   --primary: #2b4c7e;
-  --bg-light: #f0f4f9;
+  --bg-light: #9dc5f7;
 }
 
 #content {
@@ -12,10 +12,25 @@
   justify-items: center;
   transition: margin-left 0.3s ease, margin-right 0.3s ease;
   font-family: Arial, Helvetica, sans-serif;
+  color: #000;
+  font-weight: bold;
 }
 
 .hidden {
   display: none !important;
+}
+
+.tipo-usuario {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  font-size: 17px;
+}
+
+.tipo-usuario label {
+  display: flex;
+  align-items: center;
+  gap: 1px;
 }
 
 #content h1 {

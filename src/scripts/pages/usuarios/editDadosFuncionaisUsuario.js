@@ -1,17 +1,9 @@
-function converterDataParaBack(data) {
-    if (!data) return "";
-
-    const partes = data.split("-");
-    return partes[2] + partes[1] + partes[0];
-}
-
 document.addEventListener("DOMContentLoaded", async () => {
 
     await includeHTML("header", "../../include/header.html");
     await includeHTML("footer", "../../include/footer.html");
 
     const usuarioId = localStorage.getItem("usuarioId");
-    console.log("ID carregado:", usuarioId);
 
     if (!usuarioId) {
         alert("Nenhum usuário selecionado para edição.");
@@ -19,16 +11,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     await buscarDadosUsuario(usuarioId);
-
-    /*const btnVoltar = document.getElementById("btnVoltar");
-
-    if (btnVoltar) {
-        btnVoltar.addEventListener("click", () => {
-            localStorage.setItem("usuarioId", usuarioId);
-            window.location.href = "../usuarios/index.html";
-        });
-    }
-        */
 
     const inputSenha = document.getElementById("senha");
     const toggleSenha = document.getElementById("toggleSenha");
@@ -48,7 +30,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const form = document.getElementById("formUsuario");
 
     if (!form) {
-        console.error("Formulário de usuário não encontrado.");
         return;
     }
 
@@ -57,6 +38,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         await atualizarUsuario();
     });
 });
+
+function converterDataParaBack(data) {
+    if (!data) return "";
+
+    const partes = data.split("-");
+    return partes[2] + partes[1] + partes[0];
+}
 
 async function buscarDadosUsuario(id) {
     try {
@@ -73,7 +61,6 @@ async function buscarDadosUsuario(id) {
         localStorage.setItem("idPessoa", usuario.idPessoa);
 
     } catch (erro) {
-        console.error("Erro:", erro);
         alert("Não foi possível carregar os dados do usuário.");
     }
 }
@@ -98,7 +85,6 @@ function preencherFormulario(usuario) {
     }
 
     document.getElementById("inputAdmissao").value = formatada;
-
     document.getElementById("HorarioInicioCargaHoraria").value = usuario.horarioInicioCargaHoraria;
     document.getElementById("HorarioFimCargaHoraria").value = usuario.horarioFimCargaHoraria;
 }
@@ -132,8 +118,6 @@ async function atualizarUsuario() {
         Situacao: 1
     };
 
-    console.log("DTO enviado:", dto);
-
     try {
         const resposta = await fetch("http://localhost:5164/BlueMoon/Usuarios", {
             method: "PUT",
@@ -154,7 +138,6 @@ async function atualizarUsuario() {
         window.location.href = "../usuarios/index.html";
 
     } catch (erro) {
-        console.error(erro);
         alert("Erro ao conectar com servidor.");
     }
 }

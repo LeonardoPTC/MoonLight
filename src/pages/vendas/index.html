@@ -35,7 +35,7 @@
                 placeholder="Código"
                 name="codigo"
               />
-              <label for="filterDataAbertura">Data Abertura:</label>
+              <label for="filterDataAbertura">Abertura:</label>
               <input
                 type="date"
                 id="filterDataAbertura"
@@ -43,14 +43,16 @@
                 name="DataAbertura"
               />
               <input
-                style="width: 280px"
+                class="campo-nome-cliente"
                 type="text"
                 id="filterNomeCliente"
                 placeholder="Nome Cliente"
                 name="NomeCliente"
               />
+
+              <label for="selectSituacao">Situação</label>
               <select id="selectSituacao" name="Situacao">
-                <option value="0" disabled selected hidden>Situacao</option>
+                <option value="0" selected>TODAS</option>
                 <option value="1">ABERTA</option>
                 <option value="2">FECHADA</option>
                 <option value="3">CANCELADA</option>
@@ -104,7 +106,7 @@
             <th>Vendedor</th>
             <th>Cliente</th>
             <th>Valor Total</th>
-            <th>Situacao</th>
+            <th>Situação</th>
             <th>Ação</th>
           </tr>
         </thead>
@@ -114,10 +116,6 @@
 
     <div id="footer"></div>
     <script src="../../scripts/includes.js"></script>
-    <script>
-      includeHTML("header", "../../include/header.html");
-      includeHTML("footer", "../../include/footer.html");
-    </script>
-    <script src="../../scripts/pages/venda/index.js"></script>
+    <script src="../../scripts/pages/vendas/index.js"></script>
   </body>
 </html>

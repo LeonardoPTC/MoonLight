@@ -1,3 +1,39 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const tipoPessoa = document.getElementsByName("tipo");
+  const formularioClienteFisico = document.getElementById("pessoaFisica");
+  const formularioClienteJuridico = document.getElementById("pessoaJuridica");
+
+  formularioClienteJuridico.classList.add("hidden");
+
+  tipoPessoa.forEach((radio) => {
+    radio.addEventListener("change", () => {
+      if (document.getElementById("ClienteFisico").checked) {
+        formularioClienteFisico.classList.remove("hidden");
+        formularioClienteJuridico.classList.add("hidden");
+      } else if (document.getElementById("ClienteJuridico").checked) {
+        formularioClienteJuridico.classList.remove("hidden");
+        formularioClienteFisico.classList.add("hidden");
+      }
+    });
+  });
+
+  IMask(document.getElementById("inputCPF"), {
+    mask: "000.000.000-00",
+  });
+
+  IMask(document.getElementById("inputCNPJ"), {
+    mask: "00.000.000/0000-00",
+  });
+
+  IMask(document.getElementById("inputTelefone"), {
+    mask: [{ mask: "(00) 0000-0000" }, { mask: "(00) 00000-0000" }],
+  });
+
+  IMask(document.getElementById("inputCEP"), {
+    mask: "00000-000",
+  });
+});
+
 document.getElementById("formCliente").addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -11,10 +47,14 @@ document.getElementById("formCliente").addEventListener("submit", async (e) => {
     ? document.getElementById("inputCPF")
     : document.getElementById("inputCNPJ");
 
-  const inputInscricaoEstadual = document.getElementById("inputInscricaoEstadual");
+  const inputInscricaoEstadual = document.getElementById(
+    "inputInscricaoEstadual"
+  );
 
   const valorDocumento = inputDocumento ? inputDocumento.value.trim() : "";
-  const valorIE = inputInscricaoEstadual ? inputInscricaoEstadual.value.trim() : "";
+  const valorIE = inputInscricaoEstadual
+    ? inputInscricaoEstadual.value.trim()
+    : "";
 
   let removido = null;
 
@@ -40,8 +80,9 @@ document.getElementById("formCliente").addEventListener("submit", async (e) => {
   dados.Documento = valorDocumento;
   dados.InscricaoEstadual = valorIE;
 
-  const camposObrigatorios = (isPessoaFisica ? pessoaFisica : pessoaJuridica)
-    .querySelectorAll("[data-required]");
+  const camposObrigatorios = (
+    isPessoaFisica ? pessoaFisica : pessoaJuridica
+  ).querySelectorAll("[data-required]");
 
   for (let campo of camposObrigatorios) {
     if (!campo.value.trim()) {
@@ -64,7 +105,10 @@ document.getElementById("formCliente").addEventListener("submit", async (e) => {
       return;
     }
 
-    if (dados.InscricaoEstadual && !validarInscricaoEstadual(dados.InscricaoEstadual)) {
+    if (
+      dados.InscricaoEstadual &&
+      !validarInscricaoEstadual(dados.InscricaoEstadual)
+    ) {
       alert("Inscrição Estadual inválida!");
       form.appendChild(removido);
       return;
@@ -74,7 +118,7 @@ document.getElementById("formCliente").addEventListener("submit", async (e) => {
   form.appendChild(removido);
 
   function validarCPF(cpf) {
-    cpf = cpf.replace(/[^\d]+/g, '');
+    cpf = cpf.replace(/[^\d]+/g, "");
     if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false;
 
     let soma = 0;
@@ -91,7 +135,7 @@ document.getElementById("formCliente").addEventListener("submit", async (e) => {
   }
 
   function validarCNPJ(cnpj) {
-    cnpj = cnpj.replace(/[^\d]+/g, '');
+    cnpj = cnpj.replace(/[^\d]+/g, "");
     if (cnpj.length !== 14 || /^(\d)\1{13}$/.test(cnpj)) return false;
 
     let tamanho = cnpj.length - 2;
@@ -103,7 +147,7 @@ document.getElementById("formCliente").addEventListener("submit", async (e) => {
       soma += parseInt(numeros.charAt(tamanho - i)) * pos--;
       if (pos < 2) pos = 9;
     }
-    let resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+    let resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
     if (resultado !== parseInt(digitos.charAt(0))) return false;
 
     tamanho += 1;
@@ -114,7 +158,7 @@ document.getElementById("formCliente").addEventListener("submit", async (e) => {
       soma += parseInt(numeros.charAt(tamanho - i)) * pos--;
       if (pos < 2) pos = 9;
     }
-    resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+    resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
     if (resultado !== parseInt(digitos.charAt(1))) return false;
 
     return true;
@@ -123,7 +167,7 @@ document.getElementById("formCliente").addEventListener("submit", async (e) => {
   function validarInscricaoEstadual(inscricao) {
     if (!inscricao) return true;
 
-    inscricao = inscricao.trim().replace(/[^\d]/g, '');
+    inscricao = inscricao.trim().replace(/[^\d]/g, "");
 
     if (inscricao.length < 8 || inscricao.length > 13) return false;
     if (/^(\d)\1+$/.test(inscricao)) return false;
@@ -135,7 +179,7 @@ document.getElementById("formCliente").addEventListener("submit", async (e) => {
     const resposta = await fetch("http://localhost:5164/BlueMoon/Pessoas", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(dados)
+      body: JSON.stringify(dados),
     });
 
     if (resposta.ok) {

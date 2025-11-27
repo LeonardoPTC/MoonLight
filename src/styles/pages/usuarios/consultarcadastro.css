@@ -1,6 +1,6 @@
 :root {
   --primary: #2b4c7e;
-  --bg-light: #f0f4f9;
+  --bg-light: #9dc5f7;
   --border-light: #ccc;
 }
 
@@ -22,6 +22,11 @@
   justify-content: flex-start;
   flex-grow: 1;
   overflow: hidden;
+}
+
+img {
+  width: 30px;
+  margin-right: 5px;
 }
 
 #formPesquisa {

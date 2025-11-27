@@ -13,20 +13,22 @@
     <div id="content" class="shadow body-tertiary rounded">
       <h1 class="text-center mb-4">Registrar Venda</h1>
 
-      <button
-        id="btnCadastrarCliente"
-        class="btn btn-success shadow body-tertiary rounded position-absolute"
-        data-toggle="tooltip"
-        data-placement="top"
-        title="CadastrarCliente"
-      >
-        <img
-          style="margin-bottom: 2px"
-          src="../../assets/AddProduto.png"
-          alt="Cadastrar Cliente"
-        />
-        Cadastrar Novo Cliente
-      </button>
+      <div class="wrapper-botao-cliente">
+        <button
+          id="btnCadastrarCliente"
+          class="btn btn-success shadow body-tertiary rounded mb-3"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="CadastrarCliente"
+        >
+          <img
+            style="margin-bottom: 2px"
+            src="../../assets/AddProduto.png"
+            alt="Cadastrar Cliente"
+          />
+          Cadastrar Novo Cliente
+        </button>
+      </div>
 
       <form id="formVenda" class="container g-2">
         <div id="etapa1">
@@ -41,7 +43,7 @@
             <div class="col-md-6">
               <label class="form-label">Usuário:</label>
               <select id="selectUsuario" class="form-control" required>
-                <option value="">Selecione um cliente</option>
+                <option value="">Selecione um usuário</option>
               </select>
             </div>
           </div>
@@ -132,7 +134,7 @@
                 id="btnFechar"
                 class="btn btn-primary w-100"
               >
-                Fechar
+                Faturar Venda
               </button>
             </div>
             <div class="col-md-3">
@@ -157,7 +159,7 @@
     <div id="footer"></div>
 
     <script src="../../scripts/includes.js"></script>
-    <script src="../../scripts/pages/venda/venda.js"></script>
+    <script src="../../scripts/pages/vendas/venda.js"></script>
 
     <script>
       includeHTML("header", "../../include/header.html");

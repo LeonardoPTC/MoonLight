@@ -1,11 +1,3 @@
-window.addEventListener('load', async () => {
-    await includeHTML("header", "../../include/header.html");
-    await includeHTML("footer", "../../include/footer.html");
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id');
-});
-
 async function excluirProduto(id) {
     const confirmar = confirm("Tem certeza que deseja excluir este produto?");
     if (!confirmar) {
