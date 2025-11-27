@@ -1,5 +1,6 @@
 #content {
-  border: 2px solid #2B4C7E;
+  border: 3px solid #2B4C7E;
+  border-radius: 10px !important;
   background-color: #F0F4F9;
   margin-top: 80px;
   margin-left: 310px;
@@ -10,6 +11,13 @@
   justify-items: center;
   transition: margin-left 0.3s ease;
   font-family: "Roboto Mono", monospace;
+  font-weight: bold;
+}
+
+input,
+select {
+  font-weight: bold !important;
+  border: 1px solid #000 !important;
 }
 
 #btnCadastrarCliente {
@@ -28,16 +36,15 @@ img {
 
 #tabelaItens td:nth-child(2),
 #tabelaItens th:nth-child(2) {
-    text-align: center;
+  text-align: center;
 }
 
 #tabelaItens td:nth-child(3),
 #tabelaItens th:nth-child(3) {
-    text-align: center; 
+  text-align: center;
 }
 
 #tabelaItens td:nth-child(4),
 #tabelaItens th:nth-child(4) {
-    text-align: center; 
+  text-align: center;
 }
-

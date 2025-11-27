@@ -1,5 +1,6 @@
 #content {
-  border: 2px solid #2B4C7E;
+  border: 3px solid #2B4C7E;
+  border-radius: 10px !important;
   background-color: #F0F4F9;
   margin-top: 80px;
   margin-left: 200px;
@@ -10,6 +11,22 @@
   justify-items: center;
   transition: margin-left 0.3s ease;
   font-family: "Roboto Mono", monospace;
+  font-weight: bold;
+}
+
+input {
+    font-weight: bold;
+    border: 1px solid #000000 !important;
+}
+
+th {
+  font-size: 20px;
+  border: 2px solid #2B4C7E !important;
+}
+
+td {
+  font-size: 18px;
+  border: 1px solid #000000 !important;
 }
 
 img {
