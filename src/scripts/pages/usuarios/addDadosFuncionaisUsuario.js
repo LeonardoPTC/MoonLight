@@ -70,6 +70,15 @@ document.addEventListener("DOMContentLoaded", async () => {
             idPessoa: pessoaId
         };
 
+        const camposObrigatorios = document.querySelectorAll("[data-required]");
+
+        for (let campo of camposObrigatorios) {
+            if (!campo.value.trim()) {
+                alert(`Erro ao cadastrar dados do usuário: O campo ${campo.name} é obrigatório!`);
+                return;
+            }
+        }
+
         try {
             const resposta = await fetch("http://localhost:5164/BlueMoon/Usuarios", {
                 method: "POST",

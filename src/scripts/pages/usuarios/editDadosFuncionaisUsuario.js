@@ -109,6 +109,15 @@ async function atualizarUsuario() {
         Situacao: 1
     };
 
+    const camposObrigatorios = document.querySelectorAll("[data-required]");
+
+    for (let campo of camposObrigatorios) {
+        if (!campo.value.trim()) {
+            alert(`Erro ao atualizar dados do usuário: O campo ${campo.name} é obrigatório!`);
+            return;
+        }
+    }
+
     try {
         const resposta = await fetch("http://localhost:5164/BlueMoon/Usuarios", {
             method: "PUT",
@@ -128,7 +137,7 @@ async function atualizarUsuario() {
             } catch {
                 mensagem = texto;
             }
-            alert("Erro ao atualizar usuário: " + mensagem);
+            alert("Erro ao atualizar dados do usuário: " + mensagem);
             return;
         }
 

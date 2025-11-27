@@ -117,7 +117,7 @@ async function iniciarVenda() {
     const idUsuario = document.getElementById("selectUsuario").value;
 
     if (!idPessoa || !idUsuario) {
-        alert("Selecione cliente e usuário.");
+        alert("Selecione cliente e usuário!");
         return;
     }
 

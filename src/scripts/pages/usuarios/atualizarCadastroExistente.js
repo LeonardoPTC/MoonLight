@@ -152,7 +152,7 @@ document.getElementById('formUsuario').addEventListener('submit', async (e) => {
     const camposObrigatorios = containerAtivo.querySelectorAll('[data-required]');
     for (let campo of camposObrigatorios) {
         if (!campo.value || !campo.value.trim()) {
-            alert(`O campo ${campo.name} é obrigatório!`);
+            alert(`Erro ao atualizar o cadastro do usuário: O campo ${campo.name} é obrigatório!`);
             campo.focus();
             return;
         }
@@ -160,19 +160,19 @@ document.getElementById('formUsuario').addEventListener('submit', async (e) => {
 
     if (isPessoaFisica) {
         if (dados.Documento && !validarCPF(dados.Documento)) {
-            alert("Erro ao atualizar usuário: CPF inválido!");
+            alert("Erro ao atualizar o cadastro do usuário: CPF inválido!");
             form.appendChild(removido);
             return;
         }
     } else {
         if (dados.Documento && !validarCNPJ(dados.Documento)) {
-            alert("Erro ao atualizar usuário: CNPJ inválido!");
+            alert("Erro ao atualizar o cadastro do usuário: CNPJ inválido!");
             form.appendChild(removido);
             return;
         }
 
         if (dados.InscricaoEstadual && !validarInscricaoEstadual(dados.InscricaoEstadual)) {
-            alert("Erro ao atualizar usuário: Inscrição Estadual inválida!");
+            alert("Erro ao atualizar o cadastro do usuário: Inscrição Estadual inválida!");
             form.appendChild(removido);
             return;
         }
@@ -186,7 +186,7 @@ document.getElementById('formUsuario').addEventListener('submit', async (e) => {
         });
 
         if (resposta.ok) {
-            alert("Cadastro do usuário atualizado com sucesso!");
+            alert("Atualização do cadastro do usuário realizada com sucesso!");
             window.location.href = "../usuarios/addDadosFuncionaisUsuario.html";
         } else {
             const texto = await resposta.text();
@@ -198,11 +198,11 @@ document.getElementById('formUsuario').addEventListener('submit', async (e) => {
             } catch {
                 mensagem = texto;
             }
-            alert("Erro ao atualizar usuário: " + mensagem);
+            alert("Erro ao atualizar cadastro do usuário: " + mensagem);
             return;
         }
     } catch (err) {
-        alert("Erro na conexão: " + err.message);
+        alert("Erro: " + err.message);
         return;
     }
 });
