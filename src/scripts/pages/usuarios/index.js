@@ -21,24 +21,32 @@ window.addEventListener('load', async () => {
 });
 
 async function carregarUsuario() {
-  const resposta = await fetch("http://localhost:5164/BlueMoon/Usuarios");
-  const usuarios = await resposta.json();
+  try {
+    const resposta = await fetch("http://localhost:5164/BlueMoon/Usuarios");
+
+    if (!resposta.ok) {
+      const erro = await resposta.text();
+      alert(erro);
+      return;
+    }
+
+    const usuarios = await resposta.json();
 
 
-  const tbody = document.querySelector("#tabela-usuarios tbody");
-  tbody.innerHTML = "";
-  const cargosEnum = {
-    0: "INDEFINIDO",
-    1: "VENDEDOR",
-    2: "GERENTE",
-    3: "FINANCEIRO",
-    4: "ADMIN"
-  };
-  usuarios.forEach(f => {
-    const linha = document.createElement("tr");
-    let situacao = f.situacao;
+    const tbody = document.querySelector("#tabela-usuarios tbody");
+    tbody.innerHTML = "";
+    const cargosEnum = {
+      0: "INDEFINIDO",
+      1: "VENDEDOR",
+      2: "GERENTE",
+      3: "FINANCEIRO",
+      4: "ADMIN"
+    };
+    usuarios.forEach(f => {
+      const linha = document.createElement("tr");
+      let situacao = f.situacao;
 
-    linha.innerHTML = `
+      linha.innerHTML = `
       <td style="text-align: center">${f.codigo}</td>
       <td style="text-align: center">${f.nome}</td>
       <td style="text-align: center">${cargosEnum[f.cargo] || "INDEFINIDO"}</td>
@@ -48,8 +56,13 @@ async function carregarUsuario() {
           <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir Usuario" onclick="excluirUsuario('${f.idUsuario}')"><img src="../../assets/Delete.png"></button>
       </td>
     `;
-    tbody.appendChild(linha);
-  });
+      tbody.appendChild(linha);
+    });
+
+  } catch (err) {
+    alert("Erro: " + err.message);
+    return;
+  }
 }
 
 carregarUsuario();
@@ -108,8 +121,9 @@ document.addEventListener('submit', async function (event) {
       tbody.appendChild(linha);
     });
 
-  } catch (erro) {
-    alert("Erro ao aplicar filtro: " + erro.message);
+  } catch (err) {
+    alert("Erro ao aplicar filtro: " + err.message);
+    return;
   }
 });
 

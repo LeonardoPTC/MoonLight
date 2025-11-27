@@ -76,18 +76,27 @@ document.addEventListener("DOMContentLoaded", () => {
                 body: JSON.stringify(dto)
             });
 
-            const body = await resposta.text();
-
             if (!resposta.ok) {
-                alert("Erro ao cadastrar usuário: " + body);
+                const texto = await resposta.text(); 
+                let mensagem;
+                try {
+                    const erroJSON = JSON.parse(texto);
+                    const campo = Object.keys(erroJSON.errors)[0];
+                    mensagem = erroJSON.errors[campo][0];
+                } catch {
+                    mensagem = texto; 
+                }
+
+                alert("Erro ao cadastrar dados do usuário: " + mensagem);
                 return;
             }
 
             alert("Usuário cadastrado com sucesso!");
             window.location.href = "../usuarios/index.html";
 
-        } catch (erro) {
-            alert("Erro ao conectar com servidor.");
+        } catch (err) {
+            alert("Erro: " + err.message);
+            return;
         }
     });
 

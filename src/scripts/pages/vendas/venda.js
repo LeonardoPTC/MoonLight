@@ -31,12 +31,15 @@ async function carregarClientes() {
     try {
         const resposta = await fetch("http://localhost:5164/BlueMoon/Pessoas");
         if (!resposta.ok) {
-            throw new Error("Erro ao buscar clientes");
+            const erro = await resposta.text();
+            alert(erro);
+            return;
         }
         clientes = await resposta.json();
         preencherSelect("selectCliente", clientes, "id");
     } catch (err) {
         alert("Erro ao carregar clientes: " + err.message);
+        return;
     }
 }
 
@@ -44,12 +47,15 @@ async function carregarUsuarios() {
     try {
         const resposta = await fetch("http://localhost:5164/BlueMoon/Usuarios");
         if (!resposta.ok) {
-            throw new Error("Erro ao buscar usuários");
+            const erro = await resposta.text();
+            alert(erro);
+            return;
         }
         usuarios = await resposta.json();
         preencherSelect("selectUsuario", usuarios, "idUsuario");
     } catch (err) {
         alert("Erro ao carregar usuários: " + err.message);
+        return;
     }
 }
 
@@ -57,12 +63,15 @@ async function carregarProdutos() {
     try {
         const resposta = await fetch("http://localhost:5164/BlueMoon/Produtos");
         if (!resposta.ok) {
-            throw new Error("Erro ao buscar produtos");
+            const erro = await resposta.text();
+            alert(erro);
+            return;
         }
         const produtos = await resposta.json();
         preencherSelect("selectProduto", produtos, "id");
     } catch (err) {
         alert("Erro ao carregar produtos: " + err.message);
+        return;
     }
 }
 
@@ -119,7 +128,11 @@ async function iniciarVenda() {
             body: JSON.stringify({ idPessoa, idUsuario })
         });
 
-        if (!resposta.ok) throw new Error(await resposta.text());
+        if (!resposta.ok) {
+            const erro = await resposta.text();
+            alert(erro);
+            return;
+        }
 
         vendaAtual = await resposta.json();
 
@@ -139,6 +152,7 @@ async function iniciarVenda() {
         atualizarTabela(itens);
     } catch (err) {
         alert("Erro ao iniciar venda: " + err.message);
+        return;
     }
 }
 
@@ -236,6 +250,12 @@ async function excluirProduto() {
 async function atualizarTabela(itens) {
     try {
         const resposta = await fetch(`http://localhost:5164/BlueMoon/Produtos`);
+        if (!resposta.ok) {
+            const erro = await resposta.text();
+            alert(erro);
+            return;
+        }
+
         const produtos = await resposta.json();
 
         const tabela = document.getElementById("tabelaItens");
@@ -279,8 +299,9 @@ async function atualizarTabela(itens) {
 `;
         tabela.appendChild(trTotal);
 
-    } catch (erro) {
-        alert("Erro ao atualizar tabela:", erro);
+    } catch (err) {
+        alert("Erro ao atualizar tabela: " + err.message);
+        return;
     }
 }
 
@@ -291,12 +312,19 @@ function calcularSubTotal(preco, quantidade) {
 async function verificaQuantidade(idProduto, quantidade) {
     try {
         const resposta = await fetch(`http://localhost:5164/BlueMoon/Produtos`);
+        if (!resposta.ok) {
+            const erro = await resposta.text();
+            alert(erro);
+            return;
+        }
+
         const produtos = await resposta.json();
 
         const produto = produtos.find(p => p.id === idProduto);
         return produto.estoque - quantidade;
-    } catch {
-        alert("Erro")
+    } catch (err) {
+        alert("Erro: " + err.message);
+        return;
     }
 }
 
@@ -321,7 +349,8 @@ async function fecharVenda() {
 
         if (!resposta.ok) {
             const erro = await resposta.text();
-            throw new Error(erro);
+            alert(erro);
+            return;
         }
 
         alert("Venda finalizada com sucesso!");
@@ -335,6 +364,7 @@ async function fecharVenda() {
         window.location.href = "../vendas/finalizacaoVenda.html";
     } catch (err) {
         alert("Erro ao adicionar produto: " + err.message);
+        return;
     }
 }
 
@@ -351,7 +381,8 @@ async function cancelarVenda() {
 
         if (!resposta.ok) {
             const erro = await resposta.text();
-            throw new Error(erro);
+            alert(erro);
+            return;
         }
 
         alert("Venda cancelada com sucesso!");
@@ -362,5 +393,6 @@ async function cancelarVenda() {
 
     } catch (err) {
         alert("Erro ao cancelar venda: " + err.message);
+        return;
     }
 }

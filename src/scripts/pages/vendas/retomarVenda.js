@@ -28,40 +28,74 @@ window.addEventListener("load", async () => {
 });
 
 async function carregarVenda(idVenda) {
-    const resposta = await fetch(`http://localhost:5164/BlueMoon/Vendas/${idVenda}`);
-    vendaAtual = await resposta.json();
+    try {
+        const resposta = await fetch(`http://localhost:5164/BlueMoon/Vendas/${idVenda}`);
+        if (!resposta.ok) {
+            const erro = await resposta.text();
+            alert(erro);
+            return;
+        }
+        vendaAtual = await resposta.json();
 
-    document.getElementById("selectCliente").innerHTML = `<option selected>${vendaAtual.nomeCliente}</option>`;
-    document.getElementById("selectUsuario").innerHTML = `<option selected>${vendaAtual.nomeVendedor}</option>`;
+        document.getElementById("selectCliente").innerHTML = `<option selected>${vendaAtual.nomeCliente}</option>`;
+        document.getElementById("selectUsuario").innerHTML = `<option selected>${vendaAtual.nomeVendedor}</option>`;
 
-    window.onbeforeunload = function () {
-        return true;
-    };
+        window.onbeforeunload = function () {
+            return true;
+        };
+
+    } catch (err) {
+        alert("Erro: " + err.message);
+        return;
+    }
 
 }
 
 async function carregarClientes() {
-    const resposta = await fetch("http://localhost:5164/BlueMoon/Pessoas");
-    clientes = await resposta.json();
-    preencherSelect("selectCliente", clientes, "id");
+    try {
+        const resposta = await fetch("http://localhost:5164/BlueMoon/Pessoas");
+        if (!resposta.ok) {
+            const erro = await resposta.text();
+            alert(erro);
+            return;
+        }
+        clientes = await resposta.json();
+        preencherSelect("selectCliente", clientes, "id");
+    } catch (err) {
+        alert("Erro: " + err.message);
+        return;
+    }
 }
 
 async function carregarUsuarios() {
-    const resposta = await fetch("http://localhost:5164/BlueMoon/Usuarios");
-    usuarios = await resposta.json();
-    preencherSelect("selectUsuario", usuarios, "idUsuario");
+    try {
+        const resposta = await fetch("http://localhost:5164/BlueMoon/Usuarios");
+        if (!resposta.ok) {
+            const erro = await resposta.text();
+            alert(erro);
+            return;
+        }
+        usuarios = await resposta.json();
+        preencherSelect("selectUsuario", usuarios, "idUsuario");
+    } catch (err) {
+        alert("Erro: " + err.message);
+        return;
+    }
 }
 
 async function carregarProdutos() {
     try {
         const resposta = await fetch("http://localhost:5164/BlueMoon/Produtos");
         if (!resposta.ok) {
-            throw new Error("Erro ao buscar produtos");
+            const erro = await resposta.text();
+            alert(erro);
+            return;
         }
         const produtos = await resposta.json();
         preencherSelect("selectProduto", produtos, "id");
     } catch (err) {
         alert("Erro ao carregar produtos: " + err.message);
+        return;
     }
 }
 
@@ -171,39 +205,49 @@ async function excluirProduto() {
 }
 
 async function atualizarTabela(itensVenda) {
-    const resposta = await fetch(`http://localhost:5164/BlueMoon/Produtos`);
-    const produtos = await resposta.json();
+    try {
+        const resposta = await fetch(`http://localhost:5164/BlueMoon/Produtos`);
+        if (!resposta.ok) {
+            const erro = await resposta.text();
+            alert(erro);
+            return;
+        }
+        const produtos = await resposta.json();
 
-    const tabela = document.getElementById("tabelaItens");
-    tabela.innerHTML = "";
+        const tabela = document.getElementById("tabelaItens");
+        tabela.innerHTML = "";
 
-    let subtotal = 0;
+        let subtotal = 0;
 
-    itensVenda.forEach(item => {
-        if (item.quantidade <= 0) return;
+        itensVenda.forEach(item => {
+            if (item.quantidade <= 0) return;
 
-        const produto = produtos.find(p => p.id == item.idProduto);
-        const preco = produto.valorVenda;
-        const soma = preco * item.quantidade;
+            const produto = produtos.find(p => p.id == item.idProduto);
+            const preco = produto.valorVenda;
+            const soma = preco * item.quantidade;
 
-        subtotal += soma;
+            subtotal += soma;
 
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
             <td style="text-align:center">${produto.nome}</td>
             <td>${item.quantidade}</td>
             <td>R$ ${preco.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</td>
             <td>R$ ${soma.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</td>
         `;
-        tabela.appendChild(tr);
-    });
+            tabela.appendChild(tr);
+        });
 
-    const trTotal = document.createElement("tr");
-    trTotal.innerHTML = `
+        const trTotal = document.createElement("tr");
+        trTotal.innerHTML = `
         <td colspan="3"><strong>Total</strong></td>
         <td><strong>R$ ${subtotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</strong></td>
     `;
-    tabela.appendChild(trTotal);
+        tabela.appendChild(trTotal);
+    } catch (err) {
+        alert("Erro: " + err.message);
+        return;
+    }
 }
 
 function calcularSubTotal(preco, quantidade) {
@@ -213,12 +257,18 @@ function calcularSubTotal(preco, quantidade) {
 async function verificaQuantidade(idProduto, quantidade) {
     try {
         const resposta = await fetch(`http://localhost:5164/BlueMoon/Produtos`);
-        const produtos = await resposta.json();
+        if (!resposta.ok) {
+            const erro = await resposta.text();
+            alert(erro);
+            return;
+        }
 
+        const produtos = await resposta.json();
         const produto = produtos.find(p => p.id === idProduto);
         return produto.estoque - quantidade;
-    } catch (erro) {
-        alert("Erro " + erro.message)
+    } catch (err) {
+        alert("Erro " + err.message)
+        return;
     }
 }
 
@@ -243,7 +293,8 @@ async function fecharVenda() {
 
         if (!resposta.ok) {
             const erro = await resposta.text();
-            throw new Error(erro);
+            alert(erro);
+            return;
         }
 
         alert("Venda finalizada com sucesso!");
@@ -257,6 +308,7 @@ async function fecharVenda() {
         window.location.href = "../vendas/finalizacaoVenda.html";
     } catch (err) {
         alert("Erro ao adicionar produto: " + err.message);
+        return;
     }
 }
 
@@ -268,11 +320,18 @@ async function cancelarVenda() {
             method: "PATCH"
         });
 
+        if (!resposta.ok) {
+            const erro = await resposta.text();
+            alert(erro);
+            return;
+        }
+
         alert("Venda cancelada com sucesso!");
 
         window.onbeforeunload = null;
         window.location.href = "../vendas/index.html";
     } catch (err) {
         alert("Erro ao adicionar produto: " + err.message);
+        return;
     }
 }

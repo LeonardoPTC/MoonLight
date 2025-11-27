@@ -24,9 +24,11 @@ async function excluirUsuario(id) {
         } else {
             const erro = await reqdelete.text();
             alert("Erro ao deletar usuario: " + erro);
+            return;
         }
     } catch (err) {
         alert("Erro na conexão: " + err.message);
+        return;
     }
 }
 

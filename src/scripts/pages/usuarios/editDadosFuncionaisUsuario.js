@@ -12,21 +12,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     await buscarDadosUsuario(usuarioId);
 
-    const inputSenha = document.getElementById("senha");
-    const toggleSenha = document.getElementById("toggleSenha");
-
-    if (inputSenha && toggleSenha) {
-        toggleSenha.addEventListener("click", function () {
-            if (inputSenha.type === "password") {
-                inputSenha.type = "text";
-                this.textContent = "🙈";
-            } else {
-                inputSenha.type = "password";
-                this.textContent = "👁️";
-            }
-        });
-    }
-
     const form = document.getElementById("formUsuario");
 
     if (!form) {
@@ -51,7 +36,9 @@ async function buscarDadosUsuario(id) {
         const resposta = await fetch(`http://localhost:5164/BlueMoon/Usuarios/${id}`);
 
         if (!resposta.ok) {
-            throw new Error("Erro ao carregar dados do usuário.");
+            const erro = await resposta.text();
+            alert(erro);
+            return;
         }
 
         const usuario = await resposta.json();
@@ -60,8 +47,9 @@ async function buscarDadosUsuario(id) {
 
         localStorage.setItem("idPessoa", usuario.idPessoa);
 
-    } catch (erro) {
-        alert("Não foi possível carregar os dados do usuário.");
+    } catch (err) {
+        alert("Não foi possível carregar os dados do usuário." + err.message);
+        return;
     }
 }
 
@@ -71,6 +59,9 @@ function preencherFormulario(usuario) {
     document.getElementById("inputSalario").value = usuario.salario;
 
     let dataAdmissao = usuario.admissao;
+    const inputDataAdmissao = document.getElementById("inputAdmissao");
+    inputDataAdmissao.disabled = true;
+
     let formatada = "";
 
     if (dataAdmissao) {
@@ -127,10 +118,17 @@ async function atualizarUsuario() {
             body: JSON.stringify(dto)
         });
 
-        const body = await resposta.text();
-
         if (!resposta.ok) {
-            alert("Erro ao atualizar usuário: " + body);
+            const texto = await resposta.text();
+            let mensagem;
+            try {
+                const erroJSON = JSON.parse(texto);
+                const campo = Object.keys(erroJSON.errors)[0];
+                mensagem = erroJSON.errors[campo][0];
+            } catch {
+                mensagem = texto;
+            }
+            alert("Erro ao atualizar usuário: " + mensagem);
             return;
         }
 
@@ -138,6 +136,6 @@ async function atualizarUsuario() {
         window.location.href = "../usuarios/index.html";
 
     } catch (erro) {
-        alert("Erro ao conectar com servidor.");
+        alert("Erro: " + erro.message);
     }
 }

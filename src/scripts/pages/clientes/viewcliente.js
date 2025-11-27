@@ -14,12 +14,14 @@ async function carregarCliente(id) {
         if (!resposta.ok) {
             const erro = await resposta.text();
             alert(erro);
+            return;
         }
 
         cliente = await resposta.json();
         preencherCampos(cliente);
     } catch (err) {
         alert("Erro na conexão: " + err.message);
+        return;
     }
 }
 

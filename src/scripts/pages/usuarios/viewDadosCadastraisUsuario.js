@@ -23,6 +23,7 @@ async function carregarpessoa(id, idUsuario) {
         if (!resposta.ok) {
             const erro = await resposta.text();
             alert(erro);
+            return;
         }
 
         pessoa = await resposta.json();
@@ -32,6 +33,7 @@ async function carregarpessoa(id, idUsuario) {
 
     } catch (err) {
         alert("Erro na conexão: " + err.message);
+        return;
     }
 }
 

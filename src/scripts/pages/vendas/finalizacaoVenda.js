@@ -24,7 +24,9 @@ async function carregarVenda(idVenda) {
         const resposta = await fetch(`http://localhost:5164/BlueMoon/Vendas/${idVenda}`);
 
         if (!resposta.ok) {
-            throw new Error("Erro ao buscar venda");
+            const erro = await resposta.text();
+            alert(erro);
+            return;
         }
 
         vendaAtual = await resposta.json();
@@ -32,6 +34,7 @@ async function carregarVenda(idVenda) {
 
     } catch (err) {
         alert("Erro ao carregar venda: " + err.message);
+        return;
     }
 }
 
@@ -100,14 +103,17 @@ async function faturarVenda(idVenda) {
         });
 
         if (!resposta.ok) {
-            throw new Error("Erro ao faturar venda");
+            const erro = await resposta.text();
+            alert(erro);
+            return;
         }
 
         alert("Venda faturada com sucesso!");
         window.location.href = "../vendas/index.html";
 
-    } catch (erro) {
-        alert("Erro na conexão: " + erro);
+    } catch (err) {
+        alert("Erro na conexão: " + err.message);
+        return;
     }
 }
 
@@ -124,7 +130,8 @@ async function cancelarVenda(idVenda) {
 
         if (!resposta.ok) {
             const erro = await resposta.text();
-            throw new Error(erro);
+            alert(erro);
+            return;
         }
 
         alert("Venda cancelada com sucesso!");
@@ -133,5 +140,6 @@ async function cancelarVenda(idVenda) {
 
     } catch (err) {
         alert("Erro ao cancelar venda: " + err.message);
+        return;
     }
 }

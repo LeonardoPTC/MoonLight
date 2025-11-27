@@ -29,10 +29,20 @@ document.getElementById("formProduto").addEventListener("submit", async (e) => {
             alert("Produto cadastrado com sucesso!");
             window.location.href = "../produtos/index.html";
         } else {
-            const erro = await resposta.text();
-            alert("Erro ao cadastrar produto: " + erro);
+            const texto = await resposta.text();
+            let mensagem;
+            try {
+                const erroJSON = JSON.parse(texto);
+                const campo = Object.keys(erroJSON.errors)[0];
+                mensagem = erroJSON.errors[campo][0];
+            } catch {
+                mensagem = texto;
+            }
+            alert("Erro ao cadastrar produto: " + mensagem);
+            return;
         }
     } catch (err) {
         alert("Erro na conexão: " + err.message);
+        return;
     }
 });

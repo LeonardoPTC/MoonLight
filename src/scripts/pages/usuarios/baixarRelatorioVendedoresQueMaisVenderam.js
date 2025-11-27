@@ -14,11 +14,16 @@ document.addEventListener("DOMContentLoaded", () => {
         const inicio = document.getElementById("inicio").value;
         const fim = document.getElementById("fim").value;
 
+        if (!inicio && !fim) {
+            alert("Erro ao gerar relatório: Data início e fim de busca são obrigatórias");
+            return;
+        }
+
         const dataInicio = converterDataParaBack(inicio);
         const dataFim = converterDataParaBack(fim);
 
-        const dto = { dataInicio, dataFim};
-        
+        const dto = { dataInicio, dataFim };
+
         try {
             const resposta = await fetch("http://localhost:5164/BlueMoon/Relatorios/VendedoresQueMaisVenderam_R", {
                 method: "POST",
@@ -28,7 +33,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (!resposta.ok) {
                 const texto = await resposta.text();
-                alert("Erro ao gerar relatório: " + texto);
+                let mensagem;
+                try {
+                    const erroJSON = JSON.parse(texto);
+                    const campo = Object.keys(erroJSON.errors)[0];
+                    mensagem = erroJSON.errors[campo][0];
+                } catch {
+                    mensagem = texto;
+                }
+                alert("Erro ao gerar relatório: " + mensagem);
                 return;
             }
 
@@ -39,8 +52,9 @@ document.addEventListener("DOMContentLoaded", () => {
             link.click();
             URL.revokeObjectURL(link.href);
 
-        } catch (erro) {
-            alert("Erro ao conectar com servidor.");
+        } catch (err) {
+            alert("Erro ao conectar com servidor." + err.message);
+            return;
         }
     });
 });

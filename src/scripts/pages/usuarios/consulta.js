@@ -66,8 +66,9 @@ async function carregarClientes() {
       tbody.appendChild(linha);
     })
 
-  } catch (erro) {
-    alert("Erro ao aplicar filtro: " + erro.message);
+  } catch (err) {
+    alert("Erro ao aplicar filtro: " + err.message);
+    return;
   }
 }
 
@@ -117,8 +118,9 @@ document.getElementById('formPesquisa').addEventListener('submit', async functio
       tbody.appendChild(linha);
     })
 
-  } catch (erro) {
-    alert("Erro ao aplicar filtro: " + erro.message);
+  } catch (err) {
+    alert("Erro ao aplicar filtro: " + err.message);
+    return;
   }
 });
 

@@ -22,11 +22,13 @@ async function excluirCliente(id) {
             alert(`${cliente.nome ?? $cliente.codigo} excluído com sucesso!`);
             window.location.reload();
         } else {
-            const erro = await reqdelete.text();
+            const erro = await resposta.text();
             alert("Erro ao deletar cliente: " + erro);
+            return;
         }
     } catch (err) {
         alert("Erro na conexão: " + err.message);
+        return;
     }
 }
 

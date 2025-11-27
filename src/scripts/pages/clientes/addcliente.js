@@ -1,24 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const tipoPessoa = document.getElementsByName('tipo');
-    const formularioClienteFisico = document.getElementById('pessoaFisica')
-    const formularioClienteJuridico = document.getElementById('pessoaJuridica')
+  const tipoPessoa = document.getElementsByName('tipo');
+  const formularioClienteFisico = document.getElementById('pessoaFisica')
+  const formularioClienteJuridico = document.getElementById('pessoaJuridica')
 
 
-    formularioClienteJuridico.classList.add('hidden');
+  formularioClienteJuridico.classList.add('hidden');
 
-    tipoPessoa.forEach(radio => {
-        radio.addEventListener('change', () => {
-            if (document.getElementById("ClienteFisico").checked) {
-                formularioClienteFisico.classList.remove('hidden');
-                formularioClienteJuridico.classList.add('hidden');
-            } else if (document.getElementById("ClienteJuridico").checked) {
-                formularioClienteJuridico.classList.remove('hidden');
-                formularioClienteFisico.classList.add('hidden');
-            }
-        });
+  tipoPessoa.forEach(radio => {
+    radio.addEventListener('change', () => {
+      if (document.getElementById("ClienteFisico").checked) {
+        formularioClienteFisico.classList.remove('hidden');
+        formularioClienteJuridico.classList.add('hidden');
+      } else if (document.getElementById("ClienteJuridico").checked) {
+        formularioClienteJuridico.classList.remove('hidden');
+        formularioClienteFisico.classList.add('hidden');
+      }
     });
-}); 
+  });
+});
 
 document.getElementById("formCliente").addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -75,19 +75,19 @@ document.getElementById("formCliente").addEventListener("submit", async (e) => {
 
   if (isPessoaFisica) {
     if (dados.Documento && !validarCPF(dados.Documento)) {
-      alert("CPF inválido!");
+      alert("Erro ao cadastrar cliente: CPF inválido!");
       form.appendChild(removido);
       return;
     }
   } else {
     if (dados.Documento && !validarCNPJ(dados.Documento)) {
-      alert("CNPJ inválido!");
+      alert("Erro ao cadastrar cliente: CNPJ inválido!");
       form.appendChild(removido);
       return;
     }
 
     if (dados.InscricaoEstadual && !validarInscricaoEstadual(dados.InscricaoEstadual)) {
-      alert("Inscrição Estadual inválida!");
+      alert("Erro ao cadastrar cliente: Inscrição Estadual inválida!");
       form.appendChild(removido);
       return;
     }
@@ -164,11 +164,22 @@ document.getElementById("formCliente").addEventListener("submit", async (e) => {
       alert("Cliente cadastrado com sucesso!");
       window.location.href = "../clientes/index.html";
     } else {
-      const erro = await resposta.text();
-      alert("Erro ao cadastrar cliente: " + erro);
+      const texto = await resposta.text();
+      let mensagem;
+      try {
+        const erroJSON = JSON.parse(texto);
+        const campo = Object.keys(erroJSON.errors)[0];
+        mensagem = erroJSON.errors[campo][0];
+      } catch {
+        mensagem = texto; 
+      }
+
+      alert("Erro ao cadastrar cliente: " + mensagem);
+      return;
     }
   } catch (err) {
     alert("Erro na conexão: " + err.message);
+    return;
   }
 });
 

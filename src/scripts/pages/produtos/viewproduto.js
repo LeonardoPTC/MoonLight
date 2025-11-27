@@ -14,12 +14,14 @@ async function carregarProduto(id) {
         if (!resposta.ok) {
             const erro = await resposta.text();
             alert(erro);
+            return;
         }
 
         produto = await resposta.json();
         preencherCampos(produto);
     } catch (err) {
         alert("Erro na conexão: " + err.message);
+        return;
     }
 }
 

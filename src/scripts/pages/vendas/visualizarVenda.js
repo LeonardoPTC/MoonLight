@@ -14,8 +14,8 @@ window.addEventListener("load", async () => {
 
     document.getElementById("etapa2").style.display = "block";
     document.getElementById("btnVoltar").onclick = () => {
-    window.location.href = "../vendas/index.html";
-};
+        window.location.href = "../vendas/index.html";
+    };
 
     bloquearEdicao();
 });
@@ -25,7 +25,9 @@ async function carregarVenda(idVenda) {
         const resposta = await fetch(`http://localhost:5164/BlueMoon/Vendas/${idVenda}`);
 
         if (!resposta.ok) {
-            throw new Error("Erro ao buscar venda");
+            const erro = await resposta.text();
+            alert(erro);
+            return;
         }
 
         vendaAtual = await resposta.json();
@@ -33,6 +35,7 @@ async function carregarVenda(idVenda) {
 
     } catch (err) {
         alert("Erro ao carregar venda: " + err.message);
+        return;
     }
 }
 
@@ -47,13 +50,13 @@ function preencherCampos(venda) {
         5: "FATURADA"
     };
 
-    if(venda.dataFaturamento === "01/01/0001 00:00:00" && situacao[venda.situacao] === "FECHADA" || situacao[venda.situacao] === "ABERTA"){
-      venda.dataFaturamento = "Não Faturada!";
-    } else if (venda.dataFaturamento === "01/01/0001 00:00:00" && situacao[venda.situacao] === "CANCELADA"){
-      venda.dataFaturamento = "Venda Cancelada!";
-    } else if (venda.dataFaturamento === "01/01/0001 00:00:00" && situacao[venda.situacao] === "ESTORNADA"){
-      venda.dataFaturamento = "Venda Estornada!";
-    } 
+    if (venda.dataFaturamento === "01/01/0001 00:00:00" && situacao[venda.situacao] === "FECHADA" || situacao[venda.situacao] === "ABERTA") {
+        venda.dataFaturamento = "Não Faturada!";
+    } else if (venda.dataFaturamento === "01/01/0001 00:00:00" && situacao[venda.situacao] === "CANCELADA") {
+        venda.dataFaturamento = "Venda Cancelada!";
+    } else if (venda.dataFaturamento === "01/01/0001 00:00:00" && situacao[venda.situacao] === "ESTORNADA") {
+        venda.dataFaturamento = "Venda Estornada!";
+    }
 
     document.getElementById("selectCliente").innerHTML = `
         <option selected>${venda.nomeCliente}</option>

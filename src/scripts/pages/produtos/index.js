@@ -21,28 +21,35 @@ window.addEventListener('load', async () => {
 });
 
 async function carregarProdutos() {
-  const resposta = await fetch("http://localhost:5164/BlueMoon/Produtos");
-  const produtos = await resposta.json();
+  try {
+    const resposta = await fetch("http://localhost:5164/BlueMoon/Produtos");
+    if (!resposta.ok) {
+      const erro = await resposta.text();
+      alert(erro);
+      return;
+    }
 
-  const tbody = document.querySelector("#tabela-produtos tbody");
-  tbody.innerHTML = "";
+    const produtos = await resposta.json();
 
-  produtos.forEach(p => {
-    const linha = document.createElement("tr");
-    //let situacao = p.situacao;
+    const tbody = document.querySelector("#tabela-produtos tbody");
+    tbody.innerHTML = "";
 
-    /*if (situacao == "0") {
-      situacao = "INDEFINIDO";
-    } else if(situacao == "1") {
-      situacao = "ATIVO";
-    } else if(situacao == "2") {
-      situacao = "INATIVO";
-    } else if(situacao == "3") {
-      situacao = "EM FALTA";
-    } else if(situacao == "4") {
-      situacao = "AGUARDANDO ENTREGA";
-    } Para o Segundo Estágio*/
-    linha.innerHTML = `
+    produtos.forEach(p => {
+      const linha = document.createElement("tr");
+      //let situacao = p.situacao;
+
+      /*if (situacao == "0") {
+        situacao = "INDEFINIDO";
+      } else if(situacao == "1") {
+        situacao = "ATIVO";
+      } else if(situacao == "2") {
+        situacao = "INATIVO";
+      } else if(situacao == "3") {
+        situacao = "EM FALTA";
+      } else if(situacao == "4") {
+        situacao = "AGUARDANDO ENTREGA";
+      } Para o Segundo Estágio*/
+      linha.innerHTML = `
       <td style="text-align: center">${p.codigo}</td>
       <td style="text-align: center">${p.nome}</td>
       <td style="text-align: center">${p.marca}</td>
@@ -55,8 +62,12 @@ async function carregarProdutos() {
           <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir Produto" onclick="excluirProduto('${p.id}')"><img src="../../assets/Delete.png"></button>
       </td>
     `;
-    tbody.appendChild(linha);
-  });
+      tbody.appendChild(linha);
+    });
+  } catch (err) {
+    alert("Erro: " + err.message);
+    return;
+  }
 }
 
 carregarProdutos();
@@ -83,6 +94,7 @@ document.addEventListener('submit', async function (event) {
 
     if (!resposta.ok) {
       alert("Produto não Encontrado!")
+      return;
     }
 
     const produtos = await resposta.json();
@@ -113,8 +125,9 @@ document.addEventListener('submit', async function (event) {
       tbody.appendChild(linha);
     })
 
-  } catch (erro) {
-    alert("Erro ao aplicar filtro", erro);
+  } catch (err) {
+    alert("Erro ao aplicar filtro: " + err.message);
+    return;
   }
 });
 

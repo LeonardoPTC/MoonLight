@@ -21,7 +21,14 @@ window.addEventListener('load', async () => {
 });
 
 async function carregarClientes() {
+  try{
   const resposta = await fetch("http://localhost:5164/BlueMoon/Pessoas");
+
+  if (!resposta.ok) {
+    const erro = await resposta.text();
+    alert(erro);
+    return;
+  }
   const clientes = await resposta.json();
 
   const tbody = document.querySelector("#tabela-clientes tbody");
@@ -44,6 +51,10 @@ async function carregarClientes() {
     `;
     tbody.appendChild(linha);
   });
+  } catch (err) {
+    alert("Erro: " + err.message);
+    return;
+  }
 }
 
 carregarClientes();
@@ -97,8 +108,9 @@ document.addEventListener('submit', async function (event) {
       tbody.appendChild(linha);
     })
 
-  } catch (erro) {
-    alert("Erro ao aplicar filtro: " + erro.message);
+  } catch (err) {
+    alert("Erro ao aplicar filtro: " + err.message);
+    return;
   }
 });
 

@@ -4,70 +4,76 @@ window.addEventListener('load', async () => {
 
   const sidebar = document.querySelector(".sidebar")
 
-   if (sidebar) {
+  if (sidebar) {
 
-      if (sidebar.matches(':hover')) {
-        document.querySelector('#content').style.marginLeft = '270px';
-      }
-
-      sidebar.addEventListener('mouseenter', function () {
-        document.querySelector('#content').style.marginLeft = '270px';
-      });
-
-      sidebar.addEventListener('mouseleave', function () {
-        document.querySelector('#content').style.marginLeft = '200px';
-      });
+    if (sidebar.matches(':hover')) {
+      document.querySelector('#content').style.marginLeft = '270px';
     }
+
+    sidebar.addEventListener('mouseenter', function () {
+      document.querySelector('#content').style.marginLeft = '270px';
+    });
+
+    sidebar.addEventListener('mouseleave', function () {
+      document.querySelector('#content').style.marginLeft = '200px';
+    });
+  }
 });
 
 async function carregarVenda() {
-  const resposta = await fetch("http://localhost:5164/BlueMoon/Vendas");
-  const vendas = await resposta.json();
-
-  const ordemSituacao = {
-    1: 1,
-    2: 2,
-    5: 3,
-    4: 4,
-    3: 5,
-    0: 6
-  };
-
-  vendas.sort((a, b) => {
-    const ordem = ordemSituacao[a.situacao] - ordemSituacao[b.situacao];
-    if (ordem !== 0) return ordem;
-
-    const dataA = new Date(a.dataAbertura.split('/').reverse().join('-'));
-    const dataB = new Date(b.dataAbertura.split('/').reverse().join('-'));
-
-    return dataB - dataA;
-  });
-
-  const tbody = document.querySelector("#tabela-vendas tbody");
-  tbody.innerHTML = "";
-  const situacao = {
-    0: "INDEFINIDO",
-    1: "ABERTA",
-    2: "FECHADA",
-    3: "CANCELADA",
-    4: "ESTORNADA",
-    5: "FATURADA"
-  };
-  vendas.forEach(v => {
-    const linha = document.createElement("tr");
-
-    if (v.dataFaturamento === "01/01/0001 00:00:00" && situacao[v.situacao] === "FECHADA" || situacao[v.situacao] === "ABERTA") {
-      v.dataFaturamento = "Não Faturada!";
-    } else if (v.dataFaturamento === "01/01/0001 00:00:00" && situacao[v.situacao] === "CANCELADA") {
-      v.dataFaturamento = "Venda Cancelada!";
-    } else if (v.dataFaturamento === "01/01/0001 00:00:00" && situacao[v.situacao] === "ESTORNADA") {
-      v.dataFaturamento = "Venda Estornada!";
+  try {
+    const resposta = await fetch("http://localhost:5164/BlueMoon/Vendas");
+    if (!resposta.ok) {
+      const erro = await resposta.text();
+      alert(erro);
+      return;
     }
+    const vendas = await resposta.json();
+
+    const ordemSituacao = {
+      1: 1,
+      2: 2,
+      5: 3,
+      4: 4,
+      3: 5,
+      0: 6
+    };
+
+    vendas.sort((a, b) => {
+      const ordem = ordemSituacao[a.situacao] - ordemSituacao[b.situacao];
+      if (ordem !== 0) return ordem;
+
+      const dataA = new Date(a.dataAbertura.split('/').reverse().join('-'));
+      const dataB = new Date(b.dataAbertura.split('/').reverse().join('-'));
+
+      return dataB - dataA;
+    });
+
+    const tbody = document.querySelector("#tabela-vendas tbody");
+    tbody.innerHTML = "";
+    const situacao = {
+      0: "INDEFINIDO",
+      1: "ABERTA",
+      2: "FECHADA",
+      3: "CANCELADA",
+      4: "ESTORNADA",
+      5: "FATURADA"
+    };
+    vendas.forEach(v => {
+      const linha = document.createElement("tr");
+
+      if (v.dataFaturamento === "01/01/0001 00:00:00" && situacao[v.situacao] === "FECHADA" || situacao[v.situacao] === "ABERTA") {
+        v.dataFaturamento = "Não Faturada!";
+      } else if (v.dataFaturamento === "01/01/0001 00:00:00" && situacao[v.situacao] === "CANCELADA") {
+        v.dataFaturamento = "Venda Cancelada!";
+      } else if (v.dataFaturamento === "01/01/0001 00:00:00" && situacao[v.situacao] === "ESTORNADA") {
+        v.dataFaturamento = "Venda Estornada!";
+      }
 
 
-    if (situacao[v.situacao] === "ABERTA") {
+      if (situacao[v.situacao] === "ABERTA") {
 
-      linha.innerHTML = `
+        linha.innerHTML = `
       <td style="text-align: center">${v.codigo}</td>
       <td style="text-align: center">${v.dataAbertura}</td>
       <td style="text-align: center">${v.dataFaturamento}</td>
@@ -80,10 +86,10 @@ async function carregarVenda() {
           <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Retomar Venda" onclick="retomarVenda('${v.id}')"><img src="../../assets/Edit.png"></button>
       </td>
     `;
-      tbody.appendChild(linha);
-    } else if (situacao[v.situacao] === "FECHADA") {
+        tbody.appendChild(linha);
+      } else if (situacao[v.situacao] === "FECHADA") {
 
-      linha.innerHTML = `
+        linha.innerHTML = `
       <td style="text-align: center">${v.codigo}</td>
       <td style="text-align: center">${v.dataAbertura}</td>
       <td style="text-align: center">${v.dataFaturamento}</td>
@@ -96,9 +102,9 @@ async function carregarVenda() {
           <button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Finalizar Venda" onclick="finalizarVenda('${v.id}')"><img src="../../assets/finalizarVenda.png"></button>
       </td>
     `;
-      tbody.appendChild(linha);
-    } else if (situacao[v.situacao] === "FATURADA") {
-      linha.innerHTML = `
+        tbody.appendChild(linha);
+      } else if (situacao[v.situacao] === "FATURADA") {
+        linha.innerHTML = `
       <td style="text-align: center">${v.codigo}</td>
       <td style="text-align: center">${v.dataAbertura}</td>
       <td style="text-align: center">${v.dataFaturamento}</td>
@@ -111,9 +117,9 @@ async function carregarVenda() {
           <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Estornar Venda" onclick="estornarVenda('${v.id}')"><img src="../../assets/EstornoIcon.png"></button>
       </td>
     `;
-      tbody.appendChild(linha);
-    } else {
-      linha.innerHTML = `
+        tbody.appendChild(linha);
+      } else {
+        linha.innerHTML = `
       <td style="text-align: center">${v.codigo}</td>
       <td style="text-align: center">${v.dataAbertura}</td>
       <td style="text-align: center">${v.dataFaturamento}</td>
@@ -125,9 +131,13 @@ async function carregarVenda() {
           <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Venda" onclick="visualizarVenda('${v.id}')"><img src="../../assets/View.png"></button>
       </td>
     `;
-      tbody.appendChild(linha);
-    }
-  });
+        tbody.appendChild(linha);
+      }
+    });
+  } catch (err) {
+    alert("Erro: " + err.message);
+    return;
+  }
 }
 
 carregarVenda();
@@ -285,8 +295,9 @@ document.getElementById("formPesquisa").addEventListener("submit", async functio
       }
     });
 
-  } catch (erro) {
-    alert("Erro ao aplicar filtro: " + erro.message);
+  } catch (err) {
+    alert("Erro ao aplicar filtro: " + err.message);
+    return;
   }
 });
 
@@ -325,8 +336,9 @@ async function estornarVenda(idVenda) {
       alert("Venda Estornada com Sucesso!");
       window.location.reload();
     }
-  } catch (erro) {
-    alert("Erro na conexão: " + erro.message);
+  } catch (err) {
+    alert("Erro na conexão: " + err.message);
+    return;
   }
 }
 

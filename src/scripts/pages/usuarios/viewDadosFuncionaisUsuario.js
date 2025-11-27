@@ -43,7 +43,9 @@ async function buscarDadosUsuario(id) {
         const resposta = await fetch(`http://localhost:5164/BlueMoon/Usuarios/${id}`);
 
         if (!resposta.ok) {
-            throw new Error("Erro ao carregar dados do usuário.");
+            const erro = await resposta.text();
+            alert(erro);
+            return;
         }
 
         const usuario = await resposta.json();
@@ -54,8 +56,9 @@ async function buscarDadosUsuario(id) {
 
         desativarInputs();
 
-    } catch (erro) {
-        alert("Não foi possível carregar os dados do usuário.");
+    } catch (err) {
+        alert("Não foi possível carregar os dados do usuário: " + err.message);
+        return;
     }
 }
 

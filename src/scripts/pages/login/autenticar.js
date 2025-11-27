@@ -55,8 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Login realizado com sucesso!");
             window.location.href = "src/dashboard/index.html";
 
-        } catch (erro) {
-            alert("Erro ao conectar com servidor.");
+        } catch (err) {
+            alert("Erro ao conectar com servidor." + err.message);
+            return;
         }
     });
 });
