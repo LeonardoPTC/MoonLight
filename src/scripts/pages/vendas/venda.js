@@ -173,7 +173,7 @@ async function adicionarProduto() {
     const dto = { idProduto, quantidade };
     const qtdDisponivel = await verificaQuantidade(dto.idProduto, dto.quantidade);
     if (qtdDisponivel < 0) {
-        alert("Qauntidade de Estoque indisponível!");
+        alert("Quantidade de Estoque indisponível!");
         return;
     }
 
@@ -330,7 +330,7 @@ async function verificaQuantidade(idProduto, quantidade) {
 
 async function fecharVenda() {
     if (!vendaAtual || itens.length === 0) {
-        alert("Não há venda em andamento ou produtos adicionados.");
+        alert("Não foi possível fechar a venda: Não há venda em andamento ou produtos adicionados.");
         return;
     }
 
@@ -363,14 +363,14 @@ async function fecharVenda() {
         window.onbeforeunload = null;
         window.location.href = "../vendas/finalizacaoVenda.html";
     } catch (err) {
-        alert("Erro ao adicionar produto: " + err.message);
+        alert("Erro ao fechar venda: " + err.message);
         return;
     }
 }
 
 async function cancelarVenda() {
     if (!vendaAtual) {
-        alert("Não há venda em andamento.");
+        alert("Não foi possível cancelar a venda: Não há venda em andamento.");
         return;
     }
 

@@ -70,7 +70,7 @@ document.getElementById("formCliente").addEventListener("submit", async (e) => {
 
   for (let campo of camposObrigatorios) {
     if (!campo.value.trim()) {
-      alert(`O campo ${campo.name} é obrigatório!`);
+      alert(`Erro ao cadastrar cliente: O campo ${campo.name} é obrigatório!`);
       form.appendChild(removido);
       return;
     }

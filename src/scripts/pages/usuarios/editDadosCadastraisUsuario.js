@@ -166,7 +166,7 @@ document.getElementById('formUsuario').addEventListener('submit', async (e) => {
     const camposObrigatorios = containerAtivo.querySelectorAll('[data-required]');
     for (let campo of camposObrigatorios) {
         if (!campo.value || !campo.value.trim()) {
-            alert(`O campo ${campo.name} é obrigatório!`);
+            alert(`Erro ao atualizar usuário: O campo ${campo.name} é obrigatório!`);
             campo.focus();
             return;
         }

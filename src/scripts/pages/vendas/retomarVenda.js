@@ -274,7 +274,7 @@ async function verificaQuantidade(idProduto, quantidade) {
 
 async function fecharVenda() {
     if (!vendaAtual || itens.length === 0) {
-        alert("Não há venda em andamento ou produtos adicionados.");
+        alert("Não foi possível fechar a venda: Não há venda em andamento ou produtos adicionados.");
         return;
     }
 
@@ -307,16 +307,19 @@ async function fecharVenda() {
         window.onbeforeunload = null;
         window.location.href = "../vendas/finalizacaoVenda.html";
     } catch (err) {
-        alert("Erro ao adicionar produto: " + err.message);
+        alert("Erro ao fechar venda: " + err.message);
         return;
     }
 }
 
 async function cancelarVenda() {
-    if (!vendaAtual) return alert("Nenhuma venda.");
+    if (!vendaAtual) {
+        alert("Não foi possível cancelar a venda: Não há venda em andamento.");
+        return;
+    }
 
     try {
-        await fetch(`http://localhost:5164/BlueMoon/Vendas/${vendaAtual.id}/Cancelar`, {
+        const resposta = await fetch(`http://localhost:5164/BlueMoon/Vendas/${vendaAtual.id}/Cancelar`, {
             method: "PATCH"
         });
 
@@ -331,7 +334,7 @@ async function cancelarVenda() {
         window.onbeforeunload = null;
         window.location.href = "../vendas/index.html";
     } catch (err) {
-        alert("Erro ao adicionar produto: " + err.message);
+        alert("Erro ao cancelar venda: " + err.message);
         return;
     }
 }

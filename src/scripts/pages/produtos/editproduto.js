@@ -26,6 +26,21 @@ document.getElementById("formProduto").addEventListener("submit", async (e) => {
     }
   });
 
+  const camposObrigatorios = document.querySelectorAll("[data-required]");
+
+  for (let campo of camposObrigatorios) {
+    let nomeCampo = campo.name;
+
+    if (campo.name === "ValorVenda") {
+      nomeCampo = "Preço de Venda";
+    }
+
+    if (!campo.value.trim()) {
+      alert(`Erro ao atualizar produto: O campo ${nomeCampo} é obrigatório!`);
+      return;
+    }
+  }
+
   try {
     dados.id = produto.id;
     dados.situacao = produto.situacao;
