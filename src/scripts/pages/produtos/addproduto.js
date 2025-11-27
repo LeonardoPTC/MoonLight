@@ -1,3 +1,8 @@
+document.addEventListener("DOMContentLoaded", async () => {
+    await includeHTML("header", "../../include/header.html");
+    await includeHTML("footer", "../../include/footer.html");
+});
+
 document.getElementById("formProduto").addEventListener("submit", async (e) => {
     e.preventDefault();
 

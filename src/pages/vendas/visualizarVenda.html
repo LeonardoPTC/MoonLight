@@ -18,22 +18,22 @@
 
             <div class="row mt-3">
                 <div class="col-md-3">
-                    <label class="form-label">Código:</label>
+                    <label for="inputCodigo" class="form-label">Código:</label>
                     <input id="inputCodigo" class="form-control" disabled>
                 </div>
 
                 <div class="col-md-3">
-                    <label class="form-label">Data Abertura:</label>
+                    <label for="inputDataAbertura" class="form-label">Data Abertura:</label>
                     <input id="inputDataAbertura" class="form-control" disabled>
                 </div>
 
                 <div class="col-md-3">
-                    <label class="form-label">Data Faturamento:</label>
+                    <label for="inputDataFaturamento" class="form-label">Data Faturamento:</label>
                     <input id="inputDataFaturamento" class="form-control" disabled>
                 </div>
 
                 <div class="col-md-3">
-                    <label class="form-label">Situação:</label>
+                    <label for="inputSituacao" class="form-label">Situação:</label>
                     <input id="inputSituacao" class="form-control" disabled>
                 </div>
             </div>
@@ -42,14 +42,14 @@
             <div id="etapa1">
                 <div class="row g-2">
                     <div class="col-md-6">
-                        <label class="form-label">Cliente:</label>
+                        <label for="selectCliente" class="form-label">Cliente:</label>
                         <select id="selectCliente" class="form-control" required>
                             <option value="">Selecione um cliente</option>
                         </select>
                     </div>
 
                     <div class="col-md-6">
-                        <label class="form-label">Usuário:</label>
+                        <label for="selectUsuario" class="form-label">Usuário:</label>
                         <select id="selectUsuario" class="form-control" required>
                             <option value="">Selecione um cliente</option>
                         </select>
@@ -111,11 +111,6 @@
 
     <script src="../../scripts/includes.js"></script>
     <script src="../../scripts/pages/vendas/visualizarVenda.js"></script>
-
-    <script>
-        includeHTML("header", "../../include/header.html");
-        includeHTML("footer", "../../include/footer.html");
-    </script>
 
 </body>
 

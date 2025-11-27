@@ -1,4 +1,7 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  await includeHTML("header", "../../include/header.html");
+  await includeHTML("footer", "../../include/footer.html");
+
 
   const tipoPessoa = document.getElementsByName('tipo');
   const formularioClienteFisico = document.getElementById('pessoaFisica')
@@ -171,7 +174,7 @@ document.getElementById("formCliente").addEventListener("submit", async (e) => {
         const campo = Object.keys(erroJSON.errors)[0];
         mensagem = erroJSON.errors[campo][0];
       } catch {
-        mensagem = texto; 
+        mensagem = texto;
       }
 
       alert("Erro ao cadastrar cliente: " + mensagem);

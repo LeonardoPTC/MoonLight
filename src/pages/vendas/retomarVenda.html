@@ -19,14 +19,14 @@
             <div id="etapa1">
                 <div class="row g-2">
                     <div class="col-md-6">
-                        <label class="form-label">Cliente:</label>
+                        <label for="selectCliente" class="form-label">Cliente:</label>
                         <select id="selectCliente" class="form-control" required>
                             <option value="">Selecione um cliente</option>
                         </select>
                     </div>
 
                     <div class="col-md-6">
-                        <label class="form-label">Usuário:</label>
+                        <label for="selectUsuario" class="form-label">Usuário:</label>
                         <select id="selectUsuario" class="form-control" required>
                             <option value="">Selecione um cliente</option>
                         </select>
@@ -39,29 +39,29 @@
 
                 <div class="row g-2">
                     <div class="col-md-7">
-                        <label class="form-label">Produto:</label>
+                        <label for="selectProduto" class="form-label">Produto:</label>
                         <select id="selectProduto" class="form-control"></select>
                     </div>
 
                     <div class="col-md-2">
-                        <label class="form-label">Qtd:</label>
+                        <label for="inputQtd" class="form-label">Qtd:</label>
                         <input type="number" id="inputQtd" class="form-control" min="1" value="1">
                     </div>
 
                     <div class="col-md-1">
-                        <label class="form-label"></label>
+                        <label for="btnAddProduto" class="form-label"></label>
                         <button type="button" id="btnAddProduto" class="btn btn-success w-100">
                             <img src="../../assets/AddProduto.png" alt="">
                         </button>
                     </div>
                     <div class="col-md-1">
-                        <label class="form-label"></label>
+                        <label for="btnRemoveProduto" class="form-label"></label>
                         <button type="button" id="btnRemoveProduto" style="color: white;" class="btn btn-warning w-100">
                             <img src="../../assets/Remover.png" alt="">
                         </button>
                     </div>
                     <div class="col-md-1">
-                        <label class="form-label"></label>
+                        <label for="btnDeleteProduto" class="form-label"></label>
                         <button type="button" id="btnDeleteProduto" class="btn btn-danger w-100">
                             <img src="../../assets/Delete.png">
                         </button>
@@ -106,11 +106,6 @@
 
     <script src="../../scripts/includes.js"></script>
     <script src="../../scripts/pages/vendas/retomarVenda.js"></script>
-
-    <script>
-        includeHTML("header", "../../include/header.html");
-        includeHTML("footer", "../../include/footer.html");
-    </script>
 
 </body>
 

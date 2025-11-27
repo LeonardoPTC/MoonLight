@@ -1,4 +1,7 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+    await includeHTML("header", "../../include/header.html");
+    await includeHTML("footer", "../../include/footer.html");
+
 
     function converterDataParaBack(data) {
         if (!data) return "";
@@ -77,14 +80,14 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             if (!resposta.ok) {
-                const texto = await resposta.text(); 
+                const texto = await resposta.text();
                 let mensagem;
                 try {
                     const erroJSON = JSON.parse(texto);
                     const campo = Object.keys(erroJSON.errors)[0];
                     mensagem = erroJSON.errors[campo][0];
                 } catch {
-                    mensagem = texto; 
+                    mensagem = texto;
                 }
 
                 alert("Erro ao cadastrar dados do usuário: " + mensagem);

@@ -1,4 +1,7 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+    await includeHTML("header", "../../include/header.html");
+    await includeHTML("footer", "../../include/footer.html");
+
     function converterDataParaBack(data) {
         if (!data) return "";
         const partes = data.split("-");
@@ -13,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const inicio = document.getElementById("inicio").value;
         const fim = document.getElementById("fim").value;
-        
+
         if (!inicio && !fim) {
             alert("Erro ao gerar relatório: Data início e fim de busca são obrigatórias");
             return;
