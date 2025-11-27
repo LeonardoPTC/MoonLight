@@ -46,7 +46,7 @@ a {
 }
 
 .sidebar:hover {
-  width: 250px;
+  width: 190px;
 }
 
 .sidebar:hover + #content {

@@ -10,7 +10,7 @@ window.addEventListener("load", async () => {
     }
 
     sidebar.addEventListener("mouseenter", function () {
-      document.querySelector("#content").style.marginLeft = "270px";
+      document.querySelector("#content").style.marginLeft = "210px";
     });
 
     sidebar.addEventListener("mouseleave", function () {
