@@ -4,6 +4,8 @@ window.addEventListener("load", async () => {
     await includeHTML("header", "../../include/header.html");
     await includeHTML("footer", "../../include/footer.html");
 
+    
+
     const idVenda = localStorage.getItem("idVenda");
     if (!idVenda) {
         alert("Nenhuma venda selecionada.");

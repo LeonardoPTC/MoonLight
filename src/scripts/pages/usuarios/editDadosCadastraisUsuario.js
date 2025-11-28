@@ -10,17 +10,17 @@ window.addEventListener('load', async () => {
 
         const aplicarMargens = (expandida) => {
             if (telaPequena.matches) {
-                content.style.marginLeft = expandida ? "180px" : "150px";
-                content.style.marginRight = expandida ? "120px" : "120px";
+                content.style.marginLeft = expandida ? "200px" : "150px";
+                content.style.marginRight = expandida ? "80px" : "120px";
 
             } else {
                 content.style.marginLeft = expandida ? "270px" : "200px";
             }
         };
 
-        if (sidebar.matches(':hover')) {
-            aplicarMargens(true);
-        }
+         setTimeout(() => {
+    aplicarMargens(sidebar.matches(':hover'));
+  }, 0);
 
         sidebar.addEventListener('mouseenter', () => aplicarMargens(true));
         sidebar.addEventListener('mouseleave', () => aplicarMargens(false));

@@ -46,6 +46,8 @@ img {
   width: 168px;
   margin-right: 100px;
   transition: width 0.3s ease-in-out, margin-right 1s ease-in-out;
+      transition: margin-left 0.3s ease, margin-right 0.3s ease;
+
   overflow: hidden;
 }
 
@@ -87,8 +89,8 @@ img {
     border-radius: 10px !important;
     background-color: #F0F4F9;
     margin-top: 80px;
-    margin-left: 160px;
-    margin-right: 60px;
+    margin-left: 130px;
+    margin-right:40px;
     padding: 20px;
     padding-bottom: 50px;
     box-sizing: border-box;
@@ -136,7 +138,7 @@ img {
   .filter-bar {
     width: 100%;
     margin-right: 20px;
-    margin-left: -15px;
+    margin-left: -20px;
   }
 
   table {

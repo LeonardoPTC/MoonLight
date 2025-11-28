@@ -5,6 +5,32 @@ window.addEventListener('load', async () => {
     await includeHTML("header", "../../include/header.html");
     await includeHTML("footer", "../../include/footer.html");
 
+  const sidebar = document.querySelector(".sidebar")
+  const content = document.querySelector("#content");
+  const telaPequena = window.matchMedia("(max-width: 1366px)");
+  const filterBar = document.querySelector(".filter-bar");
+
+  if (sidebar) {
+
+    const aplicarMargens = (expandida) => {
+      if (telaPequena.matches) {
+        content.style.marginLeft = expandida ? "200px" : "150px";
+        content.style.marginRight = expandida ? "0px" : "100px";
+        content.style.width = expandida ? "1100px" : "1100px";
+        filterBar.style.marginLeft = expandida ? "-20px" : "-20px";
+      } else {
+        content.style.marginLeft = expandida ? "270px" : "200px";
+      }
+    };
+
+     setTimeout(() => {
+    aplicarMargens(sidebar.matches(':hover'));
+  }, 0);
+
+    sidebar.addEventListener('mouseenter', () => aplicarMargens(true));
+    sidebar.addEventListener('mouseleave', () => aplicarMargens(false));
+  }
+
     await carregarClientes();
     await carregarUsuarios();
     await carregarProdutos();

@@ -105,11 +105,11 @@ a {
   }
 
   .sidebar:hover {
-    width: 160px;
+    width: 180px;
   }
 
   .sidebar:hover+#content {
-    margin-left: 250px;
+    margin-left: 270px;
   }
 
   .sidebar-item {

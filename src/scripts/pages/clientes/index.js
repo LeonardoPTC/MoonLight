@@ -5,22 +5,28 @@ window.addEventListener('load', async () => {
   const sidebar = document.querySelector(".sidebar")
   const content = document.querySelector("#content");
   const telaPequena = window.matchMedia("(max-width: 1366px)");
+  const tabelaClientes = document.querySelector("#tabela-clientes");
+  const filterBar = document.querySelector(".filter-bar");
 
   if (sidebar) {
 
     const aplicarMargens = (expandida) => {
       if (telaPequena.matches) {
-        content.style.marginLeft = expandida ? "180px" : "160px";
-        content.style.marginRight = expandida ? "40px" : "60px";
-
+        content.style.marginLeft = expandida ? "190px" : "130px";
+        content.style.marginRight = expandida ? "0px" : "40px";
+        content.style.width = expandida ? "auto" : "auto";
+        tabelaClientes.style.width = expandida ? "1150px" : "1150px";
+        tabelaClientes.style.marginRight = expandida ? "0px" : "40px";
+        tabelaClientes.style.marginLeft = expandida ? "40px" : "70px";
+        filterBar.style.marginLeft = expandida ? "-20px" : "-20px";
       } else {
         content.style.marginLeft = expandida ? "270px" : "200px";
       }
     };
 
-    if (sidebar.matches(':hover')) {
-      aplicarMargens(true);
-    }
+     setTimeout(() => {
+    aplicarMargens(sidebar.matches(':hover'));
+  }, 0);
 
     sidebar.addEventListener('mouseenter', () => aplicarMargens(true));
     sidebar.addEventListener('mouseleave', () => aplicarMargens(false));

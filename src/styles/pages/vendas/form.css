@@ -48,3 +48,68 @@ img {
 #tabelaItens th:nth-child(4) {
   text-align: center;
 }
+
+@media (max-width: 1366px) {
+
+  #content {
+  border: 3px solid #2B4C7E;
+  border-radius: 10px !important;
+  background-color: #F0F4F9;
+  margin-top: 80px !important;
+  margin-left: 150px;
+  margin-right: 100px;
+  width: 1100px;
+  padding: 20px;
+  padding-bottom: 50px;
+  box-sizing: border-box;
+  justify-items: center;
+  transition: margin-left 0.3s ease;
+  font-family: "Roboto Mono", monospace;
+  font-weight: bold;
+}
+
+  input,
+  textarea,
+  select {
+    font-size: 14px;
+  }
+
+  textarea {
+    height: 70px;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  #buttons button {
+    width: 100%;
+    padding: 8px;
+    margin-top: -15px;
+  }
+
+  #btnVoltar {
+    margin-top: 2px !important;
+  }
+
+  hr {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+  }
+
+  #endereco {
+    margin-top: 5px !important;
+  }
+
+  #contato {
+    margin-top: 20px !important;
+  }
+
+  div {
+    margin-top: 0px !important;
+  }
+}

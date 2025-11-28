@@ -18,9 +18,9 @@ window.addEventListener('load', async () => {
       }
     };
 
-    if (sidebar.matches(':hover')) {
-      aplicarMargens(true);
-    }
+ setTimeout(() => {
+    aplicarMargens(sidebar.matches(':hover'));
+  }, 0);    
 
     sidebar.addEventListener('mouseenter', () => aplicarMargens(true));
     sidebar.addEventListener('mouseleave', () => aplicarMargens(false));

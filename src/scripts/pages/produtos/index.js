@@ -5,27 +5,28 @@ window.addEventListener('load', async () => {
   const sidebar = document.querySelector(".sidebar")
   const content = document.querySelector("#content");
   const tabelaProdutos = document.querySelector("#tabela-produtos");
-
   const telaPequena = window.matchMedia("(max-width: 1366px)");
+  const filterBar = document.querySelector(".filter-bar");
 
   if (sidebar) {
 
     const aplicarMargens = (expandida) => {
       if (telaPequena.matches) {
-        content.style.marginLeft = expandida ? "180px" : "100px";
-        content.style.marginRight = expandida ? "0px" : "30px";
-        tabelaProdutos.style.width = expandida ? "1160px" : "1200px";
-        tabelaProdutos.style.marginRight = expandida ? "80px" : "20px";
-        tabelaProdutos.style.marginLeft = expandida ? "80px" : "20px";
-        
+        content.style.marginLeft = expandida ? "190px" : "150px";
+        content.style.marginRight = expandida ? "10px" : "30px";
+        content.style.width = expandida ? "1120px" : "1120px";
+        tabelaProdutos.style.width = expandida ? "1050px" : "1050px";
+        tabelaProdutos.style.marginRight = expandida ? "90px" : "90px";
+        tabelaProdutos.style.marginLeft = expandida ? "90px" : "90px";
+        filterBar.style.marginLeft = expandida ? "-15px" : "-15px";
       } else {
         content.style.marginLeft = expandida ? "270px" : "200px";
       }
-    };
-
-    if (sidebar.matches(':hover')) {
-      aplicarMargens(true);
     }
+
+     setTimeout(() => {
+    aplicarMargens(sidebar.matches(':hover'));
+  }, 0);
 
     sidebar.addEventListener('mouseenter', () => aplicarMargens(true));
     sidebar.addEventListener('mouseleave', () => aplicarMargens(false));

@@ -90,6 +90,7 @@ img {
     margin-right: 60px;
     padding: 20px;
     padding-bottom: 50px;
+    width: 1140px;
     box-sizing: border-box;
     justify-items: center;
     transition: margin-left 0.3s ease, margin-right 0.3s ease;
@@ -150,9 +151,7 @@ img {
     font-size: 16px;
   }
 
-  #tabela-clientes {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
+  #tabela-usuarios {
+    width: 1050px;
   }
 }
