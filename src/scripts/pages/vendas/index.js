@@ -80,7 +80,7 @@ async function carregarVenda() {
       <td style="text-align: center">${v.dataFaturamento}</td>
       <td style="text-align: center">${v.nomeVendedor}</td>
       <td style="text-align: center">${v.nomeCliente}</td>
-      <td style="text-align: right">R$ ${v.valorTotal.toLocaleString("pt-BR", {
+      <td style="text-align: center">R$ ${v.valorTotal.toLocaleString("pt-BR", {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
       })}</td>
@@ -104,7 +104,7 @@ async function carregarVenda() {
       <td style="text-align: center">${v.dataFaturamento}</td>
       <td style="text-align: center">${v.nomeVendedor}</td>
       <td style="text-align: center">${v.nomeCliente}</td>
-      <td style="text-align: right">R$ ${v.valorTotal.toLocaleString("pt-BR", {
+      <td style="text-align: center">R$ ${v.valorTotal.toLocaleString("pt-BR", {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
       })}</td>
@@ -128,7 +128,7 @@ async function carregarVenda() {
       <td style="text-align: center">${v.dataFaturamento}</td>
       <td style="text-align: center">${v.nomeVendedor}</td>
       <td style="text-align: center">${v.nomeCliente}</td>
-      <td style="text-align: right">R$ ${v.valorTotal.toLocaleString("pt-BR", {
+      <td style="text-align: center">R$ ${v.valorTotal.toLocaleString("pt-BR", {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
       })}</td>
@@ -152,7 +152,7 @@ async function carregarVenda() {
       <td style="text-align: center">${v.dataFaturamento}</td>
       <td style="text-align: center">${v.nomeVendedor}</td>
       <td style="text-align: center">${v.nomeCliente}</td>
-      <td style="text-align: right">R$ ${v.valorTotal.toLocaleString("pt-BR", {
+      <td style="text-align: center">R$ ${v.valorTotal.toLocaleString("pt-BR", {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
       })}</td>
@@ -290,7 +290,7 @@ document
       <td style="text-align: center">${v.dataFaturamento}</td>
       <td style="text-align: center">${v.nomeVendedor}</td>
       <td style="text-align: center">${v.nomeCliente}</td>
-      <td style="text-align: right">R$ ${v.valorTotal.toLocaleString("pt-BR", {
+      <td style="text-align: center">R$ ${v.valorTotal.toLocaleString("pt-BR", {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
       })}</td>
@@ -314,7 +314,7 @@ document
       <td style="text-align: center">${v.dataFaturamento}</td>
       <td style="text-align: center">${v.nomeVendedor}</td>
       <td style="text-align: center">${v.nomeCliente}</td>
-      <td style="text-align: right">R$ ${v.valorTotal.toLocaleString("pt-BR", {
+      <td style="text-align: center">R$ ${v.valorTotal.toLocaleString("pt-BR", {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
       })}</td>
@@ -338,7 +338,7 @@ document
       <td style="text-align: center">${v.dataFaturamento}</td>
       <td style="text-align: center">${v.nomeVendedor}</td>
       <td style="text-align: center">${v.nomeCliente}</td>
-      <td style="text-align: right">R$ ${v.valorTotal.toLocaleString("pt-BR", {
+      <td style="text-align: center">R$ ${v.valorTotal.toLocaleString("pt-BR", {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
       })}</td>
@@ -362,7 +362,7 @@ document
       <td style="text-align: center">${v.dataFaturamento}</td>
       <td style="text-align: center">${v.nomeVendedor}</td>
       <td style="text-align: center">${v.nomeCliente}</td>
-      <td style="text-align: right">R$ ${v.valorTotal.toLocaleString("pt-BR", {
+      <td style="text-align: center">R$ ${v.valorTotal.toLocaleString("pt-BR", {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
       })}</td>

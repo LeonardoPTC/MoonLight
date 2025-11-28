@@ -6,11 +6,11 @@ window.addEventListener("load", async () => {
 
   if (sidebar) {
     if (sidebar.matches(":hover")) {
-      document.querySelector("#content").style.marginLeft = "270px";
+      document.querySelector("#content").style.marginLeft = "260px";
     }
 
     sidebar.addEventListener("mouseenter", function () {
-      document.querySelector("#content").style.marginLeft = "210px";
+      document.querySelector("#content").style.marginLeft = "200px";
     });
 
     sidebar.addEventListener("mouseleave", function () {

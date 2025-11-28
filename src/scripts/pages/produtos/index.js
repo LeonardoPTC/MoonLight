@@ -109,15 +109,15 @@ document.addEventListener("submit", async function (event) {
       <td style="text-align: center">${p.codigo}</td>
       <td style="text-align: center">${p.nome}</td>
       <td style="text-align: center">${p.marca}</td>
-      <td style="text-align: right;">${p.estoque}</td>
-      <td style="text-align: right;">R$ ${Number(p.valorVenda).toLocaleString(
+      <td style="text-align: center;">${p.estoque}</td>
+      <td style="text-align: center;">R$ ${Number(p.valorVenda).toLocaleString(
         "pt-BR",
         {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,
         }
       )}</td>
-      <td style="text-align: right;">R$ ${Number(p.valorCusto).toLocaleString(
+      <td style="text-align: center;">R$ ${Number(p.valorCusto).toLocaleString(
         "pt-BR",
         {
           minimumFractionDigits: 2,

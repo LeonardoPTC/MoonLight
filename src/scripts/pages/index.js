@@ -14,7 +14,7 @@ window.addEventListener("load", async () => {
     });
 
     sidebar.addEventListener("mouseleave", function () {
-      document.querySelector("#content").style.marginLeft = "290px";
+      document.querySelector("#content").style.marginLeft = "170px";
     });
   }
 });
