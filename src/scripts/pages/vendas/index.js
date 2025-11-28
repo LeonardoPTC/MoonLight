@@ -4,23 +4,33 @@ window.addEventListener('load', async () => {
 
   const sidebar = document.querySelector(".sidebar")
   const content = document.querySelector("#content");
+  const tabelaVendas = document.querySelector("#tabela-vendas");
   const telaPequena = window.matchMedia("(max-width: 1366px)");
+  const filterBar = document.querySelector(".filter-bar");
+  const limparFiltros = document.querySelector("#limparFiltros");
+
 
   if (sidebar) {
 
     const aplicarMargens = (expandida) => {
       if (telaPequena.matches) {
-        content.style.marginLeft = expandida ? "180px" : "160px";
-        content.style.marginRight = expandida ? "40px" : "60px";
+        content.style.marginLeft = expandida ? "190px" : "100px";
+        content.style.marginRight = expandida ? "10px" : "40px";
+        content.style.width = expandida ? "1120px" : "1250px";
+        tabelaVendas.style.width = expandida ? "1000px" : "1150px";
+        tabelaVendas.style.marginRight = expandida ? "90px" : "90px";
+        tabelaVendas.style.marginLeft = expandida ? "90px" : "90px";
+        filterBar.style.marginLeft = expandida ? "-15px" : "-15px";
+        limparFiltros.style.display = expandida ? "none" : "";
 
       } else {
         content.style.marginLeft = expandida ? "270px" : "200px";
       }
     };
 
- setTimeout(() => {
-    aplicarMargens(sidebar.matches(':hover'));
-  }, 0);    
+    setTimeout(() => {
+      aplicarMargens(sidebar.matches(':hover'));
+    }, 0);
 
     sidebar.addEventListener('mouseenter', () => aplicarMargens(true));
     sidebar.addEventListener('mouseleave', () => aplicarMargens(false));
@@ -89,8 +99,8 @@ async function carregarVenda() {
       <td style="text-align: right">R$ ${v.valorTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
       <td style="text-align: center">${situacao[v.situacao] || "INDEFINIDO"}</td>
       <td class="text-center">
-          <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Venda" onclick="visualizarVenda('${v.id}')"><img src="../../assets/View.png"></button>
-          <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Retomar Venda" onclick="retomarVenda('${v.id}')"><img src="../../assets/Edit.png"></button>
+          <button class="btn btn-primary" id="padraoBtnVenda"  data-toggle="tooltip" data-placement="top" title="Visualizar Venda" onclick="visualizarVenda('${v.id}')"><img src="../../assets/View.png"></button>
+          <button class="btn btn-warning" id="padraoBtnVenda"  data-toggle="tooltip" data-placement="top" title="Retomar Venda" onclick="retomarVenda('${v.id}')"><img src="../../assets/Edit.png"></button>
       </td>
     `;
         tbody.appendChild(linha);
@@ -105,8 +115,8 @@ async function carregarVenda() {
       <td style="text-align: right">R$ ${v.valorTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
       <td style="text-align: center">${situacao[v.situacao] || "INDEFINIDO"}</td>
       <td class="text-center">
-          <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Venda" onclick="visualizarVenda('${v.id}')"><img src="../../assets/View.png"></button>
-          <button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Finalizar Venda" onclick="finalizarVenda('${v.id}')"><img src="../../assets/finalizarVenda.png"></button>
+          <button class="btn btn-primary" id="padraoBtnVenda"  data-toggle="tooltip" data-placement="top" title="Visualizar Venda" onclick="visualizarVenda('${v.id}')"><img src="../../assets/View.png"></button>
+          <button class="btn btn-success" id="padraoBtnVenda"  data-toggle="tooltip" data-placement="top" title="Finalizar Venda" onclick="finalizarVenda('${v.id}')"><img src="../../assets/finalizarVenda.png"></button>
       </td>
     `;
         tbody.appendChild(linha);
@@ -120,8 +130,8 @@ async function carregarVenda() {
       <td style="text-align: right">R$ ${v.valorTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
       <td style="text-align: center">${situacao[v.situacao] || "INDEFINIDO"}</td>
       <td class="text-center">
-          <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Venda" onclick="visualizarVenda('${v.id}')"><img src="../../assets/View.png"></button>
-          <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Estornar Venda" onclick="estornarVenda('${v.id}')"><img src="../../assets/EstornoIcon.png"></button>
+          <button class="btn btn-primary" id="padraoBtnVenda" data-toggle="tooltip" data-placement="top" title="Visualizar Venda" onclick="visualizarVenda('${v.id}')"><img src="../../assets/View.png"></button>
+          <button class="btn btn-warning" id="padraoBtnVenda" data-toggle="tooltip" data-placement="top" title="Estornar Venda" onclick="estornarVenda('${v.id}')"><img src="../../assets/EstornoIcon.png"></button>
       </td>
     `;
         tbody.appendChild(linha);
@@ -249,8 +259,8 @@ document.getElementById("formPesquisa").addEventListener("submit", async functio
       <td style="text-align: right">R$ ${v.valorTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
       <td style="text-align: center">${situacaoDescricao[v.situacao] || "INDEFINIDO"}</td>
       <td class="text-center">
-          <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Venda" onclick="visualizarVenda('${v.id}')"><img src="../../assets/View.png"></button>
-          <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Retomar Venda" onclick="retomarVenda('${v.id}')"><img src="../../assets/Edit.png"></button>
+          <button class="btn btn-primary" id="padraoBtnVenda" data-toggle="tooltip" data-placement="top" title="Visualizar Venda" onclick="visualizarVenda('${v.id}')"><img src="../../assets/View.png"></button>
+          <button class="btn btn-warning" id="padraoBtnVenda" data-toggle="tooltip" data-placement="top" title="Retomar Venda" onclick="retomarVenda('${v.id}')"><img src="../../assets/Edit.png"></button>
       </td>
     `;
         tbody.appendChild(linha);
@@ -265,8 +275,8 @@ document.getElementById("formPesquisa").addEventListener("submit", async functio
       <td style="text-align: right">R$ ${v.valorTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
       <td style="text-align: center">${situacaoDescricao[v.situacao] || "INDEFINIDO"}</td>
       <td class="text-center">
-          <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Venda" onclick="visualizarVenda('${v.id}')"><img src="../../assets/View.png"></button>
-          <button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Finalizar Venda" onclick="finalizarVenda('${v.id}')"><img src="../../assets/finalizarVenda.png"></button>
+          <button class="btn btn-primary" id="padraoBtnVenda" data-toggle="tooltip" data-placement="top" title="Visualizar Venda" onclick="visualizarVenda('${v.id}')"><img src="../../assets/View.png"></button>
+          <button class="btn btn-success" id="padraoBtnVenda" data-toggle="tooltip" data-placement="top" title="Finalizar Venda" onclick="finalizarVenda('${v.id}')"><img src="../../assets/finalizarVenda.png"></button>
       </td>
     `;
         tbody.appendChild(linha);
@@ -280,8 +290,8 @@ document.getElementById("formPesquisa").addEventListener("submit", async functio
       <td style="text-align: right">R$ ${v.valorTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
       <td style="text-align: center">${situacaoDescricao[v.situacao] || "INDEFINIDO"}</td>
       <td class="text-center">
-          <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Venda" onclick="visualizarVenda('${v.id}')"><img src="../../assets/View.png"></button>
-          <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Estornar Venda" onclick="estornarVenda('${v.id}')"><img src="../../assets/EstornoIcon.png"></button>
+          <button class="btn btn-primary" id="padraoBtnVenda" data-toggle="tooltip" data-placement="top" title="Visualizar Venda" onclick="visualizarVenda('${v.id}')"><img src="../../assets/View.png"></button>
+          <button class="btn btn-warning" id="padraoBtnVenda" data-toggle="tooltip" data-placement="top" title="Estornar Venda" onclick="estornarVenda('${v.id}')"><img src="../../assets/EstornoIcon.png"></button>
       </td>
     `;
         tbody.appendChild(linha);

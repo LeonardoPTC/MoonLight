@@ -58,11 +58,10 @@ input[type=number] {
 
 @media (max-width: 1366px) {
 
-  #content {
+#content {
     margin-left: 150px;
-    margin-right: 120px;
+    margin-right: 100px ;
     margin-top: 70px !important;
-    height: 697px !important;
     padding: 20px;
     padding-top: 15px;
     padding-bottom: -20px;
@@ -72,10 +71,6 @@ input[type=number] {
     transition: margin-left 0.3s ease, margin-right 0.3s ease;
     font-family: "Roboto Mono", monospace;
     font-weight: bold;
-  }
-
-  #pessoaJuridica {
-    margin-top: -20px !important;
   }
 
   input,
@@ -99,16 +94,7 @@ input[type=number] {
   #buttons button {
     width: 100%;
     padding: 8px;
-    margin-top: 10px;
-  }
-
-  #pessoaFisica button {
-    margin-top: -40px;
-
-  }
-
-  #btnVoltar {
-    margin-top: 2px !important;
+    margin-top: -15px;
   }
 
   hr {
@@ -125,10 +111,18 @@ input[type=number] {
   }
 
   div {
-    margin-top: 5px !important;
+    margin-top: 0px !important;
   }
 
-  h4 {
-    margin-top: 0px !important;
+  #cargaHorariaGap {
+    width: 400px;
+  }
+
+  #divFim {
+    width: 350px;
+  }
+
+  #informacoesContrato {
+    margin-left: -50px !important;
   }
 }

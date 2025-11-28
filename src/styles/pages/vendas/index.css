@@ -9,20 +9,21 @@
   padding-bottom: 50px;
   box-sizing: border-box;
   justify-items: center;
-  transition: margin-left 0.3s ease;
+  transition: margin-left 0.3s ease, margin-right 0.3 ease;
   font-family: "Roboto Mono", monospace;
   font-weight: bold;
 }
 
 input {
-    font-weight: bold;
-    border: 1px solid #000000 !important;
+  font-weight: bold;
+  border: 1px solid #000000 !important;
 }
 
 th {
   font-size: 20px;
   border: 2px solid #2B4C7E !important;
 }
+
 td {
   font-size: 18px;
   border: 1px solid #000000 !important;
@@ -80,4 +81,100 @@ img {
 
 .filter-bar.expanded #toggleSearch {
   display: none;
+}
+
+@media (max-width: 1366px) {
+
+  #content {
+    border: 3px solid #2B4C7E;
+    border-radius: 10px !important;
+    background-color: #F0F4F9;
+    margin-top: 80px;
+    margin-left: 100px;
+    margin-right:40px;
+    padding: 20px;
+    padding-bottom: 50px;
+    width: 1250px;
+    box-sizing: border-box;
+    justify-items: center;
+    transition: margin-left 0.3s ease, margin-right 0.3s ease, width 0.3 ease;
+    font-family: "Roboto Mono", monospace;
+    font-weight: bold;
+  }
+
+  #fecharFiltros {
+    display: none;
+  }
+
+  .input-container {
+    width: 100%;
+  }
+
+  #filterCodigo {
+    width: 100px !important;
+    margin-left: 0px;
+  }
+
+  #filterNomeCliente {
+    width: 240px !important;
+  }
+
+  #filterDocumento {
+    width: 220px;
+  }
+
+   #filterTelefone {
+    width: 160px;
+  }
+
+  .filter-bar #toggleSearch {
+    display: none;
+  }
+
+
+  input {
+    width: 150px;
+  }
+
+  .filter-bar {
+    width: 100%;
+    margin-right: 20px;
+    margin-left: -20px;
+  }
+
+  table {
+    font-size: 16px;
+  }
+
+  th {
+    font-size: 18px;
+  }
+
+  td {
+    font-size: 16px;
+  }
+
+  #tabela-vendas {
+    padding-bottom: 20px !important;
+  }
+
+  #tabela-vendas th,
+  #tabela-vendas td {
+    padding: 5px;
+    word-wrap: break-word;
+    white-space: normal;
+    width: auto !important;
+    text-align: center !important; 
+    vertical-align: middle !important; 
+  }
+
+
+   #padraoBtnVenda {
+    display: flex;
+    flex-direction: column;
+    margin-left: 52px;
+    margin-right: 50px;
+    margin-bottom: 5px;
+    width: 55px;
+  }
 }

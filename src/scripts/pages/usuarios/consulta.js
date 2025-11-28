@@ -3,21 +3,28 @@ window.addEventListener('load', async () => {
   await includeHTML("footer", "../../include/footer.html");
 
   const sidebar = document.querySelector(".sidebar")
+    const content = document.querySelector("#content");
+    const telaPequena = window.matchMedia("(max-width: 1366px)");
 
-  if (sidebar) {
+    if (sidebar) {
 
-    if (sidebar.matches(':hover')) {
-      document.querySelector('#content').style.marginLeft = '270px';
+        const aplicarMargens = (expandida) => {
+            if (telaPequena.matches) {
+                content.style.marginLeft = expandida ? "200px" : "160px";
+                content.style.marginRight = expandida ? "30px" : "60px";
+
+            } else {
+                content.style.marginLeft = expandida ? "270px" : "200px";
+            }
+        };
+
+        if (sidebar.matches(':hover')) {
+            aplicarMargens(true);
+        }
+
+        sidebar.addEventListener('mouseenter', () => aplicarMargens(true));
+        sidebar.addEventListener('mouseleave', () => aplicarMargens(false));
     }
-
-    sidebar.addEventListener('mouseenter', function () {
-      document.querySelector('#content').style.marginLeft = '270px';
-    });
-
-    sidebar.addEventListener('mouseleave', function () {
-      document.querySelector('#content').style.marginLeft = '200px';
-    });
-  }
 
   carregarClientes();
 });

@@ -9,7 +9,7 @@
   padding-bottom: 50px;
   box-sizing: border-box;
   justify-items: center;
-  transition: margin-left 0.3s ease;
+  transition: margin-left 0.3s ease, margin-right 0.3 ease;
   font-family: "Roboto Mono", monospace;
   font-weight: bold;
 }

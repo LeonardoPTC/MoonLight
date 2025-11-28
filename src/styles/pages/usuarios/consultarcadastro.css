@@ -103,7 +103,7 @@ img {
     width: 150px;
   }
 
-  .filter-bar {
+  .inputContainer {
     width: 100%;
     margin-right: 20px;
     margin-left: -15px;
@@ -127,7 +127,4 @@ img {
     white-space: nowrap;
   }
 
-  #voltar {
-    
-  }
 }
