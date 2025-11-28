@@ -3,20 +3,32 @@ window.addEventListener('load', async () => {
   await includeHTML("footer", "../../include/footer.html");
 
   const sidebar = document.querySelector(".sidebar")
+  const content = document.querySelector("#content");
+  const tabelaProdutos = document.querySelector("#tabela-produtos");
+
+  const telaPequena = window.matchMedia("(max-width: 1366px)");
 
   if (sidebar) {
 
+    const aplicarMargens = (expandida) => {
+      if (telaPequena.matches) {
+        content.style.marginLeft = expandida ? "180px" : "100px";
+        content.style.marginRight = expandida ? "0px" : "30px";
+        tabelaProdutos.style.width = expandida ? "1160px" : "1200px";
+        tabelaProdutos.style.marginRight = expandida ? "80px" : "20px";
+        tabelaProdutos.style.marginLeft = expandida ? "80px" : "20px";
+        
+      } else {
+        content.style.marginLeft = expandida ? "270px" : "200px";
+      }
+    };
+
     if (sidebar.matches(':hover')) {
-      document.querySelector('#content').style.marginLeft = '270px';
+      aplicarMargens(true);
     }
 
-    sidebar.addEventListener('mouseenter', function () {
-      document.querySelector('#content').style.marginLeft = '270px';
-    });
-
-    sidebar.addEventListener('mouseleave', function () {
-      document.querySelector('#content').style.marginLeft = '200px';
-    });
+    sidebar.addEventListener('mouseenter', () => aplicarMargens(true));
+    sidebar.addEventListener('mouseleave', () => aplicarMargens(false));
   }
 });
 
@@ -57,9 +69,9 @@ async function carregarProdutos() {
       <td style="text-align: right">R$ ${p.valorVenda.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
       <td style="text-align: right">R$ ${p.valorCusto.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
       <td class="text-center">
-          <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Produto" onclick="visualizarProduto('${p.id}')"><img src="../../assets/View.png"></button>
-          <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Produto" onclick="editarProduto('${p.id}')"><img src="../../assets/Edit.png"></button>
-          <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir Produto" onclick="excluirProduto('${p.id}')"><img src="../../assets/Delete.png"></button>
+          <button type="button" class="btn btn-primary" id="padraoBtnProduto" data-toggle="tooltip" data-placement="top" title="Visualizar Produto" onclick="visualizarProduto('${p.id}')"><img id="padraoImgBtnProduto" src="../../assets/View.png"></button>
+          <button type="button" class="btn btn-warning" id="padraoBtnProduto" data-toggle="tooltip" data-placement="top" title="Editar Produto" onclick="editarProduto('${p.id}')"><img id="padraoImgBtnProduto" src="../../assets/Edit.png"></button>
+          <button type="button" class="btn btn-danger" id="padraoBtnProduto" data-toggle="tooltip" data-placement="top" title="Excluir Produto" onclick="excluirProduto('${p.id}')"><img id="padraoImgBtnProduto" src="../../assets/Delete.png"></button>
       </td>
     `;
       tbody.appendChild(linha);
@@ -117,9 +129,9 @@ document.addEventListener('submit', async function (event) {
         maximumFractionDigits: 2
       })}</td>
       <td class="text-center">
-         <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Visualizar Produto" onclick="visualizarProduto('${p.id}')"><img src="../../assets/View.png"></button>
-          <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Produto" onclick="editarProduto('${p.id}')"><img src="../../assets/Edit.png"></button>
-          <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir Produto" onclick="excluirProduto('${p.id}')"><img src="../../assets/Delete.png"></button>
+         <button type="button" class="btn btn-primary" id="padraoBtnProduto"  data-toggle="tooltip" data-placement="top" title="Visualizar Produto" onclick="visualizarProduto('${p.id}')"><img id="padraoImgBtnProduto" src="../../assets/View.png"></button>
+          <button type="button" class="btn btn-warning" id="padraoBtnProduto" data-toggle="tooltip" data-placement="top" title="Editar Produto" onclick="editarProduto('${p.id}')"><img id="padraoImgBtnProduto" src="../../assets/Edit.png"></button>
+          <button type="button" class="btn btn-danger" id="padraoBtnProduto" data-toggle="tooltip" data-placement="top" title="Excluir Produto" onclick="excluirProduto('${p.id}')"><img id="padraoImgBtnProduto" src="../../assets/Delete.png"></button>
       </td>
     `;
       tbody.appendChild(linha);

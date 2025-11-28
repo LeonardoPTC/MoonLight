@@ -44,3 +44,46 @@ img {
 .funcionalidade:hover {
   transform: translateY(-5px);
 }
+
+
+@media (max-width: 1366px) {
+  #content {
+    border: 3px solid #2B4C7E;
+    border-radius: 10px !important;
+    background-color: #F0F4F9;
+    margin-top: 80px;
+    margin-left: 160px;
+    margin-right: 60px;
+    padding: 20px;
+    padding-bottom: 50px;
+    box-sizing: border-box;
+    justify-items: center;
+    transition: margin-left 0.3s ease, margin-right 0.3s ease;
+    font-family: "Roboto Mono", monospace;
+    font-weight: bold;
+  }
+
+  #logo {
+    width: 200px;
+    margin-left: 40px;
+  }
+
+  
+  input {
+    width: 150px;
+  }
+
+
+  p {
+    margin: 40px;
+    margin-top: 20px;
+    text-align: justify;
+    margin-bottom: 15px;
+    font-size: 1.12em;
+  }
+
+  h2 {
+    margin-top: 0px !important;
+  }
+
+}

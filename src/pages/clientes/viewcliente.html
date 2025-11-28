@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visualizar Cliente</title>
-    <link rel="stylesheet" href="../../styles/pages/clientes/form.css">
+    <link rel="stylesheet" href="../../styles/pages/clientes/formViewCliente.css">
 </head>
 
 <body>
@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <hr>
-                <h4 style="text-align: center;">Contato</h4>
+                <h4 id="contato" style="text-align: center;">Contato</h4>
                 <div class="row mt-2 g-2">
                     <div class="col-md-6">
                         <label for="inputNomeFisico" class="form-label">Nome: </label>
@@ -51,8 +51,8 @@
                     </div>
                     <hr>
                 </div>
-                <div class="row mt-3 g-2">
-                    <h4 style="text-align: center;">Endereço</h4>
+                <div id="endereco" class="row mt-3 g-2">
+                    <h4 id="endereco" style="text-align: center;">Endereço</h4>
                     <div class="col-md-2 width: 20px;">
                         <label for="inputCEPFisico" class="form-label">CEP:</label>
                         <input type="text" class="form-control" id="inputCEPFisico" name="CEP">
@@ -123,22 +123,21 @@
                         <label for="inputCodigoJuridico" class="form-label">Código:</label>
                         <input type="text" class="form-control" id="inputCodigoJuridico" name="Codigo">
                     </div>
-                    <hr>
                     <div class="col-md-4">
                         <label for="inputCNPJ" class="form-label">CNPJ:</label>
                         <input type="text" class="form-control" id="inputCNPJ" name="Documento">
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label for="inputInscricaoMunicipal" class="form-label">Inscrição Municipal: </label>
                         <input type="text" class="form-control" id="inputInscricaoMunicipal" name="InscricaoMunicipal">
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label for="inputInscricaoEstadual" class="form-label">Inscrição Estadual: </label>
                         <input type="text" class="form-control" id="inputInscricaoEstadual" name="InscricaoEstadual">
                     </div>
                 </div>
                 <hr>
-                <h4 style="text-align: center;">Contato</h4>
+                <h4 id="contato" style="text-align: center;">Contato</h4>
                 <div class="row mt-2 g-2">
                     <div class="col-md-6">
                         <label for="inputNomeJuridico" class="form-label">Nome: </label>
@@ -154,8 +153,8 @@
                     </div>
                     <hr>
                 </div>
-                <div class="row mt-3 g-2">
-                    <h4 style="text-align: center;">Endereço </h4>
+                <div id="endereco" class="row mt-3 g-2">
+                    <h4 id="endereco" style="text-align: center;">Endereço </h4>
                     <div class="col-md-2 width: 20px;">
                         <label for="inputCEPJuridico" class="form-label">CEP: </label>
                         <input type="text" class="form-control" id="inputCEPJuridico" name="CEP">
@@ -223,7 +222,7 @@
 
         <div class="row mt-5" id="buttons">
             <div class="col-12">
-                <button id type="button" onclick="window.location.href='../clientes/index.html'"
+                <button id="btnVoltar" type="button" onclick="window.location.href='../clientes/index.html'"
                     class="btn btn-primary px-5 p-2">Voltar</button>
             </div>
         </div>

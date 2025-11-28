@@ -15,8 +15,8 @@
 }
 
 input {
-    font-weight: bold;
-    border: 1px solid #000000 !important;
+  font-weight: bold;
+  border: 1px solid #000000 !important;
 }
 
 th {
@@ -77,4 +77,82 @@ img {
 
 .filter-bar.expanded #toggleSearch {
   display: none;
+}
+
+@media (max-width: 1366px) {
+
+  #content {
+    border: 3px solid #2B4C7E;
+    border-radius: 10px !important;
+    background-color: #F0F4F9;
+    margin-top: 80px;
+    margin-left: 160px;
+    margin-right: 60px;
+    padding: 20px;
+    padding-bottom: 50px;
+    box-sizing: border-box;
+    justify-items: center;
+    transition: margin-left 0.3s ease, margin-right 0.3s ease;
+    font-family: "Roboto Mono", monospace;
+    font-weight: bold;
+  }
+
+  #fecharFiltros {
+    display: none;
+  }
+
+  .input-container {
+    width: 100%;
+  }
+
+  #filterCodigo {
+    width: 100px;
+    margin-left: 0px;
+  }
+
+
+  #filterNome {
+    width: 230px;
+  }
+
+  #filterDocumento {
+    width: 220px;
+  }
+
+  #filterTelefone {
+    width: 160px;
+  }
+
+  .filter-bar #toggleSearch {
+    display: none;
+  }
+
+
+  input {
+    width: 150px;
+  }
+
+  .filter-bar {
+    width: 100%;
+    margin-right: 20px;
+    margin-left: -15px;
+  }
+
+  table {
+    font-size: 16px;
+  }
+
+  th {
+    font-size: 18px;
+  }
+
+  td {
+    font-size: 16px;
+  }
+
+  #tabela-clientes {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 }

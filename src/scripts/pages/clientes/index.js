@@ -3,41 +3,48 @@ window.addEventListener('load', async () => {
   await includeHTML("footer", "../../include/footer.html");
 
   const sidebar = document.querySelector(".sidebar")
+  const content = document.querySelector("#content");
+  const telaPequena = window.matchMedia("(max-width: 1366px)");
 
   if (sidebar) {
 
+    const aplicarMargens = (expandida) => {
+      if (telaPequena.matches) {
+        content.style.marginLeft = expandida ? "180px" : "160px";
+        content.style.marginRight = expandida ? "40px" : "60px";
+
+      } else {
+        content.style.marginLeft = expandida ? "270px" : "200px";
+      }
+    };
+
     if (sidebar.matches(':hover')) {
-      document.querySelector('#content').style.marginLeft = '270px';
+      aplicarMargens(true);
     }
 
-    sidebar.addEventListener('mouseenter', function () {
-      document.querySelector('#content').style.marginLeft = '270px';
-    });
-
-    sidebar.addEventListener('mouseleave', function () {
-      document.querySelector('#content').style.marginLeft = '200px';
-    });
+    sidebar.addEventListener('mouseenter', () => aplicarMargens(true));
+    sidebar.addEventListener('mouseleave', () => aplicarMargens(false));
   }
 });
 
 async function carregarClientes() {
-  try{
-  const resposta = await fetch("http://localhost:5164/BlueMoon/Pessoas");
+  try {
+    const resposta = await fetch("http://localhost:5164/BlueMoon/Pessoas");
 
-  if (!resposta.ok) {
-    const erro = await resposta.text();
-    alert(erro);
-    return;
-  }
-  const clientes = await resposta.json();
+    if (!resposta.ok) {
+      const erro = await resposta.text();
+      alert(erro);
+      return;
+    }
+    const clientes = await resposta.json();
 
-  const tbody = document.querySelector("#tabela-clientes tbody");
-  tbody.innerHTML = "";
+    const tbody = document.querySelector("#tabela-clientes tbody");
+    tbody.innerHTML = "";
 
-  clientes.forEach(c => {
-    const linha = document.createElement("tr");
+    clientes.forEach(c => {
+      const linha = document.createElement("tr");
 
-    linha.innerHTML = `
+      linha.innerHTML = `
       <td style="text-align: center">${c.codigo}</td>
       <td style="text-align: center">${c.nome}</td>
       <td style="text-align: center">${c.telefone}</td>
@@ -49,8 +56,8 @@ async function carregarClientes() {
           <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir Cliente" onclick="excluirCliente('${c.id}')"><img src="../../assets/Delete.png"></button>
       </td>
     `;
-    tbody.appendChild(linha);
-  });
+      tbody.appendChild(linha);
+    });
   } catch (err) {
     alert("Erro: " + err.message);
     return;

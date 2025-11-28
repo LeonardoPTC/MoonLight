@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Usuário</title>
-    <link rel="stylesheet" href="../../styles/pages/usuarios/form.css">
+    <link rel="stylesheet" href="../../styles/pages/usuarios/formEdicaoDadosFuncionais.css">
 </head>
 
 <body>
@@ -20,7 +20,7 @@
             <div class="row mt-2 g-4 justify-content-center">
 
 
-                <div class="col-md-3">
+                <div id="informacoesContrato" class="col-md-3">
                     <label for="cargo" class="form-label">Cargo:</label>
                     <select class="form-select" id="cargo" name="Cargo" data-required>
                         <option value="0" disabled selected hidden>SELECIONE UMA OPÇÃO:</option>
@@ -38,19 +38,19 @@
                     <label for="inputAdmissao" class="form-label">Admissao: </label>
                     <input type="date" class="form-control" id="inputAdmissao" name="Admissao">
                 </div>
-                <div class="col-md-4">
+                <div id="cargaHoraria" class="col-md-4">
                     <label class="form-label">Carga Horária:</label>
 
-                    <div class="d-flex gap-3">
+                    <div id="cargaHorariaGap" class="d-flex gap-3">
 
-                        <div class="input-group" style="width: 200px;">
+                        <div class="input-group">
                             <span class="input-group-text">Início</span>
                             <input type="time" class="form-control" id="HorarioInicioCargaHoraria"
                                 name="HorarioInicioCargaHoraria">
                         </div>
 
 
-                        <div class="input-group" style="width: 200px;">
+                        <div id="divFim" class="input-group">
                             <span class="input-group-text">Fim</span>
                             <input type="time" class="form-control" id="HorarioFimCargaHoraria"
                                 name="HorarioFimCargaHoraria">

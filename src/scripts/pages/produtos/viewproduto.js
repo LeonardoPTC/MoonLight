@@ -3,6 +3,31 @@ window.addEventListener('load', async () => {
     await includeHTML("footer", "../../include/footer.html");
 
     const id = localStorage.getItem("idProduto");
+
+    const sidebar = document.querySelector(".sidebar")
+    const content = document.querySelector("#content");
+    const telaPequena = window.matchMedia("(max-width: 1366px)");
+
+    if (sidebar) {
+
+        const aplicarMargens = (expandida) => {
+            if (telaPequena.matches) {
+                content.style.marginLeft = expandida ? "180px" : "150px";
+                content.style.marginRight = expandida ? "120px" : "120px";
+
+            } else {
+                content.style.marginLeft = expandida ? "270px" : "200px";
+            }
+        };
+
+        if (sidebar.matches(':hover')) {
+            aplicarMargens(true);
+        }
+
+        sidebar.addEventListener('mouseenter', () => aplicarMargens(true));
+        sidebar.addEventListener('mouseleave', () => aplicarMargens(false));
+    }
+
     if (id) carregarProduto(id);
 });
 

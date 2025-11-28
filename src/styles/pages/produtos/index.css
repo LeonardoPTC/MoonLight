@@ -15,8 +15,8 @@
 }
 
 input {
-    font-weight: bold;
-    border: 1px solid #000000 !important;
+  font-weight: bold;
+  border: 1px solid #000000 !important;
 }
 
 th {
@@ -77,4 +77,100 @@ img {
 
 .filter-bar.expanded #toggleSearch {
   display: none;
+}
+
+#tabela-produtos {
+  transition: margin-left 0.3s ease, margin-right 0.3s ease, width 0.3s ease;
+}
+
+@media (max-width: 1366px) {
+
+  #content {
+    border: 3px solid #2B4C7E;
+    border-radius: 10px !important;
+    background-color: #F0F4F9;
+    margin-top: 80px;
+    margin-left: 100px;
+    margin-right: 30px;
+    transition: margin-left 0.3s ease, margin-right 0.3s ease;
+    padding: 20px;
+    padding-bottom: 50px;
+    box-sizing: border-box;
+    justify-items: center;
+    font-family: "Roboto Mono", monospace;
+    font-weight: bold;
+  }
+
+
+  #fecharFiltros {
+    display: none;
+  }
+
+  .input-container {
+    width: 100%;
+  }
+
+  #filterCodigo {
+    width: 110px;
+    margin-left: 0px;
+  }
+
+
+  #filterNome {
+    width: 290px;
+  }
+
+  #filterMarca {
+    width: 290px;
+  }
+
+  .filter-bar #toggleSearch {
+    display: none;
+  }
+
+  .filter-bar {
+    width: 100%;
+    margin-right: 20px;
+    margin-left: -15px;
+  }
+
+  table {
+    font-size: 16px;
+  }
+
+  th {
+    font-size: 18px;
+  }
+
+  td {
+    font-size: 18px;
+  }
+
+  #tabela-produtos {
+    width: 1200px;
+    table-layout: fixed;
+  }
+
+  #tabela-produtos th,
+  #tabela-produtos td {
+    padding: 5px;
+    word-wrap: break-word;
+    white-space: normal;
+    width: auto !important;
+    text-align: center !important;
+  }
+
+  #padraoBtnProduto {
+    display: flex;
+    flex-direction: column;
+    margin-left: 55px;
+    gap: 70px;
+    margin-bottom: 5px;
+    width: 50px;
+
+  }
+
+  #padraoImgBtnProduto {
+    width: 25px;
+  }
 }

@@ -36,3 +36,24 @@ select {
 .borda {
   border: 1px solid #2B4C7E;
 }
+
+
+@media (max-width: 1366px) {
+  #content {
+    border: 3px solid #2B4C7E;
+    border-radius: 10px !important;
+    background-color: #F0F4F9;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px;
+    padding-bottom: 50px;
+    box-sizing: border-box;
+    justify-items: center;
+    transition: margin-left 0.3s ease;
+    font-family: "Roboto Mono", monospace;
+    width: 40%;
+    height: 57%;
+    font-weight: bold;
+  }
+}
