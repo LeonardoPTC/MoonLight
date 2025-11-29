@@ -55,4 +55,8 @@ label {
     font-family: "Roboto Mono", monospace;
     font-weight: bold;
   }
+
+  body {
+    overflow-x: hidden;
+  }
 }

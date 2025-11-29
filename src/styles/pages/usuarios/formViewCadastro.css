@@ -73,6 +73,10 @@ input[type=number] {
     font-weight: bold;
   }
 
+  body {
+    overflow-x: hidden;
+  }
+
   input,
   textarea,
   select {

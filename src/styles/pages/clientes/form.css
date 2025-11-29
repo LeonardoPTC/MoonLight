@@ -118,4 +118,8 @@ input[type=number] {
   div {
     margin-top: 0px !important;
   }
+
+body {
+    overflow-x: hidden;
+  }
 }

@@ -61,6 +61,10 @@ img {
     font-weight: bold;
   }
 
+  body {
+    overflow-x: hidden;
+  }
+
   #fecharFiltros {
     display: none;
   }
@@ -122,9 +126,13 @@ img {
   }
 
   #formPesquisa {
+    margin-left: -10px;
     display: block;
-    overflow-x: auto;
     white-space: nowrap;
+  }
+
+  #Voltar {
+    margin-right: 10px;
   }
 
 }
