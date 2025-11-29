@@ -21,6 +21,7 @@ window.addEventListener('load', async () => {
         filterBar.style.marginLeft = expandida ? "-15px" : "-15px";
       } else {
         content.style.marginLeft = expandida ? "270px" : "200px";
+        content.style.marginRight = expandida ? "120px" : "200px";
       }
     }
 

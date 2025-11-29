@@ -9,7 +9,7 @@
   padding-bottom: 50px;
   box-sizing: border-box;
   justify-items: center;
-  transition: margin-left 0.3s ease, margin-right 0.3 ease, width 0.3 ease;
+  transition: margin-left 0.3s ease, margin-right 0.3s ease, width 0.3s ease;
   font-family: "Roboto Mono", monospace;
   font-weight: bold;
 }
@@ -80,7 +80,7 @@ img {
 }
 
 #tabela-produtos {
-  width: 1150px;
+  width: 1450px;
   transition: margin-left 0.3s ease, margin-right 0.3s ease, width 0.3s ease;
 }
 
@@ -94,7 +94,7 @@ img {
     margin-left: 150px;
     margin-right: 30px;
     width: 1120px;
-    transition: margin-left 0.3s ease, margin-right 0.3s ease;
+    transition: margin-left 0.3s ease, margin-right 0.3s ease, width 0.3s ease;
     padding: 20px;
     padding-bottom: 50px;
     box-sizing: border-box;
@@ -161,8 +161,8 @@ img {
     word-wrap: break-word;
     white-space: normal;
     width: auto !important;
-    text-align: center !important; 
-    vertical-align: middle !important; 
+    text-align: center !important;
+    vertical-align: middle !important;
   }
 
   #padraoBtnProduto {
