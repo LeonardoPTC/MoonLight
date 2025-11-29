@@ -103,4 +103,8 @@ input[type=number] {
   #btnSalvar, #btnCancelar{
     margin-top: -40px !important;
   }
+
+  body {
+    overflow-x: hidden;
+  }
 }

@@ -98,6 +98,10 @@ img {
     font-weight: bold;
   }
 
+  body {
+    overflow-x: hidden;
+  }
+
   #fecharFiltros {
     display: none;
   }

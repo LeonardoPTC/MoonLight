@@ -91,7 +91,7 @@ img {
     background-color: #F0F4F9;
     margin-top: 80px;
     margin-left: 100px;
-    margin-right: 40px;
+    margin-right: 80px;
     padding: 20px;
     padding-bottom: 50px;
     width: 1250px;
@@ -100,6 +100,10 @@ img {
     transition: margin-left 0.3s ease, margin-right 0.3s ease, width 0.3s ease;
     font-family: "Roboto Mono", monospace;
     font-weight: bold;
+  }
+
+  body {
+    overflow-x: hidden;
   }
 
   #fecharFiltros {
@@ -155,7 +159,8 @@ img {
   }
 
   #tabela-vendas {
-    
+    width: 1150px;
+     transition: margin-left 0.3s ease, margin-right 0.3s ease, width 0.3s ease;
   }
 
   #tabela-vendas th,

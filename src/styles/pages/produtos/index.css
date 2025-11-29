@@ -178,4 +178,8 @@ img {
   #padraoImgBtnProduto {
     width: 25px;
   }
+
+  body {
+    overflow-x: hidden;
+  }
 }

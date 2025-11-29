@@ -14,10 +14,10 @@ window.addEventListener('load', async () => {
 
     const aplicarMargens = (expandida) => {
       if (telaPequena.matches) {
-        content.style.marginLeft = expandida ? "190px" : "100px";
-        content.style.marginRight = expandida ? "10px" : "40px";
-        content.style.width = expandida ? "1170px" : "1250px";
-        tabelaVendas.style.width = expandida ? "1150px" : "1150px";
+        content.style.marginLeft = expandida ? "190px" : "80px";
+        content.style.marginRight = expandida ? "40px" : "40px";
+        content.style.width = expandida ? "1140px" : "1250px";
+        tabelaVendas.style.width = expandida ? "1100px" : "1150px";
         tabelaVendas.style.marginRight = expandida ? "90px" : "90px";
         tabelaVendas.style.marginLeft = expandida ? "90px" : "90px";
         filterBar.style.marginLeft = expandida ? "-15px" : "-15px";

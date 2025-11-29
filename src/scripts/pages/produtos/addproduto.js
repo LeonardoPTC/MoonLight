@@ -11,10 +11,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         const aplicarMargens = (expandida) => {
             if (telaPequena.matches) {
                 content.style.marginLeft = expandida ? "200px" : "150px";
-                content.style.marginRight = expandida ? "100px" : "120px";
+                content.style.marginRight = expandida ? "90px" : "120px";
 
-            } else {
-                content.style.marginLeft = expandida ? "270px" : "200px";
             }
         };
 

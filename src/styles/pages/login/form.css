@@ -56,6 +56,9 @@ select {
     height: 60%;
     font-weight: bold;
   }
+  body {
+    overflow-x: hidden;
+  }
 
   #entrar {
     margin-top: -40px;

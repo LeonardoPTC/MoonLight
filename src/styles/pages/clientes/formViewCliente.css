@@ -74,6 +74,10 @@ input[type=number] {
     font-weight: bold;
   }
 
+  body {
+    overflow-x: hidden;
+  }
+
   #pessoaJuridica {
     margin-top: -20px !important;
   }
