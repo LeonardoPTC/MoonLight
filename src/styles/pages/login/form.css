@@ -30,7 +30,8 @@ select {
 
 #buttons button {
   width: 100%;
-  padding: 6px;
+  margin-top: 10px;
+  padding: 15px;
 }
 
 .borda {

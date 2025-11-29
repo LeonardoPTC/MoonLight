@@ -2,7 +2,7 @@ window.addEventListener('load', async () => {
   await includeHTML("header", "../../include/header.html");
   await includeHTML("footer", "../../include/footer.html");
 
-     const sidebar = document.querySelector(".sidebar")
+  const sidebar = document.querySelector(".sidebar")
   const content = document.querySelector("#content");
   const telaPequena = window.matchMedia("(max-width: 1366px)");
 

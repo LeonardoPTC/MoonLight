@@ -115,9 +115,6 @@ function preencherCampos(pessoa, usuario) {
         pessoaFisica.classList.add("hidden");
         pessoaJuridica.classList.remove("hidden");
         document.getElementById("UsuarioJuridico").checked = true;
-        document.getElementById("content").style.height = "830px";
-        document.getElementById("content").style.marginTop = "72px";
-        document.getElementById("buttons").className = "row mt-3";
 
         document.getElementById("inputCodigoJuridico").value = codigo;
         document.getElementById("inputCNPJ").value = documento;
