@@ -9,7 +9,7 @@
   padding-bottom: 50px;
   box-sizing: border-box;
   justify-items: center;
-  transition: margin-left 0.3s ease, margin-right 0.3 ease;
+  transition: margin-left 0.3s ease, margin-right 0.3s ease;
   font-family: "Roboto Mono", monospace;
   font-weight: bold;
 }
@@ -91,13 +91,13 @@ img {
     background-color: #F0F4F9;
     margin-top: 80px;
     margin-left: 100px;
-    margin-right:40px;
+    margin-right: 40px;
     padding: 20px;
     padding-bottom: 50px;
     width: 1250px;
     box-sizing: border-box;
     justify-items: center;
-    transition: margin-left 0.3s ease, margin-right 0.3s ease, width 0.3 ease;
+    transition: margin-left 0.3s ease, margin-right 0.3s ease, width 0.3s ease;
     font-family: "Roboto Mono", monospace;
     font-weight: bold;
   }
@@ -123,7 +123,7 @@ img {
     width: 220px;
   }
 
-   #filterTelefone {
+  #filterTelefone {
     width: 160px;
   }
 
@@ -155,7 +155,7 @@ img {
   }
 
   #tabela-vendas {
-    padding-bottom: 20px !important;
+    
   }
 
   #tabela-vendas th,
@@ -164,12 +164,12 @@ img {
     word-wrap: break-word;
     white-space: normal;
     width: auto !important;
-    text-align: center !important; 
-    vertical-align: middle !important; 
+    text-align: center !important;
+    vertical-align: middle !important;
   }
 
 
-   #padraoBtnVenda {
+  #padraoBtnVenda {
     display: flex;
     flex-direction: column;
     margin-left: 52px;

@@ -16,8 +16,8 @@ window.addEventListener('load', async () => {
       if (telaPequena.matches) {
         content.style.marginLeft = expandida ? "190px" : "100px";
         content.style.marginRight = expandida ? "10px" : "40px";
-        content.style.width = expandida ? "1120px" : "1250px";
-        tabelaVendas.style.width = expandida ? "1000px" : "1150px";
+        content.style.width = expandida ? "1170px" : "1250px";
+        tabelaVendas.style.width = expandida ? "1150px" : "1150px";
         tabelaVendas.style.marginRight = expandida ? "90px" : "90px";
         tabelaVendas.style.marginLeft = expandida ? "90px" : "90px";
         filterBar.style.marginLeft = expandida ? "-15px" : "-15px";
