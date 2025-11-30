@@ -5,14 +5,14 @@
   margin-top: 10%;
   margin-left: auto;
   margin-right: auto;
-  padding: 45px;
+  padding: 1px;
   padding-bottom: 50px;
   box-sizing: border-box;
   justify-items: center;
   transition: margin-left 0.3s ease;
   font-family: "Roboto Mono", monospace;
   width: 30%;
-  height: 55%;
+  height: auto;
   font-weight: bold;
 }
 

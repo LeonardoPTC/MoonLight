@@ -1,7 +1,7 @@
 #content {
-  border: 3px solid #2B4C7E;
+  border: 3px solid #2b4c7e;
   border-radius: 10px !important;
-  background-color: #F0F4F9;
+  background-color: #f0f4f9;
   margin-top: 80px;
   margin-left: 200px;
   margin-right: 170px;
@@ -21,7 +21,7 @@ input {
 
 th {
   font-size: 20px;
-  border: 2px solid #2B4C7E !important;
+  border: 2px solid #2b4c7e !important;
 }
 
 td {
@@ -46,8 +46,6 @@ img {
   width: 168px;
   margin-right: 100px;
   transition: width 0.3s ease-in-out, margin-right 1s ease-in-out;
-      transition: margin-left 0.3s ease, margin-right 0.3s ease;
-
   overflow: hidden;
 }
 
@@ -72,7 +70,6 @@ img {
   border-radius: 4px;
 }
 
-
 .filter-bar.expanded .input-container {
   width: 1400px;
   margin-left: 0px;
@@ -83,14 +80,13 @@ img {
 }
 
 @media (max-width: 1366px) {
-
   #content {
-    border: 3px solid #2B4C7E;
+    border: 3px solid #2b4c7e;
     border-radius: 10px !important;
-    background-color: #F0F4F9;
+    background-color: #f0f4f9;
     margin-top: 80px;
     margin-left: 130px;
-    margin-right:40px;
+    margin-right: 40px;
     padding: 20px;
     padding-bottom: 50px;
     box-sizing: border-box;
@@ -117,7 +113,6 @@ img {
     margin-left: 0px;
   }
 
-
   #filterNome {
     width: 230px;
   }
@@ -126,14 +121,13 @@ img {
     width: 220px;
   }
 
-   #filterTelefone {
+  #filterTelefone {
     width: 160px;
   }
 
   .filter-bar #toggleSearch {
     display: none;
   }
-
 
   input {
     width: 150px;

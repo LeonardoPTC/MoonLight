@@ -24,6 +24,12 @@ select {
   border: 1px solid #000 !important;
 }
 
+.campo-obrigatorio {
+  font-size: 12px;
+  color: #d00;
+  margin-top: 2px;
+}
+
 .requisitos-senha {
   font-size: 14px;
   color: #555;
