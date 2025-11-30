@@ -100,7 +100,9 @@ document.getElementById("formUsuario").addEventListener("submit", async (e) => {
 
   for (let campo of camposObrigatorios) {
     if (!campo.value.trim()) {
-      alert(`O campo ${campo.name} é obrigatório!`);
+      alert(
+        `Erro ao cadastrar dados do usuário: O campo ${campo.name} é obrigatório!`
+      );
       form.appendChild(removido);
       return;
     }

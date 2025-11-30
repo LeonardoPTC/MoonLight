@@ -1,4 +1,7 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  await includeHTML("header", "../../include/header.html");
+  await includeHTML("footer", "../../include/footer.html");
+
   const tipoPessoa = document.getElementsByName("tipo");
   const formularioClienteFisico = document.getElementById("pessoaFisica");
   const formularioClienteJuridico = document.getElementById("pessoaJuridica");
@@ -86,7 +89,7 @@ document.getElementById("formCliente").addEventListener("submit", async (e) => {
 
   for (let campo of camposObrigatorios) {
     if (!campo.value.trim()) {
-      alert(`O campo ${campo.name} é obrigatório!`);
+      alert(`Erro ao cadastrar cliente: O campo ${campo.name} é obrigatório!`);
       form.appendChild(removido);
       return;
     }
@@ -186,10 +189,21 @@ document.getElementById("formCliente").addEventListener("submit", async (e) => {
       alert("Cliente cadastrado com sucesso!");
       window.location.href = "../clientes/index.html";
     } else {
-      const erro = await resposta.text();
-      alert("Erro ao cadastrar cliente: " + erro);
+      const texto = await resposta.text();
+      let mensagem;
+      try {
+        const erroJSON = JSON.parse(texto);
+        const campo = Object.keys(erroJSON.errors)[0];
+        mensagem = erroJSON.errors[campo][0];
+      } catch {
+        mensagem = texto;
+      }
+
+      alert("Erro ao cadastrar cliente: " + mensagem);
+      return;
     }
   } catch (err) {
     alert("Erro na conexão: " + err.message);
+    return;
   }
 });

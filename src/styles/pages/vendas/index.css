@@ -16,13 +16,23 @@
 }
 
 img {
-  width: 30px;
+  width: 25px;
   margin-right: 5px;
 }
 
 table {
   width: 100%;
   table-layout: auto;
+}
+
+/*button.btn {
+  padding: 3px 6px;
+  font-size: 12px;
+}*/
+
+btn btn {
+  cursor: pointer;
+  width: 2px;
 }
 
 .campo-nome-cliente {

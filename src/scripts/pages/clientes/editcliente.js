@@ -140,7 +140,7 @@ document.getElementById("formCliente").addEventListener("submit", async (e) => {
   const camposObrigatorios = containerAtivo.querySelectorAll("[data-required]");
   for (let campo of camposObrigatorios) {
     if (!campo.value || !campo.value.trim()) {
-      alert(`O campo ${campo.name} é obrigatório!`);
+      alert(`Erro ao atualizar cliente: O campo ${campo.name} é obrigatório!`);
       return;
     }
   }

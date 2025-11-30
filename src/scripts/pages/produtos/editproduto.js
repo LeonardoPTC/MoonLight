@@ -1,9 +1,9 @@
-window.addEventListener('load', async () => {
-    await includeHTML("header", "../../include/header.html");
-    await includeHTML("footer", "../../include/footer.html");
+window.addEventListener("load", async () => {
+  await includeHTML("header", "../../include/header.html");
+  await includeHTML("footer", "../../include/footer.html");
 
-    const id = localStorage.getItem("idProduto");
-    if (id) carregarProduto(id);
+  const id = localStorage.getItem("idProduto");
+  if (id) carregarProduto(id);
 });
 
 document.getElementById("formProduto").addEventListener("submit", async (e) => {
@@ -26,13 +26,28 @@ document.getElementById("formProduto").addEventListener("submit", async (e) => {
     }
   });
 
+  const camposObrigatorios = document.querySelectorAll("[data-required]");
+
+  for (let campo of camposObrigatorios) {
+    let nomeCampo = campo.name;
+
+    if (campo.name === "ValorVenda") {
+      nomeCampo = "Preço de Venda";
+    }
+
+    if (!campo.value.trim()) {
+      alert(`Erro ao atualizar produto: O campo ${nomeCampo} é obrigatório!`);
+      return;
+    }
+  }
+
   try {
     dados.id = produto.id;
     dados.situacao = produto.situacao;
     const resposta = await fetch(`http://localhost:5164/BlueMoon/produtos/`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(dados) 
+      body: JSON.stringify(dados),
     });
 
     if (resposta.ok) {
@@ -47,64 +62,64 @@ document.getElementById("formProduto").addEventListener("submit", async (e) => {
   }
 });
 
-
 async function carregarProduto(id) {
+  try {
+    const resposta = await fetch(
+      `http://localhost:5164/BlueMoon/produtos/${id}`
+    );
 
-    try {
-        const resposta = await fetch(`http://localhost:5164/BlueMoon/produtos/${id}`);
-
-        if(!resposta.ok) {
-            const erro = await resposta.text();
-            alert(erro);
-        } 
-
-        produto = await resposta.json();
-        preencherCampos(produto);
-    } catch (err) {
-        alert("Erro na conexão: " + err.message);
+    if (!resposta.ok) {
+      const erro = await resposta.text();
+      alert(erro);
     }
+
+    produto = await resposta.json();
+    preencherCampos(produto);
+  } catch (err) {
+    alert("Erro na conexão: " + err.message);
+  }
 }
 
-
 function preencherCampos(produto) {
+  let codBarras = produto.codigoBarras;
+  let nome = produto.nome;
+  let descricao = produto.descricao;
+  let NCM = produto.ncm;
+  let marca = produto.marca;
+  //let situacao = produto.situacao; Para o Segundo Estágio
 
-    let codBarras = produto.codigoBarras;
-    let nome = produto.nome;
-    let descricao = produto.descricao;
-    let NCM = produto.ncm;
-    let marca = produto.marca;
-    //let situacao = produto.situacao; Para o Segundo Estágio
+  if (codBarras === "N/D") {
+    codBarras = "";
+  }
 
+  if (nome === "N/D") {
+    nome = "";
+  }
 
-    if(codBarras === "N/D"){
-        codBarras = "";
-    } 
+  if (descricao === "N/D") {
+    descricao = "";
+  }
 
-    if(nome === "N/D"){
-        nome = "";
-    } 
+  if (NCM === "N/D") {
+    NCM = "";
+  }
 
-     if(descricao === "N/D"){
-        descricao = "";
-    } 
+  if (marca === "N/D") {
+    marca = "";
+  }
 
-     if(NCM === "N/D"){
-        NCM = "";
-    } 
-
-     if(marca === "N/D"){
-        marca = "";
-    } 
-
-
-    document.getElementById('inputcodBarras').value = codBarras || "";
-    document.getElementById('Nome').value = nome || "";
-    document.getElementById('inputDescricao').value = descricao || "";
-    document.getElementById('inputNCM').value = NCM || "";
-    document.getElementById('inputMarca').value = marca || "";
-    document.getElementById('inputValorVenda').value = produto.valorVenda.toFixed(2) || "" || "";
-    document.getElementById('inputprecoCusto').value = produto.valorCusto.toFixed(2) || "";
-    document.getElementById('inputEstoque').value = produto.quantidadeEstoque || 0;
-    document.getElementById('inputEstoqueMin').value = produto.quantidadeEstoqueMinimo || 0;
-    //document.getElementById('inputSituacao').value = produto.situacao;
+  document.getElementById("inputcodBarras").value = codBarras || "";
+  document.getElementById("Nome").value = nome || "";
+  document.getElementById("inputDescricao").value = descricao || "";
+  document.getElementById("inputNCM").value = NCM || "";
+  document.getElementById("inputMarca").value = marca || "";
+  document.getElementById("inputValorVenda").value =
+    produto.valorVenda.toFixed(2) || "" || "";
+  document.getElementById("inputprecoCusto").value =
+    produto.valorCusto.toFixed(2) || "";
+  document.getElementById("inputEstoque").value =
+    produto.quantidadeEstoque || 0;
+  document.getElementById("inputEstoqueMin").value =
+    produto.quantidadeEstoqueMinimo || 0;
+  //document.getElementById('inputSituacao').value = produto.situacao;
 }
