@@ -1,7 +1,7 @@
 #content {
-  border: 3px solid #2B4C7E;
+  border: 3px solid #2b4c7e;
   border-radius: 10px !important;
-  background-color: #F0F4F9;
+  background-color: #f0f4f9;
   margin-top: 80px;
   margin-left: 200px;
   margin-right: 170px;
@@ -21,7 +21,7 @@ input {
 
 th {
   font-size: 20px;
-  border: 2px solid #2B4C7E !important;
+  border: 2px solid #2b4c7e !important;
 }
 
 td {
@@ -85,11 +85,10 @@ img {
 }
 
 @media (max-width: 1366px) {
-
   #content {
-    border: 3px solid #2B4C7E;
+    border: 3px solid #2b4c7e;
     border-radius: 10px !important;
-    background-color: #F0F4F9;
+    background-color: #f0f4f9;
     margin-top: 80px;
     margin-left: 150px;
     margin-right: 30px;
@@ -103,7 +102,6 @@ img {
     font-weight: bold;
   }
 
-
   #fecharFiltros {
     display: none;
   }
@@ -116,7 +114,6 @@ img {
     width: 110px;
     margin-left: 0px;
   }
-
 
   #filterNome {
     width: 290px;
@@ -152,7 +149,6 @@ img {
     width: 1050px;
     table-layout: fixed;
     white-space: inherit;
-
   }
 
   #tabela-produtos th,
@@ -172,7 +168,6 @@ img {
     gap: 70px;
     margin-bottom: 5px;
     width: 50px;
-
   }
 
   #padraoImgBtnProduto {

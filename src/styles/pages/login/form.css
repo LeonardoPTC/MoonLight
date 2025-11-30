@@ -1,7 +1,7 @@
 #content {
-  border: 3px solid #2B4C7E;
+  border: 3px solid #2b4c7e;
   border-radius: 10px !important;
-  background-color: #F0F4F9;
+  background-color: #f0f4f9;
   margin-top: 10%;
   margin-left: auto;
   margin-right: auto;
@@ -22,6 +22,10 @@ select {
   border: 1px solid #000 !important;
 }
 
+#logo {
+  width: 60px;
+  height: auto;
+}
 
 #buttons {
   display: flex;
@@ -35,15 +39,14 @@ select {
 }
 
 .borda {
-  border: 1px solid #2B4C7E;
+  border: 1px solid #2b4c7e;
 }
-
 
 @media (max-width: 1366px) {
   #content {
-    border: 3px solid #2B4C7E;
+    border: 3px solid #2b4c7e;
     border-radius: 10px !important;
-    background-color: #F0F4F9;
+    background-color: #f0f4f9;
     margin-top: 10%;
     margin-left: auto;
     margin-right: auto;

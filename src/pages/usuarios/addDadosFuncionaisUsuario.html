@@ -1,99 +1,151 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastrar Usuário</title>
-    <link rel="stylesheet" href="../../styles/pages/usuarios/formAddDadosFuncionais.css">
-</head>
+    <link
+      rel="stylesheet"
+      href="../../styles/pages/usuarios/formAddDadosFuncionais.css"
+    />
+  </head>
 
-<body>
+  <body>
     <div id="header"></div>
 
     <div id="content" class="shadow body-tertiary rounded">
-        <h1 class="text-center mb-4">Cadastro Funcional do Usuário</h1>
+      <h1 class="text-center mb-4">Cadastro Funcional do Usuário</h1>
 
-        <form id="formUsuario" class="container g-2">
-            <hr>
-            <h4 style="text-align: center;">Informações do Contrato</h4>
-            <div id="informacoesContrato" class="row mt-2 g-4 justify-content-center">
+      <form id="formUsuario" class="container g-2">
+        <hr />
+        <h4 style="text-align: center">Informações do Contrato</h4>
+        <div
+          id="informacoesContrato"
+          class="row mt-2 g-4 justify-content-center"
+        >
+          <div class="col-md-3">
+            <label for="cargo" class="form-label">Cargo:</label>
+            <select class="form-select" id="cargo" name="Cargo" data-required>
+              <option value="0" disabled selected hidden>
+                SELECIONE UMA OPÇÃO:
+              </option>
+              <option value="1">VENDEDOR</option>
+              <option value="2">GERENTE</option>
+              <option value="3">FINANCEIRO</option>
+              <option value="4">ADMIN</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <label for="inputSalario" class="form-label">Salário:</label>
+            <input
+              type="number"
+              step="0.01"
+              class="form-control"
+              id="inputSalario"
+              name="Salario"
+            />
+          </div>
+          <div class="col-md-2">
+            <label for="inputAdmissao" class="form-label">Admissao: </label>
+            <input
+              type="date"
+              class="form-control"
+              id="inputAdmissao"
+              name="Admissao"
+            />
+          </div>
+          <div id="cargaHoraria" class="col-md-4">
+            <label class="form-label">Carga Horária:</label>
 
+            <div id="cargaHorariaGap" class="d-flex gap-3">
+              <div class="input-group">
+                <span class="input-group-text">Início</span>
+                <input
+                  type="time"
+                  class="form-control"
+                  id="HorarioInicioCargaHoraria"
+                  name="HorarioInicioCargaHoraria"
+                />
+              </div>
 
-                <div class="col-md-3">
-                    <label for="cargo" class="form-label">Cargo:</label>
-                    <select class="form-select" id="cargo" name="Cargo" data-required>
-                        <option value="0" disabled selected hidden>SELECIONE UMA OPÇÃO:</option>
-                        <option value="1">VENDEDOR</option>
-                        <option value="2">GERENTE</option>
-                        <option value="3">FINANCEIRO</option>
-                        <option value="4">ADMIN</option>
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <label for="inputSalario" class="form-label">Salário:</label>
-                    <input type="number" step="0.01" class="form-control" id="inputSalario" name="Salario">
-                </div>
-                <div class="col-md-2">
-                    <label for="inputAdmissao" class="form-label">Admissao: </label>
-                    <input type="date" class="form-control" id="inputAdmissao" name="Admissao">
-                </div>
-                <div id="cargaHoraria" class="col-md-4">
-                    <label class="form-label">Carga Horária:</label>
-
-                    <div id="cargaHorariaGap" class="d-flex gap-3">
-
-                        <div class="input-group">
-                            <span class="input-group-text">Início</span>
-                            <input type="time" class="form-control" id="HorarioInicioCargaHoraria"
-                                name="HorarioInicioCargaHoraria">
-                        </div>
-
-
-                        <div id="divFim" class="input-group">
-                            <span class="input-group-text">Fim</span>
-                            <input type="time" class="form-control" id="HorarioFimCargaHoraria"
-                                name="HorarioFimCargaHoraria">
-                        </div>
-                    </div>
-                </div>
+              <div id="divFim" class="input-group">
+                <span class="input-group-text">Fim</span>
+                <input
+                  type="time"
+                  class="form-control"
+                  id="HorarioFimCargaHoraria"
+                  name="HorarioFimCargaHoraria"
+                />
+              </div>
             </div>
-            <hr>
+          </div>
+        </div>
+        <hr />
 
-            <div class="row mt-3 g-2 justify-content-center">
-                <h4 style="text-align: center;">Dados de Acesso</h4>
-                <div class="col-md-6 width: 20px;">
-                    <label for="inputEmail" class="form-label">Login:</label>
-                    <input type="email" class="form-control" id="inputEmail" name="Login" data-required>
-                </div>
-                <div class="w-100"></div>
-                <div class="col-md-6">
-                    <label for="senha" class="form-label">Senha:</label>
+        <div class="row mt-3 g-2 justify-content-center">
+          <h4 style="text-align: center">Dados de Acesso</h4>
+          <div class="col-md-6 width: 20px;">
+            <label for="inputEmail" class="form-label">Login:</label>
+            <input
+              type="email"
+              class="form-control"
+              id="inputEmail"
+              name="Login"
+              data-required
+            />
+          </div>
+          <div class="w-100"></div>
+          <div class="col-md-6">
+            <label for="senha" class="form-label">Senha:</label>
 
-                    <div class="input-group">
-                        <input type="password" class="form-control" id="senha" name="Senha" data-required>
-                        <button type="button" class="btn btn-outline-secondary" id="toggleSenha">
-                            <img style="width: 22px;" id="iconeSenha" src="../../assets/olhoAberto.png"
-                                alt="Mostrar Senha">
-                        </button>
-                    </div>
-                </div>
+            <div class="input-group">
+              <input
+                type="password"
+                class="form-control"
+                id="senha"
+                name="Senha"
+                data-required
+              />
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                id="toggleSenha"
+              >
+                <img
+                  style="width: 22px"
+                  id="iconeSenha"
+                  src="../../assets/olhoAberto.png"
+                  alt="Mostrar Senha"
+                />
+              </button>
             </div>
-            <div class="row mt-5" id="buttons">
-                <div class="col-2 mr-3">
-                    <button type="submit" class="btn btn-primary">Salvar</button>
-                </div>
-                <div class="col-2">
-                    <button type="button" onclick="window.location.href='../usuarios/index.html'"
-                        class="btn btn-secondary">Cancelar</button>
-                </div>
-            </div>
-        </form>
+            <p class="requisitos-senha">A senha deve conter:</p>
+            <p class="requisitos-senha">-No mínimo 8 caracteres</p>
+            <p class="requisitos-senha">-Ao menos uma letra minúscula</p>
+            <p class="requisitos-senha">-Ao menos uma letra maiuscula</p>
+            <p class="requisitos-senha">-No mínimo um número</p>
+            <p class="requisitos-senha">-Caracter especial</p>
+          </div>
+        </div>
+        <div class="row mt-5" id="buttons">
+          <div class="col-2 mr-3">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+          </div>
+          <div class="col-2">
+            <button
+              type="button"
+              onclick="window.location.href='../usuarios/index.html'"
+              class="btn btn-secondary"
+            >
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
 
     <div id="footer"></div>
     <script src="../../scripts/includes.js"></script>
     <script src="../../scripts/pages/usuarios/addDadosFuncionaisUsuario.js"></script>
-</body>
-
+  </body>
 </html>

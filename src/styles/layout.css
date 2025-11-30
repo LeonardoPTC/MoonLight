@@ -4,7 +4,7 @@ html {
   padding: 0;
   height: 100%;
   overflow-y: scroll;
-  background-color: #DCE0E6;
+  background-color: #dce0e6;
 }
 
 #nav-top {
@@ -13,7 +13,7 @@ html {
   left: 0;
   right: 0;
   height: 60px;
-  background-color: #1F1F20;
+  background-color: #1f1f20;
   color: white;
   z-index: 1000;
   display: flex;
@@ -21,6 +21,11 @@ html {
   justify-content: center;
   padding: 0;
   box-sizing: border-box;
+}
+
+#logo {
+  width: 60px;
+  height: auto;
 }
 
 #nomeProjeto,
@@ -36,7 +41,7 @@ a {
   left: 0;
   width: 60px;
   height: calc(100vh - 60px);
-  background-color: #1F1F20;
+  background-color: #1f1f20;
   overflow: hidden;
   transition: width 0.3s ease;
   display: flex;
@@ -49,7 +54,7 @@ a {
   width: 250px;
 }
 
-.sidebar:hover+#content {
+.sidebar:hover + #content {
   margin-left: 250px;
 }
 
@@ -68,7 +73,6 @@ a {
   width: 40px;
   height: 40px;
   transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
-
 }
 
 .sidebar-item .text {
@@ -95,7 +99,7 @@ a {
     left: 0;
     width: 60px;
     height: calc(100vh - 60px);
-    background-color: #1F1F20;
+    background-color: #1f1f20;
     overflow: hidden;
     transition: width 0.3s ease;
     display: flex;
@@ -108,7 +112,7 @@ a {
     width: 180px;
   }
 
-  .sidebar:hover+#content {
+  .sidebar:hover + #content {
     margin-left: 270px;
   }
 
@@ -127,7 +131,6 @@ a {
     width: 40px;
     height: 40px;
     transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
-
   }
 
   .sidebar-item .text {
