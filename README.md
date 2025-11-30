@@ -39,7 +39,7 @@ Para iniciar o sistema, você pode utilizar dois arquivos principais: o **index.
 
 # 📘 **Como usar**
 
-Para utilizar o MoonLight, certifique-se de que a **API BlueMoon** está em execução. Caso ainda não tenha, ou não saiba como utilizar, basta acessar esse repositório [BlueMoon](https://github.com/TM1744/BlueMoon).
+Para utilizar o MoonLight, certifique-se de que a **API BlueMoon** está em execução. Caso ainda não tenha, ou não saiba como utilizar, basta acessar esse repositório: **[BlueMoon](https://github.com/TM1744/BlueMoon)**.
 
 Em seguida, abra o projeto utilizando o Live Server e acesse o **index.html** para realizar o login normalmente, ou vá diretamente ao **src/dashboard/index.html** caso deseje acessar imediatamente o painel interno.
 
@@ -66,10 +66,9 @@ O MoonLight utiliza tecnologias fundamentais do ecossistema web para garantir si
 ---
 
 # 👥 **Autores**
-- [**Thiago Marques Paixão**](https://github.com/TM1744) – TM1744  
-- [**Leonardo Pereira Trindade Comitre**](https://github.com/LeonardoPTC) – LeonardoPTC  
-- [**Vitor Hugo Calsavara Pita**](https://github.com/vitorpita) – Pita042
-
+- **Thiago Marques Paixão** – [TM1744](https://github.com/TM1744)  
+- **Leonardo Pereira Trindade Comitre** – [LeonardoPTC](https://github.com/LeonardoPTC)  
+- **Vitor Hugo Calsavara Pita** – [Pita042](https://github.com/vitorpita)
 
 ---
 
