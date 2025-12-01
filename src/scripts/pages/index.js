@@ -10,7 +10,7 @@ window.addEventListener('load', async () => {
 
         const aplicarMargens = (expandida) => {
             if (telaPequena.matches) {
-                content.style.marginLeft = expandida ? "180px" : "160px";
+                content.style.marginLeft = expandida ? "200px" : "160px";
                 content.style.marginRight = expandida ? "40px" : "60px";
 
             } else {
