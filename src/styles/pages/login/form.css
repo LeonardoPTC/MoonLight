@@ -47,7 +47,7 @@ select {
     border: 3px solid #2b4c7e;
     border-radius: 10px !important;
     background-color: #f0f4f9;
-    margin-top: 10%;
+    margin-top: 8%;
     margin-left: auto;
     margin-right: auto;
     padding: 30px;
@@ -56,8 +56,8 @@ select {
     justify-items: center;
     transition: margin-left 0.3s ease;
     font-family: "Roboto Mono", monospace;
-    width: 40%;
-    height: 60%;
+    width: 50%;
+    height: 80%;
     font-weight: bold;
   }
   body {

@@ -239,7 +239,7 @@ document.getElementById("formPesquisa").addEventListener("submit", async functio
     vendas.forEach(v => {
       const linha = document.createElement("tr");
 
-      if (v.dataFaturamento === "01/01/0001 00:00:00" && situacaoDescricao[v.situacao] === "FECHADA" || situacao[v.situacao] === "ABERTA") {
+      if (v.dataFaturamento === "01/01/0001 00:00:00" && situacaoDescricao[v.situacao] === "FECHADA" || situacaoDescricao[v.situacao] === "ABERTA") {
         v.dataFaturamento = "Não Faturada!";
       } else if (v.dataFaturamento === "01/01/0001 00:00:00" && situacaoDescricao[v.situacao] === "CANCELADA") {
         v.dataFaturamento = "Venda Cancelada!";
