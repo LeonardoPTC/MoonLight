@@ -1,0 +1,161 @@
+#content {
+  border: 3px solid #2B4C7E;
+  border-radius: 10px !important;
+  background-color: #F0F4F9;
+  margin-top: 80px;
+  margin-left: 200px;
+  margin-right: 170px;
+  padding: 20px;
+  padding-bottom: 50px;
+  box-sizing: border-box;
+  justify-items: center;
+  transition: margin-left 0.3s ease;
+  font-family: "Roboto Mono", monospace;
+  font-weight: bold;
+}
+
+input {
+  font-weight: bold;
+  border: 1px solid #000000 !important;
+}
+
+th {
+  font-size: 20px;
+  border: 2px solid #2B4C7E !important;
+}
+
+td {
+  font-size: 18px;
+  border: 1px solid #000000 !important;
+}
+
+img {
+  width: 30px;
+  margin-right: 5px;
+}
+
+#btnBaixarRelatorio {
+  top: 20px;
+  right: 20px;
+}
+
+.filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 168px;
+  margin-right: 100px;
+  transition: width 0.3s ease-in-out, margin-right 1s ease-in-out;
+  overflow: hidden;
+}
+
+.filter-bar.expanded {
+  width: 1320px;
+  margin-right: 0px;
+}
+
+.input-container {
+  width: 0;
+  overflow: hidden;
+  transition: width 0.3s ease-in-out;
+  display: flex;
+  margin-left: 11px;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.input-container input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.filter-bar.expanded .input-container {
+  width: 1400px;
+  margin-left: 0px;
+}
+
+.filter-bar.expanded #toggleSearch {
+  display: none;
+}
+
+@media (max-width: 1366px) {
+
+  #content {
+    border: 3px solid #2B4C7E;
+    border-radius: 10px !important;
+    background-color: #F0F4F9;
+    margin-top: 80px;
+    margin-left: 160px;
+    margin-right: 60px;
+    padding: 20px;
+    padding-bottom: 50px;
+    width: 1140px;
+    box-sizing: border-box;
+    justify-items: center;
+    transition: margin-left 0.3s ease, margin-right 0.3s ease;
+    font-family: "Roboto Mono", monospace;
+    font-weight: bold;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  #fecharFiltros {
+    display: none;
+  }
+
+  .input-container {
+    width: 100%;
+  }
+
+  #filterCodigo {
+    width: 100px;
+    margin-left: 0px;
+  }
+
+
+  #filterNome {
+    width: 230px;
+  }
+
+  #filterDocumento {
+    width: 220px;
+  }
+
+  #filterTelefone {
+    width: 160px;
+  }
+
+  .filter-bar #toggleSearch {
+    display: none;
+  }
+
+
+  input {
+    width: 150px;
+  }
+
+  .filter-bar {
+    width: 100%;
+    margin-right: 20px;
+    margin-left: -15px;
+  }
+
+  table {
+    font-size: 16px;
+  }
+
+  th {
+    font-size: 18px;
+  }
+
+  td {
+    font-size: 16px;
+  }
+
+  #tabela-usuarios {
+    width: 1050px;
+  }
+}

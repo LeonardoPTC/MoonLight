@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Venda</title>
+    <link rel="stylesheet" href="../../styles/pages/vendas/form.css">
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div id="content" class="shadow body-tertiary rounded position-relative">
+        <h1 class="text-center mb-4">Registrar Venda</h1>
+
+        <button id="btnCadastrarCliente" class="btn btn-success shadow body-tertiary rounded position-absolute"
+            data-toggle="tooltip" data-placement="top" title="CadastrarCliente">
+            <img style="margin-bottom: 2px;" src="../../assets/AddProduto.png" alt="Cadastrar Cliente">
+            Cadastrar Novo Cliente
+        </button>
+
+        <form id="formVenda" class="container g-2">
+            <div id="etapa1">
+                <div class="row g-2">
+                    <div class="col-md-6">
+                        <label for="selectCliente" class="form-label">Cliente:</label>
+                        <select id="selectCliente" class="form-control">
+                            <option value="">Selecione uma opção...</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="selectUsuario" class="form-label">Usuário:</label>
+                        <select id="selectUsuario" class="form-control">
+                            <option value="">Selecione uma opção...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mt-4 justify-content-center">
+                    <div class="col-3">
+                        <button type="button" id="btnIniciarVenda" class="btn btn-primary w-100">
+                            Iniciar Venda
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="etapa2" class="mt-4">
+                <h4 class="text-center mt-5">Adicionar Produtos</h4>
+
+                <div class="row g-2">
+                    <div class="col-md-7">
+                        <label for="selectProduto" class="form-label">Produto:</label>
+                        <select id="selectProduto" class="form-control"></select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <label for="inputQtd" class="form-label">Qtd:</label>
+                        <input type="number" id="inputQtd" class="form-control" min="1" value="1">
+                    </div>
+
+                    <div class="col-md-1">
+                        <label for="btnAddProduto" class="form-label"></label>
+                        <button type="button" id="btnAddProduto" class="btn btn-success w-100">
+                            <img src="../../assets/AddProduto.png" alt="">
+                        </button>
+                    </div>
+                    <div class="col-md-1">
+                        <label for="btnRemoveProduto" class="form-label"></label>
+                        <button type="button" id="btnRemoveProduto" style="color: white;" class="btn btn-warning w-100">
+                            <img src="../../assets/Remover.png" alt="">
+                        </button>
+                    </div>
+                    <div class="col-md-1">
+                        <label for="btnDeleteProduto" class="form-label"></label>
+                        <button type="button" id="btnDeleteProduto" class="btn btn-danger w-100">
+                            <img src="../../assets/Delete.png">
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;">Produto</th>
+                                <th style="text-align: center;">Qtd</th>
+                                <th style="text-align: center;">Preço</th>
+                                <th style="text-align: center;">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelaItens"></tbody>
+                    </table>
+                </div>
+                <div class="row mt-5 mb-4 justify-content-center" id="buttons">
+                    <div class="col-md-3">
+                        <button type="button" id="btnFechar" class="btn btn-primary w-100">
+                            Fechar
+                        </button>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" id="btnCancelar" class="btn btn-secondary w-100">
+                            Cancelar Venda
+                        </button>
+                    </div>
+                    <!-- <div class="col-md-3">
+                        <button type="button" id="btnEstornar" class="btn btn-danger w-100">
+                            Estornar
+                        </button>
+                    </div> -->
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div id="footer"></div>
+
+    <script src="../../scripts/includes.js"></script>
+    <script src="../../scripts/pages/vendas/venda.js"></script>
+
+</body>
+
+</html>

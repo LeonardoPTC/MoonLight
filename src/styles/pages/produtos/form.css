@@ -1,0 +1,116 @@
+#content {
+  border: 3px solid #2b4c7e;
+  border-radius: 10px !important;
+  background-color: #f0f4f9;
+  margin-top: 80px;
+  margin-left: 300px;
+  margin-right: 280px;
+  padding: 20px;
+  padding-bottom: 50px;
+  box-sizing: border-box;
+  justify-items: center;
+  transition: margin-left 0.3s ease;
+  font-family: "Roboto Mono", monospace;
+  font-weight: bold;
+}
+
+input,
+textarea,
+select {
+  font-weight: bold !important;
+  border: 1px solid #000 !important;
+}
+
+.campo-obrigatorio {
+  font-size: 12px;
+  color: #d00;
+  margin-top: 2px;
+}
+
+#TituloCad h1 {
+  margin: 0 0 20px 0;
+}
+
+#buttons {
+  display: flex;
+  justify-content: center;
+}
+
+#buttons button {
+  width: 100%;
+  padding: 6px;
+}
+
+#idDescricao {
+  height: 100px;
+}
+
+textarea {
+  resize: none !important;
+  overflow-y: hidden;
+  height: 80px;
+}
+
+.borda {
+  border: 1px solid #2b4c7e;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+@media (max-width: 1366px) {
+  #content {
+    margin-left: 150px;
+    margin-right: 120px;
+    margin-top: 75px;
+    padding: 20px;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    border: 3px solid #2b4c7e;
+    border-radius: 10px !important;
+    background-color: #f0f4f9;
+    transition: margin-left 0.3s ease, margin-right 0.3s ease;
+    font-family: "Roboto Mono", monospace;
+    font-weight: bold;
+  }
+
+  input,
+  textarea,
+  select {
+    font-size: 14px;
+  }
+
+  textarea {
+    height: 70px;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  #buttons button {
+    width: 100%;
+    padding: 8px;
+    margin-top: -25px;
+  }
+
+  #btnSalvar,
+  #btnCancelar {
+    margin-top: -40px !important;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+}
