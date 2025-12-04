@@ -65,11 +65,6 @@ document.getElementById("formProduto").addEventListener("submit", async (e) => {
         return;
     }
 
-    if (!validarNCM(dados.ncm)) {
-        alert("Erro ao cadastrar produto: NCM informado não é válido");
-        return;
-    }
-
     const camposObrigatorios = document.querySelectorAll("[data-required]");
 
     for (let campo of camposObrigatorios) {
@@ -113,8 +108,3 @@ document.getElementById("formProduto").addEventListener("submit", async (e) => {
         return;
     }
 });
-
-function validarNCM(ncm) {
-    const formatado = ncm.replace(/\D/g, "");
-    return formatado.length === 8;
-}

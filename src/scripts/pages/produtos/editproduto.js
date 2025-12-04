@@ -69,11 +69,6 @@ document.getElementById("formProduto").addEventListener("submit", async (e) => {
     return;
   }
 
-  if (!validarNCM(dados.ncm)) {
-    alert("Erro ao atualizar produto: NCM informado não é válido.");
-    return;
-  }
-
   const camposObrigatorios = document.querySelectorAll("[data-required]");
 
   for (let campo of camposObrigatorios) {
@@ -182,9 +177,4 @@ function preencherCampos(produto) {
   document.getElementById('inputEstoque').value = produto.quantidadeEstoque || 0;
   document.getElementById('inputEstoqueMin').value = produto.quantidadeEstoqueMinimo || 0;
   //document.getElementById('inputSituacao').value = produto.situacao;
-}
-
-function validarNCM(ncm) {
-  const formatado = ncm.replace(/\D/g, "");
-  return formatado.length === 8;
 }
