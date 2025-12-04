@@ -3,7 +3,7 @@ window.addEventListener('load', async () => {
   await includeHTML("footer", "../../include/footer.html");
 
   const id = localStorage.getItem("idProduto");
-  
+
   const sidebar = document.querySelector(".sidebar")
   const content = document.querySelector("#content");
   const telaPequena = window.matchMedia("(max-width: 1366px)");
@@ -48,6 +48,31 @@ document.getElementById("formProduto").addEventListener("submit", async (e) => {
       dados[chave] = valor.trim() === "" ? "" : valor;
     }
   });
+
+  if (dados.ValorVenda < 0) {
+    alert("Erro ao atualizar produto: O valor de venda não pode ser negativo.");
+    return;
+  }
+
+  if (dados.ValorCusto < 0) {
+    alert("Erro ao atualizar produto: O valor de custo não pode ser negativo.");
+    return;
+  }
+
+  if (dados.QuantidadeEstoque < 0) {
+    alert("Erro ao atualizar produto: A quantidade em estoque não pode ser negativa.");
+    return;
+  }
+
+  if (dados.QuantidadeEstoqueMinimo < 0) {
+    alert("Erro ao atualizar produto: A quantidade mínima não pode ser negativa.");
+    return;
+  }
+
+  if (!validarNCM(dados.ncm)) {
+    alert("Erro ao atualizar produto: NCM informado não é válido.");
+    return;
+  }
 
   const camposObrigatorios = document.querySelectorAll("[data-required]");
 
@@ -157,4 +182,9 @@ function preencherCampos(produto) {
   document.getElementById('inputEstoque').value = produto.quantidadeEstoque || 0;
   document.getElementById('inputEstoqueMin').value = produto.quantidadeEstoqueMinimo || 0;
   //document.getElementById('inputSituacao').value = produto.situacao;
+}
+
+function validarNCM(ncm) {
+  const formatado = ncm.replace(/\D/g, "");
+  return formatado.length === 8;
 }

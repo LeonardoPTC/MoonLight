@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         content.style.marginRight = expandida ? "90px" : "120px";
 
       } else {
-        content.style.marginLeft = expandida ? "270px" : "200px";
+        content.style.marginLeft = expandida ? "300px" : "300px";
       }
     };
 

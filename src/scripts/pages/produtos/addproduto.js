@@ -45,6 +45,31 @@ document.getElementById("formProduto").addEventListener("submit", async (e) => {
         }
     });
 
+    if (dados.ValorVenda < 0) {
+        alert("Erro ao cadastrar produto: O valor de venda não pode ser negativo.");
+        return;
+    }
+
+    if (dados.ValorCusto < 0) {
+        alert("Erro ao cadastrar produto: O valor de custo não pode ser negativo.");
+        return;
+    }
+
+    if (dados.QuantidadeEstoque < 0) {
+        alert("Erro ao cadastrar produto: A quantidade em estoque não pode ser negativa.");
+        return;
+    }
+
+    if (dados.QuantidadeEstoqueMinimo < 0) {
+        alert("Erro ao cadastrar produto: A quantidade mínima não pode ser negativa.");
+        return;
+    }
+
+    if (!validarNCM(dados.ncm)) {
+        alert("Erro ao cadastrar produto: NCM informado não é válido");
+        return;
+    }
+
     const camposObrigatorios = document.querySelectorAll("[data-required]");
 
     for (let campo of camposObrigatorios) {
@@ -88,3 +113,8 @@ document.getElementById("formProduto").addEventListener("submit", async (e) => {
         return;
     }
 });
+
+function validarNCM(ncm) {
+    const formatado = ncm.replace(/\D/g, "");
+    return formatado.length === 8;
+}

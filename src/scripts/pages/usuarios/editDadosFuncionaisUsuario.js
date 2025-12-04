@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 content.style.marginRight = expandida ? "80px" : "120px";
 
             } else {
-                content.style.marginLeft = expandida ? "270px" : "200px";
+                content.style.marginLeft = expandida ? "300px" : "300px";
             }
         };
 
@@ -84,8 +84,6 @@ function preencherFormulario(usuario) {
 
     let dataAdmissao = usuario.admissao;
     const inputDataAdmissao = document.getElementById("inputAdmissao");
-    inputDataAdmissao.disabled = true;
-
     let formatada = "";
 
     if (dataAdmissao) {
@@ -99,6 +97,9 @@ function preencherFormulario(usuario) {
         }
     }
 
+    if (dataAdmissao === "01/01/0001") { 
+        formatada = "";
+    }
     document.getElementById("inputAdmissao").value = formatada;
     document.getElementById("HorarioInicioCargaHoraria").value = usuario.horarioInicioCargaHoraria;
     document.getElementById("HorarioFimCargaHoraria").value = usuario.horarioFimCargaHoraria;
